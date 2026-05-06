@@ -1,6 +1,25 @@
 {
+  "name": "eatsistent",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "dependencies": {
-    "html-react-parser": "^6.0.1",
-    "react-router-dom": "^7.14.2"
+    "@tailwindcss/postcss": "^4.2.4",
+    "html-react-parser": "^6.1.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-router-dom": "7.15.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.0.1",
+    "autoprefixer": "10.5.0",
+    "postcss": "8.5.14",
+    "tailwindcss": "4.2.4",
+    "vite": "8.0.10"
   }
 }
