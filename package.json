@@ -9,9 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@prisma/client": "^7.8.0",
     "@tailwindcss/postcss": "^4.2.4",
     "@tailwindcss/vite": "^4.2.4",
+    "@tensorflow/tfjs": "^4.22.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "html-react-parser": "^6.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "prisma": "^6.19.3",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "react-router-dom": "7.15.0"
@@ -20,6 +28,7 @@
     "@iconify/react": "^6.0.2",
     "@vitejs/plugin-react": "6.0.1",
     "autoprefixer": "10.5.0",
+    "nodemon": "^3.1.14",
     "postcss": "8.5.14",
     "tailwindcss": "4.2.4",
     "vite": "8.0.10"

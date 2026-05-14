@@ -1,0 +1,40 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int          @id @default(autoincrement())
+  email     String       @unique
+  password  String
+  createdAt DateTime     @default(now())
+  profile   UserProfile?
+  mealLogs  MealLog[]
+}
+
+model UserProfile {
+  id            Int      @id @default(autoincrement())
+  userId        Int      @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gender        String
+  age           Int
+  height        Float
+  weight        Float
+  activityLevel String
+  goal          String
+  targetCalories Float
+}
+
+model MealLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  foodName  String
+  calories  Float
+  mealType  String   // Breakfast, Lunch, Dinner, Snack
+  createdAt DateTime @default(now())
+}
