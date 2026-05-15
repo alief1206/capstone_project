@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { useState, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Icon } from '@iconify/react';
 import Button from './components/ui/Button';
 
@@ -8,6 +8,7 @@ import logoIcon from './assets/icons/logo-icon.png';
 import confettiImg from './assets/images/confetti.png';
 import profileImg from './assets/images/profile.png';
 import robotImg from './assets/images/robot.png';
+import foodImg from './assets/images/makanan.png';
 
 const WelcomeScreen = () => {
     const navigate = useNavigate();
@@ -584,8 +585,17 @@ const DashboardScreen = () => {
                             <h1 className="-ml-[4px] text-[24px] font-bold text-[#14AE5C]">EatSistent</h1>
                         </div>
                         <div className="flex items-center gap-4">
-                            <Icon icon="mdi:bell-outline" className="text-2xl text-gray-700" />
-                            <div className="w-[36px] h-[36px] rounded-full bg-gray-100 flex justify-center items-center overflow-hidden border border-gray-200">
+                            <button 
+                                onClick={() => alert("Belum ada notifikasi baru hari ini.")}
+                                className="text-gray-700 hover:text-[#14AE5C] transition-colors relative"
+                            >
+                                <Icon icon="mdi:bell-outline" className="text-2xl" />
+                                <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                            </button>
+                            <div 
+                                onClick={() => navigate('/profile', { state: { goal: currentGoal } })}
+                                className="w-[36px] h-[36px] rounded-full bg-gray-100 flex justify-center items-center overflow-hidden border-2 border-transparent hover:border-[#14AE5C] cursor-pointer transition-all shadow-sm"
+                            >
                                 <img src={profileImg} alt="Profile" className="w-full h-full object-cover object-center" />
                             </div>
                         </div>
@@ -643,7 +653,7 @@ const DashboardScreen = () => {
                         </div>
                         <div className="w-[90px] h-[93px] bg-[#F5F3FF] rounded-[16px] py-2 px-1 flex flex-col items-center justify-between border border-[#ede9fe]">
                             <span className="text-[9px] font-bold text-[#8B5CF6] tracking-wider">LEMAK</span>
-                            <Icon icon="mdi:avocado" className="text-2xl text-[#8B5CF6]" />
+                            <Icon icon="mdi:oil" className="text-2xl text-[#8B5CF6]" />
                             <div className="w-[80%] h-[4px] bg-[#8B5CF6]/20 rounded-full overflow-hidden"><div className="h-full bg-[#8B5CF6]" style={{ width: data.lemak.percent }}></div></div>
                             <span className="text-[9px] font-semibold text-gray-500">{data.lemak.value}g/{data.lemak.max}g</span>
                             <span className="text-[12px] font-bold text-black leading-none">{data.lemak.value}g</span>
@@ -912,8 +922,8 @@ const FoodSearchScreen = () => {
                     </div>
 
                     <div className="w-full bg-[#F0FDF4]/50 rounded-[20px] p-4 shadow-sm border border-[#DCFCE7] mb-4 flex-shrink-0">
-                        <div className="flex items-center gap-3">
-                            <img src={robotImg} alt="AI Rekomendasi" className="w-[45px] h-[40px] object-contain flex-shrink-0" />
+                        <div className="flex items-center gap-2">
+                            <img src={robotImg} alt="AI Rekomendasi" className="w-[70px] h-[58px] object-contain flex-shrink-0" />
                             <div className="flex flex-col flex-1">
                                 <h4 className="text-[12px] font-bold text-[#14AE5C] mb-2">Rekomendasi Untuk Kamu</h4>
                                 <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
@@ -984,9 +994,9 @@ const BarcodeScannerScreen = () => {
 
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
-            <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-black relative flex flex-col items-center overflow-hidden'>
+            <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-black relative flex flex-col items-center overflow-hidden pb-8'>
                 
-                <div className="w-full pt-12 px-6 flex justify-between items-center z-10 text-white">
+                <div className="w-full pt-12 px-6 flex justify-between items-center z-10 text-white flex-shrink-0">
                     <button onClick={() => navigate(-1)} className="w-[40px] h-[40px] bg-white/20 rounded-full flex justify-center items-center text-xl backdrop-blur-sm">
                         <Icon icon="mdi:close" />
                     </button>
@@ -995,48 +1005,54 @@ const BarcodeScannerScreen = () => {
                     </button>
                 </div>
 
-                <div className="mt-16 text-center z-10">
-                    <p className="text-white text-[16px] font-bold tracking-wide">Arahkan kamera ke Barcode produk</p>
+                <div className="mt-10 text-center z-10 flex-shrink-0">
+                    <p className="text-white text-[15px] font-bold tracking-wide">Arahkan kamera ke Barcode produk</p>
                 </div>
 
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[200px] z-10">
-                    <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-[#14AE5C] rounded-tl-xl"></div>
-                    <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-[#14AE5C] rounded-tr-xl"></div>
-                    <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-[#14AE5C] rounded-bl-xl"></div>
-                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-[#14AE5C] rounded-br-xl"></div>
-                    
-                    <div className="w-full h-full bg-white/10 backdrop-blur-[2px] flex justify-center items-center flex-col gap-2">
-                        <Icon icon="mdi:barcode" className="text-white/50 text-8xl" />
+                <div className="flex-1 w-full flex flex-col justify-center items-center gap-8 z-10 -mt-10">
+                    <div className="relative w-[280px] h-[200px] flex justify-center items-center">
+                        <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-[#14AE5C] rounded-tl-xl"></div>
+                        <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-[#14AE5C] rounded-tr-xl"></div>
+                        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-[#14AE5C] rounded-bl-xl"></div>
+                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-[#14AE5C] rounded-br-xl"></div>
+                        
+                        <div className="w-full h-full bg-white/5 backdrop-blur-[1px] flex justify-center items-center">
+                            <Icon icon="mdi:barcode" className="text-white/40 text-8xl" />
+                        </div>
                     </div>
-                </div>
 
-                <div className="mt-auto mb-20 flex flex-col items-center gap-6 z-10">
-                    <div className="bg-[#14AE5C] px-6 py-2 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(20,174,92,0.5)]">
+                    <div className="bg-[#14AE5C] px-6 py-2.5 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(20,174,92,0.4)]">
                         <Icon icon="mdi:barcode-scan" className="text-white text-lg" />
                         <span className="text-white text-[14px] font-bold">Siap memindai...</span>
                     </div>
-
-                    <div className="w-[64px] h-[64px] rounded-full border-4 border-white flex justify-center items-center mt-2 cursor-pointer">
-                        <div className="w-[48px] h-[48px] bg-white/30 rounded-full"></div>
-                    </div>
                 </div>
 
-                <div className="absolute bottom-0 w-full h-[100px] bg-gradient-to-t from-black to-transparent flex justify-center items-end pb-8 z-10">
-                    <p className="text-white text-[14px] font-medium flex items-center gap-2">
+                <div className="w-full flex flex-col items-center gap-10 z-10 flex-shrink-0">
+                    <div 
+                        onClick={() => {
+                            alert("Fitur pemindaian belum tersedia. Kamu akan diarahkan ke halaman penambahan makanan secara manual.");
+                            navigate('/diary', { state: { goal: currentGoal } });
+                        }}
+                        className="w-[72px] h-[72px] rounded-full border-4 border-white flex justify-center items-center p-1 cursor-pointer"
+                    >
+                        <div className="w-full h-full bg-gray-500 rounded-full hover:bg-gray-400 transition-colors"></div>
+                    </div>
+
+                    <p className="text-white text-[13px] font-medium flex items-center gap-2">
                         Tidak terbaca ? 
                         <span 
                             onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal } })} 
-                            className="px-3 py-1.5 bg-[#14AE5C]/20 border border-[#14AE5C] rounded-full text-[#14AE5C] font-bold cursor-pointer hover:bg-[#14AE5C]/40 transition-colors"
+                            className="px-4 py-1.5 border border-[#14AE5C] rounded-full text-[#14AE5C] font-bold cursor-pointer hover:bg-[#14AE5C]/20 transition-colors"
                         >
                             Ketik Manual
                         </span>
                     </p>
                 </div>
+
             </div>
         </div>
     );
 };
-
 const DiaryScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -1198,8 +1214,8 @@ const DiaryScreen = () => {
                 </div>
 
                 {showCalendar && (
-                    <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] z-[70] flex justify-center items-center px-4" onClick={() => setShowCalendar(false)}>
-                        <div className="bg-white w-full max-w-[320px] rounded-[24px] p-5 shadow-2xl -mt-[120px]" onClick={(e) => e.stopPropagation()}>
+                    <div className="absolute inset-0 bg-white/20 z-[70] flex justify-center items-center px-4" onClick={() => setShowCalendar(false)}>
+                        <div className="bg-white w-full max-w-[320px] rounded-[24px] p-5 shadow-2xl -mt-[350px]" onClick={(e) => e.stopPropagation()}>
                             <div className="flex justify-between items-center mb-4">
                                 <Icon icon="mdi:chevron-left" className="text-2xl cursor-pointer text-gray-600 hover:text-[#14AE5C]" onClick={() => handleMonthChange(-1)} />
                                 <span className="font-bold text-[16px] text-black">
@@ -1296,13 +1312,216 @@ const ProgressScreen = () => {
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
 
+    const [currentDate, setCurrentDate] = useState(new Date());
+    const [showCalendar, setShowCalendar] = useState(false);
+
+    const [showTimeRange, setShowTimeRange] = useState(false);
+    const [timeRange, setTimeRange] = useState('7 Hari Terakhir');
+    const timeRanges = ['7 Hari Terakhir', '14 Hari Terakhir', '30 Hari Terakhir', 'Bulan Ini'];
+
+    const handleMonthChange = (offset) => {
+        const newDate = new Date(currentDate);
+        newDate.setMonth(currentDate.getMonth() + offset);
+        setCurrentDate(newDate);
+    };
+    const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+    const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+    const calendarGrid = Array(firstDay).fill(null).concat(Array.from({length: daysInMonth}, (_, i) => i + 1));
+
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
-            <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-white shadow-xl flex flex-col relative overflow-hidden'>
-                <div className="flex-1 flex justify-center items-center flex-col gap-4">
-                    <Icon icon="mdi:chart-bar" className="text-8xl text-[#14AE5C] opacity-20" />
-                    <h2 className="text-xl font-bold text-gray-400">Halaman Progress</h2>
+            <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-[#F8FAFC] shadow-xl flex flex-col relative overflow-hidden'>
+                
+                <div className="pt-14 px-6 pb-4 flex justify-between items-center z-10 flex-shrink-0">
+                    <h2 className="text-[24px] font-bold text-black tracking-wide">Progress</h2>
+                    <button onClick={() => setShowCalendar(true)} className="text-2xl text-black hover:text-[#14AE5C] transition-colors">
+                        <Icon icon="mdi:calendar-month-outline" />
+                    </button>
                 </div>
+
+                <div className="flex-1 overflow-y-auto pb-[120px] hide-scrollbar px-5 pt-2">
+                    
+                    <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_15px_rgba(0,0,0,0.04)] border border-gray-50 mb-5 relative">
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="text-[11px] font-bold text-gray-500 tracking-wider">TREND BERAT BADAN</h3>
+                            
+                            <div className="relative">
+                                <div 
+                                    className="flex items-center gap-1 text-[#14AE5C] cursor-pointer hover:opacity-80"
+                                    onClick={() => setShowTimeRange(!showTimeRange)}
+                                >
+                                    <span className="text-[11px] font-semibold">{timeRange}</span>
+                                    <Icon icon="mdi:chevron-down" className={`text-lg transition-transform ${showTimeRange ? 'rotate-180' : ''}`} />
+                                </div>
+
+                                {showTimeRange && (
+                                    <>
+                                        <div className="fixed inset-0 z-40" onClick={() => setShowTimeRange(false)}></div>
+                                        <div className="absolute right-0 top-6 w-[140px] bg-white rounded-xl shadow-lg border border-gray-100 z-50 overflow-hidden flex flex-col animate-scaleIn origin-top-right">
+                                            {timeRanges.map((range) => (
+                                                <div
+                                                    key={range}
+                                                    onClick={() => {
+                                                        setTimeRange(range);
+                                                        setShowTimeRange(false);
+                                                    }}
+                                                    className="w-full py-2.5 px-4 border-b border-gray-50 last:border-0 hover:bg-[#F0FDF4] cursor-pointer text-[11px] font-bold text-gray-700 hover:text-[#14AE5C] transition-colors"
+                                                >
+                                                    {range}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                        
+                        <div className="flex justify-between items-end mb-4">
+                            <div className="flex items-baseline gap-1">
+                                <span className="text-[28px] font-bold text-black leading-none">62.4</span>
+                                <span className="text-[14px] font-bold text-black">kg</span>
+                            </div>
+                            <div className="flex items-center gap-1 text-[#14AE5C]">
+                                <Icon icon="mdi:menu-down" className="text-xl" />
+                                <span className="text-[12px] font-bold">0,6 kg dari minggu lalu</span>
+                            </div>
+                        </div>
+
+                        <div className="w-full h-[160px] relative mt-6">
+                            <div className="absolute inset-0 flex flex-col justify-between pb-6">
+                                {[64, 63, 62, 61].map((val) => (
+                                    <div key={val} className="flex items-center w-full">
+                                        <span className="text-[10px] text-gray-400 w-5">{val}</span>
+                                        <div className="flex-1 h-[1px] bg-gray-100 ml-2"></div>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            <div className="absolute inset-0 pl-7 pb-6">
+                                <svg viewBox="0 0 280 110" preserveAspectRatio="none" className="w-full h-full">
+                                    <defs>
+                                        <linearGradient id="progress-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stopColor="#14AE5C" stopOpacity="0.4" />
+                                            <stop offset="100%" stopColor="#14AE5C" stopOpacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M 0 10 Q 50 20, 100 50 T 200 80 T 280 85 V 110 H 0 Z" fill="url(#progress-grad)" />
+                                    <path d="M 0 10 Q 50 20, 100 50 T 200 80 T 280 85" fill="none" stroke="#14AE5C" strokeWidth="2.5" />
+                                    <line x1="280" y1="85" x2="280" y2="110" stroke="#14AE5C" strokeWidth="1" strokeDasharray="3 3" />
+                                </svg>
+                                <div className="absolute top-[64%] right-[-10px] bg-[#14AE5C] text-white text-[11px] font-bold px-2 py-0.5 rounded shadow-sm">
+                                    62,4
+                                </div>
+                            </div>
+
+                            <div className="absolute bottom-0 left-7 right-0 flex justify-between text-[9px] font-semibold text-gray-400">
+                                <span>21/5</span><span>22/5</span><span>23/5</span><span>24/5</span><span>25/5</span><span>26/5</span><span>27/5</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_15px_rgba(0,0,0,0.04)] border border-gray-50 mb-6">
+                        <h3 className="text-[12px] font-bold text-black tracking-wider mb-3">KONSISTENSI</h3>
+                        <div className="flex items-center gap-2 mb-4">
+                            <Icon icon="twemoji:fire" className="text-2xl" />
+                            <span className="text-[20px] font-bold text-black">7</span>
+                            <span className="text-[12px] font-medium text-gray-500">hari berturut-turut</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center mt-2">
+                            {['M', 'S', 'S', 'R', 'K', 'J', 'S'].map((day, idx) => (
+                                <div key={idx} className="flex flex-col items-center gap-2">
+                                    <span className="text-[10px] font-bold text-gray-400">{day}</span>
+                                    <div className="w-[30px] h-[30px] rounded-full bg-[#E8F5EE] flex justify-center items-center text-[#14AE5C]">
+                                        <Icon icon="mdi:check-bold" className="text-[16px]" />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <h3 className="text-[13px] font-bold text-black tracking-wider mb-4 px-1">RINGKASAN MINGGU INI</h3>
+
+                    <div className="grid grid-cols-2 gap-3 pb-4">
+                        <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
+                            <p className="text-[12px] font-medium text-black mb-1">Rata-rata Kalori</p>
+                            <div className="flex items-baseline gap-1 mb-1">
+                                <span className="text-[20px] font-bold text-black">1.450</span>
+                                <span className="text-[11px] font-semibold text-gray-600">kkal</span>
+                            </div>
+                            <p className="text-[10px] font-medium text-gray-400">dari target 1.500</p>
+                        </div>
+
+                        <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
+                            <p className="text-[12px] font-medium text-black mb-1">Kalori Tertinggi</p>
+                            <div className="flex items-baseline gap-1 mb-1">
+                                <span className="text-[20px] font-bold text-black">1.780</span>
+                                <span className="text-[11px] font-semibold text-gray-600">kkal</span>
+                            </div>
+                            <p className="text-[10px] font-medium text-gray-400">Sabtu</p>
+                        </div>
+
+                        <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
+                            <p className="text-[12px] font-medium text-black mb-1">Kalori Terendah</p>
+                            <div className="flex items-baseline gap-1 mb-1">
+                                <span className="text-[20px] font-bold text-black">1.220</span>
+                                <span className="text-[11px] font-semibold text-gray-600">kkal</span>
+                            </div>
+                            <p className="text-[10px] font-medium text-gray-400">Rabu</p>
+                        </div>
+
+                        <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
+                            <p className="text-[12px] font-medium text-black mb-1">Rata-rata Protein</p>
+                            <div className="flex items-baseline gap-1 mb-1">
+                                <span className="text-[20px] font-bold text-black">82</span>
+                                <span className="text-[11px] font-semibold text-gray-600">g</span>
+                            </div>
+                            <p className="text-[10px] font-medium text-gray-400">dari target 100g</p>
+                        </div>
+                    </div>
+                </div>
+
+                {showCalendar && (
+                    <div className="absolute inset-0 bg-white/40  z-[70] flex justify-center items-center px-4" onClick={() => setShowCalendar(false)}>
+                        <div className="bg-white w-full max-w-[320px] rounded-[24px] p-5 shadow-2xl animate-scaleIn -mt-[350px]" onClick={(e) => e.stopPropagation()}>
+                            <div className="flex justify-between items-center mb-4">
+                                <Icon icon="mdi:chevron-left" className="text-2xl cursor-pointer text-gray-600 hover:text-[#14AE5C]" onClick={() => handleMonthChange(-1)} />
+                                <span className="font-bold text-[16px] text-black">
+                                    {new Intl.DateTimeFormat('id-ID', { month: 'long', year: 'numeric' }).format(currentDate)}
+                                </span>
+                                <Icon icon="mdi:chevron-right" className="text-2xl cursor-pointer text-gray-600 hover:text-[#14AE5C]" onClick={() => handleMonthChange(1)} />
+                            </div>
+                            <div className="grid grid-cols-7 gap-1 text-center mb-2">
+                                {['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'].map((d, i) => (
+                                    <div key={i} className="text-[11px] font-bold text-gray-400">{d}</div>
+                                ))}
+                            </div>
+                            <div className="grid grid-cols-7 gap-1 text-center">
+                                {calendarGrid.map((day, i) => {
+                                    const isSelected = day === currentDate.getDate();
+                                    return (
+                                        <div
+                                            key={i}
+                                            onClick={() => {
+                                                if (day) {
+                                                    const newDate = new Date(currentDate);
+                                                    newDate.setDate(day);
+                                                    setCurrentDate(newDate);
+                                                    setShowCalendar(false);
+                                                }
+                                            }}
+                                            className={`w-9 h-9 mx-auto flex justify-center items-center rounded-full text-[13px] font-bold cursor-pointer transition-colors ${
+                                                day ? (isSelected ? 'bg-[#14AE5C] text-white shadow-md' : 'text-gray-700 hover:bg-gray-100') : 'text-transparent pointer-events-none'
+                                            }`}
+                                        >
+                                            {day || ''}
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {isActionMenuOpen && (
                     <div className="absolute inset-0 bg-black/50 z-[60] flex flex-col justify-end items-center pb-[120px]" onClick={() => setIsActionMenuOpen(false)}>
@@ -1361,13 +1580,209 @@ const InsightScreen = () => {
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
 
+    const [currentDate, setCurrentDate] = useState(new Date());
+    const [showCalendar, setShowCalendar] = useState(false);
+    const [expandedNutrient, setExpandedNutrient] = useState(null);
+
+    const [displayedEval, setDisplayedEval] = useState("");
+    const [foodOptionIndex, setFoodOptionIndex] = useState(0);
+
+    const formatDateDisplay = (date) => {
+        const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        return new Intl.DateTimeFormat('id-ID', options).format(date);
+    };
+
+    const handleMonthChange = (offset) => {
+        const newDate = new Date(currentDate);
+        newDate.setMonth(currentDate.getMonth() + offset);
+        setCurrentDate(newDate);
+    };
+
+    const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+    const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+    const calendarGrid = Array(firstDay).fill(null).concat(Array.from({length: daysInMonth}, (_, i) => i + 1));
+
+    const insightContent = {
+        turunkan: {
+            evalTitle: 'Evaluasi Hari Ini',
+            fullEvalDesc: 'Hebat! Kamu sudah mendekati target harianmu.',
+            aiRecommendations: [
+                { title: 'Perbanyak Serat & Sayur', desc: 'Coba tambahkan telur atau dada ayam besok.', img: foodImg },
+                { title: 'Opsi Camilan Sehat', desc: 'Pilih apel atau pir untuk camilan sore agar kalori tetap terjaga.', img: foodImg },
+                { title: 'Protein Tanpa Lemak', desc: 'Coba ikan panggang untuk makan malam yang ringan tapi bergizi.', img: foodImg }
+            ],
+            nutrients: [
+                { id: 'kalori', label: 'Total Kalori', icon: 'mdi:card-multiple', iconColor: 'text-[#14AE5C]', value: '750', target: '1.500 kkal', valueColor: 'text-gray-500', status: 'check', sources: [] },
+                { id: 'protein', label: 'Protein', icon: 'mdi:arm-flex-outline', iconColor: 'text-[#F97316]', value: '80', target: '100 g', valueColor: 'text-[#F97316]', status: 'down', sources: [{ name: 'Dada Ayam', qty: '40g' }, { name: 'Susu', qty: '40g' }] },
+                { id: 'karbo', label: 'Karbohidrat', icon: 'mdi:food-croissant', iconColor: 'text-[#3B82F6]', value: '160', target: '220 g', valueColor: 'text-[#3B82F6]', status: 'check', sources: [{ name: 'Nasi Putih', qty: '150g' }, { name: 'Roti', qty: '30g' }] },
+                { id: 'lemak', label: 'Lemak', icon: 'mdi:egg-outline', iconColor: 'text-[#8B5CF6]', value: '45', target: '60 g', valueColor: 'text-[#8B5CF6]', status: 'check', sources: [{ name: 'Alpukat', qty: '45g' }] },
+                { id: 'serat', label: 'Serat', icon: 'mdi:leaf', iconColor: 'text-[#14AE5C]', value: '12', target: '25 g', valueColor: 'text-[#14AE5C]', status: 'down', sources: [{ name: 'Sayur Bayam', qty: '12g' }] },
+                { id: 'air', label: 'Air', icon: 'mdi:water', iconColor: 'text-[#0EA5E9]', value: '1,2', target: '2 L', valueColor: 'text-[#0EA5E9]', status: 'down', sources: [] }
+            ]
+        }
+    };
+
+    const currentData = insightContent[currentGoal] || insightContent.turunkan;
+
+    useEffect(() => {
+        let i = 0;
+        setDisplayedEval("");
+        const typingInterval = setInterval(() => {
+            if (i < currentData.fullEvalDesc.length) {
+                setDisplayedEval((prev) => prev + currentData.fullEvalDesc.charAt(i));
+                i++;
+            } else {
+                clearInterval(typingInterval);
+            }
+        }, 30);
+        return () => clearInterval(typingInterval);
+    }, [currentGoal, currentDate]);
+
+    const handleRefreshFood = () => {
+        setFoodOptionIndex((prev) => (prev + 1) % currentData.aiRecommendations.length);
+    };
+
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
-            <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-white shadow-xl flex flex-col relative overflow-hidden'>
-                <div className="flex-1 flex justify-center items-center flex-col gap-4">
-                    <Icon icon="mdi:chart-line" className="text-8xl text-[#14AE5C] opacity-20" />
-                    <h2 className="text-xl font-bold text-gray-400">Halaman Insight</h2>
+            <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-[#F8FAFC] shadow-xl flex flex-col relative overflow-hidden'>
+                
+                <div className="pt-14 px-6 pb-4 flex justify-between items-center z-10 flex-shrink-0">
+                    <h2 className="text-[24px] font-bold text-black tracking-wide">AI Insight</h2>
+                    <button onClick={() => setShowCalendar(true)} className="text-2xl text-black">
+                        <Icon icon="mdi:calendar-month-outline" />
+                    </button>
                 </div>
+
+                <div className="flex-1 overflow-y-auto pb-[120px] hide-scrollbar px-6 pt-2">
+                    
+                    <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-full px-5 py-2.5 shadow-sm mb-6 justify-between">
+                        <Icon icon="mdi:chevron-left" className="text-xl text-gray-400 cursor-pointer hover:text-[#14AE5C]" onClick={() => {const d = new Date(currentDate); d.setDate(d.getDate()-1); setCurrentDate(d);}} />
+                        <span className="text-[12px] font-bold text-black">{formatDateDisplay(currentDate)}</span>
+                        <Icon icon="mdi:chevron-right" className="text-xl text-gray-400 cursor-pointer hover:text-[#14AE5C]" onClick={() => {const d = new Date(currentDate); d.setDate(d.getDate()+1); setCurrentDate(d);}} />
+                    </div>
+
+                    <div className="bg-[#E8F5EE] rounded-[24px] p-5 mb-6 flex items-center gap-4 relative border border-[#DCFCE7]">
+                        <img src={robotImg} className="w-[80px] h-[80px] object-contain" alt="AI" />
+                        <div>
+                            <h3 className="text-[14px] font-bold text-black">{currentData.evalTitle}</h3>
+                            <p className="text-[11px] font-medium text-gray-600 mt-1 leading-relaxed min-h-[32px]">
+                                {displayedEval}
+                                <span className="animate-pulse">|</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-[24px] p-5 shadow-sm border border-gray-50 mb-6">
+                        <h3 className="text-[12px] font-bold text-black uppercase tracking-wider mb-2">RINGKASAN</h3>
+                        <div className="flex flex-col">
+                            {currentData.nutrients.map((item, idx) => (
+                                <div key={item.id} className={`flex flex-col py-3 ${idx !== currentData.nutrients.length - 1 ? 'border-b border-gray-100' : ''}`}>
+                                    <div 
+                                        className="flex justify-between items-center cursor-pointer"
+                                        onClick={() => setExpandedNutrient(expandedNutrient === item.id ? null : item.id)}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <Icon icon={item.icon} className={`text-xl ${item.iconColor}`} />
+                                            <span className="text-[13px] font-bold text-gray-800">{item.label}</span>
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            <div className="text-[12px]">
+                                                <span className={`font-bold ${item.valueColor}`}>{item.value}</span>
+                                                <span className="font-medium text-gray-400"> / {item.target}</span>
+                                            </div>
+                                            <Icon 
+                                                icon={item.status === 'check' ? "mdi:check-circle" : "mdi:arrow-down-circle"} 
+                                                className={`text-[18px] ${item.status === 'check' ? 'text-[#14AE5C]' : 'text-[#F43F5E]'}`} 
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                    {expandedNutrient === item.id && item.sources.length > 0 && (
+                                        <div className="mt-3 ml-8 p-3 bg-[#F8FAFC] rounded-xl flex flex-col gap-2">
+                                            {item.sources.map((src, i) => (
+                                                <div key={i} className="flex justify-between items-center text-[11px]">
+                                                    <span className="text-gray-600 font-medium">{src.name}</span>
+                                                    <span className="font-bold text-black">{src.qty}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-[24px] p-5 shadow-sm border border-gray-50 mb-4 relative overflow-hidden">
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="text-[12px] font-bold text-black uppercase tracking-wider">REKOMENDASI AI</h3>
+                            <button 
+                                onClick={handleRefreshFood}
+                                className="w-8 h-8 flex justify-center items-center rounded-full bg-gray-50 text-gray-400 hover:text-[#14AE5C] hover:bg-[#F0FDF4] transition-colors"
+                            >
+                                <Icon icon="mdi:refresh" className="text-lg" />
+                            </button>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="flex-1">
+                                <p className="text-[12px] font-bold text-[#14AE5C] leading-relaxed">
+                                    {currentData.aiRecommendations[foodOptionIndex].title}
+                                </p>
+                                <p className="text-[11px] font-medium text-gray-500 mt-1 leading-relaxed pr-2">
+                                    {currentData.aiRecommendations[foodOptionIndex].desc}
+                                </p>
+                            </div>
+                            <div className="w-[80px] h-[60px] rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+                                <img 
+                                    src={currentData.aiRecommendations[foodOptionIndex].img} 
+                                    className="w-full h-full object-cover" 
+                                    alt="food" 
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {showCalendar && (
+                    <div className="absolute inset-0 bg-white/40 z-[70] flex justify-center items-center px-4" onClick={() => setShowCalendar(false)}>
+                        <div className="bg-white w-full max-w-[320px] rounded-[24px] p-5 shadow-2xl animate-scaleIn -mt-[350px]" onClick={(e) => e.stopPropagation()}>
+                            <div className="flex justify-between items-center mb-4">
+                                <Icon icon="mdi:chevron-left" className="text-2xl cursor-pointer text-gray-600 hover:text-[#14AE5C]" onClick={() => handleMonthChange(-1)} />
+                                <span className="font-bold text-[16px] text-black">
+                                    {new Intl.DateTimeFormat('id-ID', { month: 'long', year: 'numeric' }).format(currentDate)}
+                                </span>
+                                <Icon icon="mdi:chevron-right" className="text-2xl cursor-pointer text-gray-600 hover:text-[#14AE5C]" onClick={() => handleMonthChange(1)} />
+                            </div>
+                            <div className="grid grid-cols-7 gap-1 text-center mb-2">
+                                {['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'].map((d, i) => (
+                                    <div key={i} className="text-[11px] font-bold text-gray-400">{d}</div>
+                                ))}
+                            </div>
+                            <div className="grid grid-cols-7 gap-1 text-center">
+                                {calendarGrid.map((day, i) => {
+                                    const isSelected = day === currentDate.getDate();
+                                    return (
+                                        <div
+                                            key={i}
+                                            onClick={() => {
+                                                if (day) {
+                                                    const newDate = new Date(currentDate);
+                                                    newDate.setDate(day);
+                                                    setCurrentDate(newDate);
+                                                    setShowCalendar(false);
+                                                }
+                                            }}
+                                            className={`w-9 h-9 mx-auto flex justify-center items-center rounded-full text-[13px] font-bold cursor-pointer transition-colors ${
+                                                day ? (isSelected ? 'bg-[#14AE5C] text-white shadow-md' : 'text-gray-700 hover:bg-gray-100') : 'text-transparent pointer-events-none'
+                                            }`}
+                                        >
+                                            {day || ''}
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {isActionMenuOpen && (
                     <div className="absolute inset-0 bg-black/50 z-[60] flex flex-col justify-end items-center pb-[120px]" onClick={() => setIsActionMenuOpen(false)}>
@@ -1393,8 +1808,8 @@ const InsightScreen = () => {
                     <div className="absolute bottom-[35px] left-1/2 -translate-x-1/2 w-[80px] h-[80px] bg-white rounded-full"></div>
                     <div className="absolute bottom-0 left-0 w-full h-[75px] bg-white flex justify-around items-end pb-3 px-2 rounded-t-[20px]">
                         <div onClick={() => navigate('/dashboard', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
-                            <Icon icon="mdi:home" className={`text-[24px] ${currentPath === '/dashboard' || currentPath === '/' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
-                            <span className={`text-[10px] font-bold ${currentPath === '/dashboard' || currentPath === '/' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Beranda</span>
+                            <Icon icon="mdi:home" className={`text-[24px] ${currentPath === '/dashboard' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
+                            <span className={`text-[10px] font-bold ${currentPath === '/dashboard' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Beranda</span>
                         </div>
                         <div onClick={() => navigate('/diary', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
                             <Icon icon="mdi:notebook" className={`text-[24px] ${currentPath === '/diary' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
@@ -1425,13 +1840,140 @@ const ProfileScreen = () => {
     const currentGoal = location.state?.goal || 'turunkan';
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
+    
+    const [isNotifEnabled, setIsNotifEnabled] = useState(true);
+
+    const handleEditClick = () => {
+        alert("Fitur Edit Profil akan segera tersedia pada pembaruan berikutnya!");
+    };
 
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
-            <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-white shadow-xl flex flex-col relative overflow-hidden'>
-                <div className="flex-1 flex justify-center items-center flex-col gap-4">
-                    <Icon icon="mdi:account-outline" className="text-8xl text-[#14AE5C] opacity-20" />
-                    <h2 className="text-xl font-bold text-gray-400">Halaman Profile</h2>
+            <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-[#F8FAFC] shadow-xl flex flex-col relative overflow-hidden'>
+                
+                <div className="pt-14 px-6 pb-2 flex items-center z-10 flex-shrink-0">
+                    <h2 className="text-[24px] font-bold text-black tracking-wide">Profil</h2>
+                </div>
+
+                <div className="flex-1 overflow-y-auto pb-[120px] hide-scrollbar px-6 pt-2">
+                    
+                    <div className="bg-white rounded-[24px] p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-gray-50 mb-8 flex items-center gap-4">
+                        <div className="relative w-[64px] h-[64px] flex-shrink-0">
+                            <img src={profileImg} className="w-full h-full object-cover rounded-full" alt="Profile" />
+                            <div 
+                                onClick={handleEditClick}
+                                className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-sm border border-gray-100 cursor-pointer hover:bg-gray-50 flex justify-center items-center text-gray-500 hover:text-[#14AE5C] transition-colors"
+                            >
+                                <Icon icon="mdi:camera-outline" className="text-[14px]" />
+                            </div>
+                        </div>
+                        <div className="flex flex-col">
+                            <h3 className="text-[16px] font-bold text-black">Wulan Permata</h3>
+                            <p className="text-[12px] font-medium text-gray-500 mt-0.5">wulan.permata@email.com</p>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-between items-center mb-3 px-1">
+                        <h3 className="text-[12px] font-bold text-black tracking-wider uppercase">GOAL & TARGET</h3>
+                        <span onClick={handleEditClick} className="text-[11px] font-bold text-[#14AE5C] cursor-pointer hover:opacity-70">Edit</span>
+                    </div>
+                    <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-gray-50 mb-6">
+                        <div className="flex items-center gap-4 mb-5">
+                            <div className="w-12 h-12 bg-[#F0FDF4] rounded-full flex justify-center items-center text-[#14AE5C]">
+                                <Icon icon="mdi:target" className="text-2xl" />
+                            </div>
+                            <div>
+                                <p className="text-[15px] font-bold text-black">Lose Weight</p>
+                                <p className="text-[11px] font-medium text-gray-400 mt-0.5">Defisit 500 kkal/hari</p>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-y-4">
+                            <div className="border-r border-gray-100 pr-4">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Target Berat</p>
+                                <p className="text-[15px] font-bold text-black">55.0 kg</p>
+                                <p className="text-[9px] font-bold text-[#14AE5C] mt-0.5">(-7.4 kg lagi)</p>
+                            </div>
+                            <div className="pl-4">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Target Tanggal</p>
+                                <p className="text-[15px] font-bold text-black">30 Agustus 2025</p>
+                            </div>
+                            <div className="col-span-2 border-t border-gray-100 my-0.5"></div>
+                            <div className="border-r border-gray-100 pr-4">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">TDEE (Perkiraan)</p>
+                                <p className="text-[15px] font-bold text-black">2.000 kkal</p>
+                            </div>
+                            <div className="pl-4">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Target Harian</p>
+                                <p className="text-[15px] font-bold text-black">1.500 kkal</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-between items-center mb-3 px-1">
+                        <h3 className="text-[12px] font-bold text-black tracking-wider uppercase">DATA TUBUH</h3>
+                        <span onClick={handleEditClick} className="text-[11px] font-bold text-[#14AE5C] cursor-pointer hover:opacity-70">Edit</span>
+                    </div>
+                    <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-gray-50 mb-6 flex flex-col gap-5">
+                        <div className="flex justify-between items-center">
+                            <span className="text-[12px] font-medium text-gray-500">Tanggal Lahir</span>
+                            <span className="text-[12px] font-bold text-black">12 Jan 2001</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <span className="text-[12px] font-medium text-gray-500">Tinggi Badan</span>
+                            <span className="text-[12px] font-bold text-black">160 cm</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <span className="text-[12px] font-medium text-gray-500">Berat Badan Saat Ini</span>
+                            <span className="text-[12px] font-bold text-black">62.4 kg</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <span className="text-[12px] font-medium text-gray-500">Aktivitas</span>
+                            <span className="text-[12px] font-bold text-black">Sedang (2-3x/minggu)</span>
+                        </div>
+                    </div>
+
+                    <div className="mb-3 px-1">
+                        <h3 className="text-[12px] font-bold text-black tracking-wider uppercase">PREFERENSI</h3>
+                    </div>
+                    <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-gray-50 mb-6 flex flex-col gap-6">
+                        
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center gap-4">
+                                <Icon icon="mdi:bell-outline" className="text-xl text-gray-400" />
+                                <span className="text-[13px] font-medium text-gray-600">Notifikasi</span>
+                            </div>
+                            <div 
+                                onClick={() => setIsNotifEnabled(!isNotifEnabled)}
+                                className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ease-in-out ${isNotifEnabled ? 'bg-[#14AE5C]' : 'bg-gray-200'}`}
+                            >
+                                <div className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${isNotifEnabled ? 'translate-x-5' : 'translate-x-0'}`}></div>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center gap-4">
+                                <Icon icon="mdi:weight" className="text-xl text-gray-400" />
+                                <span className="text-[13px] font-medium text-gray-600">Satuan</span>
+                            </div>
+                            <span className="text-[12px] font-bold text-gray-400">kg, cm, kkal</span>
+                        </div>
+
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center gap-4">
+                                <Icon icon="mdi:earth" className="text-xl text-gray-400" />
+                                <span className="text-[13px] font-medium text-gray-600">Bahasa</span>
+                            </div>
+                            <span className="text-[12px] font-bold text-gray-400">Indonesia</span>
+                        </div>
+
+                    </div>
+
+                    <button 
+                        onClick={() => navigate('/welcome')}
+                        className="w-full py-4 text-[#F43F5E] font-bold text-[14px] bg-red-50 rounded-2xl mb-8"
+                    >
+                        Keluar Akun
+                    </button>
                 </div>
 
                 {isActionMenuOpen && (
@@ -1458,8 +2000,8 @@ const ProfileScreen = () => {
                     <div className="absolute bottom-[35px] left-1/2 -translate-x-1/2 w-[80px] h-[80px] bg-white rounded-full"></div>
                     <div className="absolute bottom-0 left-0 w-full h-[75px] bg-white flex justify-around items-end pb-3 px-2 rounded-t-[20px]">
                         <div onClick={() => navigate('/dashboard', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
-                            <Icon icon="mdi:home" className={`text-[24px] ${currentPath === '/dashboard' || currentPath === '/' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
-                            <span className={`text-[10px] font-bold ${currentPath === '/dashboard' || currentPath === '/' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Beranda</span>
+                            <Icon icon="mdi:home" className={`text-[24px] ${currentPath === '/dashboard' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
+                            <span className={`text-[10px] font-bold ${currentPath === '/dashboard' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Beranda</span>
                         </div>
                         <div onClick={() => navigate('/diary', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
                             <Icon icon="mdi:notebook" className={`text-[24px] ${currentPath === '/diary' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
