@@ -1,15 +1,29 @@
 {
   "name": "eatsistent",
-  "private": true,
   "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "homepage": "https://github.com/alief1206/capstone_project#readme",
+  "bugs": {
+    "url": "https://github.com/alief1206/capstone_project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alief1206/capstone_project.git"
+  },
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "postcss.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "server": "nodemon server/index.js"
   },
   "dependencies": {
-    "@prisma/client": "^7.8.0",
+    "@prisma/client": "^6.19.3",
     "@tailwindcss/postcss": "^4.2.4",
     "@tailwindcss/vite": "^4.2.4",
     "@tensorflow/tfjs": "^4.22.0",
@@ -18,8 +32,8 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "html-react-parser": "^6.1.0",
+    "joi": "^18.2.1",
     "jsonwebtoken": "^9.0.3",
-    "prisma": "^6.19.3",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "react-router-dom": "7.15.0"
@@ -30,6 +44,7 @@
     "autoprefixer": "10.5.0",
     "nodemon": "^3.1.14",
     "postcss": "8.5.14",
+    "prisma": "^6.19.3",
     "tailwindcss": "4.2.4",
     "vite": "8.0.10"
   }
