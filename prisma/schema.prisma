@@ -19,10 +19,12 @@ model User {
   email         String     @unique
   password      String
   age           Int?
-  height        Float?     // Dalam cm
-  currentWeight Float?     // Dalam kg
-  targetWeight  Float?     // Dalam kg
+  height        Float?     
+  currentWeight Float?     
+  targetWeight  Float?     
   goal          Goal?
+  otp           String?    // Menyimpan kode OTP sementara
+  isVerified    Boolean    @default(false) // Status apakah email sudah divalidasi
   createdAt     DateTime   @default(now())
   foodLogs      FoodLog[]
 }

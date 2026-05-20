@@ -1,14 +1,23 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { useState, useEffect, useRef, useMemo } from 'react';
-import { Icon } from '@iconify/react';
-import Button from './components/ui/Button';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import mascotImage from './assets/images/mascot.png';
-import logoIcon from './assets/icons/logo-icon.png';
-import confettiImg from './assets/images/confetti.png';
-import profileImg from './assets/images/profile.png';
-import robotImg from './assets/images/robot.png';
-import foodImg from './assets/images/makanan.png';
+import InsightScreen from './pages/AIInsight/InsightScreen';
+import ForgotPasswordScreen from './pages/Auth/ForgotPasswordScreen';
+import LoginScreen from './pages/Auth/LoginScreen';
+import OtpScreen from './pages/Auth/OtpScreen';
+import RegisterScreen from './pages/Auth/RegisterScreen';
+import ResetPasswordScreen from './pages/Auth/ResetPasswordScreen';
+import DashboardScreen from './pages/Dashboard/DashboardScreen';
+import BarcodeScannerScreen from './pages/Diary/BarcodeScannerScreen';
+import DiaryScreen from './pages/Diary/DiaryScreen';
+import FoodSearchScreen from './pages/Diary/FoodSearchScreen';
+import ActivityScreen from './pages/Onboarding/ActivityScreen';
+import GoalSelection from './pages/Onboarding/GoalSelection';
+import HabitsScreen from './pages/Onboarding/HabitsScreen';
+import MotivationScreen from './pages/Onboarding/MotivationScreen';
+import PersonalDataScreen from './pages/Onboarding/PersonalDataScreen';
+import WelcomeScreen from './pages/Onboarding/WelcomeScreen';
+import ProfileScreen from './pages/Profile/ProfileScreen';
+import ProgressScreen from './pages/Progress/ProgressScreen';
 
 
 function App() {

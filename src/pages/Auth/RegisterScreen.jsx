@@ -17,6 +17,23 @@ const RegisterScreen = () => {
         tambah: 'Kamu baru saja mengambil langkah besar untuk mencapai target berat badan impianmu.',
         jaga: 'Kamu baru saja mengambil langkah besar untuk menjaga konsistensi berat badanmu.'
     };
+
+    const handleRegisterSubmit = async (e) => {
+        e.preventDefault();
+
+        // Validasi Front-End untuk Email Google
+        if (!email.toLowerCase().endsWith('@gmail.com')) {
+            alert("Peringatan: Silakan gunakan akun @gmail.com untuk mendaftar.");
+            return; // Menghentikan proses pengiriman ke Back-End
+        }
+
+        try {
+            navigate('/login', { state: { goal: selectedGoal } });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
             <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-white shadow-xl flex flex-col pt-12 pb-10 px-4 overflow-hidden'>
@@ -48,7 +65,7 @@ const RegisterScreen = () => {
                     </div>
                 </div>
                 <div className="mt-auto flex flex-col items-center w-full gap-4 pt-6">
-                    <Button onClick={() => isComplete && navigate('/login', { state: { goal: selectedGoal } })} className={!isComplete ? 'opacity-50 cursor-not-allowed' : ''}>Daftar</Button>
+                    <Button onClick={(e) => isComplete && handleRegisterSubmit(e)} className={!isComplete ? 'opacity-50 cursor-not-allowed' : ''}>Daftar</Button>
                     <p className="text-[14px] font-semibold text-gray-600">Sudah punya akun? <span className="text-[#14AE5C] cursor-pointer" onClick={() => navigate('/login', { state: { goal: selectedGoal } })}>Masuk</span></p>
                 </div>
             </div>

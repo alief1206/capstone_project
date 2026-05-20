@@ -14,6 +14,30 @@ const PersonalDataScreen = () => {
     const [targetWeight, setTargetWeight] = useState('');
     const needsTarget = selectedGoal === 'turunkan' || selectedGoal === 'tambah';
     const isComplete = gender && age && height && weight && (!needsTarget || targetWeight);
+
+    const handleSavePhysicalData = async (e) => {
+        e.preventDefault();
+
+        const beratSekarang = parseFloat(weight);
+        const targetBerat = parseFloat(targetWeight);
+
+        if (selectedGoal === "turunkan" && targetBerat >= beratSekarang) {
+            alert("Validasi Gagal: Target berat badan harus lebih rendah dari berat badan saat ini jika Anda ingin menurunkan berat badan.");
+            return; 
+        }
+
+        if (selectedGoal === "tambah" && targetBerat <= beratSekarang) {
+            alert("Validasi Gagal: Target berat badan harus lebih tinggi dari berat badan saat ini jika Anda ingin menaikkan berat badan.");
+            return; 
+        }
+
+        try {
+            navigate('/aktivitas', { state: { goal: selectedGoal } });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
             <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-white shadow-xl flex flex-col pt-12 pb-10 px-4 overflow-hidden'>
@@ -75,7 +99,7 @@ const PersonalDataScreen = () => {
                     </div>
                 </div>
                 <div className="mt-auto flex justify-center w-full pt-4">
-                    <Button onClick={() => isComplete && navigate('/aktivitas', { state: { goal: selectedGoal } })} className={!isComplete ? 'opacity-50 cursor-not-allowed' : ''}>Berikutnya</Button>
+                    <Button onClick={(e) => isComplete && handleSavePhysicalData(e)} className={!isComplete ? 'opacity-50 cursor-not-allowed' : ''}>Berikutnya</Button>
                 </div>
             </div>
         </div>
