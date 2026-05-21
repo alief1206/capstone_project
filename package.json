@@ -23,6 +23,7 @@
     "server": "nodemon server/index.js"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@prisma/client": "^6.19.3",
     "@tailwindcss/postcss": "^4.2.4",
     "@tailwindcss/vite": "^4.2.4",

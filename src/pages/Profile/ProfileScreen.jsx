@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import profileImg from '../../assets/images/profile.png';
@@ -7,10 +7,18 @@ const ProfileScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const currentGoal = location.state?.goal || 'turunkan';
+    const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
+    const userName = userEmail ? userEmail.split('@')[0] : 'Pengguna';
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
     
     const [isNotifEnabled, setIsNotifEnabled] = useState(true);
+
+    useEffect(() => {
+        if (location.state?.email) {
+            localStorage.setItem('userEmail', location.state.email);
+        }
+    }, [location.state?.email]);
 
     const handleEditClick = () => {
         alert("Fitur Edit Profil akan segera tersedia pada pembaruan berikutnya!");
@@ -37,8 +45,8 @@ const ProfileScreen = () => {
                             </div>
                         </div>
                         <div className="flex flex-col">
-                            <h3 className="text-[16px] font-bold text-black">Wulan Permata</h3>
-                            <p className="text-[12px] font-medium text-gray-500 mt-0.5">wulan.permata@email.com</p>
+                            <h3 className="text-[16px] font-bold text-black">{userName}</h3>
+                            <p className="text-[12px] font-medium text-gray-500 mt-0.5">{userEmail || 'email belum tersedia'}</p>
                         </div>
                     </div>
 

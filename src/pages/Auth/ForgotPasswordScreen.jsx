@@ -7,6 +7,32 @@ import logoIcon from '../../assets/icons/logo-icon.png';
 const ForgotPasswordScreen = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
+
+    const handleForgotPassword = async () => {
+        if (!email) return;
+
+        try {
+            const response = await fetch('http://localhost:5000/api/v1/auth/forgot-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.message || "Gagal mengirim kode reset.");
+                return;
+            }
+
+            alert(data.message);
+            navigate('/otp', { state: { email, mode: 'reset' } });
+        } catch (error) {
+            alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");
+            console.error(error);
+        }
+    };
+
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
             <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-white shadow-xl flex flex-col pt-12 pb-10 px-6 overflow-hidden'>
@@ -31,7 +57,7 @@ const ForgotPasswordScreen = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-6 mt-auto">
-                    <Button onClick={() => email && navigate('/otp')} className={`w-full h-[54px] ${!email ? 'opacity-50 cursor-not-allowed' : ''}`}>Kirim Kode</Button>
+                    <Button onClick={handleForgotPassword} className={`w-full h-[54px] ${!email ? 'opacity-50 cursor-not-allowed' : ''}`}>Kirim Kode</Button>
                     <p className="text-center text-[14px] font-semibold text-[#14AE5C] cursor-pointer" onClick={() => navigate('/login')}>Kembali ke Masuk</p>
                 </div>
             </div>

@@ -2,11 +2,13 @@ import React, { useState, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import robotImg from '../../assets/images/robot.png';
+import { addFoodLog, parseCalories } from '../../utils/foodLogStorage';
 
 const FoodSearchScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedGoal = location.state?.goal || 'turunkan';
+    const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
     const [searchQuery, setSearchQuery] = useState('');
     const [refreshKey, setRefreshKey] = useState(0);
     const [activeMealMenu, setActiveMealMenu] = useState(null);
@@ -30,6 +32,65 @@ const FoodSearchScreen = () => {
     const shuffledRekomendasi = useMemo(() => {
         return [...currentData.rekomendasi].sort(() => Math.random() - 0.5);
     }, [currentData.rekomendasi, refreshKey]);
+
+    const mealIds = {
+        SARAPAN: 'sarapan',
+        'MAKAN SIANG': 'makansiang',
+        'MAKAN MALAM': 'makanmalam',
+        CAMILAN: 'camilan'
+    };
+
+    const heavyFoodKeywords = ['nasi', 'mie', 'gulai', 'sate', 'rawon', 'bakso', 'rendang', 'ayam goreng', 'daging', 'nasi goreng'];
+    const isHeavyFood = (foodName) => heavyFoodKeywords.some((keyword) => foodName.toLowerCase().includes(keyword));
+    const getMealOptions = (item) => isHeavyFood(item.name) ? ['SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM'] : ['SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM', 'CAMILAN'];
+
+    const handleAddFood = async (item, meal) => {
+        if (meal === 'CAMILAN' && isHeavyFood(item.name)) {
+            alert(`Validasi Gagal: ${item.name} termasuk makanan berat, tidak boleh dimasukkan ke Camilan.`);
+            return;
+        }
+
+        const foodPayload = {
+            foodName: item.name,
+            calories: parseCalories(item.cals),
+            mealType: meal
+        };
+
+        const token = localStorage.getItem('authToken');
+        if (token) {
+            try {
+                const response = await fetch('http://localhost:5000/api/v1/food-logs/log-food', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: JSON.stringify(foodPayload)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    alert(data.message || "Gagal menyimpan makanan ke database.");
+                    return;
+                }
+            } catch (error) {
+                alert("Makanan tetap dicatat lokal, tapi gagal tersimpan ke database. Pastikan backend berjalan di port 5000.");
+                console.error(error);
+            }
+        }
+
+        addFoodLog(userEmail, {
+            name: item.name,
+            qty: item.qty,
+            calories: parseCalories(item.cals),
+            mealId: mealIds[meal],
+            icon: item.icon,
+            color: item.color,
+            bg: item.bg
+        });
+        navigate('/diary', { state: { goal: selectedGoal, email: userEmail } });
+    };
 
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
@@ -55,7 +116,7 @@ const FoodSearchScreen = () => {
                             className="w-full h-full border-[1.5px] border-gray-200 rounded-[16px] pl-12 pr-14 font-medium outline-none focus:border-[#14AE5C] transition-all text-[14px]"
                         />
                         <button 
-                            onClick={() => navigate('/scan-barcode', { state: { goal: selectedGoal } })}
+                            onClick={() => navigate('/scan-barcode', { state: { goal: selectedGoal, email: userEmail } })}
                             className="absolute right-2 top-1/2 -translate-y-1/2 w-[34px] h-[34px] bg-[#14AE5C] rounded-[10px] flex justify-center items-center text-white text-lg hover:bg-[#0f8b48] transition-colors"
                         >
                             <Icon icon="mdi:barcode-scan" />
@@ -87,13 +148,13 @@ const FoodSearchScreen = () => {
                                     <>
                                         <div className="fixed inset-0 z-40" onClick={() => setActiveMealMenu(null)}></div>
                                         <div className="absolute right-0 top-12 w-[160px] bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.15)] border border-gray-100 z-50 overflow-hidden flex flex-col">
-                                            {['SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM', 'CAMILAN'].map((meal) => (
+                                            {getMealOptions(item).map((meal) => (
                                                 <div
                                                     key={meal}
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         setActiveMealMenu(null);
-                                                        navigate('/diary', { state: { goal: selectedGoal } });
+                                                        handleAddFood(item, meal);
                                                     }}
                                                     className="w-full py-3 px-4 border-b border-gray-50 last:border-0 hover:bg-[#F0FDF4] active:bg-[#E8F5EE] cursor-pointer flex items-center transition-colors"
                                                 >
@@ -155,13 +216,13 @@ const FoodSearchScreen = () => {
                                     <>
                                         <div className="fixed inset-0 z-40" onClick={() => setActiveMealMenu(null)}></div>
                                         <div className="absolute right-0 top-12 w-[160px] bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.15)] border border-gray-100 z-50 overflow-hidden flex flex-col">
-                                            {['SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM', 'CAMILAN'].map((meal) => (
+                                            {getMealOptions(item).map((meal) => (
                                                 <div
                                                     key={meal}
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         setActiveMealMenu(null);
-                                                        navigate('/diary', { state: { goal: selectedGoal } });
+                                                        handleAddFood(item, meal);
                                                     }}
                                                     className="w-full py-3 px-4 border-b border-gray-50 last:border-0 hover:bg-[#F0FDF4] active:bg-[#E8F5EE] cursor-pointer flex items-center transition-colors"
                                                 >

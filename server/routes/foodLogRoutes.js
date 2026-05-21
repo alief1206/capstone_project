@@ -4,17 +4,20 @@ import {
     getAllFoodLogs, 
     getFoodLogById, 
     updateFoodLog, 
-    deleteFoodLog 
+    deleteFoodLog,
+    getNutritionSummaryDashboard // Import fungsi baru
 } from '../controllers/foodLogController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-// Semua endpoint dilindungi oleh token autentikasi JWT middleware
-router.post('/log-food', verifyToken, createFoodLog);      // Create Log Makanan
-router.get('/log-food', verifyToken, getAllFoodLogs);       // Read All Log Makanan
-router.get('/log-food/:id', verifyToken, getFoodLogById);   // Read Single Log Makanan berdasarkan ID
-router.put('/log-food/:id', verifyToken, updateFoodLog);    // Update Log Makanan berdasarkan ID
-router.delete('/log-food/:id', verifyToken, deleteFoodLog); // Delete Log Makanan berdasarkan ID
+// Route khusus penyuplai data terpadu untuk Dashboard, AI Insight, dan Ringkasan Minggu Ini
+router.get('/summary-analytics', verifyToken, getNutritionSummaryDashboard);
+
+router.post('/log-food', verifyToken, createFoodLog);      
+router.get('/log-food', verifyToken, getAllFoodLogs);       
+router.get('/log-food/:id', verifyToken, getFoodLogById);   
+router.put('/log-food/:id', verifyToken, updateFoodLog);    
+router.delete('/log-food/:id', verifyToken, deleteFoodLog); 
 
 export default router;
