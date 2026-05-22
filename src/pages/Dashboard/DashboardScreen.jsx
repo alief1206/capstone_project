@@ -122,11 +122,17 @@ const DashboardScreen = () => {
                         </div>
                     </div>
 
-                    <div className="w-full bg-[#F0FDF4] rounded-[20px] p-4 flex items-center gap-3 border border-[#DCFCE7] mb-6 flex-shrink-0">
+                    <div 
+                        onClick={() => navigate('/chat-bot', { state: { goal: currentGoal } })}
+                        className="w-full bg-[#F0FDF4] rounded-[20px] p-4 flex items-center gap-3 border border-[#DCFCE7] mb-6 flex-shrink-0 cursor-pointer hover:shadow-md hover:border-[#14AE5C] transition-all active:scale-[0.98] relative"
+                    >
                         <img src={robotImg} alt="AI Bot" className="w-[70px] h-[58px] object-contain flex-shrink-0 drop-shadow-sm" />
                         <div className="flex flex-col flex-1">
                             <h4 className="text-[13px] font-bold text-[#14AE5C] mb-1 tracking-wide">AI NUTRITION INSIGHT</h4>
                             <p className="text-[12px] font-medium text-gray-700 leading-snug">{data.aiInsight}</p>
+                        </div>
+                        <div className="absolute top-4 right-4 text-[#14AE5C] bg-[#E8F5EE] rounded-full p-1">
+                            <Icon icon="mdi:chevron-right" className="text-xl" />
                         </div>
                     </div>
 

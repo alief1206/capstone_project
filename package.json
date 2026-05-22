@@ -23,8 +23,7 @@
     "server": "nodemon server/index.js"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
-    "@prisma/client": "^6.19.3",
+    "@prisma/client": "^6.19.0",
     "@tailwindcss/postcss": "^4.2.4",
     "@tailwindcss/vite": "^4.2.4",
     "@tensorflow/tfjs": "^4.22.0",
@@ -33,9 +32,7 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "html-react-parser": "^6.1.0",
-    "joi": "^18.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "nodemailer": "^8.0.7",
+    "prisma": "^6.19.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "react-router-dom": "7.15.0"
