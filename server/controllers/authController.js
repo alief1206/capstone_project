@@ -166,7 +166,7 @@ export const verifyOtp = async (req, res) => {
         res.status(200).json({
             message: "Verifikasi email berhasil!",
             token: jwtToken,
-            user: { id: user.id, name: user.name, email: user.email, goal: user.goal }
+            user: { id: user.id, name: user.name, email: user.email, goal: user.goal, age: user.age, height: user.height, currentWeight: user.currentWeight, targetWeight: user.targetWeight }
         });
     } catch (err) {
         res.status(500).json({ message: "Gagal memverifikasi OTP", error: err.message });
@@ -196,7 +196,7 @@ export const login = async (req, res) => {
         res.status(200).json({
             message: "Login berhasil!",
             token,
-            user: { id: user.id, name: user.name, email: user.email, goal: user.goal }
+            user: { id: user.id, name: user.name, email: user.email, goal: user.goal, age: user.age, height: user.height, currentWeight: user.currentWeight, targetWeight: user.targetWeight }
         });
     } catch (err) {
         res.status(500).json({ message: "Gagal login", error: err.message });

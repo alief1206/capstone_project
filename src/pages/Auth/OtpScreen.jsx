@@ -3,12 +3,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
 import { clearFoodLogs } from '../../utils/foodLogStorage';
+import { getProfileDraft, goalMap, saveUserProfile } from '../../utils/userProfileStorage';
 
 const OtpScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const email = location.state?.email || 'email Anda';
     const selectedGoal = location.state?.goal || 'turunkan';
+    const profileDraft = location.state?.profile || getProfileDraft();
     const mode = location.state?.mode || 'register';
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const inputs = useRef([]);
@@ -54,6 +56,28 @@ const OtpScreen = () => {
 
             localStorage.setItem('authToken', data.token);
             localStorage.setItem('userEmail', email);
+            const userProfile = { ...profileDraft, goal: selectedGoal };
+            saveUserProfile(email, userProfile);
+            if (userProfile.age && userProfile.height && userProfile.currentWeight && userProfile.targetWeight) {
+                try {
+                    await fetch('http://localhost:5000/api/v1/users/physical-update', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${data.token}`
+                        },
+                        body: JSON.stringify({
+                            age: Number(userProfile.age),
+                            height: Number(userProfile.height),
+                            currentWeight: Number(userProfile.currentWeight),
+                            targetWeight: Number(userProfile.targetWeight),
+                            goal: goalMap[selectedGoal] || selectedGoal
+                        })
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            }
             clearFoodLogs(email);
             navigate('/dashboard', { state: { email, goal: selectedGoal } });
         } catch (error) {

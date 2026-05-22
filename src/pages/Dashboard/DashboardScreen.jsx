@@ -4,13 +4,15 @@ import { Icon } from '@iconify/react';
 import logoIcon from '../../assets/icons/logo-icon.png';
 import profileImg from '../../assets/images/profile.png';
 import robotImg from '../../assets/images/robot.png';
-import { getFoodLogs, getTotalCalories } from '../../utils/foodLogStorage';
+import { getFoodLogs, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
+import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
 
 const DashboardScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const currentGoal = location.state?.goal || 'turunkan';
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
+    const userProfile = getUserProfile(userEmail);
+    const currentGoal = normalizeGoal(location.state?.goal || userProfile.goal || 'turunkan');
     const userName = userEmail ? userEmail.split('@')[0] : 'Sobat Sehat';
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
@@ -21,17 +23,19 @@ const DashboardScreen = () => {
         }
     }, [location.state?.email]);
 
-    const dashboardData = {
-        turunkan: { calorieTitle: 'KALORI HARI INI', calorieCount: '750', calorieTarget: 'dari 1.500 kkal target', caloriePercent: 50, barWidth: '50%', protein: { value: '85', max: '120', percent: '70%' }, karbo: { value: '160', max: '250', percent: '64%' }, lemak: { value: '70', max: '70', percent: '100%' }, aiInsight: 'Kalori kamu masih aman. Tambahkan sayur di makan malam untuk hasil lebih optimal.', foods: [{ name: 'Nasi Merah', qty: '100g', cals: '110 kkal', icon: 'mdi:rice', color: 'text-[#14AE5C]', bg: 'bg-[#F0FDF4]' }, { name: 'Dada Ayam Rebus', qty: '100g', cals: '150 kkal', icon: 'mdi:food-drumstick', color: 'text-[#F97316]', bg: 'bg-[#FFF5EB]' }, { name: 'Brokoli Rebus', qty: '100g', cals: '55 kkal', icon: 'mdi:leaf', color: 'text-[#3B82F6]', bg: 'bg-[#F0F5FF]' }, { name: 'Buah Apel', qty: '1 buah', cals: '95 kkal', icon: 'mdi:food-apple', color: 'text-[#8B5CF6]', bg: 'bg-[#F5F3FF]' }] },
-        jaga: { calorieTitle: 'SISA KALORI HARI INI', calorieCount: '120', calorieTarget: 'dari 1.450 kkal', caloriePercent: 90, barWidth: '90%', protein: { value: '90', max: '110', percent: '81%' }, karbo: { value: '105', max: '220', percent: '47%' }, lemak: { value: '60', max: '65', percent: '92%' }, aiInsight: 'Asupan kamu sudah seimbang hari ini. Pertahankan kebiasaan baik ini!', foods: [{ name: 'Nasi Putih', qty: '150g', cals: '220 kkal', icon: 'mdi:rice', color: 'text-[#14AE5C]', bg: 'bg-[#F0FDF4]' }, { name: 'Telur Rebus', qty: '2 butir', cals: '140 kkal', icon: 'mdi:egg', color: 'text-[#F97316]', bg: 'bg-[#FFF5EB]' }, { name: 'Dada Ayam Panggang', qty: '100g', cals: '165 kkal', icon: 'mdi:food-drumstick', color: 'text-[#3B82F6]', bg: 'bg-[#F0F5FF]' }, { name: 'Apel Segar', qty: '1 buah', cals: '95 kkal', icon: 'mdi:food-apple', color: 'text-[#8B5CF6]', bg: 'bg-[#F5F3FF]' }] },
-        tambah: { calorieTitle: 'SISA KALORI HARI INI', calorieCount: '780', calorieTarget: 'dari 2.400 kkal', caloriePercent: 110, barWidth: '100%', protein: { value: '85', max: '110', percent: '77%' }, karbo: { value: '270', max: '320', percent: '84%' }, lemak: { value: '70', max: '60', percent: '100%' }, aiInsight: 'Kamu butuh sekitar 700 kkal lagi. Coba tambahkan camilan tinggi kalori di sore hari.', foods: [{ name: 'Nasi Putih Besar', qty: '200g', cals: '260 kkal', icon: 'mdi:rice', color: 'text-[#14AE5C]', bg: 'bg-[#F0FDF4]' }, { name: 'Daging Sapi Panggang', qty: '150g', cals: '350 kkal', icon: 'mdi:food-steak', color: 'text-[#F97316]', bg: 'bg-[#FFF5EB]' }, { name: 'Jus Alpukat', qty: '1 gelas', cals: '250 kkal', icon: 'mdi:cup-water', color: 'text-[#3B82F6]', bg: 'bg-[#F0F5FF]' }, { name: 'Kacang Kacangan', qty: '50g', cals: '280 kkal', icon: 'mdi:peanut', color: 'text-[#8B5CF6]', bg: 'bg-[#F5F3FF]' }] }
-    };
-    const data = dashboardData[currentGoal];
     const foodLogs = getFoodLogs(userEmail);
     const totalCalories = getTotalCalories(foodLogs);
-    const calorieTarget = currentGoal === 'tambah' ? 2400 : currentGoal === 'jaga' ? 1450 : 1500;
+    const macroTotals = getMacroTotals(foodLogs);
+    const targets = calculateNutritionTargets(userProfile, currentGoal);
+    const calorieTarget = targets.calories;
     const caloriePercent = Math.round((totalCalories / calorieTarget) * 100);
     const recentFoods = foodLogs.slice(0, 4);
+    const getMacroPercent = (value, max) => `${Math.min(Math.round((value / Math.max(max, 1)) * 100), 100)}%`;
+    const insightText = foodLogs.length === 0
+        ? 'Belum ada makanan di diary hari ini. Tambahkan makanan agar ringkasan bisa dihitung.'
+        : totalCalories > calorieTarget
+            ? `Kalori dari diary sudah melewati target ${calorieTarget.toLocaleString('id-ID')} kkal.`
+            : `Kalori dari diary masih tersisa ${(calorieTarget - totalCalories).toLocaleString('id-ID')} kkal dari target harianmu.`;
     const radius = 26;
     const circumference = 2 * Math.PI * radius;
     const boundedPercent = Math.min(caloriePercent, 100);
@@ -102,23 +106,23 @@ const DashboardScreen = () => {
                         <div className="w-[90px] h-[93px] bg-[#FFF5EB] rounded-[16px] py-2 px-1 flex flex-col items-center justify-between border border-[#FFE4C4]">
                             <span className="text-[9px] font-bold text-[#F97316] tracking-wider">PROTEIN</span>
                             <Icon icon="mdi:arm-flex-outline" className="text-2xl text-[#F97316]" />
-                            <div className="w-[80%] h-[4px] bg-[#F97316]/20 rounded-full overflow-hidden"><div className="h-full bg-[#F97316]" style={{ width: data.protein.percent }}></div></div>
-                            <span className="text-[9px] font-semibold text-gray-500">{data.protein.value}g/{data.protein.max}g</span>
-                            <span className="text-[12px] font-bold text-black leading-none">{data.protein.value}g</span>
+                            <div className="w-[80%] h-[4px] bg-[#F97316]/20 rounded-full overflow-hidden"><div className="h-full bg-[#F97316]" style={{ width: getMacroPercent(macroTotals.protein, targets.protein) }}></div></div>
+                            <span className="text-[9px] font-semibold text-gray-500">{macroTotals.protein}g/{targets.protein}g</span>
+                            <span className="text-[12px] font-bold text-black leading-none">{macroTotals.protein}g</span>
                         </div>
                         <div className="w-[90px] h-[93px] bg-[#F0F5FF] rounded-[16px] py-2 px-1 flex flex-col items-center justify-between border border-[#Dbeafe]">
                             <span className="text-[9px] font-bold text-[#3B82F6] tracking-wider">KARBOHIDRAT</span>
                             <Icon icon="mdi:bread-slice-outline" className="text-2xl text-[#3B82F6]" />
-                            <div className="w-[80%] h-[4px] bg-[#3B82F6]/20 rounded-full overflow-hidden"><div className="h-full bg-[#3B82F6]" style={{ width: data.karbo.percent }}></div></div>
-                            <span className="text-[9px] font-semibold text-gray-500">{data.karbo.value}g/{data.karbo.max}g</span>
-                            <span className="text-[12px] font-bold text-black leading-none">{data.karbo.value}g</span>
+                            <div className="w-[80%] h-[4px] bg-[#3B82F6]/20 rounded-full overflow-hidden"><div className="h-full bg-[#3B82F6]" style={{ width: getMacroPercent(macroTotals.carbs, targets.carbs) }}></div></div>
+                            <span className="text-[9px] font-semibold text-gray-500">{macroTotals.carbs}g/{targets.carbs}g</span>
+                            <span className="text-[12px] font-bold text-black leading-none">{macroTotals.carbs}g</span>
                         </div>
                         <div className="w-[90px] h-[93px] bg-[#F5F3FF] rounded-[16px] py-2 px-1 flex flex-col items-center justify-between border border-[#ede9fe]">
                             <span className="text-[9px] font-bold text-[#8B5CF6] tracking-wider">LEMAK</span>
                             <Icon icon="mdi:oil" className="text-2xl text-[#8B5CF6]" />
-                            <div className="w-[80%] h-[4px] bg-[#8B5CF6]/20 rounded-full overflow-hidden"><div className="h-full bg-[#8B5CF6]" style={{ width: data.lemak.percent }}></div></div>
-                            <span className="text-[9px] font-semibold text-gray-500">{data.lemak.value}g/{data.lemak.max}g</span>
-                            <span className="text-[12px] font-bold text-black leading-none">{data.lemak.value}g</span>
+                            <div className="w-[80%] h-[4px] bg-[#8B5CF6]/20 rounded-full overflow-hidden"><div className="h-full bg-[#8B5CF6]" style={{ width: getMacroPercent(macroTotals.fat, targets.fat) }}></div></div>
+                            <span className="text-[9px] font-semibold text-gray-500">{macroTotals.fat}g/{targets.fat}g</span>
+                            <span className="text-[12px] font-bold text-black leading-none">{macroTotals.fat}g</span>
                         </div>
                     </div>
 
@@ -129,7 +133,7 @@ const DashboardScreen = () => {
                         <img src={robotImg} alt="AI Bot" className="w-[70px] h-[58px] object-contain flex-shrink-0 drop-shadow-sm" />
                         <div className="flex flex-col flex-1">
                             <h4 className="text-[13px] font-bold text-[#14AE5C] mb-1 tracking-wide">AI NUTRITION INSIGHT</h4>
-                            <p className="text-[12px] font-medium text-gray-700 leading-snug">{data.aiInsight}</p>
+                            <p className="text-[12px] font-medium text-gray-700 leading-snug">{insightText}</p>
                         </div>
                         <div className="absolute top-4 right-4 text-[#14AE5C] bg-[#E8F5EE] rounded-full p-1">
                             <Icon icon="mdi:chevron-right" className="text-xl" />

@@ -3,11 +3,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
 import confettiImg from '../../assets/images/confetti.png';
+import { getProfileDraft, saveUserProfile } from '../../utils/userProfileStorage';
 
 const RegisterScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedGoal = location.state?.goal || 'turunkan';
+    const profileDraft = location.state?.profile || getProfileDraft();
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -53,7 +55,8 @@ const RegisterScreen = () => {
                 }
 
                 alert(data.message);
-                navigate('/otp', { state: { email, goal: selectedGoal } });
+                saveUserProfile(email, { ...profileDraft, goal: selectedGoal });
+                navigate('/otp', { state: { email, goal: selectedGoal, profile: { ...profileDraft, goal: selectedGoal } } });
             } catch (error) {
                 alert("Gagal terhubung ke server. Pastikan server backend berjalan di port 5000.");
                 console.error(error);

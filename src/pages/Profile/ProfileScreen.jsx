@@ -2,17 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import profileImg from '../../assets/images/profile.png';
+import { activityLabels, calculateNutritionTargets, getGoalDescription, getGoalLabel, getTargetDate, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
 
 const ProfileScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const currentGoal = location.state?.goal || 'turunkan';
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
+    const userProfile = getUserProfile(userEmail);
+    const currentGoal = normalizeGoal(location.state?.goal || userProfile.goal || 'turunkan');
     const userName = userEmail ? userEmail.split('@')[0] : 'Pengguna';
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
     
     const [isNotifEnabled, setIsNotifEnabled] = useState(true);
+    const targets = calculateNutritionTargets(userProfile, currentGoal);
+    const currentWeight = Number(userProfile.currentWeight || userProfile.weight || 0);
+    const targetWeight = Number(userProfile.targetWeight || currentWeight || 0);
+    const weightDiff = Math.abs(currentWeight - targetWeight);
 
     useEffect(() => {
         if (location.state?.email) {
@@ -60,28 +66,28 @@ const ProfileScreen = () => {
                                 <Icon icon="mdi:target" className="text-2xl" />
                             </div>
                             <div>
-                                <p className="text-[15px] font-bold text-black">Lose Weight</p>
-                                <p className="text-[11px] font-medium text-gray-400 mt-0.5">Defisit 500 kkal/hari</p>
+                                <p className="text-[15px] font-bold text-black">{getGoalLabel(currentGoal)}</p>
+                                <p className="text-[11px] font-medium text-gray-400 mt-0.5">{getGoalDescription(currentGoal)}</p>
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-y-4">
                             <div className="border-r border-gray-100 pr-4">
                                 <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Target Berat</p>
-                                <p className="text-[15px] font-bold text-black">55.0 kg</p>
-                                <p className="text-[9px] font-bold text-[#14AE5C] mt-0.5">(-7.4 kg lagi)</p>
+                                <p className="text-[15px] font-bold text-black">{targetWeight ? targetWeight.toFixed(1) : '-'} kg</p>
+                                <p className="text-[9px] font-bold text-[#14AE5C] mt-0.5">{weightDiff ? `${weightDiff.toFixed(1)} kg lagi` : 'target tercapai'}</p>
                             </div>
                             <div className="pl-4">
                                 <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Target Tanggal</p>
-                                <p className="text-[15px] font-bold text-black">30 Agustus 2025</p>
+                                <p className="text-[15px] font-bold text-black">{getTargetDate(userProfile)}</p>
                             </div>
                             <div className="col-span-2 border-t border-gray-100 my-0.5"></div>
                             <div className="border-r border-gray-100 pr-4">
                                 <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">TDEE (Perkiraan)</p>
-                                <p className="text-[15px] font-bold text-black">2.000 kkal</p>
+                                <p className="text-[15px] font-bold text-black">{targets.tdee.toLocaleString('id-ID')} kkal</p>
                             </div>
                             <div className="pl-4">
                                 <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Target Harian</p>
-                                <p className="text-[15px] font-bold text-black">1.500 kkal</p>
+                                <p className="text-[15px] font-bold text-black">{targets.calories.toLocaleString('id-ID')} kkal</p>
                             </div>
                         </div>
                     </div>
@@ -92,20 +98,20 @@ const ProfileScreen = () => {
                     </div>
                     <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-gray-50 mb-6 flex flex-col gap-5">
                         <div className="flex justify-between items-center">
-                            <span className="text-[12px] font-medium text-gray-500">Tanggal Lahir</span>
-                            <span className="text-[12px] font-bold text-black">12 Jan 2001</span>
+                            <span className="text-[12px] font-medium text-gray-500">Usia</span>
+                            <span className="text-[12px] font-bold text-black">{userProfile.age ? `${userProfile.age} tahun` : '-'}</span>
                         </div>
                         <div className="flex justify-between items-center">
                             <span className="text-[12px] font-medium text-gray-500">Tinggi Badan</span>
-                            <span className="text-[12px] font-bold text-black">160 cm</span>
+                            <span className="text-[12px] font-bold text-black">{userProfile.height ? `${userProfile.height} cm` : '-'}</span>
                         </div>
                         <div className="flex justify-between items-center">
                             <span className="text-[12px] font-medium text-gray-500">Berat Badan Saat Ini</span>
-                            <span className="text-[12px] font-bold text-black">62.4 kg</span>
+                            <span className="text-[12px] font-bold text-black">{currentWeight ? `${currentWeight.toFixed(1)} kg` : '-'}</span>
                         </div>
                         <div className="flex justify-between items-center">
                             <span className="text-[12px] font-medium text-gray-500">Aktivitas</span>
-                            <span className="text-[12px] font-bold text-black">Sedang (2-3x/minggu)</span>
+                            <span className="text-[12px] font-bold text-black">{activityLabels[userProfile.activity] || '-'}</span>
                         </div>
                     </div>
 

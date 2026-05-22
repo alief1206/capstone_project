@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
+import { saveProfileDraft } from '../../utils/userProfileStorage';
 
 const PersonalDataScreen = () => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const PersonalDataScreen = () => {
         e.preventDefault();
 
         const beratSekarang = parseFloat(weight);
-        const targetBerat = parseFloat(targetWeight);
+        const targetBerat = needsTarget ? parseFloat(targetWeight) : beratSekarang;
 
         if (selectedGoal === "turunkan" && targetBerat >= beratSekarang) {
             alert("Validasi Gagal: Target berat badan harus lebih rendah dari berat badan saat ini jika Anda ingin menurunkan berat badan.");
@@ -32,7 +33,16 @@ const PersonalDataScreen = () => {
         }
 
         try {
-            navigate('/aktivitas', { state: { goal: selectedGoal } });
+            const profileDraft = {
+                goal: selectedGoal,
+                gender,
+                age: Number(age),
+                height: Number(height),
+                currentWeight: beratSekarang,
+                targetWeight: targetBerat
+            };
+            saveProfileDraft(profileDraft);
+            navigate('/aktivitas', { state: { goal: selectedGoal, profile: profileDraft } });
         } catch (error) {
             console.error(error);
         }

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
+import { getProfileDraft, saveProfileDraft } from '../../utils/userProfileStorage';
 
 const HabitsScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedGoal = location.state?.goal || 'turunkan';
+    const profileDraft = location.state?.profile || getProfileDraft();
     const [selectedHabits, setSelectedHabits] = useState([]);
     const isComplete = selectedHabits.length >= 3;
     const habitsList = ['Lacak Kalori', 'Konsumsi Protein', 'Makan Gizi Seimbang', 'Minum Cukup Air', 'Tidur Cukup', 'Olahraga Teratur', 'Kurangi Gula', 'Makan Sayur & Buah', 'Hindari Makan Malam', 'Kontrol Porsi', 'Jangan Lupa Sarapan', 'Kurangi Makanan Olahan', 'Rutin Olah Raga', 'Makan dengan Porsi Kecil', 'Mengurangi Konsumsi Alkohol', 'Meminimalisir Stres'];
@@ -47,7 +49,17 @@ const HabitsScreen = () => {
                     </div>
                 </div>
                 <div className="flex justify-center w-full flex-shrink-0">
-                    <Button onClick={() => isComplete && navigate('/daftar', { state: { goal: selectedGoal } })} className={!isComplete ? 'opacity-50 cursor-not-allowed' : ''}>Berikutnya</Button>
+                    <Button
+                        onClick={() => {
+                            if (!isComplete) return;
+                            const nextProfile = { ...profileDraft, goal: selectedGoal, habits: selectedHabits };
+                            saveProfileDraft(nextProfile);
+                            navigate('/daftar', { state: { goal: selectedGoal, profile: nextProfile } });
+                        }}
+                        className={!isComplete ? 'opacity-50 cursor-not-allowed' : ''}
+                    >
+                        Berikutnya
+                    </Button>
                 </div>
             </div>
         </div>

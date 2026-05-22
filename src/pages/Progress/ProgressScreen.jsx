@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import { getFoodLogs, getTotalCalories } from '../../utils/foodLogStorage';
+import { getFoodLogs, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
+import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
 
 const ProgressScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const currentGoal = location.state?.goal || 'turunkan';
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
+    const userProfile = getUserProfile(userEmail);
+    const currentGoal = normalizeGoal(location.state?.goal || userProfile.goal || 'turunkan');
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
 
@@ -28,10 +30,13 @@ const ProgressScreen = () => {
     const calendarGrid = Array(firstDay).fill(null).concat(Array.from({length: daysInMonth}, (_, i) => i + 1));
     const foodLogs = getFoodLogs(userEmail);
     const totalCalories = getTotalCalories(foodLogs);
+    const macroTotals = getMacroTotals(foodLogs);
     const averageCalories = foodLogs.length > 0 ? Math.round(totalCalories / 7) : 0;
     const highestCalories = foodLogs.length > 0 ? Math.max(...foodLogs.map((food) => Number(food.calories || 0))) : 0;
     const lowestCalories = foodLogs.length > 0 ? Math.min(...foodLogs.map((food) => Number(food.calories || 0))) : 0;
-    const targetCalories = currentGoal === 'tambah' ? 2400 : currentGoal === 'jaga' ? 1450 : 1500;
+    const targets = calculateNutritionTargets(userProfile, currentGoal);
+    const targetCalories = targets.calories;
+    const averageProtein = foodLogs.length > 0 ? Math.round(macroTotals.protein / 7) : 0;
 
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
@@ -178,10 +183,10 @@ const ProgressScreen = () => {
                         <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
                             <p className="text-[12px] font-medium text-black mb-1">Rata-rata Protein</p>
                             <div className="flex items-baseline gap-1 mb-1">
-                                <span className="text-[20px] font-bold text-black">0</span>
+                                <span className="text-[20px] font-bold text-black">{averageProtein}</span>
                                 <span className="text-[11px] font-semibold text-gray-600">g</span>
                             </div>
-                            <p className="text-[10px] font-medium text-gray-400">belum dicatat</p>
+                            <p className="text-[10px] font-medium text-gray-400">dari Diary</p>
                         </div>
                     </div>
                 </div>
