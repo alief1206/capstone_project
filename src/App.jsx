@@ -9,24 +9,7 @@ import confettiImg from './assets/images/confetti.png';
 import profileImg from './assets/images/profile.png';
 import robotImg from './assets/images/robot.png';
 import foodImg from './assets/images/makanan.png';
-import WelcomeScreen  from './pages/Onboarding/WelcomeScreen';
-import GoalSelection from './pages/Onboarding/GoalSelection';
-import MotivationScreen from './pages/Onboarding/MotivationScreen';
-import PersonalDataScreen from './pages/Onboarding/PersonalDataScreen';
-import ActivityScreen from './pages/Onboarding/ActivityScreen';
-import HabitsScreen from './pages/Onboarding/HabitsScreen';
-import RegisterScreen from './pages/Auth/RegisterScreen';
-import LoginScreen from './pages/Auth/LoginScreen';
-import ForgotPasswordScreen from './pages/Auth/ForgotPasswordScreen';
-import OtpScreen from './pages/Auth/OtpScreen';
-import ResetPasswordScreen from './pages/Auth/ResetPasswordScreen';
-import DashboardScreen from './pages/Dashboard/DashboardScreen';
-import FoodSearchScreen from './pages/Diary/FoodSearchScreen';
-import BarcodeScannerScreen from './pages/Diary/BarcodeScannerScreen';
-import DiaryScreen from './pages/Diary/DiaryScreen';
-import ProgressScreen from './pages/Progress/ProgressScreen';
-import InsightScreen from './pages/AIInsight/InsightScreen';
-import ProfileScreen from './pages/Profile/ProfileScreen';
+
 
 function App() {
     return (
@@ -56,4 +39,5 @@ function App() {
     );
 }
 
+export default App;
 export default App;
