@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
+import { clearFoodLogs } from '../../utils/foodLogStorage';
 
 const LoginScreen = () => {
     const navigate = useNavigate();
@@ -11,6 +12,34 @@ const LoginScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const isComplete = email && password;
+
+    const handleLogin = async () => {
+        if (!isComplete) return;
+
+        try {
+            const response = await fetch('http://localhost:5000/api/v1/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.message || "Login gagal.");
+                return;
+            }
+
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('userEmail', data.user.email);
+            clearFoodLogs(data.user.email);
+            navigate('/dashboard', { state: { goal: selectedGoal, email: data.user.email } });
+        } catch (error) {
+            alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");
+            console.error(error);
+        }
+    };
+
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
             <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-white shadow-xl flex flex-col pt-16 pb-10 px-6 overflow-hidden'>
@@ -29,7 +58,7 @@ const LoginScreen = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-4 mt-8">
-                    <Button onClick={() => navigate('/dashboard', { state: { goal: selectedGoal } })} className={`w-full h-[54px] text-[16px] ${!isComplete ? 'opacity-50 cursor-not-allowed' : ''}`}>Masuk</Button>
+                    <Button onClick={handleLogin} className={`w-full h-[54px] text-[16px] ${!isComplete ? 'opacity-50 cursor-not-allowed' : ''}`}>Masuk</Button>
                     <p className="text-center text-[14px] font-semibold text-[#14AE5C] cursor-pointer mt-2" onClick={() => navigate('/lupa-sandi')}>Lupa kata sandi?</p>
                 </div>
                 <div className="mt-auto flex justify-center">

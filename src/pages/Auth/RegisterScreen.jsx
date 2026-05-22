@@ -17,6 +17,50 @@ const RegisterScreen = () => {
         tambah: 'Kamu baru saja mengambil langkah besar untuk mencapai target berat badan impianmu.',
         jaga: 'Kamu baru saja mengambil langkah besar untuk menjaga konsistensi berat badanmu.'
     };
+
+    const handleRegister = async () => {
+        if (!email.toLowerCase().endsWith('@gmail.com')) {
+            alert("Pendaftaran hanya diizinkan menggunakan email @gmail.com");
+            return;
+        }
+
+        // Poin 4: Validasi Password di Sisi Klien Sebelum Request Jaringan
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/;
+        if (password.length < 8 || !passwordRegex.test(password)) {
+            alert("Validasi Gagal: Kata sandi harus memiliki panjang minimal 8 karakter dan mengandung setidaknya 1 huruf besar, 1 huruf kecil, serta 1 angka!");
+            return;
+        }
+
+        if (isComplete) {
+            try {
+                const response = await fetch('http://localhost:5000/api/v1/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: email.split('@')[0].length >= 3 ? email.split('@')[0] : 'User',
+                        email,
+                        password,
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    alert(data.message || "Registrasi gagal. Silakan coba lagi.");
+                    return;
+                }
+
+                alert(data.message);
+                navigate('/otp', { state: { email, goal: selectedGoal } });
+            } catch (error) {
+                alert("Gagal terhubung ke server. Pastikan server backend berjalan di port 5000.");
+                console.error(error);
+            }
+        }
+    };
+
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
             <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-white shadow-xl flex flex-col pt-12 pb-10 px-4 overflow-hidden'>
@@ -48,7 +92,7 @@ const RegisterScreen = () => {
                     </div>
                 </div>
                 <div className="mt-auto flex flex-col items-center w-full gap-4 pt-6">
-                    <Button onClick={() => isComplete && navigate('/login', { state: { goal: selectedGoal } })} className={!isComplete ? 'opacity-50 cursor-not-allowed' : ''}>Daftar</Button>
+                    <Button onClick={() => isComplete && handleRegister()} className={!isComplete ? 'opacity-50 cursor-not-allowed' : ''}>Daftar</Button>
                     <p className="text-[14px] font-semibold text-gray-600">Sudah punya akun? <span className="text-[#14AE5C] cursor-pointer" onClick={() => navigate('/login', { state: { goal: selectedGoal } })}>Masuk</span></p>
                 </div>
             </div>

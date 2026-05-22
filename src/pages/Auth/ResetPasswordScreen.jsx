@@ -1,15 +1,50 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
 
 const ResetPasswordScreen = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const email = location.state?.email || '';
+    const token = location.state?.token || '';
     const [showPassword1, setShowPassword1] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
     const [pass1, setPass1] = useState('');
     const [pass2, setPass2] = useState('');
     const isComplete = pass1 && pass2 && pass1 === pass2;
+
+    const handleResetPassword = async () => {
+        if (!isComplete) return;
+
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/;
+        if (pass1.length < 8 || !passwordRegex.test(pass1)) {
+            alert("Validasi Gagal: Kata sandi harus memiliki panjang minimal 8 karakter dan mengandung setidaknya 1 huruf besar, 1 huruf kecil, serta 1 angka!");
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:5000/api/v1/auth/reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, token, newPassword: pass1 })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.message || "Gagal mereset password.");
+                return;
+            }
+
+            alert(data.message);
+            navigate('/login');
+        } catch (error) {
+            alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");
+            console.error(error);
+        }
+    };
+
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
             <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-white shadow-xl flex flex-col pt-12 pb-10 px-6 overflow-hidden'>
@@ -48,7 +83,7 @@ const ResetPasswordScreen = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-6 mt-auto pt-6">
-                    <Button onClick={() => isComplete && navigate('/login')} className={`w-full h-[54px] ${!isComplete ? 'opacity-50 cursor-not-allowed' : ''}`}>Simpan & Masuk</Button>
+                    <Button onClick={handleResetPassword} className={`w-full h-[54px] ${!isComplete ? 'opacity-50 cursor-not-allowed' : ''}`}>Simpan & Masuk</Button>
                 </div>
             </div>
         </div>

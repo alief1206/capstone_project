@@ -3,11 +3,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import robotImg from '../../assets/images/robot.png';
 import foodImg from '../../assets/images/makanan.png';
+import { getFoodLogs, getTotalCalories } from '../../utils/foodLogStorage';
 
 const InsightScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const currentGoal = location.state?.goal || 'turunkan';
+    const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
 
@@ -54,20 +56,37 @@ const InsightScreen = () => {
     };
 
     const currentData = insightContent[currentGoal] || insightContent.turunkan;
+    const foodLogs = getFoodLogs(userEmail);
+    const totalCalories = getTotalCalories(foodLogs);
+    const calorieTarget = currentGoal === 'tambah' ? 2400 : currentGoal === 'jaga' ? 1450 : 1500;
+    const dynamicNutrients = currentData.nutrients.map((item) => {
+        if (item.id !== 'kalori') return item;
+
+        return {
+            ...item,
+            value: String(totalCalories),
+            target: `${calorieTarget.toLocaleString('id-ID')} kkal`,
+            status: totalCalories <= calorieTarget ? 'check' : 'down',
+            sources: foodLogs.map((food) => ({ name: food.name, qty: `${food.calories} kkal` }))
+        };
+    });
+    const dynamicEvalDesc = totalCalories === 0
+        ? 'Belum ada makanan yang dicatat hari ini. Tambahkan makanan dari Diary agar AI Insight bisa menganalisis asupanmu.'
+        : `Hari ini kamu sudah mencatat ${totalCalories} kkal dari ${foodLogs.length} makanan.`;
 
     useEffect(() => {
         let i = 0;
         setDisplayedEval("");
         const typingInterval = setInterval(() => {
-            if (i < currentData.fullEvalDesc.length) {
-                setDisplayedEval((prev) => prev + currentData.fullEvalDesc.charAt(i));
+            if (i < dynamicEvalDesc.length) {
+                setDisplayedEval((prev) => prev + dynamicEvalDesc.charAt(i));
                 i++;
             } else {
                 clearInterval(typingInterval);
             }
         }, 30);
         return () => clearInterval(typingInterval);
-    }, [currentGoal, currentDate]);
+    }, [currentGoal, currentDate, dynamicEvalDesc]);
 
     const handleRefreshFood = () => {
         setFoodOptionIndex((prev) => (prev + 1) % currentData.aiRecommendations.length);
@@ -106,8 +125,8 @@ const InsightScreen = () => {
                     <div className="bg-white rounded-[24px] p-5 shadow-sm border border-gray-50 mb-6">
                         <h3 className="text-[12px] font-bold text-black uppercase tracking-wider mb-2">RINGKASAN</h3>
                         <div className="flex flex-col">
-                            {currentData.nutrients.map((item, idx) => (
-                                <div key={item.id} className={`flex flex-col py-3 ${idx !== currentData.nutrients.length - 1 ? 'border-b border-gray-100' : ''}`}>
+                            {dynamicNutrients.map((item, idx) => (
+                                <div key={item.id} className={`flex flex-col py-3 ${idx !== dynamicNutrients.length - 1 ? 'border-b border-gray-100' : ''}`}>
                                     <div 
                                         className="flex justify-between items-center cursor-pointer"
                                         onClick={() => setExpandedNutrient(expandedNutrient === item.id ? null : item.id)}
@@ -219,11 +238,11 @@ const InsightScreen = () => {
                     <div className="absolute inset-0 bg-black/50 z-[60] flex flex-col justify-end items-center pb-[120px]" onClick={() => setIsActionMenuOpen(false)}>
                         <button onClick={() => setIsActionMenuOpen(false)} className="absolute top-10 left-6 text-white text-3xl hover:scale-110 transition-transform"><Icon icon="mdi:close" /></button>
                         <div className="w-[350px] flex justify-between gap-4" onClick={(e) => e.stopPropagation()}>
-                            <div onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50 transition-all">
+                            <div onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal, email: userEmail } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50 transition-all">
                                 <div className="w-[50px] h-[50px] bg-[#14AE5C] rounded-full flex justify-center items-center text-white text-2xl shadow-md"><Icon icon="mdi:magnify" /></div>
                                 <span className="text-[13px] font-bold text-black">Catat makanan</span>
                             </div>
-                            <div onClick={() => navigate('/scan-barcode', { state: { goal: currentGoal } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50 transition-all">
+                            <div onClick={() => navigate('/scan-barcode', { state: { goal: currentGoal, email: userEmail } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50 transition-all">
                                 <div className="w-[50px] h-[50px] bg-[#14AE5C] rounded-full flex justify-center items-center text-white text-2xl shadow-md"><Icon icon="mdi:barcode-scan" /></div>
                                 <span className="text-[13px] font-bold text-black text-center leading-tight">Pemindai Kode Batang</span>
                             </div>
@@ -238,23 +257,23 @@ const InsightScreen = () => {
                 <div className="absolute bottom-0 left-0 w-full z-20" style={{ filter: 'drop-shadow(0px -4px 10px rgba(0,0,0,0.05))' }}>
                     <div className="absolute bottom-[35px] left-1/2 -translate-x-1/2 w-[80px] h-[80px] bg-white rounded-full"></div>
                     <div className="absolute bottom-0 left-0 w-full h-[75px] bg-white flex justify-around items-end pb-3 px-2 rounded-t-[20px]">
-                        <div onClick={() => navigate('/dashboard', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
+                        <div onClick={() => navigate('/dashboard', { state: { goal: currentGoal, email: userEmail } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
                             <Icon icon="mdi:home" className={`text-[24px] ${currentPath === '/dashboard' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
                             <span className={`text-[10px] font-bold ${currentPath === '/dashboard' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Beranda</span>
                         </div>
-                        <div onClick={() => navigate('/diary', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
+                        <div onClick={() => navigate('/diary', { state: { goal: currentGoal, email: userEmail } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
                             <Icon icon="mdi:notebook" className={`text-[24px] ${currentPath === '/diary' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
                             <span className={`text-[10px] font-bold ${currentPath === '/diary' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Diary</span>
                         </div>
-                        <div onClick={() => navigate('/progress', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px] relative z-30 pt-4">
+                        <div onClick={() => navigate('/progress', { state: { goal: currentGoal, email: userEmail } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px] relative z-30 pt-4">
                             <Icon icon="mdi:chart-bar" className={`text-[24px] ${currentPath === '/progress' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
                             <span className={`text-[10px] font-bold ${currentPath === '/progress' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Progress</span>
                         </div>
-                        <div onClick={() => navigate('/insight', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
+                        <div onClick={() => navigate('/insight', { state: { goal: currentGoal, email: userEmail } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
                             <Icon icon="mdi:chart-line" className={`text-[24px] ${currentPath === '/insight' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
                             <span className={`text-[10px] font-bold ${currentPath === '/insight' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Insight</span>
                         </div>
-                        <div onClick={() => navigate('/profile', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
+                        <div onClick={() => navigate('/profile', { state: { goal: currentGoal, email: userEmail } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
                             <Icon icon="mdi:account-outline" className={`text-[24px] ${currentPath === '/profile' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
                             <span className={`text-[10px] font-bold ${currentPath === '/profile' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Profile</span>
                         </div>

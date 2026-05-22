@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import { getFoodLogs, getTotalCalories } from '../../utils/foodLogStorage';
 
 const ProgressScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const currentGoal = location.state?.goal || 'turunkan';
+    const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
 
@@ -24,6 +26,12 @@ const ProgressScreen = () => {
     const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
     const calendarGrid = Array(firstDay).fill(null).concat(Array.from({length: daysInMonth}, (_, i) => i + 1));
+    const foodLogs = getFoodLogs(userEmail);
+    const totalCalories = getTotalCalories(foodLogs);
+    const averageCalories = foodLogs.length > 0 ? Math.round(totalCalories / 7) : 0;
+    const highestCalories = foodLogs.length > 0 ? Math.max(...foodLogs.map((food) => Number(food.calories || 0))) : 0;
+    const lowestCalories = foodLogs.length > 0 ? Math.min(...foodLogs.map((food) => Number(food.calories || 0))) : 0;
+    const targetCalories = currentGoal === 'tambah' ? 2400 : currentGoal === 'jaga' ? 1450 : 1500;
 
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
@@ -143,37 +151,37 @@ const ProgressScreen = () => {
                         <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
                             <p className="text-[12px] font-medium text-black mb-1">Rata-rata Kalori</p>
                             <div className="flex items-baseline gap-1 mb-1">
-                                <span className="text-[20px] font-bold text-black">1.450</span>
+                                <span className="text-[20px] font-bold text-black">{averageCalories}</span>
                                 <span className="text-[11px] font-semibold text-gray-600">kkal</span>
                             </div>
-                            <p className="text-[10px] font-medium text-gray-400">dari target 1.500</p>
+                            <p className="text-[10px] font-medium text-gray-400">dari target {targetCalories.toLocaleString('id-ID')}</p>
                         </div>
 
                         <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
                             <p className="text-[12px] font-medium text-black mb-1">Kalori Tertinggi</p>
                             <div className="flex items-baseline gap-1 mb-1">
-                                <span className="text-[20px] font-bold text-black">1.780</span>
+                                <span className="text-[20px] font-bold text-black">{highestCalories}</span>
                                 <span className="text-[11px] font-semibold text-gray-600">kkal</span>
                             </div>
-                            <p className="text-[10px] font-medium text-gray-400">Sabtu</p>
+                            <p className="text-[10px] font-medium text-gray-400">Dari Diary</p>
                         </div>
 
                         <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
                             <p className="text-[12px] font-medium text-black mb-1">Kalori Terendah</p>
                             <div className="flex items-baseline gap-1 mb-1">
-                                <span className="text-[20px] font-bold text-black">1.220</span>
+                                <span className="text-[20px] font-bold text-black">{lowestCalories}</span>
                                 <span className="text-[11px] font-semibold text-gray-600">kkal</span>
                             </div>
-                            <p className="text-[10px] font-medium text-gray-400">Rabu</p>
+                            <p className="text-[10px] font-medium text-gray-400">Dari Diary</p>
                         </div>
 
                         <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
                             <p className="text-[12px] font-medium text-black mb-1">Rata-rata Protein</p>
                             <div className="flex items-baseline gap-1 mb-1">
-                                <span className="text-[20px] font-bold text-black">82</span>
+                                <span className="text-[20px] font-bold text-black">0</span>
                                 <span className="text-[11px] font-semibold text-gray-600">g</span>
                             </div>
-                            <p className="text-[10px] font-medium text-gray-400">dari target 100g</p>
+                            <p className="text-[10px] font-medium text-gray-400">belum dicatat</p>
                         </div>
                     </div>
                 </div>
@@ -224,11 +232,11 @@ const ProgressScreen = () => {
                     <div className="absolute inset-0 bg-black/50 z-[60] flex flex-col justify-end items-center pb-[120px]" onClick={() => setIsActionMenuOpen(false)}>
                         <button onClick={() => setIsActionMenuOpen(false)} className="absolute top-10 left-6 text-white text-3xl hover:scale-110 transition-transform"><Icon icon="mdi:close" /></button>
                         <div className="w-[350px] flex justify-between gap-4" onClick={(e) => e.stopPropagation()}>
-                            <div onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50 transition-all">
+                            <div onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal, email: userEmail } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50 transition-all">
                                 <div className="w-[50px] h-[50px] bg-[#14AE5C] rounded-full flex justify-center items-center text-white text-2xl shadow-md"><Icon icon="mdi:magnify" /></div>
                                 <span className="text-[13px] font-bold text-black">Catat makanan</span>
                             </div>
-                            <div onClick={() => navigate('/scan-barcode', { state: { goal: currentGoal } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50 transition-all">
+                            <div onClick={() => navigate('/scan-barcode', { state: { goal: currentGoal, email: userEmail } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50 transition-all">
                                 <div className="w-[50px] h-[50px] bg-[#14AE5C] rounded-full flex justify-center items-center text-white text-2xl shadow-md"><Icon icon="mdi:barcode-scan" /></div>
                                 <span className="text-[13px] font-bold text-black text-center leading-tight">Pemindai Kode Batang</span>
                             </div>
@@ -243,23 +251,23 @@ const ProgressScreen = () => {
                 <div className="absolute bottom-0 left-0 w-full z-20" style={{ filter: 'drop-shadow(0px -4px 10px rgba(0,0,0,0.05))' }}>
                     <div className="absolute bottom-[35px] left-1/2 -translate-x-1/2 w-[80px] h-[80px] bg-white rounded-full"></div>
                     <div className="absolute bottom-0 left-0 w-full h-[75px] bg-white flex justify-around items-end pb-3 px-2 rounded-t-[20px]">
-                        <div onClick={() => navigate('/dashboard', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
+                        <div onClick={() => navigate('/dashboard', { state: { goal: currentGoal, email: userEmail } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
                             <Icon icon="mdi:home" className={`text-[24px] ${currentPath === '/dashboard' || currentPath === '/' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
                             <span className={`text-[10px] font-bold ${currentPath === '/dashboard' || currentPath === '/' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Beranda</span>
                         </div>
-                        <div onClick={() => navigate('/diary', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
+                        <div onClick={() => navigate('/diary', { state: { goal: currentGoal, email: userEmail } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
                             <Icon icon="mdi:notebook" className={`text-[24px] ${currentPath === '/diary' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
                             <span className={`text-[10px] font-bold ${currentPath === '/diary' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Diary</span>
                         </div>
-                        <div onClick={() => navigate('/progress', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px] relative z-30 pt-4">
+                        <div onClick={() => navigate('/progress', { state: { goal: currentGoal, email: userEmail } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px] relative z-30 pt-4">
                             <Icon icon="mdi:chart-bar" className={`text-[24px] ${currentPath === '/progress' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
                             <span className={`text-[10px] font-bold ${currentPath === '/progress' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Progress</span>
                         </div>
-                        <div onClick={() => navigate('/insight', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
+                        <div onClick={() => navigate('/insight', { state: { goal: currentGoal, email: userEmail } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
                             <Icon icon="mdi:chart-line" className={`text-[24px] ${currentPath === '/insight' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
                             <span className={`text-[10px] font-bold ${currentPath === '/insight' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Insight</span>
                         </div>
-                        <div onClick={() => navigate('/profile', { state: { goal: currentGoal } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
+                        <div onClick={() => navigate('/profile', { state: { goal: currentGoal, email: userEmail } })} className="flex flex-col items-center gap-1 cursor-pointer w-[60px]">
                             <Icon icon="mdi:account-outline" className={`text-[24px] ${currentPath === '/profile' ? 'text-[#14AE5C]' : 'text-gray-400'}`} />
                             <span className={`text-[10px] font-bold ${currentPath === '/profile' ? 'text-[#14AE5C]' : 'text-gray-400'}`}>Profile</span>
                         </div>
