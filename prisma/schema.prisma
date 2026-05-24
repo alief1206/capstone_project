@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Goal {
+  LOSE_WEIGHT
+  GAIN_WEIGHT
+  MAINTAIN
+}
+
+model User {
+  id            Int        @id @default(autoincrement())
+  name          String
+  email         String     @unique
+  password      String
+  age           Int?
+  height        Float?     
+  currentWeight Float?     
+  targetWeight  Float?     
+  goal          Goal?
+  otp           String?    // Menyimpan kode OTP sementara
+  isVerified    Boolean    @default(false) // Status apakah email sudah divalidasi
+  createdAt     DateTime   @default(now())
+  foodLogs      FoodLog[]
+}
+
+model FoodLog {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  foodName    String
+  calories    Float?
+  aiAnalysis  String?  @db.Text
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

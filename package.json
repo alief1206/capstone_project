@@ -1,6 +1,50 @@
 {
+  "name": "eatsistent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "homepage": "https://github.com/alief1206/capstone_project#readme",
+  "bugs": {
+    "url": "https://github.com/alief1206/capstone_project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alief1206/capstone_project.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "postcss.config.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "server": "nodemon server/index.js"
+  },
   "dependencies": {
-    "html-react-parser": "^6.0.1",
-    "react-router-dom": "^7.14.2"
+    "@prisma/client": "^6.19.0",
+    "@tailwindcss/postcss": "^4.2.4",
+    "@tailwindcss/vite": "^4.2.4",
+    "@tensorflow/tfjs": "^4.22.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "html-react-parser": "^6.1.0",
+    "prisma": "^6.19.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-router-dom": "7.15.0"
+  },
+  "devDependencies": {
+    "@iconify/react": "^6.0.2",
+    "@vitejs/plugin-react": "6.0.1",
+    "autoprefixer": "10.5.0",
+    "nodemon": "^3.1.14",
+    "postcss": "8.5.14",
+    "prisma": "^6.19.3",
+    "tailwindcss": "4.2.4",
+    "vite": "8.0.10"
   }
 }
