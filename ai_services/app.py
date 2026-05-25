@@ -1,6 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+
 from nutri_predictor import NutriPredictor
+from food_classifier import predict_food_class
 
 
 app = FastAPI(title="EatSistent AI Service")
@@ -17,11 +19,19 @@ class NutritionRequest(BaseModel):
     target_user: str
 
 
+class FoodClassifierRequest(BaseModel):
+    data: dict
+
+
 @app.get("/")
 def home():
     return {
-        "service": "EatSistent NutriPredictor",
-        "status": "running"
+        "service": "EatSistent AI Service",
+        "status": "running",
+        "available_models": [
+            "Model 1 - Nutrition Predictor",
+            "Model 2 - Food Classifier"
+        ]
     }
 
 
@@ -39,7 +49,24 @@ def predict_nutrition(payload: NutritionRequest):
 
         return {
             "success": True,
+            "model": "Model 1 - Nutrition Predictor",
             "input": payload.model_dump(),
+            "prediction": prediction
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.post("/predict-food-class")
+def predict_food(payload: FoodClassifierRequest):
+    try:
+        prediction = predict_food_class(payload.data)
+
+        return {
+            "success": True,
+            "model": "Model 2 - Food Classifier",
+            "input": payload.data,
             "prediction": prediction
         }
 
