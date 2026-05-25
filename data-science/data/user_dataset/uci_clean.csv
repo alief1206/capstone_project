@@ -1,0 +1,2088 @@
+jenis_kelamin,usia,kelompok_usia,tinggi_cm,berat_kg,bmi,kategori_bmi,frekuensi_aktivitas_fisik,label_obesitas,sumber_data
+Female,21,19-29,162.0,64.0,24.39,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,152.0,56.0,24.24,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,180.0,77.0,23.77,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,27,19-29,180.0,87.0,26.85,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,178.0,89.8,28.34,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,29,19-29,162.0,53.0,20.2,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,150.0,55.0,24.44,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,164.0,53.0,19.71,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,24,19-29,178.0,64.0,20.2,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,172.0,68.0,22.99,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,26,19-29,185.0,105.0,30.68,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Female,21,19-29,172.0,80.0,27.04,Obesitas I,2.0,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,165.0,56.0,20.57,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,41,30-49,180.0,99.0,30.56,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,177.0,60.0,19.15,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,22,19-29,170.0,66.0,22.84,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,27,19-29,193.0,102.0,27.38,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,29,19-29,153.0,78.0,33.32,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,30,30-49,171.0,82.0,28.04,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,23,19-29,165.0,70.0,25.71,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,165.0,80.0,29.38,Obesitas I,3.0,Overweight_Level_II,UCI_Obesity_2019
+Female,52,50-64,169.0,87.0,30.46,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,22,19-29,165.0,60.0,22.04,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,22,19-29,160.0,82.0,32.03,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,185.0,68.0,19.87,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,160.0,50.0,19.53,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,170.0,65.0,22.49,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,160.0,52.0,20.31,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,175.0,76.0,24.82,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,168.0,70.0,24.8,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,29,19-29,177.0,83.0,26.49,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,31,30-49,158.0,68.0,27.24,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,24,19-29,177.0,76.0,24.26,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,39,30-49,179.0,90.0,28.09,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,165.0,62.0,22.77,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,150.0,65.0,28.89,Obesitas I,2.0,Overweight_Level_II,UCI_Obesity_2019
+Female,22,19-29,156.0,49.0,20.13,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,160.0,48.0,18.75,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,165.0,67.0,24.61,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,175.0,88.0,28.73,Obesitas I,3.0,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,167.0,75.0,26.89,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,168.0,60.0,21.26,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,166.0,64.0,23.23,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,166.0,62.0,22.5,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,181.0,80.0,24.42,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,153.0,65.0,27.77,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,182.0,72.0,21.74,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,175.0,72.0,23.51,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,166.0,60.0,21.77,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,155.0,50.0,20.81,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,161.0,54.5,21.03,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,150.0,44.0,19.56,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,164.0,52.0,19.33,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,163.0,55.0,20.7,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,22,19-29,160.0,55.0,21.48,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,168.0,62.0,21.97,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,170.0,70.0,24.22,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,164.0,65.0,24.17,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,17,16-18,165.0,67.0,24.61,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,176.0,55.0,17.76,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,155.0,49.0,20.4,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,165.0,58.0,21.3,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,167.0,62.0,22.23,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,168.0,55.0,19.49,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,166.0,57.0,20.69,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,162.0,69.0,26.29,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,180.0,90.0,27.78,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,165.0,95.0,34.89,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,30,30-49,176.0,112.0,36.16,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,180.0,60.0,18.52,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,165.0,80.0,29.38,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,22,19-29,167.0,50.0,17.93,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,24,19-29,165.0,60.0,22.04,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,185.0,65.0,18.99,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,24,19-29,170.0,85.0,29.41,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,23,19-29,163.0,45.0,16.94,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,24,19-29,160.0,45.0,17.58,Underweight,1.0,Insufficient_Weight,UCI_Obesity_2019
+Female,24,19-29,170.0,80.0,27.68,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,23,19-29,165.0,90.0,33.06,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,165.0,60.0,22.04,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,163.0,58.0,21.83,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,30,30-49,180.0,91.0,28.09,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,167.0,85.5,30.66,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,19,19-29,160.0,45.0,17.58,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,25,19-29,170.0,83.0,28.72,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,165.0,58.5,21.49,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,185.0,83.0,24.25,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,182.0,87.0,26.26,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,165.0,65.0,23.88,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Female,29,19-29,170.0,78.0,26.99,Obesitas I,2.0,Overweight_Level_II,UCI_Obesity_2019
+Female,25,19-29,163.0,93.0,35.0,Obesitas II,2.0,Obesity_Type_II,UCI_Obesity_2019
+Female,20,19-29,161.0,64.0,24.69,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,55,50-64,178.0,84.0,26.51,Obesitas I,3.0,Overweight_Level_I,UCI_Obesity_2019
+Female,20,19-29,160.0,57.0,22.27,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,24,19-29,160.0,48.0,18.75,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,26,19-29,170.0,70.0,24.22,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,166.0,60.0,21.77,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,152.0,42.0,18.18,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Male,23,19-29,172.0,70.0,23.66,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,169.0,63.0,22.06,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,170.0,66.4,22.98,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,155.0,57.0,23.73,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,22,19-29,165.0,58.0,21.3,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,38,30-49,156.0,80.0,32.87,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,25,19-29,157.0,55.0,22.31,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,188.0,90.0,25.46,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,175.0,95.0,31.02,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Female,21,19-29,165.0,88.0,32.32,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,175.0,75.0,24.49,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,22,19-29,158.0,58.0,23.23,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,156.0,51.0,20.96,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,22,19-29,150.0,49.0,21.78,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,161.0,62.0,23.92,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Female,17,16-18,175.0,57.0,18.61,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,15,13-15,165.0,86.0,31.59,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Female,17,16-18,170.0,85.0,29.41,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,162.0,53.0,20.2,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,163.0,76.0,28.6,Obesitas I,2.0,Overweight_Level_II,UCI_Obesity_2019
+Female,23,19-29,167.0,75.0,26.89,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,187.0,95.0,27.17,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,175.0,50.0,16.33,Underweight,1.0,Insufficient_Weight,UCI_Obesity_2019
+Male,24,19-29,166.0,67.0,24.31,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,176.0,90.0,29.05,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,175.0,80.0,26.12,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,167.0,68.0,24.38,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,165.0,61.0,22.41,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,172.0,70.0,23.66,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,27,19-29,170.0,78.0,26.99,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,20,19-29,158.0,53.0,21.23,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,162.0,58.0,22.1,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,165.0,56.0,20.57,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,61,50-64,165.0,66.0,24.24,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,30,30-49,177.0,109.0,34.79,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Male,24,19-29,170.0,75.0,25.95,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,25,19-29,179.0,72.0,22.47,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,44,30-49,160.0,80.0,31.25,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,31,30-49,176.0,75.0,24.21,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Male,25,19-29,170.0,68.0,23.53,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,189.0,65.0,18.2,Underweight,1.0,Insufficient_Weight,UCI_Obesity_2019
+Male,25,19-29,187.0,66.0,18.87,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,174.0,93.5,30.88,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,34,30-49,168.0,75.0,26.57,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,161.0,67.0,25.85,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,162.0,70.0,26.67,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,24,19-29,156.0,51.0,20.96,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,36,30-49,163.0,80.0,30.11,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,27,19-29,160.0,61.0,23.83,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,32,30-49,167.0,90.0,32.27,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Male,25,19-29,178.0,78.0,24.62,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,30,30-49,162.0,59.0,22.48,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,38,30-49,150.0,60.0,26.67,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,34,30-49,169.0,84.0,29.41,Obesitas I,2.0,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,174.0,94.0,31.05,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,31,30-49,168.0,63.0,22.32,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,35,30-49,153.0,45.0,19.22,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,167.0,60.0,21.51,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,40,30-49,155.0,62.0,25.81,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,27,19-29,164.0,78.0,29.0,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,183.0,72.0,21.5,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,55,50-64,165.0,80.0,29.38,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,163.0,60.0,22.58,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,25,19-29,189.0,75.0,21.0,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,35,30-49,177.0,85.0,27.13,Obesitas I,2.0,Overweight_Level_II,UCI_Obesity_2019
+Male,30,30-49,192.0,130.0,35.26,Obesitas II,1.0,Obesity_Type_II,UCI_Obesity_2019
+Female,29,19-29,174.0,72.0,23.78,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,165.0,80.0,29.38,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,22,19-29,173.0,79.0,26.4,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,45,30-49,163.0,77.0,28.98,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,172.0,82.0,27.72,Obesitas I,2.0,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,160.0,58.0,22.66,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,165.0,59.0,21.67,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,174.0,64.0,21.14,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,38,30-49,164.0,59.8,22.23,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,157.0,48.0,19.47,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,184.0,84.0,24.81,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Male,26,19-29,191.0,84.0,23.03,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,158.0,48.0,19.23,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,168.0,67.0,23.74,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,22,19-29,168.0,52.0,18.42,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,148.0,60.0,27.39,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,31,30-49,162.0,68.0,25.91,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,39,30-49,178.0,96.0,30.3,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,25,19-29,178.0,98.0,30.93,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Male,35,30-49,178.0,105.0,33.14,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Female,33,30-49,163.0,62.0,23.34,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,160.0,56.0,21.87,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,26,19-29,175.0,80.0,26.12,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,183.0,85.0,25.38,Obesitas I,3.0,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,178.0,68.0,21.46,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,160.0,83.0,32.42,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Male,19,19-29,180.0,85.0,26.23,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,175.0,74.0,24.16,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,41,30-49,175.0,118.0,38.53,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Female,18,16-18,159.0,40.0,15.82,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,166.0,60.0,21.77,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,163.0,83.0,31.24,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,41,30-49,154.0,80.0,33.73,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,26,19-29,156.0,102.0,41.91,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Male,29,19-29,169.0,90.0,31.51,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,27,19-29,183.0,71.0,21.2,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,160.0,78.0,30.47,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,19,19-29,175.0,100.0,32.65,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Male,30,30-49,175.0,73.0,23.84,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Female,22,19-29,169.0,65.0,22.76,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,180.0,114.0,35.19,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Female,21,19-29,163.0,51.0,19.2,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,24,19-29,150.0,63.0,28.0,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,180.0,62.0,19.14,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,165.0,53.0,19.47,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,168.0,70.0,24.8,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,160.0,63.0,24.61,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,171.0,75.0,25.65,Obesitas I,3.0,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,150.0,42.3,18.8,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,160.0,68.0,26.56,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,175.0,78.0,25.47,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,172.0,82.0,27.72,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,172.0,66.5,22.48,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,22,19-29,161.0,63.0,24.3,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,163.0,82.0,30.86,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,25,19-29,183.0,121.0,36.13,Obesitas II,2.0,Obesity_Type_II,UCI_Obesity_2019
+Female,20,19-29,160.0,50.0,19.53,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,24,19-29,162.0,58.0,22.1,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,40,30-49,168.0,80.0,28.34,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,32,30-49,175.0,120.0,39.18,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,20,19-29,190.0,91.0,25.21,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,163.0,66.0,24.84,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,51,50-64,159.0,50.0,19.78,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,34,30-49,168.0,77.0,27.28,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,159.0,49.0,19.38,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,169.0,70.0,24.51,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,166.0,59.0,21.41,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,164.0,53.0,19.71,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,162.0,53.0,20.2,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,170.0,64.0,22.15,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,17,16-18,163.0,65.0,24.46,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,160.0,66.0,25.78,Obesitas I,3.0,Overweight_Level_I,UCI_Obesity_2019
+Female,20,19-29,163.0,64.0,24.09,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,33,30-49,185.0,99.0,28.93,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,154.0,49.0,20.66,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,164.0,49.0,18.22,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,157.0,60.0,24.34,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,162.0,52.0,19.81,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,172.0,72.0,24.34,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,176.0,78.0,25.18,Obesitas I,3.0,Overweight_Level_I,UCI_Obesity_2019
+Female,20,19-29,165.0,75.0,27.55,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,167.0,78.0,27.97,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,56,50-64,179.0,90.0,28.09,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,26,19-29,159.0,47.0,18.59,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,22,19-29,164.0,56.0,20.82,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,178.0,81.0,25.56,Obesitas I,3.0,Overweight_Level_I,UCI_Obesity_2019
+Male,18,16-18,175.0,85.0,27.76,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,19,19-29,185.0,115.0,33.6,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,170.0,80.0,27.68,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,18,16-18,167.0,91.0,32.63,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,172.0,75.0,25.35,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,28,19-29,170.0,73.0,25.26,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,18,16-18,174.0,70.0,23.12,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,174.0,53.0,17.51,Underweight,3.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,187.0,67.0,19.16,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,170.0,50.0,17.3,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,39,30-49,165.0,50.0,18.37,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Male,38,30-49,170.0,78.0,26.99,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,17,16-18,167.0,60.0,21.51,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,172.0,66.0,22.31,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,182.0,107.0,32.3,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,19,19-29,150.0,50.0,22.22,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,170.0,60.0,20.76,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,25,19-29,171.0,71.0,24.28,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,25,19-29,161.0,61.0,23.53,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,150.0,50.0,22.22,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,16,16-18,167.0,50.0,17.93,Underweight,1.0,Insufficient_Weight,UCI_Obesity_2019
+Male,21,19-29,182.0,67.0,20.23,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,32,30-49,157.0,57.0,23.12,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,179.0,52.0,16.23,Underweight,1.0,Insufficient_Weight,UCI_Obesity_2019
+Male,21,19-29,175.0,62.0,20.24,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,170.0,55.0,19.03,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,162.0,55.0,20.96,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,17,16-18,169.0,60.0,21.01,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,177.0,70.0,22.34,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,179.0,105.0,32.77,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,21,19-29,160.0,61.0,23.83,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,160.0,58.0,22.66,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,17,16-18,156.0,51.0,20.96,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,188.0,79.0,22.35,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,16,16-18,182.0,71.0,21.43,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,17,16-18,180.0,58.0,17.9,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,21,19-29,170.0,65.0,22.49,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,182.0,75.0,22.64,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,186.0,110.0,31.8,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,16,16-18,166.0,58.0,21.05,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,153.0,53.0,22.64,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,26,19-29,174.0,80.0,26.42,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,18,16-18,180.0,80.0,24.69,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,170.0,75.0,25.95,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,26,19-29,170.0,70.0,24.22,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,172.0,55.0,18.59,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,16,16-18,184.0,45.0,13.29,Underweight,3.0,Insufficient_Weight,UCI_Obesity_2019
+Female,16,16-18,157.0,49.0,19.88,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,180.0,85.0,26.23,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,175.0,120.0,39.18,Obesitas II,2.0,Obesity_Type_II,UCI_Obesity_2019
+Female,24,19-29,156.0,60.0,24.65,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,159.0,48.0,18.99,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,180.0,75.0,23.15,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,17,16-18,179.0,57.0,17.79,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,172.0,62.0,20.96,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,16,16-18,160.0,57.0,22.27,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,17,16-18,166.0,56.0,20.32,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,26,19-29,165.0,63.0,23.14,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,26,19-29,170.0,72.0,24.91,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,38,30-49,175.0,75.0,24.49,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,175.0,70.0,22.86,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,25,19-29,156.0,45.0,18.49,Underweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,27,19-29,155.0,63.0,26.22,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,167.0,67.0,24.02,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,38,30-49,175.0,75.0,24.49,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,175.0,56.0,18.29,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,180.0,72.0,22.22,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,30,30-49,165.0,71.0,26.08,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,155.0,58.0,24.14,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,170.0,55.3,19.13,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,172.0,76.0,25.69,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,174.0,74.0,24.44,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,165.0,82.0,30.12,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,17,16-18,180.0,50.0,15.43,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,174.0,56.0,18.5,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,27,19-29,185.0,75.0,21.91,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,23,19-29,170.0,56.0,19.38,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,145.0,53.0,25.21,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,170.0,50.0,17.3,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,20,19-29,170.0,65.0,22.49,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,178.0,64.4,20.33,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,17,16-18,160.0,65.0,25.39,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,153.0,42.0,17.94,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,21,19-29,180.0,72.0,22.22,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,160.0,50.0,19.53,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,174.0,105.0,34.68,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,165.0,66.0,24.24,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,187.0,173.0,49.47,Obesitas II,2.0,Obesity_Type_III,UCI_Obesity_2019
+Male,17,16-18,170.0,55.0,19.03,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,154.0,47.0,19.82,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,17,16-18,180.0,97.0,29.94,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,182.0,80.0,24.15,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,198.0,125.0,31.88,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,17,16-18,175.0,70.0,22.86,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,26,19-29,165.0,60.0,22.04,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,17,16-18,160.0,53.0,20.7,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,24,19-29,160.0,51.0,19.92,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,17,16-18,160.0,59.0,23.05,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Female,27,19-29,155.0,62.0,25.81,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,17,16-18,190.0,60.0,16.62,Underweight,3.0,Insufficient_Weight,UCI_Obesity_2019
+Female,17,16-18,170.0,56.0,19.38,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,41,30-49,175.0,110.0,35.92,Obesitas II,1.0,Obesity_Type_II,UCI_Obesity_2019
+Female,33,30-49,156.0,48.0,19.72,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,187.0,75.0,21.45,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,40,30-49,156.0,80.0,32.87,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Female,37,30-49,165.0,73.0,26.81,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,180.0,80.0,24.69,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,24,19-29,184.0,86.0,25.4,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,24,19-29,170.0,68.0,23.53,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,33,30-49,172.0,83.0,28.06,Obesitas I,3.0,Overweight_Level_II,UCI_Obesity_2019
+Female,40,30-49,158.0,63.0,25.24,Obesitas I,3.0,Overweight_Level_I,UCI_Obesity_2019
+Female,37,30-49,168.0,83.0,29.41,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,158.0,74.0,29.64,Obesitas I,3.0,Overweight_Level_II,UCI_Obesity_2019
+Male,19,19-29,180.0,60.0,18.52,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,17,16-18,162.0,69.0,26.29,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,162.0,58.0,22.1,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,21,19-29,154.0,56.0,23.61,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,176.0,70.0,22.6,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,41,30-49,180.0,92.0,28.4,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,36,30-49,158.0,60.0,24.03,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,176.0,68.0,21.95,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,173.0,70.0,23.39,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,17,16-18,170.0,70.0,24.22,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,25,19-29,170.0,83.0,28.72,Obesitas I,3.0,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,180.0,75.0,23.15,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,29,19-29,160.0,56.0,21.87,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,17,16-18,170.0,98.0,33.91,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,160.0,60.0,23.44,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,16,16-18,155.0,45.0,18.73,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,159.0,53.0,20.96,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,37,30-49,150.0,75.0,33.33,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,178.0,108.0,34.09,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,16,16-18,161.0,65.0,25.08,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,171.0,50.0,17.1,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,170.0,50.0,17.3,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,176.0,69.5,22.44,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,170.0,78.0,26.99,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,17,16-18,153.0,55.0,23.5,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,154.0,39.0,16.44,Underweight,3.0,Insufficient_Weight,UCI_Obesity_2019
+Female,38,30-49,155.0,59.0,24.56,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,166.0,60.0,21.77,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,21,19-29,185.0,125.0,36.52,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,21,19-29,165.0,60.0,22.04,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,165.0,70.0,25.71,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,26,19-29,183.0,82.0,24.49,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,27,19-29,183.0,99.0,29.56,Obesitas I,2.0,Overweight_Level_II,UCI_Obesity_2019
+Female,26,19-29,166.0,112.0,40.64,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Male,34,30-49,178.0,73.0,23.04,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,174.0,86.0,28.41,Obesitas I,3.0,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,176.0,66.5,21.47,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,151.0,59.0,25.88,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,181.0,79.0,24.11,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,33,30-49,155.0,55.0,22.89,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,183.0,66.0,19.71,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,160.0,65.0,25.39,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,33,30-49,185.0,85.0,24.84,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,33,30-49,175.0,85.0,27.76,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,183.0,113.0,33.74,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,14,13-15,171.0,72.0,24.62,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,34,30-49,184.0,88.0,25.99,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,18,16-18,177.0,87.0,27.77,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,170.0,90.0,31.14,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Male,29,19-29,162.0,89.0,33.91,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,185.0,60.0,17.53,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,184.0,60.0,17.72,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,19,19-29,175.0,58.0,18.94,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,33,30-49,185.0,93.0,27.17,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,174.0,76.0,25.1,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,161.0,53.8,20.76,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,175.0,70.0,22.86,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,167.0,60.0,21.51,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,170.0,69.0,23.88,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,26,19-29,190.0,80.0,22.16,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,165.0,85.0,31.22,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,160.0,55.0,21.48,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,180.0,70.0,21.6,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,164.0,59.0,21.94,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,189.0,87.0,24.36,Overweight,3.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,176.0,80.0,25.83,Obesitas I,3.0,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,156.0,55.0,22.6,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,160.0,56.0,21.87,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,167.0,64.0,22.95,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,160.0,60.0,23.44,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,155.0,56.0,23.31,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,155.0,50.0,20.81,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,26,19-29,172.0,65.0,21.97,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,172.0,53.0,17.92,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Male,19,19-29,170.0,60.0,20.76,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,151.0,45.0,19.74,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,183.0,82.0,24.49,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,180.0,87.0,26.85,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Female,24,19-29,160.0,100.5,39.26,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Female,18,16-18,163.0,63.0,23.71,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,171.0,71.0,24.28,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,170.0,65.0,22.49,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,175.0,69.0,22.53,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,162.0,50.0,19.05,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,168.0,68.0,24.09,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,185.0,66.0,19.28,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,33,30-49,159.0,60.0,23.73,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,150.0,45.0,20.0,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,169.0,60.0,21.01,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,176.0,79.0,25.5,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,171.0,100.0,34.2,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,27,19-29,172.0,88.0,29.75,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,17,16-18,180.0,68.0,20.99,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,193.0,86.0,23.09,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,160.0,51.0,19.92,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,22,19-29,174.0,75.0,24.77,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,162.0,45.0,17.15,Underweight,1.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,154.0,42.0,17.71,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,156.0,51.5,21.16,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,160.0,83.0,32.42,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,154.0,71.0,29.94,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,18,16-18,163.0,51.0,19.2,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,178.0,64.0,20.2,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,162.0,68.0,25.91,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,171.0,75.0,25.65,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,164.0,56.0,20.82,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,169.0,65.0,22.76,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,17,16-18,158.0,50.0,20.03,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,157.0,50.0,20.28,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,18,16-18,174.0,64.0,21.14,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,20,19-29,158.0,53.5,21.43,Normal,1.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,150.0,58.0,25.78,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,36,30-49,165.0,80.0,29.38,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,180.0,73.0,22.53,Normal,3.0,Normal_Weight,UCI_Obesity_2019
+Male,23,19-29,175.0,75.0,24.49,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,184.0,104.0,30.72,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,188.0,84.0,23.77,Overweight,2.0,Normal_Weight,UCI_Obesity_2019
+Female,19,19-29,156.0,50.0,20.55,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,24,19-29,175.0,84.0,27.43,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,25,19-29,166.0,68.0,24.68,Overweight,1.0,Normal_Weight,UCI_Obesity_2019
+Male,45,30-49,170.0,86.0,29.76,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,180.0,65.0,20.06,Normal,2.0,Normal_Weight,UCI_Obesity_2019
+Female,18,16-18,167.0,66.0,23.67,Overweight,0.0,Normal_Weight,UCI_Obesity_2019
+Male,19,19-29,180.0,60.0,18.52,Normal,0.0,Normal_Weight,UCI_Obesity_2019
+Male,20,19-29,156.0,45.0,18.49,Underweight,1.0,Normal_Weight,UCI_Obesity_2019
+Female,25,19-29,168.6,104.572712,36.77,Obesitas II,0.319156,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,168.3,126.67378,44.72,Obesitas II,1.541072,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.2,110.79263,42.09,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,175.6,137.796884,44.71,Obesitas II,1.978631,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,184.3,165.057269,48.57,Obesitas II,0.10032,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,174.6,133.03441,43.66,Obesitas II,1.586525,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.1,111.485516,41.91,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.9,104.826776,39.49,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,177.1,133.963349,42.73,Obesitas II,1.399183,Obesity_Type_III,UCI_Obesity_2019
+Male,20,19-29,174.4,54.927529,18.07,Underweight,1.680844,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,177.2,55.695036,17.74,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,22,19-29,175.4,55.879263,18.17,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,167.5,51.154201,18.22,Underweight,1.978631,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,166.6,49.869791,17.96,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,171.1,51.965521,17.74,Underweight,2.206738,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,159.8,44.845655,17.56,Underweight,1.31817,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,159.6,42.848033,16.82,Underweight,0.902095,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,157.2,43.919835,17.77,Underweight,0.600817,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,158.7,43.087508,17.11,Underweight,0.119643,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,159.6,44.581159,17.51,Underweight,0.345684,Insufficient_Weight,UCI_Obesity_2019
+Female,24,19-29,160.0,45.0,17.58,Underweight,1.679935,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,168.8,45.0,15.79,Underweight,2.539762,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,155.6,42.339767,17.48,Underweight,0.196152,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,156.4,42.096062,17.21,Underweight,1.596576,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,156.9,41.324558,16.78,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,152.0,42.0,18.18,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,155.1,44.641796,18.57,Normal,0.754646,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,152.1,42.0,18.15,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,152.8,42.0,17.99,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,173.3,50.890363,16.94,Underweight,0.42777,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,172.3,50.833029,17.13,Underweight,0.545931,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,173.5,50.0,16.61,Underweight,1.303976,Insufficient_Weight,UCI_Obesity_2019
+Male,23,19-29,188.3,64.106108,18.08,Underweight,1.488843,Insufficient_Weight,UCI_Obesity_2019
+Male,23,19-29,185.5,63.611109,18.49,Underweight,1.228136,Insufficient_Weight,UCI_Obesity_2019
+Male,23,19-29,183.6,58.854416,17.47,Underweight,1.661556,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,175.6,52.0,16.87,Underweight,0.658894,Insufficient_Weight,UCI_Obesity_2019
+Male,22,19-29,171.3,51.598593,17.59,Underweight,0.544784,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,169.4,52.0,18.12,Underweight,0.819682,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,158.7,41.452385,16.46,Underweight,0.194745,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,158.0,41.890204,16.79,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,156.5,41.397378,16.91,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,167.1,49.742931,17.82,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,168.8,49.660995,17.42,Underweight,1.903182,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,166.1,49.039794,17.78,Underweight,1.067817,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,171.0,50.287967,17.19,Underweight,1.63581,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,175.6,53.699561,17.42,Underweight,2.870127,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,172.9,51.442293,17.21,Underweight,0.619533,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,166.2,49.838965,18.04,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,170.0,50.0,17.3,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,166.1,49.932199,18.09,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,30,30-49,161.1,49.516027,19.08,Normal,0.821977,Insufficient_Weight,UCI_Obesity_2019
+Female,32,30-49,164.1,46.655622,17.33,Underweight,1.44287,Insufficient_Weight,UCI_Obesity_2019
+Female,24,19-29,164.6,49.839685,18.4,Underweight,0.107078,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,171.1,51.588874,17.63,Underweight,0.288032,Insufficient_Weight,UCI_Obesity_2019
+Male,16,16-18,175.3,50.0,16.28,Underweight,1.926592,Insufficient_Weight,UCI_Obesity_2019
+Male,16,16-18,169.1,52.629374,18.41,Underweight,0.99295,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,175.3,51.457226,16.74,Underweight,1.252472,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,178.2,50.869704,16.03,Underweight,0.520408,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,175.6,52.331172,16.97,Underweight,0.281734,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,183.7,58.943347,17.47,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,20,19-29,176.8,57.790381,18.48,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,177.7,57.145917,18.09,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,17,16-18,164.1,43.365005,16.11,Underweight,2.595128,Insufficient_Weight,UCI_Obesity_2019
+Female,17,16-18,158.5,44.411801,17.68,Underweight,2.240714,Insufficient_Weight,UCI_Obesity_2019
+Female,16,16-18,181.8,47.124717,14.25,Underweight,2.458237,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,179.4,59.682591,18.55,Normal,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,180.9,58.968994,18.01,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,19,19-29,176.7,55.700497,17.83,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,170.0,54.98774,19.04,Normal,0.139808,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,175.9,55.01045,17.77,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,174.0,54.166453,17.88,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,173.9,49.649613,16.41,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,17,16-18,164.8,49.603807,18.27,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,176.8,49.597765,15.86,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,170.0,50.0,17.3,Underweight,0.651412,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,169.9,49.676046,17.2,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,174.4,50.0,16.44,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,159.0,42.367615,16.75,Underweight,1.522399,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,152.7,42.0,18.01,Underweight,1.37467,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,153.1,42.0,17.92,Underweight,0.260079,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,184.8,59.409018,17.39,Underweight,2.784471,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,182.4,59.295172,17.81,Underweight,2.349495,Insufficient_Weight,UCI_Obesity_2019
+Male,19,19-29,185.7,59.258372,17.19,Underweight,2.038653,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,171.6,50.0,16.99,Underweight,0.866045,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,167.5,49.945233,17.8,Underweight,0.630944,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,171.8,51.073918,17.31,Underweight,2.20208,Insufficient_Weight,UCI_Obesity_2019
+Female,17,16-18,171.1,50.0,17.08,Underweight,0.069802,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,170.0,50.0,17.3,Underweight,0.028202,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,170.0,50.0,17.3,Underweight,0.618913,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,157.4,39.850137,16.09,Underweight,0.684739,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,153.1,39.371523,16.8,Underweight,2.306844,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,153.0,40.343463,17.24,Underweight,0.144627,Insufficient_Weight,UCI_Obesity_2019
+Male,20,19-29,176.8,56.307019,18.02,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,188.3,60.0,16.92,Underweight,2.011519,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,182.5,58.621349,17.61,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,184.0,60.0,17.72,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,182.0,58.325122,17.62,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,179.9,59.612717,18.43,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,171.1,50.92538,17.4,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,170.7,51.121749,17.55,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,171.7,51.149283,17.36,Underweight,0.520407,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,155.5,44.188767,18.26,Underweight,1.070331,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,160.4,45.0,17.49,Underweight,1.60195,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,160.2,45.0,17.53,Underweight,1.258504,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,153.8,42.0,17.76,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,153.8,42.0,17.75,Underweight,1.235675,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,152.1,42.0,18.16,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,171.8,51.7325,17.53,Underweight,0.227985,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,175.3,54.121925,17.6,Underweight,1.838881,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,170.2,50.157707,17.32,Underweight,0.833976,Insufficient_Weight,UCI_Obesity_2019
+Male,20,19-29,175.3,54.997374,17.89,Underweight,1.94907,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,167.2,49.980968,17.88,Underweight,0.945093,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,159.4,44.050251,17.34,Underweight,1.967234,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,158.5,44.376637,17.67,Underweight,0.995735,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,160.0,45.0,17.57,Underweight,1.295697,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,154.9,41.557468,17.31,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,153.4,41.96525,17.82,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,172.6,49.815599,16.73,Underweight,1.548953,Insufficient_Weight,UCI_Obesity_2019
+Male,20,19-29,186.9,63.199726,18.09,Underweight,1.699592,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,168.7,51.256059,18.01,Underweight,0.480614,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,159.0,40.202773,15.91,Underweight,0.127425,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,165.3,49.026214,17.94,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,174.0,53.65727,17.72,Underweight,2.460238,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,170.0,50.0,17.3,Underweight,0.783676,Insufficient_Weight,UCI_Obesity_2019
+Female,35,30-49,168.9,50.0,17.52,Underweight,0.174692,Insufficient_Weight,UCI_Obesity_2019
+Male,16,16-18,169.1,50.0,17.48,Underweight,0.548991,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,178.8,51.552595,16.12,Underweight,1.162519,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,181.1,58.83071,17.93,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,17,16-18,183.0,43.534531,13.0,Underweight,2.830911,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,178.3,56.029418,17.63,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,175.2,55.967655,18.24,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,178.7,50.0,15.67,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,171.4,50.0,17.03,Underweight,1.683957,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,154.0,42.006282,17.7,Underweight,1.877369,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,189.7,59.895052,16.65,Underweight,2.511157,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,171.0,50.079991,17.12,Underweight,0.373186,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,170.4,50.631889,17.43,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,155.7,39.695295,16.38,Underweight,2.075293,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,184.5,60.0,17.62,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,183.5,59.990861,17.82,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,172.2,52.514302,17.71,Underweight,0.027433,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,160.6,44.661461,17.33,Underweight,0.769726,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,153.0,42.0,17.94,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,171.9,52.058335,17.62,Underweight,0.201136,Insufficient_Weight,UCI_Obesity_2019
+Male,20,19-29,175.6,54.98234,17.82,Underweight,1.696294,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,177.0,55.695253,17.77,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,176.7,56.265959,18.01,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,170.4,51.437985,17.71,Underweight,2.008256,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,166.8,49.803921,17.9,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,172.2,51.881263,17.49,Underweight,0.794402,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,158.8,44.236067,17.54,Underweight,1.098862,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,159.9,42.993937,16.82,Underweight,1.612248,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,159.2,44.00945,17.36,Underweight,1.190465,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,155.6,42.3601,17.5,Underweight,0.033328,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,159.6,44.594588,17.5,Underweight,0.417119,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,159.8,44.918255,17.58,Underweight,1.42237,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,163.3,45.0,16.87,Underweight,1.352558,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,156.0,42.12617,17.32,Underweight,0.206025,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,154.7,42.069992,17.59,Underweight,1.193486,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,156.7,41.706283,17.0,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,159.9,44.810751,17.52,Underweight,0.87967,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,155.9,41.952805,17.26,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,152.3,42.0,18.1,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,168.9,51.107925,17.91,Underweight,0.10297,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,173.7,50.479039,16.72,Underweight,0.791929,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,173.2,50.0,16.67,Underweight,1.853425,Insufficient_Weight,UCI_Obesity_2019
+Male,22,19-29,186.9,61.411141,17.58,Underweight,1.557737,Insufficient_Weight,UCI_Obesity_2019
+Male,19,19-29,185.1,61.264785,17.88,Underweight,1.285976,Insufficient_Weight,UCI_Obesity_2019
+Male,21,19-29,178.7,58.585146,18.34,Underweight,1.976341,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,178.8,52.0,16.27,Underweight,0.854337,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,171.3,51.710723,17.63,Underweight,1.952427,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,169.9,51.692272,17.91,Underweight,0.533309,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,153.4,41.669346,17.72,Underweight,0.25289,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,156.8,41.934368,17.06,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,154.4,41.535047,17.42,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,167.1,49.804245,17.85,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,167.6,49.105025,17.47,Underweight,1.862235,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,166.7,49.125955,17.67,Underweight,1.513029,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,170.0,50.173425,17.36,Underweight,1.321624,Insufficient_Weight,UCI_Obesity_2019
+Male,20,19-29,175.6,54.567343,17.69,Underweight,2.113151,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,170.4,51.607091,17.78,Underweight,0.486006,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,169.1,49.895716,17.45,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,171.4,50.0,17.03,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,167.2,49.713944,17.78,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,27,19-29,166.0,49.558304,17.97,Underweight,1.078719,Insufficient_Weight,UCI_Obesity_2019
+Female,25,19-29,163.0,46.062954,17.33,Underweight,1.616882,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,165.5,50.424661,18.4,Underweight,0.118271,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,173.3,51.216463,17.06,Underweight,0.291309,Insufficient_Weight,UCI_Obesity_2019
+Female,17,16-18,174.4,50.0,16.44,Underweight,1.351996,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,175.8,52.09432,16.86,Underweight,0.998391,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,178.7,51.524444,16.14,Underweight,1.077469,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,176.7,51.132809,16.38,Underweight,1.21718,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,169.9,52.08657,18.03,Underweight,0.680464,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,182.5,58.913579,17.68,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,20,19-29,179.3,58.19515,18.1,Underweight,2.026668,Insufficient_Weight,UCI_Obesity_2019
+Male,19,19-29,177.7,57.275946,18.14,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,160.9,42.656563,16.47,Underweight,1.949667,Insufficient_Weight,UCI_Obesity_2019
+Female,17,16-18,177.8,44.762023,14.16,Underweight,2.328147,Insufficient_Weight,UCI_Obesity_2019
+Female,17,16-18,171.1,45.248627,15.46,Underweight,2.407906,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,185.4,59.881316,17.42,Underweight,2.000088,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,182.2,59.605028,17.96,Underweight,2.002997,Insufficient_Weight,UCI_Obesity_2019
+Male,20,19-29,176.2,55.511075,17.88,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,173.2,54.835576,18.27,Underweight,1.25955,Insufficient_Weight,UCI_Obesity_2019
+Male,21,19-29,176.0,55.003417,17.76,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,23,19-29,174.1,54.877111,18.1,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,173.1,49.650897,16.57,Underweight,1.940182,Insufficient_Weight,UCI_Obesity_2019
+Female,17,16-18,174.8,49.928447,16.34,Underweight,1.951027,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,175.7,49.699672,16.1,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,170.1,50.088468,17.3,Underweight,0.819269,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,170.0,49.98297,17.3,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,172.3,50.0,16.84,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,158.6,42.541794,16.91,Underweight,1.461005,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,152.5,42.0,18.06,Underweight,0.14495,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,152.3,42.0,18.1,Underweight,0.108948,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,184.5,59.313525,17.43,Underweight,2.697949,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,185.3,59.619485,17.36,Underweight,2.077653,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,185.5,59.20945,17.21,Underweight,2.009397,Insufficient_Weight,UCI_Obesity_2019
+Female,21,19-29,172.1,50.0,16.89,Underweight,0.993058,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,170.4,50.165754,17.27,Underweight,0.611037,Insufficient_Weight,UCI_Obesity_2019
+Female,22,19-29,171.7,51.491957,17.46,Underweight,2.206055,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,170.8,50.0,17.13,Underweight,0.418875,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,176.3,50.279053,16.17,Underweight,0.107981,Insufficient_Weight,UCI_Obesity_2019
+Female,18,16-18,170.0,50.0,17.3,Underweight,0.115974,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,157.4,41.220175,16.64,Underweight,0.227802,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,153.8,39.101805,16.54,Underweight,2.432443,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,153.4,41.268597,17.53,Underweight,0.043412,Insufficient_Weight,UCI_Obesity_2019
+Male,20,19-29,176.0,55.3707,17.87,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,184.2,60.0,17.69,Underweight,2.000934,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,185.6,58.673963,17.03,Underweight,2.013377,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,182.9,59.933015,17.91,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,182.2,58.443049,17.6,Underweight,2.011646,Insufficient_Weight,UCI_Obesity_2019
+Male,17,16-18,180.7,59.243506,18.15,Underweight,2.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,170.7,50.664459,17.38,Underweight,0.512094,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,170.8,51.314659,17.59,Underweight,0.062932,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,173.9,50.951444,16.84,Underweight,0.520407,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,157.4,44.316254,17.89,Underweight,1.327833,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,158.1,44.753943,17.91,Underweight,0.979701,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,160.3,45.0,17.5,Underweight,1.230441,Insufficient_Weight,UCI_Obesity_2019
+Female,20,19-29,153.5,42.0,17.82,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,153.2,42.0,17.9,Underweight,0.463949,Insufficient_Weight,UCI_Obesity_2019
+Female,19,19-29,152.6,42.0,18.04,Underweight,0.0,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,172.0,52.289828,17.68,Underweight,0.023574,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,172.3,53.783977,18.13,Underweight,1.487987,Insufficient_Weight,UCI_Obesity_2019
+Male,18,16-18,173.9,50.248677,16.62,Underweight,0.684879,Insufficient_Weight,UCI_Obesity_2019
+Male,27,19-29,181.6,86.963765,26.36,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,163.8,70.0,26.09,Obesitas I,0.770536,Overweight_Level_I,UCI_Obesity_2019
+Male,25,19-29,181.4,85.637789,26.03,Obesitas I,0.046836,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,169.7,75.5771,26.24,Obesitas I,0.989316,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,161.7,68.869791,26.32,Obesitas I,0.94984,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,185.6,88.965521,25.84,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,42,30-49,172.2,82.919584,27.97,Obesitas I,3.0,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,185.5,86.413388,25.1,Obesitas I,1.097905,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,169.6,75.0,26.06,Obesitas I,0.699592,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,175.2,80.0,26.07,Obesitas I,2.641072,Overweight_Level_I,UCI_Obesity_2019
+Male,24,19-29,169.8,75.0,26.0,Obesitas I,0.345684,Overweight_Level_I,UCI_Obesity_2019
+Female,34,30-49,164.3,74.803157,27.71,Obesitas I,0.679935,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,161.4,68.126955,26.16,Obesitas I,0.920476,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,160.5,68.226511,26.47,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,35,30-49,153.0,62.903938,26.88,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,37,30-49,155.0,62.337721,25.95,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,173.1,78.175706,26.08,Obesitas I,2.287423,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,162.9,70.0,26.37,Obesitas I,0.245354,Overweight_Level_I,UCI_Obesity_2019
+Female,31,30-49,163.3,68.803694,25.79,Obesitas I,0.228307,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,175.2,79.109637,25.76,Obesitas I,2.57223,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,181.8,85.833029,25.96,Obesitas I,2.545931,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,180.9,85.0,25.97,Obesitas I,1.607953,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,170.9,75.0,25.66,Obesitas I,2.022315,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,160.7,67.722222,26.22,Obesitas I,1.228136,Overweight_Level_I,UCI_Obesity_2019
+Female,23,19-29,171.9,75.951472,25.7,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,183.1,89.652557,26.73,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,160.0,66.401407,25.94,Obesitas I,1.910432,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,175.5,77.929204,25.31,Obesitas I,1.360635,Overweight_Level_I,UCI_Obesity_2019
+Male,18,16-18,177.8,80.273807,25.38,Obesitas I,2.707882,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,171.0,75.0,25.66,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,29,19-29,167.5,71.602622,25.53,Obesitas I,1.682271,Overweight_Level_I,UCI_Obesity_2019
+Male,26,19-29,175.5,82.228794,26.69,Obesitas I,0.23553,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,170.8,75.0,25.71,Obesitas I,1.096818,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,180.7,85.079589,26.06,Obesitas I,1.067817,Overweight_Level_I,UCI_Obesity_2019
+Female,24,19-29,160.0,64.808022,25.33,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,33,30-49,172.2,72.748903,24.54,Overweight,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,171.3,75.480764,25.74,Obesitas I,0.793489,Overweight_Level_I,UCI_Obesity_2019
+Female,17,16-18,155.1,54.93242,22.83,Normal,0.110174,Overweight_Level_I,UCI_Obesity_2019
+Female,16,16-18,160.4,65.0,25.27,Obesitas I,0.694281,Overweight_Level_I,UCI_Obesity_2019
+Female,24,19-29,158.9,62.339003,24.7,Overweight,1.912981,Overweight_Level_I,UCI_Obesity_2019
+Female,35,30-49,167.3,73.193589,26.14,Obesitas I,0.178023,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,185.9,88.675503,25.67,Obesitas I,0.55713,Overweight_Level_I,UCI_Obesity_2019
+Female,37,30-49,159.4,63.320629,24.92,Overweight,2.892922,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,162.0,69.529625,26.49,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,16,16-18,161.6,67.183128,25.71,Obesitas I,0.926592,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,163.7,70.0,26.11,Obesitas I,0.00705,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,155.1,60.628321,25.21,Obesitas I,0.747528,Overweight_Level_I,UCI_Obesity_2019
+Female,17,16-18,160.0,65.0,25.39,Obesitas I,0.479592,Overweight_Level_I,UCI_Obesity_2019
+Male,30,30-49,182.0,87.668828,26.45,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Female,32,30-49,165.7,73.641633,26.81,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,18,16-18,175.2,80.0,26.06,Obesitas I,0.101236,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,185.7,88.138777,25.55,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,176.0,79.544998,25.68,Obesitas I,1.809745,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,164.5,68.392133,25.28,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,173.7,76.699774,25.42,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,20,19-29,150.8,64.259379,28.26,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,28,19-29,181.0,87.286783,26.64,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,27,19-29,180.2,86.981202,26.79,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,162.6,70.0,26.48,Obesitas I,0.63119,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,164.0,70.0,26.01,Obesitas I,0.729898,Overweight_Level_I,UCI_Obesity_2019
+Male,27,19-29,179.1,83.26312,25.96,Obesitas I,0.00342,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,167.9,75.0,26.6,Obesitas I,0.994592,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,161.5,68.653347,26.32,Obesitas I,0.562118,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,161.6,68.77185,26.32,Obesitas I,0.508847,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,181.7,86.522799,26.21,Obesitas I,0.336814,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,181.2,86.748295,26.41,Obesitas I,0.977998,Overweight_Level_I,UCI_Obesity_2019
+Female,42,30-49,176.8,75.62931,24.19,Overweight,0.378683,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,187.1,89.251639,25.5,Obesitas I,0.444347,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,186.4,89.558854,25.78,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,167.0,75.0,26.89,Obesitas I,0.129163,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,171.7,75.948164,25.75,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,175.0,79.828725,26.06,Obesitas I,1.293665,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,170.8,75.306702,25.83,Obesitas I,0.944982,Overweight_Level_I,UCI_Obesity_2019
+Female,33,30-49,167.2,74.812707,26.75,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,33,30-49,167.6,74.959747,26.69,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,161.1,67.939653,26.17,Obesitas I,1.922234,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,161.1,68.06609,26.21,Obesitas I,1.236114,Overweight_Level_I,UCI_Obesity_2019
+Female,37,30-49,150.9,63.183846,27.75,Obesitas I,0.15136,Overweight_Level_I,UCI_Obesity_2019
+Female,40,30-49,156.1,62.871794,25.8,Obesitas I,0.11964,Overweight_Level_I,UCI_Obesity_2019
+Female,39,30-49,155.5,63.011645,26.07,Obesitas I,2.16079,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,173.0,78.55444,26.24,Obesitas I,2.063943,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,174.4,78.88036,25.94,Obesitas I,2.119682,Overweight_Level_I,UCI_Obesity_2019
+Female,29,19-29,164.3,69.906708,25.91,Obesitas I,1.581242,Overweight_Level_I,UCI_Obesity_2019
+Female,31,30-49,169.3,71.927379,25.09,Obesitas I,0.759422,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,175.2,79.414603,25.87,Obesitas I,2.315983,Overweight_Level_I,UCI_Obesity_2019
+Male,26,19-29,174.5,80.0,26.27,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,182.1,85.0,25.64,Obesitas I,1.763277,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,180.7,85.073801,26.04,Obesitas I,2.207881,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,180.0,85.0,26.23,Obesitas I,1.528968,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,181.4,85.255631,25.9,Obesitas I,2.318492,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,170.0,75.057177,25.97,Obesitas I,1.993666,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,160.5,68.016472,26.41,Obesitas I,0.985872,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,161.1,68.107866,26.24,Obesitas I,0.97812,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,175.4,77.956921,25.32,Obesitas I,0.094893,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,175.3,77.965532,25.37,Obesitas I,1.117311,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,186.0,87.105828,25.18,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,189.6,90.52446,25.18,Obesitas I,1.815768,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,160.5,66.621646,25.85,Obesitas I,1.358185,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,175.9,78.370039,25.34,Obesitas I,2.971832,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,175.5,78.300084,25.41,Obesitas I,2.877473,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,178.0,80.091886,25.28,Obesitas I,3.0,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,171.2,75.0,25.59,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,167.6,75.0,26.7,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,28,19-29,170.0,74.244004,25.69,Obesitas I,1.722053,Overweight_Level_I,UCI_Obesity_2019
+Male,29,19-29,176.6,82.045045,26.31,Obesitas I,0.81517,Overweight_Level_I,UCI_Obesity_2019
+Male,26,19-29,174.6,80.018571,26.25,Obesitas I,1.224743,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,169.0,75.0,26.25,Obesitas I,0.754599,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,181.7,85.0,25.73,Obesitas I,2.433918,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,158.1,65.363941,26.15,Obesitas I,0.523847,Overweight_Level_I,UCI_Obesity_2019
+Female,30,30-49,165.2,73.575981,26.96,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,31,30-49,164.6,69.168978,25.55,Obesitas I,0.061366,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,170.8,75.383716,25.84,Obesitas I,0.184917,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,145.6,55.523481,26.18,Obesitas I,0.497373,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,149.9,55.376512,24.66,Overweight,0.129902,Overweight_Level_I,UCI_Obesity_2019
+Female,17,16-18,160.4,65.0,25.28,Obesitas I,0.736032,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,155.8,63.597633,26.2,Obesitas I,1.264616,Overweight_Level_I,UCI_Obesity_2019
+Female,27,19-29,155.0,62.877347,26.17,Obesitas I,0.792929,Overweight_Level_I,UCI_Obesity_2019
+Female,35,30-49,164.8,73.91692,27.23,Obesitas I,0.902661,Overweight_Level_I,UCI_Obesity_2019
+Male,24,19-29,185.6,86.098523,25.0,Obesitas I,1.066241,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,185.3,87.083266,25.36,Obesitas I,1.264257,Overweight_Level_I,UCI_Obesity_2019
+Female,40,30-49,157.1,62.211572,25.21,Obesitas I,1.016042,Overweight_Level_I,UCI_Obesity_2019
+Female,16,16-18,161.7,67.913561,25.97,Obesitas I,0.977929,Overweight_Level_I,UCI_Obesity_2019
+Female,17,16-18,164.4,67.439589,24.95,Overweight,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,16,16-18,160.9,65.0,25.11,Obesitas I,0.371452,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,164.8,68.818893,25.34,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,162.5,69.975607,26.51,Obesitas I,0.815509,Overweight_Level_I,UCI_Obesity_2019
+Female,20,19-29,150.8,61.10403,26.86,Obesitas I,0.94224,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,151.9,60.267427,26.12,Obesitas I,0.753782,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,160.0,65.0,25.39,Obesitas I,0.178976,Overweight_Level_I,UCI_Obesity_2019
+Male,33,30-49,183.9,87.85785,25.98,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Female,33,30-49,173.0,75.920519,25.36,Obesitas I,0.553305,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,175.9,80.0,25.85,Obesitas I,2.878414,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,175.5,80.0,25.97,Obesitas I,2.876696,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,180.4,85.196279,26.18,Obesitas I,1.779646,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,181.4,86.144904,26.19,Obesitas I,2.044165,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,175.7,78.721696,25.51,Obesitas I,0.228753,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,175.7,79.989789,25.92,Obesitas I,1.955992,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,162.0,69.3899,26.44,Obesitas I,0.104451,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,171.0,75.0,25.66,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,17,16-18,153.6,57.259124,24.28,Overweight,0.095517,Overweight_Level_I,UCI_Obesity_2019
+Male,26,19-29,181.9,87.032398,26.31,Obesitas I,1.658698,Overweight_Level_I,UCI_Obesity_2019
+Male,27,19-29,181.8,87.107317,26.37,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,163.7,70.0,26.13,Obesitas I,0.915699,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,162.1,70.0,26.63,Obesitas I,0.80873,Overweight_Level_I,UCI_Obesity_2019
+Male,27,19-29,180.3,85.770013,26.39,Obesitas I,0.843709,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,169.6,75.399191,26.21,Obesitas I,0.989335,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,169.5,75.0522,26.13,Obesitas I,0.997731,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,161.8,68.981403,26.34,Obesitas I,0.827506,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,185.7,88.633616,25.71,Obesitas I,1.554817,Overweight_Level_I,UCI_Obesity_2019
+Female,39,30-49,173.8,86.934846,28.77,Obesitas I,2.834373,Overweight_Level_I,UCI_Obesity_2019
+Female,40,30-49,173.9,80.914382,26.75,Obesitas I,0.148628,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,180.8,85.316125,26.11,Obesitas I,1.072662,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,184.9,85.228116,24.92,Overweight,1.17116,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,171.2,75.0,25.57,Obesitas I,0.921268,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,175.3,80.0,26.02,Obesitas I,2.685087,Overweight_Level_I,UCI_Obesity_2019
+Male,24,19-29,171.7,75.371244,25.55,Obesitas I,0.121585,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,167.8,75.0,26.65,Obesitas I,0.334579,Overweight_Level_I,UCI_Obesity_2019
+Female,34,30-49,168.0,74.885222,26.54,Obesitas I,0.261274,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,160.1,68.058902,26.56,Obesitas I,0.943058,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,161.8,68.908136,26.33,Obesitas I,0.779686,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,161.0,68.865008,26.56,Obesitas I,0.997202,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,161.3,69.463458,26.71,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,39,30-49,154.8,62.341438,26.01,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,39,30-49,156.8,62.855073,25.55,Obesitas I,0.271174,Overweight_Level_I,UCI_Obesity_2019
+Female,37,30-49,153.2,62.417228,26.58,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,173.0,78.997062,26.39,Obesitas I,1.061743,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,173.0,78.429312,26.2,Obesitas I,2.269058,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,162.7,70.0,26.43,Obesitas I,0.780117,Overweight_Level_I,UCI_Obesity_2019
+Female,30,30-49,163.9,69.242354,25.78,Obesitas I,0.480206,Overweight_Level_I,UCI_Obesity_2019
+Female,31,30-49,168.1,71.81338,25.42,Obesitas I,0.170452,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,175.8,79.469513,25.7,Obesitas I,2.762711,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,182.3,85.084364,25.61,Obesitas I,2.7243,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,181.5,85.302146,25.88,Obesitas I,2.060415,Overweight_Level_I,UCI_Obesity_2019
+Male,22,19-29,169.8,75.0,26.01,Obesitas I,1.502711,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,160.7,67.773914,26.25,Obesitas I,1.179592,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,161.0,67.999778,26.22,Obesitas I,1.123931,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,171.0,75.142858,25.69,Obesitas I,0.925118,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,171.6,75.688433,25.7,Obesitas I,0.092344,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,183.5,89.429199,26.57,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,161.2,67.140367,25.84,Obesitas I,1.206121,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,160.0,66.126964,25.83,Obesitas I,2.172546,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,175.4,77.97917,25.36,Obesitas I,0.874643,Overweight_Level_I,UCI_Obesity_2019
+Female,21,19-29,174.2,78.664618,25.91,Obesitas I,1.153775,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,177.6,80.113493,25.41,Obesitas I,2.931527,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,171.4,75.0,25.52,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,169.4,75.0,26.15,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,29,19-29,165.9,71.170001,25.85,Obesitas I,1.609801,Overweight_Level_I,UCI_Obesity_2019
+Male,24,19-29,177.6,82.329047,26.09,Obesitas I,1.107543,Overweight_Level_I,UCI_Obesity_2019
+Male,26,19-29,176.8,82.694689,26.46,Obesitas I,0.783963,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,170.3,75.0,25.87,Obesitas I,1.078074,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,181.4,85.301029,25.92,Obesitas I,1.305633,Overweight_Level_I,UCI_Obesity_2019
+Female,22,19-29,160.0,65.423942,25.56,Obesitas I,0.784216,Overweight_Level_I,UCI_Obesity_2019
+Female,32,30-49,166.6,72.906186,26.27,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,170.2,75.093569,25.94,Obesitas I,0.998039,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,171.3,75.828119,25.83,Obesitas I,0.132629,Overweight_Level_I,UCI_Obesity_2019
+Female,17,16-18,148.9,53.620604,24.17,Overweight,0.320209,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,151.8,55.822119,24.22,Overweight,0.085388,Overweight_Level_I,UCI_Obesity_2019
+Female,16,16-18,161.7,65.062945,24.9,Overweight,0.110887,Overweight_Level_I,UCI_Obesity_2019
+Female,23,19-29,159.0,65.127324,25.77,Obesitas I,1.91108,Overweight_Level_I,UCI_Obesity_2019
+Female,35,30-49,167.6,73.501233,26.18,Obesitas I,0.167125,Overweight_Level_I,UCI_Obesity_2019
+Male,23,19-29,187.4,89.754302,25.56,Obesitas I,0.417724,Overweight_Level_I,UCI_Obesity_2019
+Female,39,30-49,158.1,62.631382,25.06,Obesitas I,0.577063,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,162.0,69.575315,26.51,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,16,16-18,161.4,66.738769,25.62,Obesitas I,0.94893,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,161.9,67.193585,25.65,Obesitas I,0.732276,Overweight_Level_I,UCI_Obesity_2019
+Male,19,19-29,163.8,70.0,26.1,Obesitas I,0.529259,Overweight_Level_I,UCI_Obesity_2019
+Female,20,19-29,156.7,61.616,25.11,Obesitas I,0.539952,Overweight_Level_I,UCI_Obesity_2019
+Female,20,19-29,154.2,63.856193,26.84,Obesitas I,0.303722,Overweight_Level_I,UCI_Obesity_2019
+Female,17,16-18,160.0,65.0,25.39,Obesitas I,0.663896,Overweight_Level_I,UCI_Obesity_2019
+Female,17,16-18,160.0,65.0,25.38,Obesitas I,0.547515,Overweight_Level_I,UCI_Obesity_2019
+Male,29,19-29,177.4,87.070234,27.68,Obesitas I,1.504003,Overweight_Level_I,UCI_Obesity_2019
+Female,32,30-49,164.6,74.147443,27.37,Obesitas I,0.588673,Overweight_Level_I,UCI_Obesity_2019
+Female,32,30-49,165.0,73.810728,27.11,Obesitas I,0.675983,Overweight_Level_I,UCI_Obesity_2019
+Male,18,16-18,175.1,80.0,26.09,Obesitas I,0.045651,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,183.8,89.496905,26.48,Obesitas I,2.0,Overweight_Level_I,UCI_Obesity_2019
+Male,20,19-29,182.4,87.656029,26.33,Obesitas I,2.094542,Overweight_Level_I,UCI_Obesity_2019
+Female,19,19-29,176.0,79.349221,25.62,Obesitas I,1.376229,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,162.2,68.250249,25.93,Obesitas I,0.0,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,173.0,75.816864,25.33,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,18,16-18,172.5,75.970712,25.52,Obesitas I,1.0,Overweight_Level_I,UCI_Obesity_2019
+Female,20,19-29,154.1,64.726948,27.26,Obesitas I,0.445238,Overweight_Level_I,UCI_Obesity_2019
+Male,21,19-29,177.4,89.28282,28.38,Obesitas I,0.540397,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,175.5,89.068227,28.93,Obesitas I,0.813917,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,167.4,80.0,28.54,Obesitas I,1.66639,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,172.0,80.555875,27.23,Obesitas I,2.0,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,191.3,101.482054,27.72,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,31,30-49,173.8,82.523113,27.32,Obesitas I,0.090147,Overweight_Level_II,UCI_Obesity_2019
+Male,30,30-49,170.4,82.207978,28.32,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,171.6,80.0,27.16,Obesitas I,2.936551,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,165.0,80.0,29.38,Obesitas I,0.451078,Overweight_Level_II,UCI_Obesity_2019
+Female,29,19-29,157.9,65.522744,26.29,Obesitas I,1.863258,Overweight_Level_II,UCI_Obesity_2019
+Male,39,30-49,178.1,85.687751,27.02,Obesitas I,0.8554,Overweight_Level_II,UCI_Obesity_2019
+Male,35,30-49,182.3,91.630257,27.57,Obesitas I,0.87599,Overweight_Level_II,UCI_Obesity_2019
+Female,20,19-29,152.5,65.220249,28.04,Obesitas I,2.177243,Overweight_Level_II,UCI_Obesity_2019
+Female,22,19-29,148.2,61.373868,27.96,Obesitas I,0.32896,Overweight_Level_II,UCI_Obesity_2019
+Male,19,19-29,176.9,87.803311,28.07,Obesitas I,2.242754,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,157.0,69.743323,28.3,Obesitas I,1.417035,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,156.8,67.904023,27.61,Obesitas I,0.095389,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,179.3,89.994415,28.01,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,179.5,89.868784,27.88,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,23,19-29,170.0,80.0,27.68,Obesitas I,0.973114,Overweight_Level_II,UCI_Obesity_2019
+Female,23,19-29,166.9,80.458343,28.9,Obesitas I,0.807076,Overweight_Level_II,UCI_Obesity_2019
+Male,25,19-29,170.0,84.687554,29.3,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,171.4,83.952968,28.58,Obesitas I,0.80989,Overweight_Level_II,UCI_Obesity_2019
+Female,25,19-29,170.0,78.055968,27.01,Obesitas I,0.55181,Overweight_Level_II,UCI_Obesity_2019
+Male,31,30-49,183.5,91.059595,27.03,Obesitas I,0.155579,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,170.0,80.761409,27.95,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,29,19-29,170.0,78.0,26.99,Obesitas I,1.727114,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,170.0,83.199034,28.79,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,166.0,77.272652,28.05,Obesitas I,0.362441,Overweight_Level_II,UCI_Obesity_2019
+Male,26,19-29,183.7,96.192662,28.51,Obesitas I,1.80674,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,182.0,93.086419,28.11,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,171.8,85.312639,28.91,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,179.2,90.0,28.03,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,25,19-29,170.0,80.749657,27.94,Obesitas I,0.503122,Overweight_Level_II,UCI_Obesity_2019
+Male,34,30-49,168.1,83.568035,29.57,Obesitas I,0.891205,Overweight_Level_II,UCI_Obesity_2019
+Female,27,19-29,166.1,78.574786,28.49,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,55,50-64,176.9,80.491339,25.71,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,35,30-49,176.5,85.0,27.28,Obesitas I,1.96582,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,165.0,80.0,29.38,Obesitas I,0.826609,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,165.5,80.0,29.22,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,42,30-49,164.8,79.165306,29.16,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,169.1,80.539,28.16,Obesitas I,2.70825,Overweight_Level_II,UCI_Obesity_2019
+Female,29,19-29,153.3,65.031879,27.68,Obesitas I,0.262171,Overweight_Level_II,UCI_Obesity_2019
+Female,25,19-29,156.5,64.848627,26.47,Obesitas I,0.740633,Overweight_Level_II,UCI_Obesity_2019
+Female,22,19-29,150.0,63.65233,28.29,Obesitas I,0.274838,Overweight_Level_II,UCI_Obesity_2019
+Female,23,19-29,150.7,64.814109,28.54,Obesitas I,0.934286,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,170.1,81.32297,28.11,Obesitas I,0.279375,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,171.5,81.650778,27.76,Obesitas I,0.880584,Overweight_Level_II,UCI_Obesity_2019
+Female,38,30-49,169.6,78.967919,27.44,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,37,30-49,165.3,80.0,29.28,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,34,30-49,168.2,77.426465,27.37,Obesitas I,1.747347,Overweight_Level_II,UCI_Obesity_2019
+Female,34,30-49,165.2,77.13322,28.26,Obesitas I,0.662831,Overweight_Level_II,UCI_Obesity_2019
+Male,31,30-49,184.9,99.0,28.97,Obesitas I,1.427233,Overweight_Level_II,UCI_Obesity_2019
+Male,34,30-49,183.6,96.01851,28.49,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,156.0,71.728069,29.47,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,162.1,72.105856,27.44,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,169.9,78.0,27.01,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,51,50-64,174.6,82.130728,26.96,Obesitas I,0.943266,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,172.0,85.0,28.72,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,175.9,85.050558,27.49,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,19,19-29,170.5,81.384224,28.0,Obesitas I,1.876051,Overweight_Level_II,UCI_Obesity_2019
+Female,34,30-49,169.1,77.561602,27.11,Obesitas I,0.390877,Overweight_Level_II,UCI_Obesity_2019
+Male,17,16-18,178.6,95.277392,29.86,Obesitas I,1.072318,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,170.6,83.016968,28.54,Obesitas I,2.148738,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,173.3,84.75383,28.21,Obesitas I,2.690756,Overweight_Level_II,UCI_Obesity_2019
+Female,36,30-49,170.1,83.0,28.67,Obesitas I,1.472172,Overweight_Level_II,UCI_Obesity_2019
+Female,20,19-29,162.5,74.433362,28.18,Obesitas I,2.358699,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,154.5,72.467862,30.35,Obesitas II,1.997529,Overweight_Level_II,UCI_Obesity_2019
+Male,34,30-49,184.3,92.69551,27.29,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,170.6,82.011962,28.18,Obesitas I,2.164472,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,170.4,78.790936,27.13,Obesitas I,1.73234,Overweight_Level_II,UCI_Obesity_2019
+Male,19,19-29,170.6,78.073528,26.82,Obesitas I,1.655488,Overweight_Level_II,UCI_Obesity_2019
+Male,30,30-49,184.3,93.798055,27.62,Obesitas I,1.729987,Overweight_Level_II,UCI_Obesity_2019
+Male,27,19-29,188.1,99.623778,28.16,Obesitas I,1.516147,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,172.7,82.853749,27.79,Obesitas I,2.21722,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,173.2,84.315608,28.11,Obesitas I,1.293396,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,175.1,86.963628,28.35,Obesitas I,1.271667,Overweight_Level_II,UCI_Obesity_2019
+Male,31,30-49,178.0,88.431954,27.9,Obesitas I,0.893362,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,185.0,97.92035,28.61,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,25,19-29,178.5,88.03748,27.62,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,171.9,86.319887,29.22,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,20,19-29,153.0,68.85097,29.4,Obesitas I,0.678943,Overweight_Level_II,UCI_Obesity_2019
+Female,34,30-49,166.5,80.386078,29.0,Obesitas I,0.285889,Overweight_Level_II,UCI_Obesity_2019
+Female,34,30-49,167.3,77.205685,27.57,Obesitas I,0.674348,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,172.6,82.480214,27.7,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,43,30-49,173.4,86.94538,28.92,Obesitas I,0.706287,Overweight_Level_II,UCI_Obesity_2019
+Female,45,30-49,167.6,79.66832,28.36,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,178.6,89.802492,28.15,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,171.9,80.0,27.09,Obesitas I,2.721646,Overweight_Level_II,UCI_Obesity_2019
+Male,31,30-49,192.0,101.544589,27.56,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,31,30-49,170.8,82.586893,28.32,Obesitas I,0.022958,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,165.8,80.0,29.09,Obesitas I,2.939733,Overweight_Level_II,UCI_Obesity_2019
+Female,31,30-49,153.7,65.912688,27.91,Obesitas I,0.986414,Overweight_Level_II,UCI_Obesity_2019
+Male,35,30-49,180.5,90.13868,27.65,Obesitas I,0.340915,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,152.1,67.083121,29.0,Obesitas I,0.954459,Overweight_Level_II,UCI_Obesity_2019
+Male,19,19-29,174.5,87.27989,28.67,Obesitas I,3.0,Overweight_Level_II,UCI_Obesity_2019
+Female,20,19-29,152.9,65.140408,27.86,Obesitas I,1.916751,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,180.0,89.98168,27.78,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,23,19-29,168.1,80.037202,28.31,Obesitas I,0.189957,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,170.7,85.743727,29.43,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,24,19-29,166.4,80.0,28.91,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,29,19-29,175.2,88.096062,28.69,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,25,19-29,173.5,83.337721,27.67,Obesitas I,0.451009,Overweight_Level_II,UCI_Obesity_2019
+Female,29,19-29,170.0,78.0,26.99,Obesitas I,1.82434,Overweight_Level_II,UCI_Obesity_2019
+Male,17,16-18,170.0,83.414072,28.86,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,163.4,77.858532,29.17,Obesitas I,1.856119,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,185.7,95.887056,27.81,Obesitas I,0.92635,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,177.4,90.0,28.59,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,29,19-29,170.0,78.0,26.99,Obesitas I,1.416076,Overweight_Level_II,UCI_Obesity_2019
+Male,34,30-49,172.0,84.416515,28.55,Obesitas I,1.98448,Overweight_Level_II,UCI_Obesity_2019
+Female,28,19-29,165.8,78.0,28.37,Obesitas I,0.525002,Overweight_Level_II,UCI_Obesity_2019
+Male,55,50-64,165.7,80.993213,29.49,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,35,30-49,171.3,84.722222,28.86,Obesitas I,2.0,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,167.7,80.379575,28.58,Obesitas I,1.661556,Overweight_Level_II,UCI_Obesity_2019
+Female,38,30-49,167.8,77.224574,27.42,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,171.8,81.92991,27.77,Obesitas I,1.39016,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,148.6,60.117993,27.21,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,25,19-29,150.3,64.342459,28.47,Obesitas I,0.072117,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,171.9,81.66995,27.64,Obesitas I,0.887923,Overweight_Level_II,UCI_Obesity_2019
+Female,39,30-49,168.8,79.278896,27.81,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,34,30-49,166.6,77.098973,27.78,Obesitas I,0.702538,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,183.8,97.029249,28.71,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,20,19-29,165.3,75.090439,27.47,Obesitas I,0.702839,Overweight_Level_II,UCI_Obesity_2019
+Male,19,19-29,170.0,78.0,27.0,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,46,30-49,171.8,88.600878,30.02,Obesitas II,0.870127,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,173.1,84.064875,28.04,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,19,19-29,170.0,79.67793,27.58,Obesitas I,0.110174,Overweight_Level_II,UCI_Obesity_2019
+Female,38,30-49,169.9,78.637307,27.25,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,182.4,96.945262,29.15,Obesitas I,1.736538,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,170.9,83.001642,28.43,Obesitas I,2.300282,Overweight_Level_II,UCI_Obesity_2019
+Female,37,30-49,166.7,80.993373,29.13,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,158.8,73.939268,29.32,Obesitas I,2.892922,Overweight_Level_II,UCI_Obesity_2019
+Male,37,30-49,183.5,92.368359,27.43,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,25,19-29,170.9,83.520113,28.6,Obesitas I,0.970661,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,168.1,79.752916,28.22,Obesitas I,0.00705,Overweight_Level_II,UCI_Obesity_2019
+Male,27,19-29,183.5,97.58826,28.97,Obesitas I,1.931829,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,174.3,86.565148,28.5,Obesitas I,2.040816,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,174.1,84.773349,27.96,Obesitas I,1.210736,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,176.0,86.0805,27.8,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,30,30-49,181.1,92.860254,28.33,Obesitas I,0.033745,Overweight_Level_II,UCI_Obesity_2019
+Male,25,19-29,176.3,88.532032,28.48,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,18,16-18,154.3,71.799982,30.14,Obesitas II,1.403872,Overweight_Level_II,UCI_Obesity_2019
+Female,35,30-49,165.2,79.437921,29.11,Obesitas I,0.503279,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,173.2,84.557797,28.17,Obesitas I,0.458237,Overweight_Level_II,UCI_Obesity_2019
+Female,39,30-49,170.6,85.720788,29.44,Obesitas I,0.675262,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,178.1,89.667406,28.28,Obesitas I,0.467562,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,175.9,89.673648,28.99,Obesitas I,0.752926,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,170.5,80.0,27.53,Obesitas I,2.847761,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,171.7,80.005809,27.15,Obesitas I,2.536615,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,190.4,99.812443,27.54,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,174.3,83.390983,27.46,Obesitas I,0.408023,Overweight_Level_II,UCI_Obesity_2019
+Male,30,30-49,174.8,83.314157,27.28,Obesitas I,0.889963,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,171.7,80.0,27.14,Obesitas I,2.270555,Overweight_Level_II,UCI_Obesity_2019
+Female,23,19-29,165.0,80.0,29.38,Obesitas I,0.146919,Overweight_Level_II,UCI_Obesity_2019
+Female,24,19-29,157.8,65.293179,26.22,Obesitas I,1.276552,Overweight_Level_II,UCI_Obesity_2019
+Male,37,30-49,174.6,83.282232,27.32,Obesitas I,0.885633,Overweight_Level_II,UCI_Obesity_2019
+Male,34,30-49,184.1,91.798103,27.08,Obesitas I,0.935217,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,151.8,64.696248,28.08,Obesitas I,1.582428,Overweight_Level_II,UCI_Obesity_2019
+Female,22,19-29,148.3,62.894283,28.59,Obesitas I,0.281876,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,175.9,87.861431,28.4,Obesitas I,2.405963,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,156.2,70.442775,28.86,Obesitas I,1.145752,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,154.7,67.473282,28.19,Obesitas I,1.926381,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,179.2,89.998729,28.01,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,178.5,89.836692,28.21,Obesitas I,0.17048,Overweight_Level_II,UCI_Obesity_2019
+Female,23,19-29,170.0,80.473587,27.84,Obesitas I,0.463891,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,167.2,80.939733,28.95,Obesitas I,0.788659,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,170.0,84.849349,29.36,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,172.1,83.986714,28.34,Obesitas I,0.868721,Overweight_Level_II,UCI_Obesity_2019
+Female,27,19-29,170.0,78.008388,26.99,Obesitas I,0.897702,Overweight_Level_II,UCI_Obesity_2019
+Male,31,30-49,180.3,91.052215,28.01,Obesitas I,0.047738,Overweight_Level_II,UCI_Obesity_2019
+Female,24,19-29,170.0,80.420434,27.83,Obesitas I,0.926201,Overweight_Level_II,UCI_Obesity_2019
+Female,26,19-29,170.0,78.041338,27.0,Obesitas I,0.855973,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,171.4,83.285753,28.36,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,19,19-29,166.3,77.473204,28.02,Obesitas I,0.112383,Overweight_Level_II,UCI_Obesity_2019
+Male,25,19-29,183.7,95.952027,28.42,Obesitas I,1.28775,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,180.8,91.363293,27.94,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,171.5,85.137113,28.96,Obesitas I,0.325534,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,179.3,89.909259,27.95,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,24,19-29,170.0,81.108599,28.05,Obesitas I,0.501417,Overweight_Level_II,UCI_Obesity_2019
+Male,34,30-49,169.5,84.451423,29.39,Obesitas I,1.170823,Overweight_Level_II,UCI_Obesity_2019
+Female,25,19-29,168.9,78.434492,27.5,Obesitas I,0.038809,Overweight_Level_II,UCI_Obesity_2019
+Male,55,50-64,167.3,80.400306,28.71,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,35,30-49,176.9,85.0,27.15,Obesitas I,1.974656,Overweight_Level_II,UCI_Obesity_2019
+Male,22,19-29,165.0,80.0,29.38,Obesitas I,0.527341,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,166.3,79.863546,28.89,Obesitas I,1.452467,Overweight_Level_II,UCI_Obesity_2019
+Female,42,30-49,167.9,79.849252,28.34,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,169.4,80.311273,27.97,Obesitas I,2.627515,Overweight_Level_II,UCI_Obesity_2019
+Female,28,19-29,150.5,63.892071,28.19,Obesitas I,0.02112,Overweight_Level_II,UCI_Obesity_2019
+Female,25,19-29,150.5,63.715219,28.12,Obesitas I,0.546402,Overweight_Level_II,UCI_Obesity_2019
+Female,22,19-29,149.1,62.269912,27.99,Obesitas I,0.324676,Overweight_Level_II,UCI_Obesity_2019
+Female,21,19-29,150.9,64.852953,28.47,Obesitas I,1.103088,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,168.5,81.022119,28.54,Obesitas I,0.432973,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,172.3,82.338464,27.73,Obesitas I,0.949976,Overweight_Level_II,UCI_Obesity_2019
+Female,38,30-49,169.7,78.156035,27.14,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,38,30-49,167.6,79.079738,28.15,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Female,34,30-49,168.1,77.392179,27.39,Obesitas I,0.935217,Overweight_Level_II,UCI_Obesity_2019
+Female,34,30-49,165.4,79.697278,29.13,Obesitas I,0.305422,Overweight_Level_II,UCI_Obesity_2019
+Male,32,30-49,184.1,98.259423,29.0,Obesitas I,1.327193,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,183.6,97.416417,28.9,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,155.7,71.788181,29.62,Obesitas I,1.634134,Overweight_Level_II,UCI_Obesity_2019
+Female,20,19-29,158.9,72.713611,28.79,Obesitas I,1.32417,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,170.1,78.048207,26.99,Obesitas I,1.474937,Overweight_Level_II,UCI_Obesity_2019
+Male,48,30-49,174.4,84.729197,27.86,Obesitas I,0.31381,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,174.3,85.0,27.99,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,175.4,85.002884,27.62,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,171.9,80.790813,27.33,Obesitas I,1.910577,Overweight_Level_II,UCI_Obesity_2019
+Female,34,30-49,168.2,77.431678,27.36,Obesitas I,1.637368,Overweight_Level_II,UCI_Obesity_2019
+Male,17,16-18,180.0,95.419668,29.45,Obesitas I,1.04729,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,170.9,83.014033,28.41,Obesitas I,2.805801,Overweight_Level_II,UCI_Obesity_2019
+Male,35,30-49,175.2,84.783756,27.61,Obesitas I,2.667739,Overweight_Level_II,UCI_Obesity_2019
+Male,36,30-49,168.6,83.3258,29.32,Obesitas I,1.060349,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,160.0,73.513873,28.72,Obesitas I,1.524405,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,155.0,72.9518,30.36,Obesitas II,2.274248,Overweight_Level_II,UCI_Obesity_2019
+Male,32,30-49,182.8,91.495718,27.38,Obesitas I,0.598438,Overweight_Level_II,UCI_Obesity_2019
+Male,23,19-29,171.3,82.085549,27.96,Obesitas I,1.600431,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,168.1,79.621463,28.18,Obesitas I,1.194519,Overweight_Level_II,UCI_Obesity_2019
+Male,20,19-29,170.6,78.025625,26.82,Obesitas I,1.475772,Overweight_Level_II,UCI_Obesity_2019
+Male,30,30-49,184.2,93.614246,27.6,Obesitas I,1.442485,Overweight_Level_II,UCI_Obesity_2019
+Male,27,19-29,183.5,99.083478,29.43,Obesitas I,1.898889,Overweight_Level_II,UCI_Obesity_2019
+Male,21,19-29,172.5,82.27635,27.66,Obesitas I,2.079709,Overweight_Level_II,UCI_Obesity_2019
+Male,33,30-49,168.5,83.986895,29.58,Obesitas I,0.932792,Overweight_Level_II,UCI_Obesity_2019
+Male,18,16-18,175.0,86.372141,28.2,Obesitas I,1.219827,Overweight_Level_II,UCI_Obesity_2019
+Male,32,30-49,175.8,87.906019,28.44,Obesitas I,1.083572,Overweight_Level_II,UCI_Obesity_2019
+Male,32,30-49,184.9,98.912261,28.93,Obesitas I,1.030752,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,178.9,89.393589,27.92,Obesitas I,0.0,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,171.7,85.261339,28.93,Obesitas I,0.632164,Overweight_Level_II,UCI_Obesity_2019
+Female,19,19-29,155.0,69.936073,29.11,Obesitas I,0.932888,Overweight_Level_II,UCI_Obesity_2019
+Female,35,30-49,166.3,80.135167,28.97,Obesitas I,0.039207,Overweight_Level_II,UCI_Obesity_2019
+Female,34,30-49,167.9,77.355417,27.43,Obesitas I,0.966973,Overweight_Level_II,UCI_Obesity_2019
+Male,24,19-29,172.9,82.52724,27.6,Obesitas I,1.0,Overweight_Level_II,UCI_Obesity_2019
+Male,40,30-49,171.9,86.464843,29.26,Obesitas I,0.604259,Overweight_Level_II,UCI_Obesity_2019
+Female,46,30-49,168.7,80.413997,28.24,Obesitas I,0.647798,Overweight_Level_II,UCI_Obesity_2019
+Male,26,19-29,177.2,105.0,33.42,Obesitas II,1.725931,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,183.7,105.712219,31.32,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Male,31,30-49,178.4,102.872505,32.31,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Male,40,30-49,179.3,101.780099,31.68,Obesitas II,2.998981,Obesity_Type_I,UCI_Obesity_2019
+Female,31,30-49,155.7,78.233341,32.29,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,26,19-29,158.6,80.351263,31.96,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,44,30-49,156.9,81.827288,33.23,Obesitas II,1.308852,Obesity_Type_I,UCI_Obesity_2019
+Female,42,30-49,158.4,81.936398,32.66,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,162.1,82.0,31.2,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,160.8,82.603984,31.93,Obesitas II,0.292093,Obesity_Type_I,UCI_Obesity_2019
+Male,24,19-29,173.3,97.911865,32.59,Obesitas II,1.309304,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,165.0,88.472359,32.5,Obesitas II,1.172641,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,165.0,87.272552,32.05,Obesitas II,0.432813,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,164.4,84.340406,31.2,Obesitas II,2.230109,Obesity_Type_I,UCI_Obesity_2019
+Female,37,30-49,155.9,77.26813,31.77,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,173.4,95.0,31.59,Obesitas II,2.669179,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,177.6,97.813023,31.02,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Female,22,19-29,164.0,87.344156,32.46,Obesitas II,1.280924,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,165.0,82.13682,30.17,Obesitas II,1.02975,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,175.3,107.998815,35.13,Obesitas II,1.757724,Obesity_Type_I,UCI_Obesity_2019
+Female,41,30-49,155.3,77.74518,32.23,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,170.7,90.500055,31.08,Obesitas II,0.967627,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,156.1,80.0,32.85,Obesitas II,1.71807,Obesity_Type_I,UCI_Obesity_2019
+Male,31,30-49,167.3,90.0,32.14,Obesitas II,1.946907,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,166.0,94.189167,34.17,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,40,30-49,178.6,98.447311,30.85,Obesitas II,1.549693,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,175.8,95.361795,30.87,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,171.2,98.699971,33.67,Obesitas II,2.698874,Obesity_Type_I,UCI_Obesity_2019
+Male,35,30-49,178.0,100.84763,31.83,Obesitas II,2.05252,Obesity_Type_I,UCI_Obesity_2019
+Female,22,19-29,160.0,82.040318,32.05,Obesitas II,2.232851,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,161.1,82.532994,31.81,Obesitas II,1.887012,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,166.5,83.15115,29.99,Obesitas I,0.354541,Obesity_Type_I,UCI_Obesity_2019
+Female,41,30-49,154.2,80.0,33.64,Obesitas II,1.629432,Obesity_Type_I,UCI_Obesity_2019
+Female,39,30-49,150.8,79.58958,35.01,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,166.1,90.0,32.62,Obesitas II,0.669278,Obesity_Type_I,UCI_Obesity_2019
+Female,24,19-29,155.3,78.0,32.34,Obesitas II,0.827502,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,178.2,102.910613,32.41,Obesitas II,1.464204,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,175.0,96.940255,31.65,Obesitas II,2.359339,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,161.6,80.615325,30.88,Obesitas II,0.026142,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,179.3,105.655037,32.85,Obesitas II,0.003938,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,185.5,114.77484,33.36,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,168.6,90.032671,31.69,Obesitas II,1.066101,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,170.6,93.348843,32.06,Obesitas II,0.899864,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,179.1,105.138073,32.76,Obesitas II,0.317363,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,175.4,106.49141,34.63,Obesitas II,0.650235,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,178.1,103.189532,32.55,Obesitas II,0.478134,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,182.0,106.038468,32.02,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,179.1,108.9606,33.96,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,182.1,108.742005,32.8,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,19,19-29,162.8,82.0,30.95,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,163.2,82.0,30.78,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,177.4,105.000789,33.38,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,193.0,118.560509,31.82,Obesitas II,0.732186,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,194.7,116.893105,30.82,Obesitas II,0.975187,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,161.1,80.0,30.83,Obesitas II,1.851404,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,151.3,75.410647,32.93,Obesitas II,1.88452,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,173.8,97.185474,32.16,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,156.8,76.129784,30.97,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,44,30-49,158.8,76.126112,30.21,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,182.0,108.395005,32.71,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,179.2,108.244379,33.7,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,30,30-49,182.7,108.751502,32.58,Obesitas II,0.877295,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,167.0,86.242679,30.92,Obesitas II,1.186013,Obesity_Type_I,UCI_Obesity_2019
+Male,25,19-29,163.9,91.267087,33.96,Obesitas II,0.344013,Obesity_Type_I,UCI_Obesity_2019
+Male,29,19-29,168.3,89.991671,31.77,Obesitas II,0.388269,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,160.9,84.493156,32.62,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,169.0,96.366777,33.72,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,19,19-29,170.0,99.204695,34.32,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,160.1,82.249831,32.1,Obesitas II,0.245003,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,180.2,104.741914,32.26,Obesitas II,1.783858,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,184.5,105.025808,30.86,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,181.2,106.042142,32.31,Obesitas II,1.813318,Obesity_Type_I,UCI_Obesity_2019
+Male,37,30-49,178.8,100.624553,31.49,Obesitas II,2.00123,Obesity_Type_I,UCI_Obesity_2019
+Male,38,30-49,178.9,100.066268,31.26,Obesitas II,2.000561,Obesity_Type_I,UCI_Obesity_2019
+Female,30,30-49,153.3,78.030383,33.19,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,29,19-29,158.1,79.713492,31.9,Obesitas II,0.005405,Obesity_Type_I,UCI_Obesity_2019
+Female,42,30-49,164.6,86.639861,31.96,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,47,30-49,164.4,81.978743,30.34,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,163.4,82.414477,30.85,Obesitas II,0.248034,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,160.5,82.0,31.84,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,165.5,94.790579,34.61,Obesitas II,0.654316,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,170.2,95.0,32.8,Obesitas II,1.814869,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,165.0,89.139209,32.74,Obesitas II,0.632947,Obesity_Type_I,UCI_Obesity_2019
+Male,24,19-29,165.8,90.0,32.74,Obesitas II,0.603638,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,163.5,82.628,30.92,Obesitas II,0.380633,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,162.8,84.49798,31.87,Obesitas II,0.851059,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,155.8,79.661693,32.83,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,156.0,80.0,32.86,Obesitas II,1.296535,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,175.0,95.324282,31.11,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,175.3,95.269089,31.0,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Female,21,19-29,165.0,88.126544,32.37,Obesitas II,1.361533,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,165.0,87.676154,32.2,Obesitas II,1.103209,Obesity_Type_I,UCI_Obesity_2019
+Female,16,16-18,165.0,85.583485,31.44,Obesitas II,2.091862,Obesity_Type_I,UCI_Obesity_2019
+Female,17,16-18,163.5,85.803809,32.1,Obesitas II,2.392047,Obesity_Type_I,UCI_Obesity_2019
+Male,29,19-29,177.0,108.602715,34.66,Obesitas II,1.866023,Obesity_Type_I,UCI_Obesity_2019
+Male,30,30-49,175.8,108.721893,35.17,Obesitas II,1.944728,Obesity_Type_I,UCI_Obesity_2019
+Female,44,30-49,159.5,77.354744,30.4,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,41,30-49,156.8,79.493626,32.34,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,170.3,93.638318,32.29,Obesitas II,0.455216,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,173.6,93.429205,31.01,Obesitas II,0.973465,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,162.9,80.0,30.15,Obesitas II,0.180276,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,161.5,80.0,30.66,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,32,30-49,167.2,90.0,32.2,Obesitas II,1.991565,Obesity_Type_I,UCI_Obesity_2019
+Male,32,30-49,167.7,89.993812,32.02,Obesitas II,0.578074,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,170.0,95.564428,33.07,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,172.3,94.094184,31.7,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,36,30-49,167.1,90.575934,32.45,Obesitas II,1.45473,Obesity_Type_I,UCI_Obesity_2019
+Male,40,30-49,179.0,98.021766,30.59,Obesitas II,1.259613,Obesity_Type_I,UCI_Obesity_2019
+Male,24,19-29,176.9,97.449743,31.15,Obesitas II,2.491642,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,176.1,97.829344,31.55,Obesitas II,2.429923,Obesity_Type_I,UCI_Obesity_2019
+Male,35,30-49,178.0,102.265955,32.28,Obesitas II,2.710338,Obesity_Type_I,UCI_Obesity_2019
+Male,31,30-49,181.0,105.254354,32.12,Obesitas II,1.062011,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,160.8,82.954796,32.06,Obesitas II,2.08515,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,163.0,83.1011,31.26,Obesitas II,1.091474,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,162.8,82.967937,31.29,Obesitas II,0.946461,Obesity_Type_I,UCI_Obesity_2019
+Female,22,19-29,160.6,82.470375,31.99,Obesitas II,0.288032,Obesity_Type_I,UCI_Obesity_2019
+Female,41,30-49,156.8,81.056851,32.97,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,41,30-49,154.8,80.0,33.37,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,29,19-29,168.2,90.0,31.82,Obesitas II,1.252472,Obesity_Type_I,UCI_Obesity_2019
+Male,31,30-49,168.8,90.0,31.57,Obesitas II,1.454129,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,157.7,78.0,31.36,Obesitas II,0.876101,Obesity_Type_I,UCI_Obesity_2019
+Female,24,19-29,158.7,79.109029,31.42,Obesitas II,0.852446,Obesity_Type_I,UCI_Obesity_2019
+Male,17,16-18,171.1,99.860254,34.13,Obesitas II,0.067491,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,172.1,99.430612,33.56,Obesitas II,1.579431,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,162.4,82.0,31.08,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,162.3,82.0,31.14,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,19,19-29,185.5,112.875283,32.79,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,185.6,118.183797,34.3,Obesitas II,0.788585,Obesity_Type_I,UCI_Obesity_2019
+Female,19,19-29,168.2,90.671871,32.06,Obesitas II,0.130417,Obesity_Type_I,UCI_Obesity_2019
+Female,21,19-29,172.3,92.949254,31.31,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,179.9,106.528811,32.9,Obesitas II,0.295178,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,182.0,106.048516,32.02,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,179.0,105.042194,32.78,Obesitas II,0.268801,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,178.4,105.000276,33.0,Obesitas II,0.349371,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,178.4,109.207614,34.32,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,184.4,109.195529,32.11,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,19,19-29,163.2,82.0,30.8,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,165.0,82.323954,30.25,Obesitas II,0.631565,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,175.5,105.000706,34.1,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,176.3,105.000097,33.8,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,20,19-29,194.3,121.657979,32.23,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,20,19-29,197.6,120.702935,30.92,Obesitas II,0.767013,Obesity_Type_I,UCI_Obesity_2019
+Female,39,30-49,158.6,80.0,31.79,Obesitas II,1.967973,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,159.8,80.0,31.31,Obesitas II,1.903338,Obesity_Type_I,UCI_Obesity_2019
+Male,19,19-29,170.3,98.296651,33.89,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,17,16-18,170.7,99.544696,34.16,Obesitas II,1.73209,Obesity_Type_I,UCI_Obesity_2019
+Female,39,30-49,152.6,75.150345,32.25,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,39,30-49,150.2,76.642944,33.97,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,178.4,108.413119,34.05,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,179.3,108.204547,33.67,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,30,30-49,181.4,109.411622,33.25,Obesitas II,1.234483,Obesity_Type_I,UCI_Obesity_2019
+Male,31,30-49,178.9,109.599453,34.23,Obesitas II,1.771754,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,168.7,90.004046,31.63,Obesitas II,1.352663,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,170.3,91.499683,31.54,Obesitas II,0.9529,Obesity_Type_I,UCI_Obesity_2019
+Male,31,30-49,166.6,89.738596,32.34,Obesitas II,1.482411,Obesity_Type_I,UCI_Obesity_2019
+Male,29,19-29,166.7,89.048151,32.06,Obesitas II,0.011519,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,165.0,84.210535,30.93,Obesitas II,1.020525,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,164.9,84.897738,31.2,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,170.2,97.971598,33.82,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,169.4,99.530971,34.69,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,162.3,82.403076,31.28,Obesitas II,1.006884,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,163.4,82.459577,30.9,Obesitas II,1.000227,Obesity_Type_I,UCI_Obesity_2019
+Male,20,19-29,183.7,105.257543,31.2,Obesitas II,2.21939,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,179.8,103.705418,32.07,Obesitas II,2.891986,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,182.4,105.131956,31.58,Obesitas II,1.890907,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,183.0,105.479313,31.48,Obesitas II,1.796779,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,183.0,105.436173,31.49,Obesitas II,1.781589,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,182.4,105.800158,31.81,Obesitas II,1.166064,Obesity_Type_I,UCI_Obesity_2019
+Male,30,30-49,183.5,105.19936,31.25,Obesitas II,2.0,Obesity_Type_I,UCI_Obesity_2019
+Male,33,30-49,178.4,103.771371,32.61,Obesitas II,2.113992,Obesity_Type_I,UCI_Obesity_2019
+Male,39,30-49,178.2,103.586342,32.62,Obesitas II,2.999918,Obesity_Type_I,UCI_Obesity_2019
+Male,40,30-49,178.1,96.303855,30.36,Obesitas II,2.165429,Obesity_Type_I,UCI_Obesity_2019
+Female,33,30-49,155.8,77.647716,31.99,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,26,19-29,156.0,78.435904,32.22,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,159.7,80.726195,31.67,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,25,19-29,162.1,81.718232,31.1,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,43,30-49,157.1,81.918809,33.17,Obesitas II,1.048507,Obesity_Type_I,UCI_Obesity_2019
+Female,44,30-49,158.4,80.986496,32.26,Obesitas II,0.256113,Obesity_Type_I,UCI_Obesity_2019
+Female,43,30-49,158.3,81.919454,32.71,Obesitas II,0.990642,Obesity_Type_I,UCI_Obesity_2019
+Female,40,30-49,157.3,80.086524,32.38,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,162.8,82.0,30.94,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,162.1,82.283185,31.32,Obesitas II,0.249264,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,161.3,82.636162,31.76,Obesitas II,0.742113,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,162.7,82.410189,31.14,Obesitas II,0.244749,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,172.8,97.959899,32.8,Obesitas II,2.492402,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,173.3,98.44113,32.79,Obesitas II,2.236586,Obesity_Type_I,UCI_Obesity_2019
+Female,21,19-29,165.0,88.129437,32.37,Obesitas II,1.322558,Obesity_Type_I,UCI_Obesity_2019
+Female,21,19-29,165.0,88.026943,32.33,Obesitas II,1.751656,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,166.9,86.002736,30.87,Obesitas II,0.312254,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,166.9,85.568385,30.71,Obesitas II,0.035091,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,161.1,84.191125,32.44,Obesitas II,2.11137,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,165.0,84.134712,30.91,Obesitas II,0.782416,Obesity_Type_I,UCI_Obesity_2019
+Female,39,30-49,153.3,77.550345,33.01,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,37,30-49,152.4,76.202761,32.8,Obesitas II,1.335857,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,170.2,95.0,32.81,Obesitas II,1.030199,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,172.4,94.743892,31.88,Obesitas II,1.932386,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,176.9,96.078462,30.69,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Male,24,19-29,177.7,97.842406,30.97,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Female,22,19-29,164.5,88.119139,32.58,Obesitas II,1.201403,Obesity_Type_I,UCI_Obesity_2019
+Female,21,19-29,164.1,88.079177,32.7,Obesitas II,1.269169,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,164.3,82.144405,30.43,Obesitas II,0.886448,Obesity_Type_I,UCI_Obesity_2019
+Female,19,19-29,165.0,82.01831,30.13,Obesitas II,0.215187,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,177.7,106.452367,33.7,Obesitas II,1.911096,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,181.5,107.55963,32.66,Obesitas II,0.181753,Obesity_Type_I,UCI_Obesity_2019
+Female,40,30-49,155.9,77.601483,31.93,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,155.6,77.684229,32.08,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,24,19-29,165.4,91.204753,33.35,Obesitas II,0.922739,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,168.0,91.068054,32.26,Obesitas II,0.520989,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,155.3,80.0,33.19,Obesitas II,1.648883,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,156.0,80.0,32.86,Obesitas II,0.359134,Obesity_Type_I,UCI_Obesity_2019
+Male,32,30-49,167.3,90.0,32.16,Obesitas II,1.992719,Obesity_Type_I,UCI_Obesity_2019
+Male,30,30-49,168.0,89.994351,31.88,Obesitas II,1.52184,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,166.5,94.256547,34.01,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,166.9,94.454394,33.93,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,40,30-49,178.5,100.431625,31.51,Obesitas II,2.545707,Obesity_Type_I,UCI_Obesity_2019
+Male,37,30-49,178.1,98.790167,31.15,Obesitas II,2.787319,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,175.1,95.285898,31.08,Obesitas II,2.89118,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,175.1,95.290429,31.07,Obesitas II,3.0,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,171.7,98.579156,33.43,Obesitas II,2.819661,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,174.1,98.182498,32.38,Obesitas II,2.462269,Obesity_Type_I,UCI_Obesity_2019
+Male,37,30-49,179.2,101.285765,31.54,Obesitas II,2.352091,Obesity_Type_I,UCI_Obesity_2019
+Male,38,30-49,178.6,99.199287,31.1,Obesitas II,2.005286,Obesity_Type_I,UCI_Obesity_2019
+Female,22,19-29,160.9,83.785312,32.36,Obesitas II,2.230547,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,160.4,82.012637,31.88,Obesitas II,1.846666,Obesity_Type_I,UCI_Obesity_2019
+Female,22,19-29,160.5,82.528575,32.02,Obesitas II,2.052896,Obesity_Type_I,UCI_Obesity_2019
+Female,22,19-29,160.7,82.368441,31.89,Obesitas II,2.146778,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,166.2,82.595793,29.91,Obesitas I,0.128342,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,165.6,82.46376,30.08,Obesitas II,0.065264,Obesity_Type_I,UCI_Obesity_2019
+Female,39,30-49,154.9,80.0,33.33,Obesitas II,1.666965,Obesity_Type_I,UCI_Obesity_2019
+Female,41,30-49,155.0,80.0,33.31,Obesitas II,1.874662,Obesity_Type_I,UCI_Obesity_2019
+Female,41,30-49,152.9,79.760922,34.11,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,39,30-49,151.7,79.843221,34.68,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,26,19-29,165.7,90.0,32.77,Obesitas II,0.413643,Obesity_Type_I,UCI_Obesity_2019
+Male,27,19-29,167.3,90.0,32.14,Obesitas II,0.884935,Obesity_Type_I,UCI_Obesity_2019
+Female,24,19-29,158.2,78.089575,31.22,Obesitas II,0.057758,Obesity_Type_I,UCI_Obesity_2019
+Female,24,19-29,156.3,80.535698,32.98,Obesitas II,0.389717,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,178.1,102.950929,32.45,Obesitas II,0.571648,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,177.6,103.605896,32.86,Obesitas II,1.20758,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,174.7,96.875502,31.75,Obesitas II,2.64102,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,174.1,96.738014,31.9,Obesitas II,2.614909,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,157.2,78.997166,31.97,Obesitas II,0.402614,Obesity_Type_I,UCI_Obesity_2019
+Female,24,19-29,158.9,80.553067,31.9,Obesitas II,0.011477,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,180.3,105.686091,32.5,Obesitas II,0.001086,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,179.3,105.619143,32.87,Obesitas II,0.00203,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,187.2,115.627554,33.0,Obesitas II,0.98232,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,185.9,111.235188,32.19,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,169.2,90.019501,31.43,Obesitas II,1.645654,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,168.3,90.924208,32.1,Obesitas II,0.743005,Obesity_Type_I,UCI_Obesity_2019
+Female,20,19-29,173.8,93.890682,31.07,Obesitas II,0.584793,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,169.5,92.508122,32.2,Obesitas II,1.030526,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,178.6,105.055686,32.95,Obesitas II,0.58216,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,174.2,105.028665,34.59,Obesitas II,0.978815,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,180.3,106.329569,32.7,Obesitas II,0.544564,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,177.5,105.966894,33.65,Obesitas II,0.614466,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,178.2,104.97003,33.05,Obesitas II,0.008368,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,178.1,102.921218,32.45,Obesitas II,1.251665,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,179.0,106.320686,33.18,Obesitas II,0.112454,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,181.9,105.496975,31.9,Obesitas II,0.06275,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,180.7,108.829395,33.34,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,181.1,108.800964,33.17,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,181.2,108.897324,33.18,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,180.0,108.934574,33.63,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Female,19,19-29,163.3,82.0,30.76,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,19,19-29,162.3,82.851318,31.44,Obesitas II,0.552511,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,161.9,81.281578,31.02,Obesitas II,0.022598,Obesity_Type_I,UCI_Obesity_2019
+Female,23,19-29,161.6,82.582954,31.62,Obesitas II,0.256323,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,176.9,105.000576,33.54,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,180.7,105.696358,32.37,Obesitas II,0.903369,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,188.3,117.468516,33.15,Obesitas II,0.891444,Obesity_Type_I,UCI_Obesity_2019
+Male,20,19-29,187.9,112.932984,31.98,Obesitas II,0.917563,Obesity_Type_I,UCI_Obesity_2019
+Male,22,19-29,193.1,118.20313,31.69,Obesitas II,0.743593,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,186.1,115.39792,33.31,Obesitas II,0.987591,Obesity_Type_I,UCI_Obesity_2019
+Female,39,30-49,156.7,80.0,32.57,Obesitas II,1.983265,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,156.5,80.0,32.65,Obesitas II,1.649299,Obesity_Type_I,UCI_Obesity_2019
+Female,38,30-49,151.6,77.033049,33.52,Obesitas II,0.120165,Obesity_Type_I,UCI_Obesity_2019
+Female,37,30-49,155.0,76.082517,31.68,Obesitas II,1.350001,Obesity_Type_I,UCI_Obesity_2019
+Male,19,19-29,171.4,96.568814,32.87,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,17,16-18,172.3,97.350366,32.78,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,39,30-49,156.3,76.65949,31.38,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,37,30-49,150.3,75.279605,33.34,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,41,30-49,154.5,77.053948,32.28,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,44,30-49,159.2,77.00103,30.37,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,178.8,108.019211,33.8,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,178.3,108.044313,34.0,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,179.8,108.316462,33.52,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,18,16-18,180.4,108.251044,33.28,Obesitas II,1.0,Obesity_Type_I,UCI_Obesity_2019
+Male,29,19-29,180.1,108.15619,33.34,Obesitas II,1.144876,Obesity_Type_I,UCI_Obesity_2019
+Male,28,19-29,182.9,107.10819,32.01,Obesitas II,1.00183,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,169.3,89.93889,31.38,Obesitas II,1.492967,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,166.9,85.607466,30.75,Obesitas II,1.17177,Obesity_Type_I,UCI_Obesity_2019
+Male,23,19-29,165.3,93.310284,34.15,Obesitas II,0.104707,Obesity_Type_I,UCI_Obesity_2019
+Male,24,19-29,166.1,90.744965,32.88,Obesitas II,0.458981,Obesity_Type_I,UCI_Obesity_2019
+Male,29,19-29,164.2,89.424947,33.18,Obesitas II,0.322013,Obesity_Type_I,UCI_Obesity_2019
+Male,28,19-29,167.4,89.995034,32.12,Obesitas II,0.56931,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,161.7,83.121811,31.78,Obesitas II,1.02569,Obesity_Type_I,UCI_Obesity_2019
+Female,18,16-18,160.2,82.412665,32.11,Obesitas II,0.692123,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,170.1,96.710735,33.41,Obesitas II,0.981686,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,171.0,95.032177,32.51,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,20,19-29,169.9,98.572753,34.16,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Male,21,19-29,170.5,99.873716,34.34,Obesitas II,0.0,Obesity_Type_I,UCI_Obesity_2019
+Female,19,19-29,161.3,82.193405,31.59,Obesitas II,0.133398,Obesity_Type_I,UCI_Obesity_2019
+Female,19,19-29,160.5,82.039,31.83,Obesitas II,0.192559,Obesity_Type_I,UCI_Obesity_2019
+Male,19,19-29,180.4,104.40682,32.08,Obesitas II,2.2405,Obesity_Type_I,UCI_Obesity_2019
+Male,20,19-29,178.5,104.187314,32.7,Obesitas II,1.605983,Obesity_Type_I,UCI_Obesity_2019
+Male,30,30-49,175.6,112.289883,36.42,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,178.8,115.127662,36.02,Obesitas II,1.541072,Obesity_Type_II,UCI_Obesity_2019
+Male,37,30-49,170.5,107.94747,37.14,Obesitas II,1.976582,Obesity_Type_II,UCI_Obesity_2019
+Male,33,30-49,169.5,102.810704,35.77,Obesitas II,1.989316,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,190.9,128.828122,35.37,Obesitas II,1.94984,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,181.9,122.137917,36.9,Obesitas II,0.793262,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,177.3,118.154345,37.58,Obesitas II,0.68183,Obesity_Type_II,UCI_Obesity_2019
+Male,34,30-49,177.5,120.151967,38.15,Obesitas II,1.097905,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,177.4,116.160329,36.92,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,179.3,112.725005,35.05,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,182.6,120.860386,36.26,Obesitas II,0.691369,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,188.6,121.253083,34.11,Obesitas II,1.320065,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,175.0,120.0,39.18,Obesitas II,1.079524,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,187.4,128.867444,36.69,Obesitas II,0.901924,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,175.6,112.256165,36.41,Obesitas II,1.596576,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,175.7,117.298233,37.99,Obesitas II,1.097983,Obesity_Type_II,UCI_Obesity_2019
+Male,41,30-49,175.0,116.594351,38.07,Obesitas II,0.356288,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,170.4,101.634313,35.0,Obesitas II,0.245354,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,184.9,121.414744,35.51,Obesitas II,0.835271,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,184.2,122.024954,35.96,Obesitas II,1.025438,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,161.3,98.490766,37.83,Obesitas II,1.543386,Obesity_Type_II,UCI_Obesity_2019
+Male,20,19-29,164.8,106.509947,39.23,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,175.8,112.010504,36.23,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,175.8,112.089022,36.25,Obesitas II,1.230219,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,167.1,101.626189,36.41,Obesitas II,1.99975,Obesity_Type_II,UCI_Obesity_2019
+Male,29,19-29,166.6,98.66176,35.56,Obesitas II,1.999886,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,191.4,129.852531,35.44,Obesitas II,0.906843,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,190.0,124.269251,34.44,Obesitas II,1.066169,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,175.0,118.102897,38.56,Obesitas II,0.368026,Obesity_Type_II,UCI_Obesity_2019
+Male,37,30-49,175.0,119.434645,39.0,Obesitas II,0.592607,Obesity_Type_II,UCI_Obesity_2019
+Male,22,19-29,177.4,116.160329,36.92,Obesitas II,1.399183,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,179.3,116.102615,36.11,Obesitas II,0.966617,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,182.6,120.860386,36.26,Obesitas II,2.0,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,182.7,120.996074,36.24,Obesitas II,1.110215,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,177.5,121.204668,38.45,Obesitas II,0.428173,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,176.7,118.363376,37.91,Obesitas II,0.614959,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,175.4,117.384745,38.15,Obesitas II,1.818052,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,175.5,119.087557,38.66,Obesitas II,1.593183,Obesity_Type_II,UCI_Obesity_2019
+Male,41,30-49,174.8,108.308112,35.44,Obesitas II,1.628637,Obesity_Type_II,UCI_Obesity_2019
+Male,35,30-49,173.3,103.669116,34.51,Obesitas II,1.746583,Obesity_Type_II,UCI_Obesity_2019
+Male,22,19-29,185.0,121.786485,35.59,Obesitas II,0.348839,Obesity_Type_II,UCI_Obesity_2019
+Male,22,19-29,185.0,122.333425,35.76,Obesitas II,0.428259,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,160.6,99.961731,38.75,Obesitas II,1.19102,Obesity_Type_II,UCI_Obesity_2019
+Male,20,19-29,161.1,103.175516,39.73,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,29,19-29,176.3,113.90198,36.65,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,175.6,112.287678,36.42,Obesitas II,0.485322,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,178.7,115.428276,36.14,Obesitas II,1.121038,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,176.5,114.330023,36.69,Obesitas II,1.553734,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,172.6,110.714711,37.15,Obesitas II,0.668963,Obesity_Type_II,UCI_Obesity_2019
+Male,41,30-49,173.6,109.889334,36.47,Obesitas II,0.908981,Obesity_Type_II,UCI_Obesity_2019
+Male,34,30-49,170.0,103.841672,35.94,Obesitas II,1.982379,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,170.3,103.0344,35.52,Obesitas II,0.358709,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,190.7,128.856677,35.44,Obesitas II,1.847802,Obesity_Type_II,UCI_Obesity_2019
+Male,29,19-29,191.1,129.935666,35.58,Obesitas II,1.058378,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,178.4,120.644178,37.9,Obesitas II,0.838739,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,178.4,120.549592,37.88,Obesitas II,0.093418,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,186.4,120.202596,34.6,Obesitas II,0.712726,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,181.2,118.277657,36.01,Obesitas II,0.979306,Obesity_Type_II,UCI_Obesity_2019
+Male,37,30-49,175.0,118.206565,38.59,Obesitas II,0.598655,Obesity_Type_II,UCI_Obesity_2019
+Male,29,19-29,181.5,120.399758,36.53,Obesitas II,1.045107,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,176.7,114.133149,36.55,Obesitas II,1.266866,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,176.2,115.531622,37.19,Obesitas II,1.420675,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,177.9,112.438508,35.53,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,178.1,112.957922,35.62,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,187.3,120.898397,34.48,Obesitas II,1.208142,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,180.1,119.050381,36.69,Obesitas II,0.684487,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,187.7,121.277832,34.43,Obesitas II,1.304291,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,177.6,120.589419,38.25,Obesitas II,1.804157,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,176.6,120.082941,38.52,Obesitas II,1.096556,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,176.0,118.382361,38.23,Obesitas II,1.07672,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,182.4,126.460936,38.03,Obesitas II,0.946763,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,186.9,125.064264,35.81,Obesitas II,0.849811,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,177.2,113.207124,36.07,Obesitas II,1.556709,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,177.2,114.097656,36.33,Obesitas II,1.360994,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,185.8,117.57457,34.05,Obesitas II,1.31257,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,183.1,118.424156,35.34,Obesitas II,1.144683,Obesity_Type_II,UCI_Obesity_2019
+Male,39,30-49,176.6,118.533246,38.01,Obesitas II,0.656548,Obesity_Type_II,UCI_Obesity_2019
+Male,39,30-49,177.0,117.29188,37.43,Obesitas II,0.919388,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,167.3,103.706181,37.03,Obesitas II,0.11243,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,170.3,102.686239,35.39,Obesitas II,1.622055,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,184.3,121.142535,35.67,Obesitas II,0.992253,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,178.0,118.740035,37.5,Obesitas II,0.854957,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,187.3,121.82962,34.71,Obesitas II,1.299469,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,175.6,120.021161,38.93,Obesitas II,1.583832,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,161.8,100.941357,38.57,Obesitas II,0.236168,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,164.5,100.004418,36.98,Obesitas II,1.699181,Obesity_Type_II,UCI_Obesity_2019
+Male,20,19-29,170.1,104.578255,36.13,Obesitas II,0.218356,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,165.9,104.548794,37.99,Obesitas II,0.174475,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,175.9,112.000381,36.18,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,175.8,112.10074,36.26,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,162.2,99.982541,37.99,Obesitas II,1.958694,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,162.3,97.582959,37.03,Obesitas II,1.981154,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,191.9,129.991623,35.3,Obesitas II,1.05545,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,191.3,129.232216,35.3,Obesitas II,1.196368,Obesity_Type_II,UCI_Obesity_2019
+Male,37,30-49,175.0,118.07381,38.55,Obesitas II,0.202029,Obesity_Type_II,UCI_Obesity_2019
+Male,39,30-49,175.0,119.029103,38.87,Obesitas II,0.325313,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,178.5,113.714521,35.69,Obesitas II,1.089061,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,179.3,116.157766,36.15,Obesitas II,1.600536,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,183.0,120.980508,36.14,Obesitas II,2.0,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,179.6,120.988454,37.49,Obesitas II,1.866839,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,175.0,120.0,39.18,Obesitas II,0.582686,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,176.2,118.548733,38.17,Obesitas II,0.554646,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,182.6,121.236915,36.37,Obesitas II,1.859667,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,184.0,120.431551,35.58,Obesitas II,1.686229,Obesity_Type_II,UCI_Obesity_2019
+Male,41,30-49,174.9,109.908779,35.91,Obesitas II,0.94141,Obesity_Type_II,UCI_Obesity_2019
+Male,41,30-49,175.0,115.806977,37.81,Obesitas II,0.514225,Obesity_Type_II,UCI_Obesity_2019
+Male,22,19-29,185.0,122.119682,35.68,Obesitas II,0.145687,Obesity_Type_II,UCI_Obesity_2019
+Male,22,19-29,185.0,122.609911,35.83,Obesitas II,0.178856,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,160.8,100.618239,38.92,Obesitas II,0.182249,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,160.3,99.605527,38.75,Obesitas II,0.883171,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,177.1,112.471118,35.87,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,29,19-29,175.8,112.395309,36.37,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,178.7,115.025361,36.02,Obesitas II,1.453042,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,177.2,114.906095,36.6,Obesitas II,1.543961,Obesity_Type_II,UCI_Obesity_2019
+Male,40,30-49,172.2,109.349025,36.86,Obesitas II,1.330519,Obesity_Type_II,UCI_Obesity_2019
+Male,34,30-49,170.1,107.025415,36.97,Obesitas II,1.980401,Obesity_Type_II,UCI_Obesity_2019
+Male,33,30-49,169.7,103.017623,35.75,Obesitas II,1.985536,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,169.6,102.815983,35.73,Obesitas II,0.652736,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,190.9,129.679131,35.58,Obesitas II,1.857351,Obesity_Type_II,UCI_Obesity_2019
+Male,29,19-29,190.9,129.874864,35.63,Obesitas II,1.113169,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,180.1,121.094257,37.32,Obesitas II,0.800487,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,186.0,123.721352,35.75,Obesitas II,1.034031,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,182.0,118.332689,35.74,Obesitas II,0.704236,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,179.3,118.165082,36.75,Obesitas II,0.897562,Obesity_Type_II,UCI_Obesity_2019
+Male,33,30-49,175.0,118.299585,38.62,Obesitas II,0.766007,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,175.5,120.098812,38.99,Obesitas II,0.955317,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,177.3,115.089316,36.61,Obesitas II,1.079934,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,177.3,115.828167,36.86,Obesitas II,1.211048,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,178.8,112.536367,35.2,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,178.5,112.740797,35.37,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,181.8,120.8158,36.57,Obesitas II,0.982134,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,184.3,120.420406,35.44,Obesitas II,0.706777,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,187.5,121.244969,34.51,Obesitas II,1.356468,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,179.6,120.901591,37.47,Obesitas II,1.664722,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,175.6,119.117122,38.62,Obesitas II,1.076926,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,175.7,118.565568,38.4,Obesitas II,1.076248,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,188.9,129.157346,36.19,Obesitas II,0.941424,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,186.9,127.507411,36.49,Obesitas II,0.923428,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,175.7,112.200812,36.34,Obesitas II,1.333435,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,176.4,113.234349,36.37,Obesitas II,1.590255,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,177.5,117.398976,37.27,Obesitas II,0.863158,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,177.0,117.708705,37.57,Obesitas II,1.046878,Obesity_Type_II,UCI_Obesity_2019
+Male,40,30-49,176.0,117.651046,37.97,Obesitas II,0.477855,Obesity_Type_II,UCI_Obesity_2019
+Male,40,30-49,176.3,116.974504,37.63,Obesitas II,0.584272,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,168.0,102.872802,36.47,Obesitas II,0.206954,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,169.9,100.176866,34.69,Obesitas II,1.39302,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,184.9,121.658729,35.57,Obesitas II,0.769709,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,186.7,121.684311,34.89,Obesitas II,0.870056,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,186.7,121.835883,34.95,Obesitas II,1.284798,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,184.9,121.421121,35.53,Obesitas II,0.916478,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,162.0,98.54302,37.56,Obesitas II,1.930033,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,164.8,99.592225,36.68,Obesitas II,1.089891,Obesity_Type_II,UCI_Obesity_2019
+Male,20,19-29,161.9,104.303711,39.79,Obesitas II,0.210181,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,164.2,104.270062,38.68,Obesitas II,0.167943,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,178.7,112.173731,35.11,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,175.8,112.007101,36.23,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,176.4,113.089716,36.34,Obesitas II,1.246223,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,176.7,112.226032,35.94,Obesitas II,1.386151,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,167.8,102.022057,36.24,Obesitas II,1.996487,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,166.8,100.543983,36.12,Obesitas II,1.738267,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,168.5,99.540122,35.04,Obesitas II,1.621733,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,169.5,99.709329,34.72,Obesitas II,0.858554,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,188.6,129.349471,36.36,Obesitas II,0.94522,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,191.5,129.966428,35.44,Obesitas II,0.987521,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,184.2,124.070717,36.57,Obesitas II,0.994422,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,186.8,123.172214,35.29,Obesitas II,0.597863,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,175.2,119.205308,38.85,Obesitas II,0.393452,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,175.5,118.237782,38.37,Obesitas II,0.371508,Obesity_Type_II,UCI_Obesity_2019
+Male,38,30-49,175.4,117.8972,38.31,Obesitas II,0.693732,Obesity_Type_II,UCI_Obesity_2019
+Male,38,30-49,176.1,118.668332,38.28,Obesitas II,0.641954,Obesity_Type_II,UCI_Obesity_2019
+Male,22,19-29,175.6,116.311962,37.72,Obesitas II,1.689525,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,176.5,116.669906,37.45,Obesitas II,1.112504,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,178.8,115.382519,36.08,Obesitas II,1.392406,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,176.7,116.164351,37.2,Obesitas II,0.976425,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,184.0,120.975489,35.73,Obesitas II,1.52001,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,182.5,120.805715,36.28,Obesitas II,1.943743,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,182.8,120.998266,36.19,Obesitas II,1.685369,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,183.0,120.996581,36.15,Obesitas II,1.467863,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,177.9,120.751656,38.14,Obesitas II,0.350717,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,178.1,120.794535,38.08,Obesitas II,0.425621,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,176.4,119.373019,38.36,Obesitas II,0.454944,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,175.5,118.805937,38.58,Obesitas II,0.647632,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,175.7,117.368716,38.04,Obesitas II,1.384607,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,175.7,117.326523,38.02,Obesitas II,1.631912,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,175.4,119.441207,38.8,Obesitas II,1.917383,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,175.5,119.192922,38.69,Obesitas II,1.587406,Obesity_Type_II,UCI_Obesity_2019
+Male,40,30-49,170.7,108.012603,37.08,Obesitas II,1.860765,Obesity_Type_II,UCI_Obesity_2019
+Male,37,30-49,174.3,106.421042,35.04,Obesitas II,1.668961,Obesity_Type_II,UCI_Obesity_2019
+Male,34,30-49,168.1,102.523111,36.28,Obesitas II,1.979355,Obesity_Type_II,UCI_Obesity_2019
+Male,34,30-49,170.6,103.067766,35.43,Obesitas II,1.167856,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,185.0,121.560938,35.54,Obesitas II,0.79677,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,185.3,121.737836,35.44,Obesitas II,0.478595,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,184.8,122.06261,35.76,Obesitas II,0.932783,Obesity_Type_II,UCI_Obesity_2019
+Male,22,19-29,187.0,121.458232,34.72,Obesitas II,0.93732,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,160.8,100.783434,38.99,Obesitas II,1.00109,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,160.3,100.209405,38.99,Obesitas II,0.233056,Obesity_Type_II,UCI_Obesity_2019
+Male,20,19-29,162.0,103.393354,39.39,Obesitas II,0.165269,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,161.1,100.642257,38.8,Obesitas II,1.1293,Obesity_Type_II,UCI_Obesity_2019
+Male,29,19-29,175.9,113.501549,36.7,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,176.3,113.215814,36.41,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,176.4,112.323213,36.09,Obesitas II,0.1768,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,175.6,112.277567,36.41,Obesitas II,0.665439,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,178.3,115.347176,36.27,Obesitas II,1.32534,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,178.7,114.534678,35.89,Obesitas II,1.281165,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,176.7,114.187096,36.59,Obesitas II,1.501754,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,176.5,114.144378,36.62,Obesitas II,1.352973,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,175.9,111.635463,36.1,Obesitas II,0.482625,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,175.9,111.950413,36.2,Obesitas II,0.054238,Obesity_Type_II,UCI_Obesity_2019
+Male,41,30-49,174.8,109.758736,35.92,Obesitas II,1.15804,Obesity_Type_II,UCI_Obesity_2019
+Male,41,30-49,174.5,111.169678,36.51,Obesitas II,0.917014,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,170.2,103.743534,35.83,Obesitas II,1.928275,Obesity_Type_II,UCI_Obesity_2019
+Male,33,30-49,169.6,103.250355,35.88,Obesitas II,1.987296,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,168.0,102.004554,36.12,Obesitas II,1.181811,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,170.3,102.592171,35.36,Obesitas II,0.327418,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,187.8,127.161381,36.07,Obesitas II,1.485978,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,191.0,129.013178,35.38,Obesitas II,1.392026,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,190.9,129.19449,35.44,Obesitas II,1.63812,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,191.1,129.232708,35.4,Obesitas II,1.144076,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,177.9,120.60094,38.1,Obesitas II,0.882709,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,176.7,120.158049,38.46,Obesitas II,1.04268,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,178.4,120.613561,37.9,Obesitas II,0.565242,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,176.7,120.344402,38.54,Obesitas II,0.992829,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,181.6,119.622764,36.27,Obesitas II,0.763595,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,184.0,119.956651,35.43,Obesitas II,0.839481,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,184.8,117.631707,34.43,Obesitas II,1.003294,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,183.0,117.75701,35.15,Obesitas II,1.217993,Obesity_Type_II,UCI_Obesity_2019
+Male,38,30-49,175.0,118.114184,38.56,Obesitas II,0.131371,Obesity_Type_II,UCI_Obesity_2019
+Male,38,30-49,176.4,117.86159,37.89,Obesitas II,0.852344,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,181.7,120.699119,36.58,Obesitas II,0.739881,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,180.5,119.484614,36.66,Obesitas II,0.94676,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,177.0,114.163921,36.44,Obesitas II,1.331526,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,177.3,114.254278,36.36,Obesitas II,1.306476,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,176.3,115.10813,37.03,Obesitas II,1.315045,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,176.7,115.45845,37.0,Obesitas II,1.289421,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,177.3,112.348722,35.73,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,176.0,112.409191,36.29,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,178.0,113.15464,35.71,Obesitas II,0.545919,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,176.7,113.235538,36.27,Obesitas II,0.0,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,188.5,121.065052,34.07,Obesitas II,1.243567,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,182.8,120.872294,36.16,Obesitas II,1.159598,Obesity_Type_II,UCI_Obesity_2019
+Male,28,19-29,180.6,120.423567,36.91,Obesitas II,0.690269,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,181.3,119.841446,36.46,Obesitas II,0.689371,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,186.0,121.284533,35.07,Obesitas II,1.170537,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,186.5,121.527369,34.93,Obesitas II,1.094839,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,178.4,120.921535,38.01,Obesitas II,1.48524,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,179.5,120.919703,37.54,Obesitas II,1.141708,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,176.0,120.009392,38.76,Obesitas II,1.089344,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,177.4,120.209711,38.22,Obesitas II,0.925941,Obesity_Type_II,UCI_Obesity_2019
+Male,32,30-49,175.3,118.26569,38.47,Obesitas II,0.886817,Obesity_Type_II,UCI_Obesity_2019
+Male,30,30-49,176.1,118.370628,38.17,Obesitas II,1.018158,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,184.9,125.077863,36.59,Obesitas II,0.992371,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,184.3,125.973927,37.1,Obesitas II,0.883542,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,182.5,124.95278,37.5,Obesitas II,0.797209,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,186.2,126.418413,36.46,Obesitas II,0.902776,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,176.4,113.069667,36.34,Obesitas II,1.592795,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,176.2,112.835195,36.36,Obesitas II,1.376217,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,177.2,114.067936,36.33,Obesitas II,1.538922,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,177.2,114.004832,36.31,Obesitas II,1.522429,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,179.9,117.93329,36.46,Obesitas II,1.016254,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,178.9,117.849351,36.84,Obesitas II,1.055854,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,180.3,118.332966,36.39,Obesitas II,1.110868,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,183.7,118.377601,35.09,Obesitas II,1.226019,Obesity_Type_II,UCI_Obesity_2019
+Male,37,30-49,176.3,118.40174,38.1,Obesitas II,0.615298,Obesity_Type_II,UCI_Obesity_2019
+Male,38,30-49,175.3,119.201465,38.8,Obesitas II,0.6081,Obesity_Type_II,UCI_Obesity_2019
+Male,39,30-49,176.8,117.792268,37.67,Obesitas II,0.756277,Obesity_Type_II,UCI_Obesity_2019
+Male,38,30-49,176.7,118.134898,37.84,Obesitas II,0.822186,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,160.4,101.038263,39.3,Obesitas II,0.073065,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,169.0,103.180918,36.12,Obesitas II,0.216908,Obesity_Type_II,UCI_Obesity_2019
+Male,34,30-49,171.3,103.276087,35.2,Obesitas II,1.67036,Obesity_Type_II,UCI_Obesity_2019
+Male,33,30-49,169.6,102.784864,35.74,Obesitas II,1.977918,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,183.0,121.04172,36.14,Obesitas II,1.156024,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,184.6,121.248035,35.57,Obesitas II,0.975384,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,177.5,119.081804,37.8,Obesitas II,1.580263,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,179.0,118.436166,36.98,Obesitas II,1.082236,Obesity_Type_II,UCI_Obesity_2019
+Male,25,19-29,185.3,121.310257,35.34,Obesitas II,1.266739,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,187.3,121.471077,34.64,Obesitas II,1.280191,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,182.0,120.775439,36.48,Obesitas II,1.525384,Obesity_Type_II,UCI_Obesity_2019
+Male,23,19-29,181.6,120.337664,36.51,Obesitas II,1.194898,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,161.4,100.245302,38.48,Obesitas II,1.076729,Obesity_Type_II,UCI_Obesity_2019
+Male,24,19-29,160.9,100.078367,38.64,Obesitas II,0.503105,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,165.0,101.141277,37.14,Obesitas II,1.889937,Obesity_Type_II,UCI_Obesity_2019
+Male,31,30-49,165.4,102.583895,37.5,Obesitas II,0.958555,Obesity_Type_II,UCI_Obesity_2019
+Male,20,19-29,165.7,105.580491,38.45,Obesitas II,0.029603,Obesity_Type_II,UCI_Obesity_2019
+Male,21,19-29,164.5,101.067988,37.36,Obesitas II,0.233987,Obesity_Type_II,UCI_Obesity_2019
+Male,26,19-29,166.1,104.321463,37.82,Obesitas II,0.128548,Obesity_Type_II,UCI_Obesity_2019
+Male,27,19-29,169.2,102.59518,35.86,Obesitas II,0.181324,Obesity_Type_II,UCI_Obesity_2019
+Female,26,19-29,161.1,102.093223,39.31,Obesitas II,0.05093,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,158.5,105.055597,41.83,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,179.2,137.859737,42.91,Obesitas II,1.990317,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,180.2,149.935848,46.16,Obesitas II,1.995582,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.6,111.93301,40.8,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.1,105.448264,41.15,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,167.9,104.954834,37.25,Obesitas II,0.210351,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,167.8,109.900472,39.02,Obesitas II,0.143955,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,165.6,121.205171,44.22,Obesitas II,0.462951,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,169.5,133.76473,46.56,Obesitas II,1.92628,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.3,109.959714,41.76,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,158.4,110.545378,44.06,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,172.9,131.529267,44.0,Obesitas II,1.742453,Obesity_Type_III,UCI_Obesity_2019
+Female,23,19-29,166.5,114.465425,41.31,Obesitas II,0.194056,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,174.8,127.902844,41.87,Obesitas II,0.390937,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,173.0,152.094362,50.81,Obesitas II,0.750111,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,174.7,133.800129,43.86,Obesitas II,1.465931,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,171.9,114.511537,38.74,Obesitas II,0.38926,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.2,111.946655,42.01,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.3,111.868169,41.46,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.5,104.758713,38.25,Obesitas II,0.24629,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.8,107.482662,40.58,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,173.6,130.927138,43.43,Obesitas II,1.46361,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,173.7,132.527011,43.92,Obesitas II,0.973864,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,158.1,102.003378,40.81,Obesitas II,0.008127,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.7,103.026858,39.89,Obesitas II,0.162083,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,182.2,142.102468,42.83,Obesitas II,1.999773,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,182.8,152.720545,45.72,Obesitas II,1.999897,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.7,111.993054,40.81,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.8,111.208963,41.46,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,167.0,104.585783,37.51,Obesitas II,0.210351,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.9,104.754958,37.62,Obesitas II,0.143955,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,166.9,124.704781,44.79,Obesitas II,0.786828,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,169.1,129.769141,45.4,Obesitas II,1.71836,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.2,110.676343,42.05,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.3,110.824698,41.04,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,173.3,135.524857,45.11,Obesitas II,1.950374,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,174.8,133.573787,43.7,Obesitas II,1.624981,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,181.3,138.730619,42.21,Obesitas II,0.481555,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,180.7,155.872093,47.72,Obesitas II,0.952725,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,174.6,133.665587,43.86,Obesitas II,1.508897,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,175.3,133.852432,43.54,Obesitas II,1.445148,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.2,111.886611,42.0,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.1,111.818345,41.52,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.1,104.808542,38.93,Obesitas II,0.190061,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.9,104.928643,40.05,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,23,19-29,175.7,133.365094,43.18,Obesitas II,1.206059,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,176.3,133.952675,43.08,Obesitas II,1.419473,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.0,102.38745,39.5,Obesitas II,0.026033,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.4,102.781971,37.1,Obesitas II,0.112122,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.2,104.899348,40.87,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.3,104.988925,39.38,Obesitas II,0.162279,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,177.1,137.044959,43.69,Obesitas II,1.70464,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,179.0,137.767787,43.02,Obesitas II,1.505775,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,180.2,141.166265,43.49,Obesitas II,1.99507,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,178.7,151.975864,47.58,Obesitas II,0.82666,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.4,111.942544,41.41,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.3,111.600553,41.32,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.4,105.037463,39.84,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.1,105.423532,40.64,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.9,104.839068,39.48,Obesitas II,0.114698,Obesity_Type_III,UCI_Obesity_2019
+Female,25,19-29,168.5,104.821175,36.93,Obesitas II,0.224482,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.5,110.92217,40.01,Obesitas II,0.029728,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.6,110.21734,40.21,Obesitas II,0.01586,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,166.6,124.805868,44.96,Obesitas II,0.792553,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,170.8,121.864326,41.8,Obesitas II,1.376534,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,175.4,133.783955,43.48,Obesitas II,1.493018,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,171.4,131.866734,44.88,Obesitas II,1.592494,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.4,110.008636,41.69,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.9,110.970479,41.32,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.1,111.267334,42.33,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.4,109.980145,41.73,Obesitas II,0.001015,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,173.6,132.145549,43.84,Obesitas II,1.672639,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,173.3,132.904884,44.26,Obesitas II,1.577824,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,169.1,114.480696,40.02,Obesitas II,0.334264,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,163.5,113.277388,42.37,Obesitas II,0.165422,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,174.6,128.261402,42.07,Obesitas II,1.546179,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,174.7,129.363771,42.41,Obesitas II,0.64235,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,174.7,144.302261,47.31,Obesitas II,1.247505,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,175.1,149.291106,48.69,Obesitas II,1.68291,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,174.1,132.57927,43.74,Obesitas II,1.464674,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,174.9,133.94608,43.81,Obesitas II,1.413239,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,169.5,112.776612,39.27,Obesitas II,0.336795,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,167.5,112.879662,40.26,Obesitas II,0.36009,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.1,111.829957,42.02,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.2,111.86899,41.5,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.0,111.539494,41.46,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.9,111.914361,41.15,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.3,105.031908,40.85,Obesitas II,0.027101,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.4,105.036075,38.85,Obesitas II,0.07115,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.9,106.875927,40.28,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.8,108.265922,40.85,Obesitas II,0.090917,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,171.8,133.466763,45.21,Obesitas II,1.486289,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,170.9,131.274851,44.97,Obesitas II,1.684582,Obesity_Type_III,UCI_Obesity_2019
+Female,23,19-29,172.5,132.94066,44.68,Obesitas II,1.271651,Obesity_Type_III,UCI_Obesity_2019
+Female,23,19-29,174.0,133.485478,44.09,Obesitas II,1.343875,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,156.9,102.000122,41.46,Obesitas II,0.001297,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,158.0,102.134646,40.92,Obesitas II,0.02006,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,178.3,154.618446,48.65,Obesitas II,1.97073,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,179.4,160.935351,50.01,Obesitas II,1.986646,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.0,111.999096,40.67,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.8,111.95611,40.74,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,168.4,104.592372,36.88,Obesitas II,0.282063,Obesity_Type_III,UCI_Obesity_2019
+Female,25,19-29,168.4,104.846817,36.97,Obesitas II,0.259427,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,171.7,127.642324,43.32,Obesitas II,0.912334,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,168.1,125.418548,44.4,Obesitas II,0.877067,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.3,110.81746,42.05,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.2,110.804337,41.61,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,174.7,136.516648,44.71,Obesitas II,1.963379,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,178.2,137.852618,43.39,Obesitas II,1.989171,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,181.0,152.394739,46.52,Obesitas II,0.246831,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,180.4,160.639405,49.38,Obesitas II,0.427905,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,174.6,133.554686,43.83,Obesitas II,1.536555,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,175.1,133.843033,43.65,Obesitas II,1.46046,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.2,111.588625,41.92,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.6,111.571076,41.69,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.7,104.846218,40.1,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.8,104.92057,39.59,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,176.4,133.888629,43.02,Obesitas II,1.441791,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,176.4,133.937873,43.05,Obesitas II,1.46782,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.9,102.083964,39.44,Obesitas II,0.026033,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.0,102.174953,39.39,Obesitas II,0.04525,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.1,104.986792,39.94,Obesitas II,0.139159,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.2,104.988082,38.92,Obesitas II,0.094851,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,180.2,138.034526,42.51,Obesitas II,1.168368,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,178.8,137.858254,43.14,Obesitas II,1.980738,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,180.1,151.417292,46.66,Obesitas II,1.881761,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,180.8,152.567671,46.69,Obesitas II,1.999631,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.0,111.939671,41.11,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.3,111.919155,40.98,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.4,105.122109,37.98,Obesitas II,0.010183,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.8,105.428628,39.79,Obesitas II,0.098043,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.9,104.774144,37.62,Obesitas II,0.180158,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.2,104.966758,38.93,Obesitas II,0.204108,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.8,109.931233,40.01,Obesitas II,0.029728,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.3,109.910012,40.71,Obesitas II,0.01586,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,167.6,121.639178,43.33,Obesitas II,0.74225,Obesity_Type_III,UCI_Obesity_2019
+Female,23,19-29,166.1,120.748213,43.74,Obesitas II,0.217455,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,171.3,133.735889,45.57,Obesitas II,1.564618,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,172.0,133.886031,45.26,Obesitas II,1.556155,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.3,109.982692,41.77,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.2,110.400847,41.94,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.9,110.777391,42.27,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.1,110.074946,42.95,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,173.1,131.902591,44.04,Obesitas II,1.700889,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,173.0,131.877558,44.08,Obesitas II,1.708971,Obesity_Type_III,UCI_Obesity_2019
+Female,23,19-29,167.8,114.470482,40.67,Obesitas II,0.294763,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,163.8,113.90506,42.48,Obesitas II,0.189831,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,173.9,128.114161,42.38,Obesitas II,1.427413,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,174.1,128.763843,42.47,Obesitas II,0.616503,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,179.3,152.43563,47.42,Obesitas II,1.256115,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,181.0,152.217135,46.44,Obesitas II,1.699056,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,174.4,133.281333,43.84,Obesitas II,1.46525,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,174.8,133.936535,43.84,Obesitas II,1.429256,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,171.1,113.372851,38.71,Obesitas II,0.382189,Obesity_Type_III,UCI_Obesity_2019
+Female,25,19-29,168.5,113.451224,39.94,Obesitas II,0.387074,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.9,111.927001,41.65,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.5,111.933152,40.88,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.1,111.856492,41.53,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.3,111.894229,41.44,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.1,104.790549,39.41,Obesitas II,0.129178,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.0,104.791035,38.5,Obesitas II,0.152713,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.4,107.012256,41.1,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.8,106.69053,40.28,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,172.7,131.76807,44.2,Obesitas II,1.469928,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,172.1,131.042274,44.22,Obesitas II,1.525165,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,174.3,132.8071,43.72,Obesitas II,1.046463,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,173.7,133.166595,44.12,Obesitas II,1.295759,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.4,102.233445,38.76,Obesitas II,0.030541,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.4,102.277765,37.84,Obesitas II,0.075776,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,159.3,102.874549,40.56,Obesitas II,0.006265,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.8,102.305767,39.58,Obesitas II,0.06582,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,181.7,141.917802,42.97,Obesitas II,1.520818,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,180.9,140.292018,42.88,Obesitas II,1.783138,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,181.7,152.371911,46.14,Obesitas II,1.956278,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,182.0,151.278532,45.68,Obesitas II,1.999836,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,165.6,111.949972,40.8,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.8,111.950113,41.21,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.3,111.216192,42.24,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.1,111.036881,41.25,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,25,19-29,168.4,104.759643,36.96,Obesitas II,0.220825,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.9,104.593929,37.55,Obesitas II,0.209586,Obesity_Type_III,UCI_Obesity_2019
+Female,25,19-29,167.4,104.704707,37.38,Obesitas II,0.264831,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.9,104.768318,37.61,Obesitas II,0.167086,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,170.1,126.490236,43.72,Obesitas II,0.530925,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,173.4,125.117633,41.61,Obesitas II,0.6277,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,170.8,130.986338,44.89,Obesitas II,1.723934,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,171.6,130.871127,44.42,Obesitas II,1.718543,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.5,111.00492,42.04,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,159.5,110.640929,43.5,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.7,110.818757,41.89,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.5,110.803117,41.98,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,172.9,134.842656,45.1,Obesitas II,1.931173,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,173.6,135.346677,44.92,Obesitas II,1.618512,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,174.9,133.878843,43.79,Obesitas II,1.48372,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,174.9,133.662583,43.7,Obesitas II,1.609938,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,177.8,137.785027,43.59,Obesitas II,1.606109,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,174.0,135.693381,44.82,Obesitas II,1.094035,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,181.7,153.959945,46.64,Obesitas II,1.917014,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,180.0,155.242672,47.9,Obesitas II,1.051889,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,174.6,133.644711,43.82,Obesitas II,1.612741,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,175.9,133.903612,43.27,Obesitas II,1.456933,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,175.3,133.618706,43.5,Obesitas II,1.480919,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,176.2,133.903469,43.14,Obesitas II,1.408177,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.3,111.883747,41.95,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.4,111.9307,41.93,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.2,111.830924,41.5,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.1,111.841706,41.53,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.8,104.810024,39.05,Obesitas II,0.069238,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.7,104.881994,39.6,Obesitas II,0.159255,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.0,104.936381,40.47,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.7,105.013901,40.14,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,23,19-29,174.4,133.45249,43.86,Obesitas II,1.231031,Obesity_Type_III,UCI_Obesity_2019
+Female,23,19-29,175.5,133.478611,43.31,Obesitas II,1.302507,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,174.6,133.747012,43.85,Obesitas II,1.444382,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,174.6,133.676663,43.83,Obesitas II,1.501647,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.1,102.363149,39.42,Obesitas II,0.03465,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,159.7,102.320437,40.13,Obesitas II,0.005939,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.0,102.686908,39.61,Obesitas II,0.108386,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.3,102.555691,38.93,Obesitas II,0.051097,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.8,104.94582,40.07,Obesitas II,0.043689,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.9,104.854928,40.48,Obesitas II,0.067985,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.2,105.313967,40.05,Obesitas II,0.097114,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.4,104.999403,40.28,Obesitas II,0.083675,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,178.9,138.202869,43.17,Obesitas II,0.806422,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,177.4,138.143162,43.89,Obesitas II,1.571865,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,179.3,137.832414,42.88,Obesitas II,1.318743,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,175.9,137.79299,44.54,Obesitas II,1.879818,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,180.7,141.799429,43.41,Obesitas II,1.998047,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,175.1,142.545183,46.5,Obesitas II,1.324805,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,180.6,153.149491,46.97,Obesitas II,0.850715,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,179.7,152.473675,47.24,Obesitas II,0.886602,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.5,111.946321,41.88,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.0,111.945588,41.65,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.3,111.720238,41.39,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.2,111.682693,41.43,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.1,104.947703,39.93,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.8,105.036522,39.14,Obesitas II,0.019404,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.9,105.407313,40.7,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.8,105.359688,40.73,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.9,104.835346,39.48,Obesitas II,0.035928,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.9,104.838425,39.5,Obesitas II,0.01682,Obesity_Type_III,UCI_Obesity_2019
+Female,25,19-29,168.0,104.807284,37.12,Obesitas II,0.197993,Obesity_Type_III,UCI_Obesity_2019
+Female,25,19-29,168.6,104.772164,36.86,Obesitas II,0.234303,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.3,110.930509,40.11,Obesitas II,0.017804,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,167.5,110.621723,39.42,Obesitas II,0.109327,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.5,110.10589,41.72,Obesitas II,0.011161,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.6,110.074019,41.62,Obesitas II,0.01437,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,168.3,127.427458,45.01,Obesitas II,1.425712,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,166.9,126.088301,45.25,Obesitas II,0.922014,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,168.8,121.889803,42.76,Obesitas II,1.093679,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,169.4,122.813033,42.78,Obesitas II,0.933595,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,175.5,133.870501,43.44,Obesitas II,1.433151,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,174.8,133.259033,43.61,Obesitas II,1.562213,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,172.0,131.567481,44.48,Obesitas II,1.655993,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,172.4,131.929712,44.41,Obesitas II,1.645532,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.4,109.996742,41.72,Obesitas II,0.000272,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.4,109.978402,41.69,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.3,111.157811,41.68,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.1,110.919646,41.2,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.0,111.275646,41.9,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.4,111.531208,42.28,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.4,109.984263,41.71,Obesitas II,9.6e-05,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,159.3,110.168166,43.4,Obesitas II,0.000454,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,173.0,132.116491,44.13,Obesitas II,1.683497,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,172.1,132.054793,44.58,Obesitas II,1.68249,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,172.0,132.262558,44.72,Obesitas II,1.584716,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,169.9,133.10761,46.1,Obesitas II,1.773304,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,168.1,114.479459,40.49,Obesitas II,0.232742,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,169.7,114.482386,39.73,Obesitas II,0.360908,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,165.1,113.774198,41.75,Obesitas II,0.324913,Obesity_Type_III,UCI_Obesity_2019
+Female,25,19-29,166.7,112.982549,40.64,Obesitas II,0.312923,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,174.6,128.705761,42.21,Obesitas II,0.985287,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,173.5,126.798173,42.1,Obesitas II,1.544632,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,174.8,128.148108,41.95,Obesitas II,0.554323,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,171.6,129.466541,43.98,Obesitas II,1.48809,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,174.8,147.296186,48.21,Obesitas II,1.4164,Obesity_Type_III,UCI_Obesity_2019
+Female,20,19-29,181.8,142.559161,43.14,Obesitas II,1.976427,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,180.8,150.51648,46.03,Obesitas II,1.734424,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,173.9,150.37757,49.7,Obesitas II,1.582675,Obesity_Type_III,UCI_Obesity_2019
+Female,19,19-29,174.2,133.779919,44.08,Obesitas II,1.465909,Obesity_Type_III,UCI_Obesity_2019
+Female,18,16-18,174.2,133.017105,43.84,Obesitas II,1.560261,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,175.1,133.845064,43.65,Obesitas II,1.427037,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,174.9,133.955091,43.78,Obesitas II,1.412357,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,166.3,113.077187,40.87,Obesitas II,0.300964,Obesity_Type_III,UCI_Obesity_2019
+Female,25,19-29,166.9,112.555456,40.43,Obesitas II,0.115369,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.9,112.249699,40.3,Obesitas II,0.043101,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,166.2,112.098616,40.6,Obesitas II,0.259424,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.3,111.821817,41.91,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.3,111.863186,41.95,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,163.4,111.878132,41.91,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.3,111.939983,41.45,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.1,111.555967,41.45,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.6,111.357062,42.09,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.6,111.922491,41.31,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,164.4,111.884535,41.4,Obesitas II,0.0,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,161.8,104.950776,40.1,Obesitas II,0.001272,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.6,104.879602,39.65,Obesitas II,0.07089,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.7,105.037203,39.7,Obesitas II,0.008013,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,160.6,104.954291,40.67,Obesitas II,0.063383,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.9,108.090006,40.74,Obesitas II,0.085119,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.8,107.378702,40.5,Obesitas II,0.025787,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.8,107.218949,40.43,Obesitas II,0.067329,Obesity_Type_III,UCI_Obesity_2019
+Female,26,19-29,162.8,108.10736,40.8,Obesitas II,0.045246,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,172.4,133.033523,44.75,Obesitas II,1.537639,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,173.2,133.043941,44.33,Obesitas II,1.510398,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,172.7,131.335786,44.04,Obesitas II,1.728332,Obesity_Type_III,UCI_Obesity_2019
+Female,21,19-29,171.1,131.408528,44.9,Obesitas II,1.676269,Obesity_Type_III,UCI_Obesity_2019
+Female,22,19-29,174.9,133.742943,43.74,Obesitas II,1.34139,Obesity_Type_III,UCI_Obesity_2019
+Female,23,19-29,175.2,133.689352,43.54,Obesitas II,1.414209,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,173.9,133.346641,44.07,Obesitas II,1.139107,Obesity_Type_III,UCI_Obesity_2019
+Female,24,19-29,173.9,133.472641,44.14,Obesitas II,1.026452,Obesity_Type_III,UCI_Obesity_2019
