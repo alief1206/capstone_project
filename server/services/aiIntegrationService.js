@@ -382,10 +382,22 @@ const recommendationPool = (intent) => {
         .slice(0, 5);
 };
 
-const formatFoodRows = (rows = []) => rows
-    .slice(0, 4)
-    .map((row) => `${row.name}: ${formatNumber(row.calories)} kkal, protein ${formatNumber(row.protein)} g, karbo ${formatNumber(row.carbs)} g, lemak ${formatNumber(row.fat)} g, serat ${formatNumber(row.fiber)} g`)
+const formatFoodRows = (rows = [], nutrient = 'calories') => {
+    const labels = {
+        protein: (row) => `protein ${formatNumber(row.protein)} g`,
+        fiber: (row) => `serat ${formatNumber(row.fiber)} g`,
+        low_calorie: (row) => `${formatNumber(row.calories)} kkal`,
+        carbs: (row) => `karbohidrat ${formatNumber(row.carbs)} g`,
+        fat: (row) => `lemak ${formatNumber(row.fat)} g`,
+        calories: (row) => `${formatNumber(row.calories)} kkal`
+    };
+
+    const formatter = labels[nutrient] || labels.calories;
+    return rows
+        .slice(0, 4)
+        .map((row) => `${row.name}: ${formatter(row)}`)
     .join('; ');
+};
 
 const summarizeRecentLogs = (recentLogs = []) => {
     const totals = recentLogs.reduce((acc, log) => ({
@@ -397,6 +409,18 @@ const summarizeRecentLogs = (recentLogs = []) => {
     }), { calories: 0, protein: 0, carbs: 0, fat: 0, count: 0 });
 
     return `Dari ${totals.count} catatan terakhir: ${formatNumber(totals.calories)} kkal, protein ${formatNumber(totals.protein)} g, karbo ${formatNumber(totals.carbs)} g, dan lemak ${formatNumber(totals.fat)} g.`;
+};
+
+const summarizeInsightContext = (context = {}) => {
+    if (!context || !Array.isArray(context.nutrients)) return '';
+    const kurang = context.nutrients
+        .filter((item) => item.status === 'down')
+        .map((item) => `${item.label} ${item.value}/${item.target}`)
+        .join(', ');
+    const total = context.dailySummary?.totalCalories || context.totalCalories || 0;
+    return kurang
+        ? `Ringkasan Insight ${context.date || 'hari ini'}: total ${total} kkal. Yang perlu diperhatikan: ${kurang}.`
+        : `Ringkasan Insight ${context.date || 'hari ini'}: total ${total} kkal dan asupan utama sudah mendekati target.`;
 };
 
 const buildGoalAdvice = (user = {}, row = null) => {
@@ -414,10 +438,21 @@ const buildGoalAdvice = (user = {}, row = null) => {
     return `Untuk target ${goalLabel}, makanan ini bisa dipakai selama total harianmu tetap seimbang.`;
 };
 
-export const askDataScienceNutritionAssistant = ({ message, user, recentLogs = [] }) => {
+export const askDataScienceNutritionAssistant = ({ message, user, recentLogs = [], context = null, sourceAction = '' }) => {
     const intent = detectChatIntent(message);
     const datasetMatch = findNutritionFromDataset(message);
     const hasDiary = recentLogs.length > 0;
+    const insightSummary = summarizeInsightContext(context);
+
+    if (sourceAction === 'today_evaluation') {
+        return insightSummary
+            ? `${insightSummary} Balas dengan makanan yang kamu rencanakan berikutnya, nanti saya bantu cek nutrisi mana yang masih kurang.`
+            : 'Ceritakan makanan yang sudah kamu konsumsi hari ini, nanti saya bantu evaluasi nutrisi yang masih kurang.';
+    }
+
+    if (sourceAction === 'insight_recommendation' && context?.recommendationTitle) {
+        return `${context.recommendationTitle}: ${context.recommendationDesc || 'pilih makanan yang sesuai kebutuhanmu.'} ${insightSummary}`;
+    }
 
     if (intent === 'summary') {
         return hasDiary
@@ -441,7 +476,17 @@ export const askDataScienceNutritionAssistant = ({ message, user, recentLogs = [
             recommendation: `Rekomendasi untuk target ${getGoalLabel(user?.goal)}:`
         }[intent];
 
-        return `${intro} ${formatFoodRows(rows)}. ${hasDiary ? summarizeRecentLogs(recentLogs) : 'Catat pilihanmu di Diary agar ringkasan hari ini ikut terhitung.'}`;
+        const nutrientKey = {
+            protein: 'protein',
+            fiber: 'fiber',
+            low_calorie: 'low_calorie',
+            carbs: 'carbs',
+            fat: 'fat',
+            budget: 'calories',
+            recommendation: 'calories'
+        }[intent];
+
+        return `${intro} ${formatFoodRows(rows, nutrientKey)}.`;
     }
 
     if (datasetMatch) {

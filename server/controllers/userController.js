@@ -3,6 +3,12 @@ const { PrismaClient } = pkg;
 
 import Joi from 'joi';
 import { predictNutritionTarget } from '../services/aiIntegrationService.js';
+import {
+    buildDailyInsightSnapshot,
+    buildWeeklyProgressSnapshot,
+    saveSummarySnapshot,
+    summarizeWeightLogs
+} from '../services/summarySnapshotService.js';
 
 const prisma = new PrismaClient();
 
@@ -47,35 +53,6 @@ const getRangeStart = (range = 'weekly') => {
     }
     start.setDate(start.getDate() - 6);
     return start;
-};
-
-const summarizeWeights = (logs = [], range = 'weekly') => {
-    if (!logs.length) {
-        return {
-            range,
-            latestWeight: null,
-            delta: 0,
-            averageWeight: 0,
-            minWeight: 0,
-            maxWeight: 0,
-            entries: 0
-        };
-    }
-
-    const ordered = [...logs].sort((a, b) => new Date(a.logDate) - new Date(b.logDate));
-    const weights = ordered.map((log) => Number(log.weight || 0));
-    const latest = ordered[ordered.length - 1];
-    const previous = ordered.length > 1 ? ordered[ordered.length - 2] : latest;
-
-    return {
-        range,
-        latestWeight: latest.weight,
-        delta: Number((latest.weight - previous.weight).toFixed(1)),
-        averageWeight: Number((weights.reduce((sum, value) => sum + value, 0) / weights.length).toFixed(1)),
-        minWeight: Math.min(...weights),
-        maxWeight: Math.max(...weights),
-        entries: logs.length
-    };
 };
 
 export const getMe = async (req, res) => {
@@ -149,7 +126,30 @@ export const updatePhysicalData = async (req, res) => {
         });
 
         const aiTarget = await predictNutritionTarget(updatedUser);
-        res.status(200).json({ message: "Data fisik berhasil divalidasi dan diperbarui!", data: serializeUser(updatedUser), aiTarget });
+        const [weeklyProgress, dailyInsight] = await Promise.all([
+            buildWeeklyProgressSnapshot({ userId, selectedDate: new Date() }),
+            buildDailyInsightSnapshot({ userId, selectedDate: new Date() })
+        ]);
+        const goalTargetSnapshot = await saveSummarySnapshot({
+            userId,
+            type: 'GOAL_TARGET_CONTEXT',
+            summaryDate: new Date(),
+            data: {
+                profile: serializeUser(updatedUser),
+                aiTarget,
+                weeklyProgress,
+                dailyInsight
+            }
+        });
+
+        res.status(200).json({
+            message: "Data fisik berhasil divalidasi dan diperbarui!",
+            data: serializeUser(updatedUser),
+            aiTarget,
+            savedSnapshot: {
+                goalTargetContextId: goalTargetSnapshot.id
+            }
+        });
     } catch (err) {
         res.status(500).json({ message: "Gagal memperbarui data fisik", error: err.message });
     }
@@ -201,11 +201,32 @@ export const getWeightTrend = async (req, res) => {
             orderBy: { logDate: 'asc' }
         });
 
+        const weeklySummary = summarizeWeightLogs(logs.filter((log) => log.logDate >= getRangeStart('weekly')), 'weekly');
+        const monthlySummary = summarizeWeightLogs(logs.filter((log) => log.logDate >= getRangeStart('monthly')), 'monthly');
+
+        if (range === 'weekly') {
+            await saveSummarySnapshot({
+                userId,
+                type: 'WEEKLY_PROGRESS',
+                summaryDate: new Date(),
+                data: {
+                    dateFrom: getRangeStart('weekly').toISOString().slice(0, 10),
+                    dateTo: startOfDay().toISOString().slice(0, 10),
+                    weightSummary: weeklySummary,
+                    weightLogs: logs.map((log) => ({
+                        id: log.id,
+                        weight: log.weight,
+                        logDate: log.logDate
+                    }))
+                }
+            });
+        }
+
         res.status(200).json({
             message: "Trend berat badan berhasil diambil",
-            summary: summarizeWeights(logs, range),
-            weeklySummary: summarizeWeights(logs.filter((log) => log.logDate >= getRangeStart('weekly')), 'weekly'),
-            monthlySummary: summarizeWeights(logs.filter((log) => log.logDate >= getRangeStart('monthly')), 'monthly'),
+            summary: summarizeWeightLogs(logs, range),
+            weeklySummary,
+            monthlySummary,
             data: logs
         });
     } catch (err) {

@@ -6,6 +6,8 @@ const BarcodeScannerScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const currentGoal = location.state?.goal || 'turunkan';
+    const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
+    const selectedLogDate = location.state?.logDate || new Date().toISOString();
 
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
@@ -46,7 +48,7 @@ const BarcodeScannerScreen = () => {
                     <div 
                         onClick={() => {
                             alert("Fitur pemindaian belum tersedia. Kamu akan diarahkan ke halaman penambahan makanan secara manual.");
-                            navigate('/diary', { state: { goal: currentGoal } });
+                            navigate('/diary', { state: { goal: currentGoal, email: userEmail } });
                         }}
                         className="w-[72px] h-[72px] rounded-full border-4 border-white flex justify-center items-center p-1 cursor-pointer"
                     >
@@ -56,7 +58,7 @@ const BarcodeScannerScreen = () => {
                     <p className="text-white text-[13px] font-medium flex items-center gap-2">
                         Tidak terbaca ? 
                         <span 
-                            onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal } })} 
+                            onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal, email: userEmail, logDate: selectedLogDate } })} 
                             className="px-4 py-1.5 border border-[#14AE5C] rounded-full text-[#14AE5C] font-bold cursor-pointer hover:bg-[#14AE5C]/20 transition-colors"
                         >
                             Ketik Manual

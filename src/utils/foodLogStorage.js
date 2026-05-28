@@ -58,7 +58,8 @@ export const saveFoodLogs = (email = '', logs = []) => {
 
 export const addFoodLog = (email = '', food) => {
     const logs = getFoodLogs(email);
-    saveFoodLogs(email, [normalizeFoodLogForStorage({ ...food, id: food.id || Date.now(), createdAt: food.createdAt || new Date().toISOString() }), ...logs]);
+    const selectedDate = food.logDate || food.createdAt || new Date().toISOString();
+    saveFoodLogs(email, [normalizeFoodLogForStorage({ ...food, id: food.id || Date.now(), logDate: selectedDate, createdAt: food.createdAt || selectedDate }), ...logs]);
 };
 
 export const removeFoodLog = (email = '', foodId) => {
@@ -146,7 +147,8 @@ export const normalizeFoodLogForStorage = (log = {}) => {
         color: log.color || visual.color,
         bg: log.bg || visual.bg,
         aiAnalysis: log.aiAnalysis || log.analysis || '',
-        createdAt: log.createdAt || new Date().toISOString()
+        logDate: log.logDate || log.createdAt || new Date().toISOString(),
+        createdAt: log.createdAt || log.logDate || new Date().toISOString()
     };
 };
 
@@ -188,19 +190,19 @@ export const isSameCalendarDay = (dateA, dateB = new Date()) => {
 };
 
 export const getFoodLogsByDate = (email = '', date = new Date()) => {
-    return getFoodLogs(email).filter((food) => isSameCalendarDay(food.createdAt, date));
+    return getFoodLogs(email).filter((food) => isSameCalendarDay(food.logDate || food.createdAt, date));
 };
 
 export const getFoodLogsInLastDays = (email = '', days = 7) => {
     const start = new Date();
     start.setHours(0, 0, 0, 0);
     start.setDate(start.getDate() - (days - 1));
-    return getFoodLogs(email).filter((food) => new Date(food.createdAt) >= start);
+    return getFoodLogs(email).filter((food) => new Date(food.logDate || food.createdAt) >= start);
 };
 
 export const getDailyCalorieBuckets = (logs = []) => {
     const buckets = logs.reduce((acc, food) => {
-        const key = new Date(food.createdAt).toISOString().slice(0, 10);
+        const key = new Date(food.logDate || food.createdAt).toISOString().slice(0, 10);
         acc[key] = (acc[key] || 0) + Number(food.calories || 0);
         return acc;
     }, {});

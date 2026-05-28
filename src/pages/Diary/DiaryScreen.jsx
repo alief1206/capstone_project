@@ -12,7 +12,7 @@ const DiaryScreen = () => {
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
     
-    const [currentDate, setCurrentDate] = useState(new Date());
+    const [currentDate, setCurrentDate] = useState(() => location.state?.selectedDate ? new Date(location.state.selectedDate) : new Date());
     const [showCalendar, setShowCalendar] = useState(false);
     const [foodLogs, setFoodLogs] = useState(() => getFoodLogsByDate(userEmail, currentDate));
 
@@ -206,7 +206,7 @@ const DiaryScreen = () => {
                                             </div>
                                         )}
                                         <button 
-                                            onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal, email: userEmail } })} 
+                                            onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal, email: userEmail, logDate: currentDate.toISOString() } })} 
                                             className="w-full h-[46px] rounded-xl border border-[#14AE5C] flex justify-center items-center gap-2 text-[#14AE5C] font-bold text-[14px] hover:bg-[#F0FDF4] mt-2"
                                         >
                                             <Icon icon="mdi:plus" className="text-lg" /> Tambah Makanan
@@ -264,11 +264,11 @@ const DiaryScreen = () => {
                     <div className="absolute inset-0 bg-black/50 z-[60] flex flex-col justify-end items-center pb-[120px]" onClick={() => setIsActionMenuOpen(false)}>
                         <button onClick={() => setIsActionMenuOpen(false)} className="absolute top-10 left-6 text-white text-3xl hover:scale-110"><Icon icon="mdi:close" /></button>
                         <div className="w-[350px] flex justify-between gap-4" onClick={(e) => e.stopPropagation()}>
-                            <div onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal, email: userEmail } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50">
+                            <div onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal, email: userEmail, logDate: currentDate.toISOString() } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50">
                                 <div className="w-[50px] h-[50px] bg-[#14AE5C] rounded-full flex justify-center items-center text-white text-2xl shadow-md"><Icon icon="mdi:magnify" /></div>
                                 <span className="text-[13px] font-bold text-black">Catat makanan</span>
                             </div>
-                            <div onClick={() => navigate('/scan-barcode', { state: { goal: currentGoal, email: userEmail } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50">
+                            <div onClick={() => navigate('/scan-barcode', { state: { goal: currentGoal, email: userEmail, logDate: currentDate.toISOString() } })} className="flex-1 bg-white rounded-[20px] p-6 flex flex-col justify-center items-center gap-4 cursor-pointer hover:border-[#14AE5C] hover:bg-[#F0FDF4]/50 active:border-[#14AE5C] active:bg-[#F0FDF4]/50">
                                 <div className="w-[50px] h-[50px] bg-[#14AE5C] rounded-full flex justify-center items-center text-white text-2xl shadow-md"><Icon icon="mdi:barcode-scan" /></div>
                                 <span className="text-[13px] font-bold text-black text-center leading-tight">Pemindai Kode Batang</span>
                             </div>

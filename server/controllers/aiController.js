@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export const chatWithNutritionAssistant = async (req, res) => {
     try {
-        const { message } = req.body;
+        const { message, context, sourceAction } = req.body;
         if (!message || !String(message).trim()) {
             return res.status(400).json({ message: "Pertanyaan wajib diisi!" });
         }
@@ -23,7 +23,9 @@ export const chatWithNutritionAssistant = async (req, res) => {
         const reply = askDataScienceNutritionAssistant({
             message: String(message).trim(),
             user,
-            recentLogs
+            recentLogs,
+            context,
+            sourceAction
         });
 
         res.status(200).json({ message: "Jawaban AI berhasil dibuat", data: { reply } });

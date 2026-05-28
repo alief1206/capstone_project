@@ -20,11 +20,16 @@ export const createFoodLog = async (foodPayload) => {
     };
 };
 
+export const fetchNutritionSummary = async (date = new Date()) => {
+    const dateKey = new Date(date).toISOString().slice(0, 10);
+    return apiRequest(`/food-logs/summary-analytics?date=${encodeURIComponent(dateKey)}`);
+};
+
 export const syncFoodLogs = async (email = '') => {
     const response = await apiRequest('/food-logs/log-food');
     const logs = (response.data || []).map((log) => normalizeFoodLogForStorage({ ...log, serverId: log.id }));
-    const merged = mergeFoodLogs(email, logs);
-    return merged;
+    saveFoodLogs(email, logs);
+    return logs;
 };
 
 export const deleteFoodLog = async (foodId) => {

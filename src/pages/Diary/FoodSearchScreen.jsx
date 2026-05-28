@@ -51,6 +51,7 @@ const FoodSearchScreen = () => {
     const location = useLocation();
     const selectedGoal = location.state?.goal || 'turunkan';
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
+    const selectedLogDate = location.state?.logDate || new Date().toISOString();
     const [searchQuery, setSearchQuery] = useState('');
     const [refreshKey, setRefreshKey] = useState(0);
     const [activeMealMenu, setActiveMealMenu] = useState(null);
@@ -139,7 +140,8 @@ const FoodSearchScreen = () => {
         const foodPayload = {
             foodName: item.name,
             calories,
-            mealType: meal
+            mealType: meal,
+            logDate: selectedLogDate
         };
 
         const token = localStorage.getItem('authToken');
@@ -169,9 +171,10 @@ const FoodSearchScreen = () => {
             mealId: mealIds[meal],
             icon: item.icon,
             color: item.color,
-            bg: item.bg
+            bg: item.bg,
+            logDate: selectedLogDate
         });
-        navigate('/diary', { state: { goal: selectedGoal, email: userEmail } });
+        navigate('/diary', { state: { goal: selectedGoal, email: userEmail, selectedDate: selectedLogDate } });
     };
 
     const renderFoodRow = (item, keyPrefix) => {
@@ -242,7 +245,7 @@ const FoodSearchScreen = () => {
                             className="w-full h-full border-[1.5px] border-gray-200 rounded-[16px] pl-12 pr-14 font-medium outline-none focus:border-[#14AE5C] transition-all text-[14px]"
                         />
                         <button 
-                            onClick={() => navigate('/scan-barcode', { state: { goal: selectedGoal, email: userEmail } })}
+                            onClick={() => navigate('/scan-barcode', { state: { goal: selectedGoal, email: userEmail, logDate: selectedLogDate } })}
                             className="absolute right-2 top-1/2 -translate-y-1/2 w-[34px] h-[34px] bg-[#14AE5C] rounded-[10px] flex justify-center items-center text-white text-lg hover:bg-[#0f8b48] transition-colors"
                         >
                             <Icon icon="mdi:barcode-scan" />
@@ -267,7 +270,7 @@ const FoodSearchScreen = () => {
                     </div>
 
                     <div className="flex justify-between items-center mb-3">
-                        <h3 className="text-[15px] font-bold text-black">{searchQuery.trim() ? 'Hasil Pencarian' : 'Saran Data-Science'}</h3>
+                        <h3 className="text-[15px] font-bold text-black">{searchQuery.trim() ? 'Hasil Pencarian' : 'Saran AI'}</h3>
                         <button onClick={handleRefresh} className="text-[#14AE5C] text-lg hover:rotate-180 transition-transform duration-300">
                             <Icon icon="mdi:refresh" />
                         </button>
@@ -279,7 +282,7 @@ const FoodSearchScreen = () => {
                                 <img src={robotImg} alt="AI Rekomendasi" className="w-[70px] h-[58px] object-contain flex-shrink-0" />
                                 <div className="flex flex-col flex-1 min-w-0">
                                     <div className="flex items-center justify-between gap-2 mb-2">
-                                        <h4 className="text-[12px] font-bold text-[#14AE5C]">Rekomendasi dari Data TKPI</h4>
+                                        <h4 className="text-[12px] font-bold text-[#14AE5C]">Rekomendasi dari AI</h4>
                                         <div className="flex items-center gap-1 flex-shrink-0">
                                             <button
                                                 type="button"

@@ -7,12 +7,13 @@ import robotImg from '../../assets/images/robot.png';
 import { getFoodLogsByDate, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
 import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
 import { syncFoodLogs } from '../../services/meals';
+import { fetchCurrentUser } from '../../services/auth';
 
 const DashboardScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
-    const userProfile = getUserProfile(userEmail);
+    const [userProfile, setUserProfile] = useState(() => getUserProfile(userEmail));
     const currentGoal = normalizeGoal(location.state?.goal || userProfile.goal || 'turunkan');
     const userName = userEmail ? userEmail.split('@')[0] : 'Sobat Sehat';
     const currentPath = location.pathname;
@@ -32,20 +33,26 @@ const DashboardScreen = () => {
         syncFoodLogs(userEmail)
             .then(() => setFoodLogs(getFoodLogsByDate(userEmail)))
             .catch((error) => console.warn('Gagal sinkron diary:', error.message));
+
+        fetchCurrentUser()
+            .then((profile) => setUserProfile(profile || {}))
+            .catch(() => setUserProfile({}));
     }, [userEmail]);
 
     const totalCalories = getTotalCalories(foodLogs);
     const macroTotals = getMacroTotals(foodLogs);
     const targets = calculateNutritionTargets(userProfile, currentGoal);
     const calorieTarget = targets.calories;
-    const caloriePercent = Math.round((totalCalories / calorieTarget) * 100);
+    const caloriePercent = calorieTarget ? Math.round((totalCalories / calorieTarget) * 100) : 0;
     const recentFoods = foodLogs.slice(0, 4);
     const getMacroPercent = (value, max) => `${Math.min(Math.round((value / Math.max(max, 1)) * 100), 100)}%`;
     const insightText = foodLogs.length === 0
         ? 'Belum ada makanan di diary hari ini. Tambahkan makanan agar ringkasan bisa dihitung.'
         : totalCalories > calorieTarget
             ? `Kalori dari diary sudah melewati target ${calorieTarget.toLocaleString('id-ID')} kkal.`
-            : `Kalori dari diary masih tersisa ${(calorieTarget - totalCalories).toLocaleString('id-ID')} kkal dari target harianmu.`;
+            : calorieTarget
+                ? `Kalori dari diary masih tersisa ${(calorieTarget - totalCalories).toLocaleString('id-ID')} kkal dari target harianmu.`
+                : 'Lengkapi profil agar target harian bisa dihitung dari data tubuhmu.';
     const radius = 26;
     const circumference = 2 * Math.PI * radius;
     const boundedPercent = Math.min(caloriePercent, 100);
@@ -103,7 +110,7 @@ const DashboardScreen = () => {
                         </div>
                         <div className="mt-4">
                             <div className="w-full h-[8px] bg-white/30 rounded-full overflow-hidden"><div className="h-full bg-white rounded-full" style={{ width: `${boundedPercent}%` }}></div></div>
-                            <p className="text-[11px] font-medium mt-2 opacity-90">dari {calorieTarget.toLocaleString('id-ID')} kkal target</p>
+                            <p className="text-[11px] font-medium mt-2 opacity-90">dari {calorieTarget ? calorieTarget.toLocaleString('id-ID') : '-'} kkal target</p>
                         </div>
                     </div>
 

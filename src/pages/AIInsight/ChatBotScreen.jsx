@@ -10,6 +10,8 @@ const ChatBotScreen = () => {
     const currentGoal = location.state?.goal || 'turunkan';
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
     const userName = userEmail ? userEmail.split('@')[0] : 'Sobat Sehat';
+    const initialPrompt = location.state?.initialPrompt || '';
+    const initialContext = location.state?.initialContext || null;
     
     const [messages, setMessages] = useState([
         { id: 1, text: `Halo ${userName}! Saya EatSistent AI. Kamu butuh rekomendasi nutrisi spesifik apa hari ini?`, sender: 'bot' }
@@ -17,6 +19,7 @@ const ChatBotScreen = () => {
     const [inputText, setInputText] = useState("");
     const [isSending, setIsSending] = useState(false);
     const messagesEndRef = useRef(null);
+    const hasSentInitialPrompt = useRef(false);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -33,7 +36,7 @@ const ChatBotScreen = () => {
         { label: "Menu Murah", icon: "mdi:wallet-outline", color: "text-purple-500", bg: "bg-purple-50" }
     ];
 
-    const handleSend = async (text) => {
+    const handleSend = async (text, context = null) => {
         const messageText = text || inputText;
         if (!messageText.trim() || isSending) return;
 
@@ -43,7 +46,7 @@ const ChatBotScreen = () => {
         setIsSending(true);
 
         try {
-            const botReply = await askNutritionAssistant(messageText);
+            const botReply = await askNutritionAssistant(messageText, context);
             setMessages(prev => [...prev, { id: Date.now() + 1, text: botReply, sender: 'bot' }]);
         } catch (error) {
             setMessages(prev => [...prev, {
@@ -55,6 +58,12 @@ const ChatBotScreen = () => {
             setIsSending(false);
         }
     };
+
+    useEffect(() => {
+        if (!initialPrompt || hasSentInitialPrompt.current) return;
+        hasSentInitialPrompt.current = true;
+        handleSend(initialPrompt, initialContext);
+    }, [initialPrompt, initialContext]);
 
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
