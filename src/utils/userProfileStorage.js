@@ -68,6 +68,10 @@ export const getGoalDescription = (goal = 'turunkan') => {
 
 export const calculateNutritionTargets = (profile = {}, goalFallback = 'turunkan') => {
     const goal = normalizeGoal(profile.goal || goalFallback);
+    if (!profile.age || !profile.height || !(profile.currentWeight || profile.weight)) {
+        return { goal, tdee: 0, calories: 0, protein: 0, carbs: 0, fat: 0 };
+    }
+
     const gender = profile.gender || 'pria';
     const age = Number(profile.age || 25);
     const height = Number(profile.height || 165);
@@ -77,7 +81,10 @@ export const calculateNutritionTargets = (profile = {}, goalFallback = 'turunkan
         ? (10 * weight) + (6.25 * height) - (5 * age) - 161
         : (10 * weight) + (6.25 * height) - (5 * age) + 5;
     const tdee = Math.round(bmr * factor);
-    const calorieTarget = Math.max(1200, Math.round(tdee + (goal === 'tambah' ? 300 : goal === 'turunkan' ? -500 : 0)));
+    const aiCalories = Number(profile.aiTarget?.target_kalori || profile.aiTarget?.calories || 0);
+    const calorieTarget = aiCalories > 0
+        ? Math.round(aiCalories)
+        : Math.max(1200, Math.round(tdee + (goal === 'tambah' ? 300 : goal === 'turunkan' ? -500 : 0)));
     const protein = Math.round(weight * (goal === 'tambah' ? 1.8 : 1.6));
     const fat = Math.round((calorieTarget * 0.25) / 9);
     const carbs = Math.max(0, Math.round((calorieTarget - (protein * 4) - (fat * 9)) / 4));

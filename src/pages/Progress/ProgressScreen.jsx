@@ -4,13 +4,14 @@ import { Icon } from '@iconify/react';
 import { getFoodLogsInLastDays, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
 import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
 import { getWeightLogs, getWeightLogsInRange, mergeWeightLogs, summarizeWeightLogs, upsertWeightLog } from '../../utils/weightLogStorage';
-import { createWeightLog, fetchWeightTrend } from '../../services/auth';
+import { createWeightLog, fetchCurrentUser, fetchWeightTrend } from '../../services/auth';
+import { fetchNutritionSummary, syncFoodLogs } from '../../services/meals';
 
 const ProgressScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
-    const userProfile = getUserProfile(userEmail);
+    const [userProfile, setUserProfile] = useState(() => getUserProfile(userEmail));
     const currentGoal = normalizeGoal(location.state?.goal || userProfile.goal || 'turunkan');
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
@@ -23,6 +24,7 @@ const ProgressScreen = () => {
     const timeRanges = ['7 Hari Terakhir', '14 Hari Terakhir', '30 Hari Terakhir', 'Bulan Ini'];
     const [dailyWeight, setDailyWeight] = useState('');
     const [weightLogs, setWeightLogs] = useState(() => getWeightLogs(userEmail));
+    const [serverSummary, setServerSummary] = useState(null);
 
     const daysByRange = {
         '7 Hari Terakhir': 7,
@@ -48,22 +50,35 @@ const ProgressScreen = () => {
 
     useEffect(() => {
         if (!localStorage.getItem('authToken')) return;
-        fetchWeightTrend('monthly')
-            .then((response) => setWeightLogs(mergeWeightLogs(userEmail, response.data || [])))
+        Promise.all([fetchWeightTrend('monthly'), syncFoodLogs(userEmail), fetchNutritionSummary(currentDate)])
+            .then(([weightResponse, , nutritionSummary]) => {
+                setWeightLogs(mergeWeightLogs(userEmail, weightResponse.data || []));
+                setServerSummary(nutritionSummary);
+            })
             .catch((error) => console.warn('Gagal sinkron berat badan:', error.message));
-    }, [userEmail]);
+
+        fetchCurrentUser()
+            .then((profile) => setUserProfile(profile || {}))
+            .catch(() => setUserProfile({}));
+    }, [userEmail, currentDate]);
 
     const selectedDays = daysByRange[timeRange] || 7;
     const foodLogs = getFoodLogsInLastDays(userEmail, selectedDays);
-    const totalCalories = getTotalCalories(foodLogs);
-    const macroTotals = getMacroTotals(foodLogs);
-    const averageCalories = foodLogs.length > 0 ? Math.round(totalCalories / selectedDays) : 0;
-    const highestCalories = foodLogs.length > 0 ? Math.max(...foodLogs.map((food) => Number(food.calories || 0))) : 0;
-    const lowestCalories = foodLogs.length > 0 ? Math.min(...foodLogs.map((food) => Number(food.calories || 0))) : 0;
+    const useWeeklyServerSummary = selectedDays === 7 && serverSummary?.weeklySummary;
+    const totalCalories = useWeeklyServerSummary ? serverSummary.weeklySummary.totalCalories : getTotalCalories(foodLogs);
+    const macroTotals = useWeeklyServerSummary ? serverSummary.weeklySummary : getMacroTotals(foodLogs);
+    const averageCalories = useWeeklyServerSummary ? Math.round(serverSummary.weeklySummary.averageCaloriesPerDay || 0) : (foodLogs.length > 0 ? Math.round(totalCalories / selectedDays) : 0);
+    const dailyCalories = useWeeklyServerSummary ? (serverSummary.weeklySummary.chartData || []).map((day) => Number(day.totalCalories || 0)) : foodLogs.map((food) => Number(food.calories || 0));
+    const highestCalories = dailyCalories.length > 0 ? Math.max(...dailyCalories) : 0;
+    const lowestCalories = dailyCalories.length > 0 ? Math.min(...dailyCalories) : 0;
     const targets = calculateNutritionTargets(userProfile, currentGoal);
     const targetCalories = targets.calories;
-    const averageProtein = foodLogs.length > 0 ? Math.round(macroTotals.protein / selectedDays) : 0;
-    const activeDateKeys = new Set(getFoodLogsInLastDays(userEmail, 7).map((food) => new Date(food.createdAt).toDateString()));
+    const averageProtein = (useWeeklyServerSummary || foodLogs.length > 0) ? Math.round(Number(macroTotals.protein || 0) / selectedDays) : 0;
+    const activeDateKeys = new Set(
+        useWeeklyServerSummary
+            ? (serverSummary.weeklySummary.chartData || []).map((day) => new Date(day.date).toDateString())
+            : getFoodLogsInLastDays(userEmail, 7).map((food) => new Date(food.logDate || food.createdAt).toDateString())
+    );
     const lastSevenDays = Array.from({ length: 7 }, (_, index) => {
         const date = new Date();
         date.setDate(date.getDate() - (6 - index));
@@ -273,7 +288,7 @@ const ProgressScreen = () => {
                                 <span className="text-[20px] font-bold text-black">{averageCalories}</span>
                                 <span className="text-[11px] font-semibold text-gray-600">kkal</span>
                             </div>
-                            <p className="text-[10px] font-medium text-gray-400">dari target {targetCalories.toLocaleString('id-ID')}</p>
+                            <p className="text-[10px] font-medium text-gray-400">dari target {targetCalories ? targetCalories.toLocaleString('id-ID') : '-'}</p>
                         </div>
 
                         <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">

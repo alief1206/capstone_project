@@ -1,12 +1,12 @@
 import pkg from '@prisma/client';
 const { PrismaClient } = pkg;
-import { askGeminiNutritionAssistant } from '../services/aiIntegrationService.js';
+import { askDataScienceNutritionAssistant } from '../services/aiIntegrationService.js';
 
 const prisma = new PrismaClient();
 
 export const chatWithNutritionAssistant = async (req, res) => {
     try {
-        const { message } = req.body;
+        const { message, context, sourceAction } = req.body;
         if (!message || !String(message).trim()) {
             return res.status(400).json({ message: "Pertanyaan wajib diisi!" });
         }
@@ -20,14 +20,16 @@ export const chatWithNutritionAssistant = async (req, res) => {
             })
         ]);
 
-        const reply = await askGeminiNutritionAssistant({
+        const reply = askDataScienceNutritionAssistant({
             message: String(message).trim(),
             user,
-            recentLogs
+            recentLogs,
+            context,
+            sourceAction
         });
 
         res.status(200).json({ message: "Jawaban AI berhasil dibuat", data: { reply } });
     } catch (err) {
-        res.status(500).json({ message: "Gagal meminta jawaban Gemini", error: err.message });
+        res.status(500).json({ message: "Gagal membuat jawaban dari basis data nutrisi", error: err.message });
     }
 };

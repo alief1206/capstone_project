@@ -2,7 +2,7 @@ import { apiRequest } from './api';
 
 export const fetchCurrentUser = async () => {
     const response = await apiRequest('/users/me');
-    return response.data;
+    return { ...response.data, aiTarget: response.aiTarget || null };
 };
 
 export const updatePhysicalProfile = async (profile) => {
@@ -11,7 +11,7 @@ export const updatePhysicalProfile = async (profile) => {
         body: profile
     });
 
-    return response.data;
+    return { ...response.data, aiTarget: response.aiTarget || null };
 };
 
 export const createWeightLog = async ({ weight, logDate }) => {

@@ -5,13 +5,14 @@ import robotImg from '../../assets/images/robot.png';
 import foodImg from '../../assets/images/makanan.png';
 import { getFoodLogsByDate, getMacroSources, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
 import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
-import { syncFoodLogs } from '../../services/meals';
+import { fetchNutritionSummary, syncFoodLogs } from '../../services/meals';
+import { fetchCurrentUser } from '../../services/auth';
 
 const InsightScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
-    const userProfile = getUserProfile(userEmail);
+    const [userProfile, setUserProfile] = useState(() => getUserProfile(userEmail));
     const currentGoal = normalizeGoal(location.state?.goal || userProfile.goal || 'turunkan');
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
@@ -23,6 +24,7 @@ const InsightScreen = () => {
     const [displayedEval, setDisplayedEval] = useState("");
     const [foodOptionIndex, setFoodOptionIndex] = useState(0);
     const [foodLogs, setFoodLogs] = useState(() => getFoodLogsByDate(userEmail, currentDate));
+    const [serverSummary, setServerSummary] = useState(null);
 
     const formatDateDisplay = (date) => {
         const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
@@ -66,13 +68,25 @@ const InsightScreen = () => {
 
     useEffect(() => {
         if (!localStorage.getItem('authToken')) return;
-        syncFoodLogs(userEmail)
-            .then(() => setFoodLogs(getFoodLogsByDate(userEmail, currentDate)))
+        Promise.all([syncFoodLogs(userEmail), fetchNutritionSummary(currentDate)])
+            .then(([, summary]) => {
+                setServerSummary(summary);
+                setFoodLogs(getFoodLogsByDate(userEmail, currentDate));
+            })
             .catch((error) => console.warn('Gagal sinkron insight:', error.message));
+
+        fetchCurrentUser()
+            .then((profile) => setUserProfile(profile || {}))
+            .catch(() => setUserProfile({}));
     }, [currentDate, userEmail]);
 
-    const totalCalories = getTotalCalories(foodLogs);
-    const macroTotals = getMacroTotals(foodLogs);
+    const totalCalories = serverSummary?.dailySummary?.totalCalories ?? getTotalCalories(foodLogs);
+    const macroTotals = serverSummary?.dailySummary ? {
+        protein: serverSummary.dailySummary.protein,
+        carbs: serverSummary.dailySummary.carbs,
+        fat: serverSummary.dailySummary.fat,
+        fiber: serverSummary.dailySummary.fiber
+    } : getMacroTotals(foodLogs);
     const targets = calculateNutritionTargets(userProfile, currentGoal);
     const calorieTarget = targets.calories;
     const dynamicNutrients = [
@@ -125,6 +139,41 @@ const InsightScreen = () => {
         ? 'Belum ada makanan yang dicatat hari ini. Tambahkan makanan dari Diary agar AI Insight bisa menganalisis asupanmu.'
         : `Hari ini kamu sudah mencatat ${totalCalories} kkal dari ${foodLogs.length} makanan.`;
 
+    const insightContext = {
+        sourceAction: 'insight',
+        date: currentDate.toISOString().slice(0, 10),
+        dailySummary: serverSummary?.dailySummary || { totalCalories, ...macroTotals },
+        weeklySummary: serverSummary?.weeklySummary,
+        nutrients: dynamicNutrients
+    };
+
+    const dynamicRecommendations = [
+        macroTotals.protein < targets.protein && {
+            title: 'Tambah Protein',
+            desc: 'Pilih makanan tinggi protein agar target harian lebih dekat.',
+            prompt: 'Rekomendasi tinggi protein dari ringkasan insight saya',
+            img: foodImg
+        },
+        macroTotals.fiber < 25 && {
+            title: 'Tambah Serat',
+            desc: 'Tambahkan sayur atau buah berserat untuk melengkapi asupan hari ini.',
+            prompt: 'Rekomendasi kaya serat dari ringkasan insight saya',
+            img: foodImg
+        },
+        totalCalories > calorieTarget && {
+            title: 'Jaga Kalori',
+            desc: 'Cari opsi rendah kalori untuk sisa hari ini.',
+            prompt: 'Rekomendasi rendah kalori dari ringkasan insight saya',
+            img: foodImg
+        },
+        {
+            title: 'Menu Sesuai Target',
+            desc: 'Minta AI menyusun saran berdasarkan ringkasan hari ini.',
+            prompt: 'Berikan rekomendasi berdasarkan ringkasan insight saya',
+            img: foodImg
+        }
+    ].filter(Boolean);
+
     useEffect(() => {
         let i = 0;
         setDisplayedEval("");
@@ -140,7 +189,23 @@ const InsightScreen = () => {
     }, [currentGoal, currentDate, dynamicEvalDesc]);
 
     const handleRefreshFood = () => {
-        setFoodOptionIndex((prev) => (prev + 1) % currentData.aiRecommendations.length);
+        setFoodOptionIndex((prev) => (prev + 1) % dynamicRecommendations.length);
+    };
+
+    const openChatWithContext = (payload) => {
+        navigate('/chat-bot', {
+            state: {
+                goal: currentGoal,
+                email: userEmail,
+                initialPrompt: payload.prompt,
+                initialContext: {
+                    ...insightContext,
+                    sourceAction: payload.sourceAction,
+                    recommendationTitle: payload.title,
+                    recommendationDesc: payload.desc
+                }
+            }
+        });
     };
 
     return (
@@ -162,7 +227,16 @@ const InsightScreen = () => {
                         <Icon icon="mdi:chevron-right" className="text-xl text-gray-400 cursor-pointer hover:text-[#14AE5C]" onClick={() => {const d = new Date(currentDate); d.setDate(d.getDate()+1); setCurrentDate(d);}} />
                     </div>
 
-                    <div className="bg-[#E8F5EE] rounded-[24px] p-5 mb-6 flex items-center gap-4 relative border border-[#DCFCE7]">
+                    <button
+                        type="button"
+                        onClick={() => openChatWithContext({
+                            title: 'Evaluasi Hari Ini',
+                            desc: dynamicEvalDesc,
+                            prompt: 'Evaluasi hari ini, nutrisi apa saja yang masih kurang?',
+                            sourceAction: 'today_evaluation'
+                        })}
+                        className="w-full text-left bg-[#E8F5EE] rounded-[24px] p-5 mb-6 flex items-center gap-4 relative border border-[#DCFCE7] active:scale-[0.99] transition-transform"
+                    >
                         <img src={robotImg} className="w-[80px] h-[80px] object-contain" alt="AI" />
                         <div>
                             <h3 className="text-[14px] font-bold text-black">{currentData.evalTitle}</h3>
@@ -171,7 +245,7 @@ const InsightScreen = () => {
                                 <span className="animate-pulse">|</span>
                             </p>
                         </div>
-                    </div>
+                    </button>
 
                     <div className="bg-white rounded-[24px] p-5 shadow-sm border border-gray-50 mb-6">
                         <h3 className="text-[12px] font-bold text-black uppercase tracking-wider mb-2">RINGKASAN</h3>
@@ -223,23 +297,30 @@ const InsightScreen = () => {
                                 <Icon icon="mdi:refresh" className="text-lg" />
                             </button>
                         </div>
-                        <div className="flex items-start gap-4">
+                        <button
+                            type="button"
+                            onClick={() => openChatWithContext({
+                                ...dynamicRecommendations[foodOptionIndex],
+                                sourceAction: 'insight_recommendation'
+                            })}
+                            className="w-full flex items-start gap-4 text-left active:scale-[0.99] transition-transform"
+                        >
                             <div className="flex-1">
                                 <p className="text-[12px] font-bold text-[#14AE5C] leading-relaxed">
-                                    {currentData.aiRecommendations[foodOptionIndex].title}
+                                    {dynamicRecommendations[foodOptionIndex].title}
                                 </p>
                                 <p className="text-[11px] font-medium text-gray-500 mt-1 leading-relaxed pr-2">
-                                    {currentData.aiRecommendations[foodOptionIndex].desc}
+                                    {dynamicRecommendations[foodOptionIndex].desc}
                                 </p>
                             </div>
                             <div className="w-[80px] h-[60px] rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
                                 <img 
-                                    src={currentData.aiRecommendations[foodOptionIndex].img} 
+                                    src={dynamicRecommendations[foodOptionIndex].img} 
                                     className="w-full h-full object-cover" 
                                     alt="food" 
                                 />
                             </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
 

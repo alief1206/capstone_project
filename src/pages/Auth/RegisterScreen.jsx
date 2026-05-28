@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
 import confettiImg from '../../assets/images/confetti.png';
 import { getProfileDraft, goalMap, saveUserProfile } from '../../utils/userProfileStorage';
+import { upsertWeightLog } from '../../utils/weightLogStorage';
 
 const RegisterScreen = () => {
     const navigate = useNavigate();
@@ -55,9 +56,23 @@ const RegisterScreen = () => {
                     return;
                 }
 
-                alert(`${data.message}${data.devOtp ? `\nKode OTP lokal: ${data.devOtp}` : ''}`);
-                saveUserProfile(email, { ...profileDraft, goal: selectedGoal });
-                navigate('/otp', { state: { email, goal: selectedGoal, profile: { ...profileDraft, goal: selectedGoal } } });
+                alert(data.message);
+                const userProfile = { ...profileDraft, goal: selectedGoal };
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('userEmail', data.user?.email || email);
+                saveUserProfile(data.user?.email || email, {
+                    ...userProfile,
+                    goal: selectedGoal,
+                    age: data.user?.age ?? userProfile.age,
+                    gender: data.user?.gender ?? userProfile.gender,
+                    height: data.user?.height ?? userProfile.height,
+                    currentWeight: data.user?.currentWeight ?? userProfile.currentWeight,
+                    targetWeight: data.user?.targetWeight ?? userProfile.targetWeight,
+                    activity: data.user?.activity ?? userProfile.activity,
+                    habits: data.user?.habits || userProfile.habits || []
+                });
+                if (userProfile.currentWeight) upsertWeightLog(data.user?.email || email, Number(userProfile.currentWeight));
+                navigate('/dashboard', { state: { email: data.user?.email || email, goal: selectedGoal } });
             } catch (error) {
                 alert("Gagal terhubung ke server. Pastikan server backend berjalan di port 5000.");
                 console.error(error);

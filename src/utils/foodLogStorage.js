@@ -37,6 +37,13 @@ export const parseCalories = (value) => {
     return match ? Number(match[0]) : 0;
 };
 
+export const roundTwo = (value = 0) => Math.round((Number(value || 0) + Number.EPSILON) * 100) / 100;
+
+export const formatTwoDecimals = (value = 0) => roundTwo(value).toLocaleString('id-ID', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+});
+
 export const getFoodLogs = (email = '') => {
     try {
         return JSON.parse(localStorage.getItem(getFoodLogKey(email))) || [];
@@ -51,7 +58,18 @@ export const saveFoodLogs = (email = '', logs = []) => {
 
 export const addFoodLog = (email = '', food) => {
     const logs = getFoodLogs(email);
-    saveFoodLogs(email, [normalizeFoodLogForStorage({ ...food, id: food.id || Date.now(), createdAt: food.createdAt || new Date().toISOString() }), ...logs]);
+    const selectedDate = food.logDate || food.createdAt || new Date().toISOString();
+    saveFoodLogs(email, [normalizeFoodLogForStorage({ ...food, id: food.id || Date.now(), logDate: selectedDate, createdAt: food.createdAt || selectedDate }), ...logs]);
+};
+
+export const removeFoodLog = (email = '', foodId) => {
+    const id = String(foodId);
+    const remainingLogs = getFoodLogs(email).filter((food) => (
+        String(food.id) !== id &&
+        String(food.serverId || '') !== id
+    ));
+    saveFoodLogs(email, remainingLogs);
+    return remainingLogs;
 };
 
 export const mergeFoodLogs = (email = '', incomingLogs = []) => {
@@ -72,7 +90,7 @@ export const clearFoodLogs = (email = '') => {
 };
 
 export const getTotalCalories = (logs = []) => {
-    return logs.reduce((total, food) => total + Number(food.calories || 0), 0);
+    return roundTwo(logs.reduce((total, food) => total + Number(food.calories || 0), 0));
 };
 
 const macroPresets = [
@@ -114,7 +132,7 @@ export const normalizeFoodLogForStorage = (log = {}) => {
 
     return {
         id: log.id || log.serverId || Date.now(),
-        serverId: log.serverId || log.id,
+        serverId: log.serverId || null,
         name: foodName,
         foodName,
         qty: log.qty || '1 porsi',
@@ -129,19 +147,26 @@ export const normalizeFoodLogForStorage = (log = {}) => {
         color: log.color || visual.color,
         bg: log.bg || visual.bg,
         aiAnalysis: log.aiAnalysis || log.analysis || '',
-        createdAt: log.createdAt || new Date().toISOString()
+        logDate: log.logDate || log.createdAt || new Date().toISOString(),
+        createdAt: log.createdAt || log.logDate || new Date().toISOString()
     };
 };
 
 export const getMacroTotals = (logs = []) => {
-    return logs.reduce((totals, food) => {
+    const totals = logs.reduce((acc, food) => {
         const macros = estimateMacros(food);
         return {
-            protein: totals.protein + macros.protein,
-            carbs: totals.carbs + macros.carbs,
-            fat: totals.fat + macros.fat
+            protein: acc.protein + macros.protein,
+            carbs: acc.carbs + macros.carbs,
+            fat: acc.fat + macros.fat
         };
     }, { protein: 0, carbs: 0, fat: 0 });
+
+    return {
+        protein: roundTwo(totals.protein),
+        carbs: roundTwo(totals.carbs),
+        fat: roundTwo(totals.fat)
+    };
 };
 
 export const getNutritionSummary = (logs = []) => {
@@ -151,7 +176,7 @@ export const getNutritionSummary = (logs = []) => {
         protein: macros.protein,
         carbs: macros.carbs,
         fat: macros.fat,
-        fiber: logs.reduce((total, food) => total + Number(food.fiber || 0), 0),
+        fiber: roundTwo(logs.reduce((total, food) => total + Number(food.fiber || 0), 0)),
         totalLogs: logs.length
     };
 };
@@ -165,19 +190,19 @@ export const isSameCalendarDay = (dateA, dateB = new Date()) => {
 };
 
 export const getFoodLogsByDate = (email = '', date = new Date()) => {
-    return getFoodLogs(email).filter((food) => isSameCalendarDay(food.createdAt, date));
+    return getFoodLogs(email).filter((food) => isSameCalendarDay(food.logDate || food.createdAt, date));
 };
 
 export const getFoodLogsInLastDays = (email = '', days = 7) => {
     const start = new Date();
     start.setHours(0, 0, 0, 0);
     start.setDate(start.getDate() - (days - 1));
-    return getFoodLogs(email).filter((food) => new Date(food.createdAt) >= start);
+    return getFoodLogs(email).filter((food) => new Date(food.logDate || food.createdAt) >= start);
 };
 
 export const getDailyCalorieBuckets = (logs = []) => {
     const buckets = logs.reduce((acc, food) => {
-        const key = new Date(food.createdAt).toISOString().slice(0, 10);
+        const key = new Date(food.logDate || food.createdAt).toISOString().slice(0, 10);
         acc[key] = (acc[key] || 0) + Number(food.calories || 0);
         return acc;
     }, {});
