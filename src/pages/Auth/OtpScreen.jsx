@@ -2,8 +2,8 @@ import React, { useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
-import { clearFoodLogs } from '../../utils/foodLogStorage';
 import { getProfileDraft, goalMap, saveUserProfile } from '../../utils/userProfileStorage';
+import { upsertWeightLog } from '../../utils/weightLogStorage';
 
 const OtpScreen = () => {
     const navigate = useNavigate();
@@ -71,6 +71,9 @@ const OtpScreen = () => {
                             height: Number(userProfile.height),
                             currentWeight: Number(userProfile.currentWeight),
                             targetWeight: Number(userProfile.targetWeight),
+                            gender: userProfile.gender,
+                            activity: userProfile.activity,
+                            habits: userProfile.habits || [],
                             goal: goalMap[selectedGoal] || selectedGoal
                         })
                     });
@@ -78,7 +81,7 @@ const OtpScreen = () => {
                     console.error(error);
                 }
             }
-            clearFoodLogs(email);
+            if (userProfile.currentWeight) upsertWeightLog(email, Number(userProfile.currentWeight));
             navigate('/dashboard', { state: { email, goal: selectedGoal } });
         } catch (error) {
             alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");
@@ -104,9 +107,9 @@ const OtpScreen = () => {
                     <h2 className="text-[24px] font-bold text-black mb-2 text-center">Masukkan Kode Verifikasi</h2>
                     <p className="text-[14px] font-medium text-gray-500 text-center leading-relaxed mb-8">Kami telah mengirimkan kode 6 digit ke <br/> <span className="font-bold text-[#14AE5C]">{email}</span></p>
                 </div>
-                <div className="flex justify-center gap-4 mb-8">
+                <div className="flex justify-center gap-2 sm:gap-3 mb-8">
                     {otp.map((digit, index) => (
-                        <input key={index} type="text" maxLength="1" value={digit} onChange={(e) => handleChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} ref={(el) => (inputs.current[index] = el)} className={`w-[60px] h-[60px] rounded-xl border-2 text-center text-[24px] font-bold outline-none transition-all ${digit ? 'border-[#14AE5C] text-black' : 'border-gray-200 text-gray-400 focus:border-[#14AE5C]'}`} />
+                        <input key={index} type="text" maxLength="1" value={digit} onChange={(e) => handleChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} ref={(el) => (inputs.current[index] = el)} className={`w-11 h-12 sm:w-[54px] sm:h-[56px] rounded-xl border-2 text-center text-[22px] font-bold outline-none transition-all ${digit ? 'border-[#14AE5C] text-black' : 'border-gray-200 text-gray-400 focus:border-[#14AE5C]'}`} />
                     ))}
                 </div>
                 <p className="text-center text-[14px] font-medium text-gray-500">Tidak menerima kode? <br/> <span className="font-semibold text-[#14AE5C] cursor-pointer mt-1 block">Kirim Ulang (00:45)</span></p>

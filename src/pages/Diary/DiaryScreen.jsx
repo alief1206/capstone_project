@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import { getFoodLogs, getTotalCalories } from '../../utils/foodLogStorage';
+import { getFoodLogsByDate, getNutritionSummary, getTotalCalories } from '../../utils/foodLogStorage';
+import { syncFoodLogs } from '../../services/meals';
 
 const DiaryScreen = () => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ const DiaryScreen = () => {
     
     const [currentDate, setCurrentDate] = useState(new Date());
     const [showCalendar, setShowCalendar] = useState(false);
+    const [foodLogs, setFoodLogs] = useState(() => getFoodLogsByDate(userEmail, currentDate));
 
     const [expandedMeals, setExpandedMeals] = useState({
         sarapan: true,
@@ -58,7 +60,18 @@ const DiaryScreen = () => {
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
     const calendarGrid = Array(firstDay).fill(null).concat(Array.from({length: daysInMonth}, (_, i) => i + 1));
 
-    const foodLogs = getFoodLogs(userEmail);
+    useEffect(() => {
+        setFoodLogs(getFoodLogsByDate(userEmail, currentDate));
+    }, [currentDate, userEmail]);
+
+    useEffect(() => {
+        if (!localStorage.getItem('authToken')) return;
+        syncFoodLogs(userEmail)
+            .then(() => setFoodLogs(getFoodLogsByDate(userEmail, currentDate)))
+            .catch((error) => console.warn('Gagal sinkron diary:', error.message));
+    }, [currentDate, userEmail]);
+
+    const summary = getNutritionSummary(foodLogs);
     const totalCalories = getTotalCalories(foodLogs);
 
     const meals = useMemo(() => {
@@ -108,15 +121,15 @@ const DiaryScreen = () => {
                                 <span className="text-[10px] font-bold text-black mt-1">Total Kalori</span>
                             </div>
                             <div className="flex-1 bg-[#FFF5EB] rounded-xl py-3 flex flex-col items-center justify-center border border-[#FFE4C4] shadow-sm">
-                                <span className="text-[16px] font-bold text-[#F97316] leading-tight">0g</span>
+                                <span className="text-[16px] font-bold text-[#F97316] leading-tight">{summary.protein}g</span>
                                 <span className="text-[10px] font-bold text-[#F97316] mt-1">Protein</span>
                             </div>
                             <div className="flex-1 bg-[#F0F5FF] rounded-xl py-3 flex flex-col items-center justify-center border border-[#Dbeafe] shadow-sm">
-                                <span className="text-[16px] font-bold text-[#3B82F6] leading-tight">0g</span>
+                                <span className="text-[16px] font-bold text-[#3B82F6] leading-tight">{summary.carbs}g</span>
                                 <span className="text-[10px] font-bold text-[#3B82F6] mt-1">Karbohidrat</span>
                             </div>
                             <div className="flex-1 bg-[#F5F3FF] rounded-xl py-3 flex flex-col items-center justify-center border border-[#ede9fe] shadow-sm">
-                                <span className="text-[16px] font-bold text-[#8B5CF6] leading-tight">0g</span>
+                                <span className="text-[16px] font-bold text-[#8B5CF6] leading-tight">{summary.fat}g</span>
                                 <span className="text-[10px] font-bold text-[#8B5CF6] mt-1">Lemak</span>
                             </div>
                         </div>

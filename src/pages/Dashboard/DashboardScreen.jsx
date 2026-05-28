@@ -4,8 +4,9 @@ import { Icon } from '@iconify/react';
 import logoIcon from '../../assets/icons/logo-icon.png';
 import profileImg from '../../assets/images/profile.png';
 import robotImg from '../../assets/images/robot.png';
-import { getFoodLogs, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
+import { getFoodLogsByDate, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
 import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
+import { syncFoodLogs } from '../../services/meals';
 
 const DashboardScreen = () => {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ const DashboardScreen = () => {
     const userName = userEmail ? userEmail.split('@')[0] : 'Sobat Sehat';
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
+    const [foodLogs, setFoodLogs] = useState(() => getFoodLogsByDate(userEmail));
 
     useEffect(() => {
         if (location.state?.email) {
@@ -23,7 +25,15 @@ const DashboardScreen = () => {
         }
     }, [location.state?.email]);
 
-    const foodLogs = getFoodLogs(userEmail);
+    useEffect(() => {
+        setFoodLogs(getFoodLogsByDate(userEmail));
+        if (!localStorage.getItem('authToken')) return;
+
+        syncFoodLogs(userEmail)
+            .then(() => setFoodLogs(getFoodLogsByDate(userEmail)))
+            .catch((error) => console.warn('Gagal sinkron diary:', error.message));
+    }, [userEmail]);
+
     const totalCalories = getTotalCalories(foodLogs);
     const macroTotals = getMacroTotals(foodLogs);
     const targets = calculateNutritionTargets(userProfile, currentGoal);
@@ -127,7 +137,7 @@ const DashboardScreen = () => {
                     </div>
 
                     <div 
-                        onClick={() => navigate('/chat-bot', { state: { goal: currentGoal } })}
+                        onClick={() => navigate('/chat-bot', { state: { goal: currentGoal, email: userEmail } })}
                         className="w-full bg-[#F0FDF4] rounded-[20px] p-4 flex items-center gap-3 border border-[#DCFCE7] mb-6 flex-shrink-0 cursor-pointer hover:shadow-md hover:border-[#14AE5C] transition-all active:scale-[0.98] relative"
                     >
                         <img src={robotImg} alt="AI Bot" className="w-[70px] h-[58px] object-contain flex-shrink-0 drop-shadow-sm" />

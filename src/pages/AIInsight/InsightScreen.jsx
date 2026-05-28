@@ -3,8 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import robotImg from '../../assets/images/robot.png';
 import foodImg from '../../assets/images/makanan.png';
-import { getFoodLogs, getMacroSources, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
+import { getFoodLogsByDate, getMacroSources, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
 import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
+import { syncFoodLogs } from '../../services/meals';
 
 const InsightScreen = () => {
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ const InsightScreen = () => {
 
     const [displayedEval, setDisplayedEval] = useState("");
     const [foodOptionIndex, setFoodOptionIndex] = useState(0);
+    const [foodLogs, setFoodLogs] = useState(() => getFoodLogsByDate(userEmail, currentDate));
 
     const formatDateDisplay = (date) => {
         const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
@@ -58,7 +60,17 @@ const InsightScreen = () => {
     };
 
     const currentData = insightContent[currentGoal] || insightContent.turunkan;
-    const foodLogs = getFoodLogs(userEmail);
+    useEffect(() => {
+        setFoodLogs(getFoodLogsByDate(userEmail, currentDate));
+    }, [currentDate, userEmail]);
+
+    useEffect(() => {
+        if (!localStorage.getItem('authToken')) return;
+        syncFoodLogs(userEmail)
+            .then(() => setFoodLogs(getFoodLogsByDate(userEmail, currentDate)))
+            .catch((error) => console.warn('Gagal sinkron insight:', error.message));
+    }, [currentDate, userEmail]);
+
     const totalCalories = getTotalCalories(foodLogs);
     const macroTotals = getMacroTotals(foodLogs);
     const targets = calculateNutritionTargets(userProfile, currentGoal);

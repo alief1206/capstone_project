@@ -25,7 +25,7 @@ const ForgotPasswordScreen = () => {
                 return;
             }
 
-            alert(data.message);
+            alert(`${data.message}${data.devOtp ? `\nKode reset lokal: ${data.devOtp}` : ''}`);
             navigate('/otp', { state: { email, mode: 'reset' } });
         } catch (error) {
             alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");

@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
 import confettiImg from '../../assets/images/confetti.png';
-import { getProfileDraft, saveUserProfile } from '../../utils/userProfileStorage';
+import { getProfileDraft, goalMap, saveUserProfile } from '../../utils/userProfileStorage';
 
 const RegisterScreen = () => {
     const navigate = useNavigate();
@@ -44,6 +44,7 @@ const RegisterScreen = () => {
                         name: email.split('@')[0].length >= 3 ? email.split('@')[0] : 'User',
                         email,
                         password,
+                        profile: { ...profileDraft, goal: goalMap[selectedGoal] || selectedGoal }
                     }),
                 });
 
@@ -54,7 +55,7 @@ const RegisterScreen = () => {
                     return;
                 }
 
-                alert(data.message);
+                alert(`${data.message}${data.devOtp ? `\nKode OTP lokal: ${data.devOtp}` : ''}`);
                 saveUserProfile(email, { ...profileDraft, goal: selectedGoal });
                 navigate('/otp', { state: { email, goal: selectedGoal, profile: { ...profileDraft, goal: selectedGoal } } });
             } catch (error) {
