@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import robotImg from '../../assets/images/robot.png';
 import { addFoodLog, parseCalories } from '../../utils/foodLogStorage';
+import { createFoodLog } from '../../services/meals';
 
 const FoodSearchScreen = () => {
     const navigate = useNavigate();
@@ -57,30 +58,22 @@ const FoodSearchScreen = () => {
         };
 
         const token = localStorage.getItem('authToken');
+        let savedFood = null;
         if (token) {
             try {
-                const response = await fetch('http://localhost:5000/api/v1/food-logs/log-food', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
-                    },
-                    body: JSON.stringify(foodPayload)
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    alert(data.message || "Gagal menyimpan makanan ke database.");
+                const response = await createFoodLog(foodPayload);
+                savedFood = response.data;
+            } catch (error) {
+                if (error.status && error.status < 500) {
+                    alert(error.message || "Gagal menyimpan makanan ke database.");
                     return;
                 }
-            } catch (error) {
-                alert("Makanan tetap dicatat lokal, tapi gagal tersimpan ke database. Pastikan backend berjalan di port 5000.");
+                alert(error.message || "Makanan tetap dicatat lokal, tapi gagal tersimpan ke database. Pastikan backend berjalan di port 5000.");
                 console.error(error);
             }
         }
 
-        addFoodLog(userEmail, {
+        addFoodLog(userEmail, savedFood || {
             name: item.name,
             qty: item.qty,
             calories: parseCalories(item.cals),

@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
-import { clearFoodLogs } from '../../utils/foodLogStorage';
+import { normalizeGoal, saveUserProfile } from '../../utils/userProfileStorage';
+import { mergeWeightLogs, upsertWeightLog } from '../../utils/weightLogStorage';
+import { fetchWeightTrend } from '../../services/auth';
+import { syncFoodLogs } from '../../services/meals';
 
 const LoginScreen = () => {
     const navigate = useNavigate();
@@ -32,8 +35,25 @@ const LoginScreen = () => {
 
             localStorage.setItem('authToken', data.token);
             localStorage.setItem('userEmail', data.user.email);
-            clearFoodLogs(data.user.email);
-            navigate('/dashboard', { state: { goal: selectedGoal, email: data.user.email } });
+            saveUserProfile(data.user.email, {
+                goal: normalizeGoal(data.user.goal || selectedGoal),
+                age: data.user.age,
+                gender: data.user.gender,
+                height: data.user.height,
+                currentWeight: data.user.currentWeight,
+                targetWeight: data.user.targetWeight,
+                activity: data.user.activity,
+                habits: data.user.habits || []
+            });
+            if (data.user.currentWeight) upsertWeightLog(data.user.email, Number(data.user.currentWeight));
+            try {
+                await syncFoodLogs(data.user.email);
+                const weightTrend = await fetchWeightTrend('monthly');
+                mergeWeightLogs(data.user.email, weightTrend.data || []);
+            } catch (error) {
+                console.warn('Sinkronisasi data login gagal:', error.message);
+            }
+            navigate('/dashboard', { state: { goal: normalizeGoal(data.user.goal || selectedGoal), email: data.user.email } });
         } catch (error) {
             alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");
             console.error(error);

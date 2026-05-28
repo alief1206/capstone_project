@@ -3,13 +3,16 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import robotImg from '../../assets/images/robot.png';
 import foodImg from '../../assets/images/makanan.png';
-import { getFoodLogs, getTotalCalories } from '../../utils/foodLogStorage';
+import { getFoodLogsByDate, getMacroSources, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
+import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
+import { syncFoodLogs } from '../../services/meals';
 
 const InsightScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const currentGoal = location.state?.goal || 'turunkan';
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
+    const userProfile = getUserProfile(userEmail);
+    const currentGoal = normalizeGoal(location.state?.goal || userProfile.goal || 'turunkan');
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
 
@@ -19,6 +22,7 @@ const InsightScreen = () => {
 
     const [displayedEval, setDisplayedEval] = useState("");
     const [foodOptionIndex, setFoodOptionIndex] = useState(0);
+    const [foodLogs, setFoodLogs] = useState(() => getFoodLogsByDate(userEmail, currentDate));
 
     const formatDateDisplay = (date) => {
         const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
@@ -56,20 +60,67 @@ const InsightScreen = () => {
     };
 
     const currentData = insightContent[currentGoal] || insightContent.turunkan;
-    const foodLogs = getFoodLogs(userEmail);
-    const totalCalories = getTotalCalories(foodLogs);
-    const calorieTarget = currentGoal === 'tambah' ? 2400 : currentGoal === 'jaga' ? 1450 : 1500;
-    const dynamicNutrients = currentData.nutrients.map((item) => {
-        if (item.id !== 'kalori') return item;
+    useEffect(() => {
+        setFoodLogs(getFoodLogsByDate(userEmail, currentDate));
+    }, [currentDate, userEmail]);
 
-        return {
-            ...item,
+    useEffect(() => {
+        if (!localStorage.getItem('authToken')) return;
+        syncFoodLogs(userEmail)
+            .then(() => setFoodLogs(getFoodLogsByDate(userEmail, currentDate)))
+            .catch((error) => console.warn('Gagal sinkron insight:', error.message));
+    }, [currentDate, userEmail]);
+
+    const totalCalories = getTotalCalories(foodLogs);
+    const macroTotals = getMacroTotals(foodLogs);
+    const targets = calculateNutritionTargets(userProfile, currentGoal);
+    const calorieTarget = targets.calories;
+    const dynamicNutrients = [
+        {
+            id: 'kalori',
+            label: 'Total Kalori',
+            icon: 'mdi:card-multiple',
+            iconColor: 'text-[#14AE5C]',
             value: String(totalCalories),
             target: `${calorieTarget.toLocaleString('id-ID')} kkal`,
+            valueColor: 'text-gray-500',
             status: totalCalories <= calorieTarget ? 'check' : 'down',
             sources: foodLogs.map((food) => ({ name: food.name, qty: `${food.calories} kkal` }))
-        };
-    });
+        },
+        {
+            id: 'protein',
+            label: 'Protein',
+            icon: 'mdi:arm-flex-outline',
+            iconColor: 'text-[#F97316]',
+            value: String(macroTotals.protein),
+            target: `${targets.protein} g`,
+            valueColor: 'text-[#F97316]',
+            status: macroTotals.protein >= targets.protein ? 'check' : 'down',
+            sources: getMacroSources(foodLogs, 'protein')
+        },
+        {
+            id: 'karbo',
+            label: 'Karbohidrat',
+            icon: 'mdi:food-croissant',
+            iconColor: 'text-[#3B82F6]',
+            value: String(macroTotals.carbs),
+            target: `${targets.carbs} g`,
+            valueColor: 'text-[#3B82F6]',
+            status: macroTotals.carbs <= targets.carbs ? 'check' : 'down',
+            sources: getMacroSources(foodLogs, 'carbs')
+        },
+        {
+            id: 'lemak',
+            label: 'Lemak',
+            icon: 'mdi:egg-outline',
+            iconColor: 'text-[#8B5CF6]',
+            value: String(macroTotals.fat),
+            target: `${targets.fat} g`,
+            valueColor: 'text-[#8B5CF6]',
+            status: macroTotals.fat <= targets.fat ? 'check' : 'down',
+            sources: getMacroSources(foodLogs, 'fat')
+        }
+    ];
     const dynamicEvalDesc = totalCalories === 0
         ? 'Belum ada makanan yang dicatat hari ini. Tambahkan makanan dari Diary agar AI Insight bisa menganalisis asupanmu.'
         : `Hari ini kamu sudah mencatat ${totalCalories} kkal dari ${foodLogs.length} makanan.`;

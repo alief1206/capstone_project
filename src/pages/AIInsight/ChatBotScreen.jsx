@@ -2,16 +2,20 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import robotImg from '../../assets/images/robot.png';
+import { askNutritionAssistant } from '../../services/ai';
 
 const ChatBotScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const currentGoal = location.state?.goal || 'turunkan';
+    const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
+    const userName = userEmail ? userEmail.split('@')[0] : 'Sobat Sehat';
     
     const [messages, setMessages] = useState([
-        { id: 1, text: "Halo Wulan! Saya EatSistent AI. Kamu butuh rekomendasi nutrisi spesifik apa hari ini?", sender: 'bot' }
+        { id: 1, text: `Halo ${userName}! Saya EatSistent AI. Kamu butuh rekomendasi nutrisi spesifik apa hari ini?`, sender: 'bot' }
     ]);
     const [inputText, setInputText] = useState("");
+    const [isSending, setIsSending] = useState(false);
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -29,21 +33,27 @@ const ChatBotScreen = () => {
         { label: "Menu Murah", icon: "mdi:wallet-outline", color: "text-purple-500", bg: "bg-purple-50" }
     ];
 
-    const handleSend = (text) => {
+    const handleSend = async (text) => {
         const messageText = text || inputText;
-        if (!messageText.trim()) return;
+        if (!messageText.trim() || isSending) return;
 
         const newUserMsg = { id: Date.now(), text: messageText, sender: 'user' };
         setMessages(prev => [...prev, newUserMsg]);
         setInputText("");
+        setIsSending(true);
 
-        setTimeout(() => {
-            let botReply = "Itu pilihan yang bagus! Untuk kebutuhan tersebut, saya sarankan mengonsumsi dada ayam atau tempe bacem.";
-            if (messageText.includes("Protein")) botReply = "Untuk tinggi protein, kamu bisa coba: Dada Ayam (31g protein), Putih Telur (13g), atau Ikan Salmon (20g). Mau saya catat ke Diary?";
-            if (messageText.includes("Serat")) botReply = "Untuk serat, pilih Bayam, Brokoli, atau buah Pepaya. Serat membantu pencernaanmu tetap lancar!";
-            
+        try {
+            const botReply = await askNutritionAssistant(messageText);
             setMessages(prev => [...prev, { id: Date.now() + 1, text: botReply, sender: 'bot' }]);
-        }, 1000);
+        } catch (error) {
+            setMessages(prev => [...prev, {
+                id: Date.now() + 1,
+                text: error.message || "Maaf, koneksi ke Gemini belum tersedia. Coba lagi setelah server dan API key aktif.",
+                sender: 'bot'
+            }]);
+        } finally {
+            setIsSending(false);
+        }
     };
 
     return (
@@ -80,6 +90,13 @@ const ChatBotScreen = () => {
                             </div>
                         </div>
                     ))}
+                    {isSending && (
+                        <div className="flex justify-start">
+                            <div className="bg-white text-gray-500 rounded-[20px] rounded-tl-none border border-gray-100 px-4 py-3 text-[13px] font-medium shadow-sm">
+                                Mengetik...
+                            </div>
+                        </div>
+                    )}
                     <div ref={messagesEndRef} />
                 </div>
 
@@ -103,14 +120,14 @@ const ChatBotScreen = () => {
                                 type="text" 
                                 value={inputText}
                                 onChange={(e) => setInputText(e.target.value)}
-                                onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                                 placeholder="Tanya tentang protein..." 
                                 className="w-full bg-transparent outline-none text-[13px] font-medium"
                             />
                         </div>
                         <button 
                             onClick={() => handleSend()}
-                            className="w-12 h-12 bg-[#14AE5C] rounded-2xl flex justify-center items-center text-white text-xl shadow-md active:scale-95 transition-all"
+                            className={`w-12 h-12 bg-[#14AE5C] rounded-2xl flex justify-center items-center text-white text-xl shadow-md active:scale-95 transition-all ${isSending ? 'opacity-60 cursor-wait' : ''}`}
                         >
                             <Icon icon="mdi:send" />
                         </button>

@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import { getFoodLogs, getTotalCalories } from '../../utils/foodLogStorage';
+import { getFoodLogsInLastDays, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
+import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
+import { getWeightLogs, getWeightLogsInRange, mergeWeightLogs, summarizeWeightLogs, upsertWeightLog } from '../../utils/weightLogStorage';
+import { createWeightLog, fetchWeightTrend } from '../../services/auth';
 
 const ProgressScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const currentGoal = location.state?.goal || 'turunkan';
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
+    const userProfile = getUserProfile(userEmail);
+    const currentGoal = normalizeGoal(location.state?.goal || userProfile.goal || 'turunkan');
     const currentPath = location.pathname;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
 
@@ -17,6 +21,15 @@ const ProgressScreen = () => {
     const [showTimeRange, setShowTimeRange] = useState(false);
     const [timeRange, setTimeRange] = useState('7 Hari Terakhir');
     const timeRanges = ['7 Hari Terakhir', '14 Hari Terakhir', '30 Hari Terakhir', 'Bulan Ini'];
+    const [dailyWeight, setDailyWeight] = useState('');
+    const [weightLogs, setWeightLogs] = useState(() => getWeightLogs(userEmail));
+
+    const daysByRange = {
+        '7 Hari Terakhir': 7,
+        '14 Hari Terakhir': 14,
+        '30 Hari Terakhir': 30,
+        'Bulan Ini': new Date().getDate()
+    };
 
     const handleMonthChange = (offset) => {
         const newDate = new Date(currentDate);
@@ -26,12 +39,79 @@ const ProgressScreen = () => {
     const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
     const calendarGrid = Array(firstDay).fill(null).concat(Array.from({length: daysInMonth}, (_, i) => i + 1));
-    const foodLogs = getFoodLogs(userEmail);
+    useEffect(() => {
+        if (userProfile.currentWeight && getWeightLogs(userEmail).length === 0) {
+            upsertWeightLog(userEmail, Number(userProfile.currentWeight));
+        }
+        setWeightLogs(getWeightLogs(userEmail));
+    }, [userEmail, userProfile.currentWeight]);
+
+    useEffect(() => {
+        if (!localStorage.getItem('authToken')) return;
+        fetchWeightTrend('monthly')
+            .then((response) => setWeightLogs(mergeWeightLogs(userEmail, response.data || [])))
+            .catch((error) => console.warn('Gagal sinkron berat badan:', error.message));
+    }, [userEmail]);
+
+    const selectedDays = daysByRange[timeRange] || 7;
+    const foodLogs = getFoodLogsInLastDays(userEmail, selectedDays);
     const totalCalories = getTotalCalories(foodLogs);
-    const averageCalories = foodLogs.length > 0 ? Math.round(totalCalories / 7) : 0;
+    const macroTotals = getMacroTotals(foodLogs);
+    const averageCalories = foodLogs.length > 0 ? Math.round(totalCalories / selectedDays) : 0;
     const highestCalories = foodLogs.length > 0 ? Math.max(...foodLogs.map((food) => Number(food.calories || 0))) : 0;
     const lowestCalories = foodLogs.length > 0 ? Math.min(...foodLogs.map((food) => Number(food.calories || 0))) : 0;
-    const targetCalories = currentGoal === 'tambah' ? 2400 : currentGoal === 'jaga' ? 1450 : 1500;
+    const targets = calculateNutritionTargets(userProfile, currentGoal);
+    const targetCalories = targets.calories;
+    const averageProtein = foodLogs.length > 0 ? Math.round(macroTotals.protein / selectedDays) : 0;
+    const activeDateKeys = new Set(getFoodLogsInLastDays(userEmail, 7).map((food) => new Date(food.createdAt).toDateString()));
+    const lastSevenDays = Array.from({ length: 7 }, (_, index) => {
+        const date = new Date();
+        date.setDate(date.getDate() - (6 - index));
+        return {
+            date,
+            label: new Intl.DateTimeFormat('id-ID', { weekday: 'short' }).format(date).slice(0, 1).toUpperCase(),
+            active: activeDateKeys.has(date.toDateString())
+        };
+    });
+    const rangeWeightLogs = useMemo(() => getWeightLogsInRange(userEmail, selectedDays), [userEmail, selectedDays, weightLogs]);
+    const weeklyWeightSummary = summarizeWeightLogs(getWeightLogsInRange(userEmail, 7));
+    const monthlyWeightSummary = summarizeWeightLogs(getWeightLogsInRange(userEmail, 30));
+    const selectedWeightSummary = summarizeWeightLogs(rangeWeightLogs);
+    const latestWeight = selectedWeightSummary.latestWeight || Number(userProfile.currentWeight || 0);
+    const weightDeltaText = selectedWeightSummary.delta === 0
+        ? 'stabil dari catatan sebelumnya'
+        : `${Math.abs(selectedWeightSummary.delta).toLocaleString('id-ID')} kg ${selectedWeightSummary.delta > 0 ? 'naik' : 'turun'} dari catatan sebelumnya`;
+    const chartLogs = rangeWeightLogs.length ? rangeWeightLogs : (latestWeight ? [{ logDate: new Date().toISOString(), weight: latestWeight }] : []);
+    const chartWeights = chartLogs.map((log) => Number(log.weight || 0));
+    const chartMin = chartWeights.length ? Math.floor(Math.min(...chartWeights) - 1) : 0;
+    const chartMax = chartWeights.length ? Math.ceil(Math.max(...chartWeights) + 1) : 1;
+    const chartSpan = Math.max(chartMax - chartMin, 1);
+    const chartPoints = chartLogs.map((log, index) => {
+        const x = chartLogs.length === 1 ? 270 : (index / (chartLogs.length - 1)) * 270;
+        const y = 100 - (((Number(log.weight || 0) - chartMin) / chartSpan) * 90);
+        return { ...log, x, y };
+    });
+    const chartLabelStep = Math.max(1, Math.ceil(chartLogs.length / 4));
+    const chartLabelLogs = chartLogs.filter((_, index) => index === 0 || index === chartLogs.length - 1 || index % chartLabelStep === 0);
+    const linePath = chartPoints.length
+        ? chartPoints.map((point, index) => `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`).join(' ')
+        : '';
+    const areaPath = chartPoints.length ? `${linePath} V 110 H ${chartPoints[0].x} Z` : '';
+    const lastPoint = chartPoints[chartPoints.length - 1];
+
+    const handleSaveWeight = async () => {
+        if (!dailyWeight || Number(dailyWeight) <= 0) return;
+        const saved = upsertWeightLog(userEmail, Number(dailyWeight), currentDate);
+        setWeightLogs(getWeightLogs(userEmail));
+        setDailyWeight('');
+
+        if (!localStorage.getItem('authToken')) return;
+        try {
+            await createWeightLog({ weight: saved.weight, logDate: saved.logDate });
+        } catch (error) {
+            console.warn('Berat tersimpan lokal, tapi gagal sinkron server:', error.message);
+        }
+    };
 
     return (
         <div className='flex justify-center min-h-screen bg-gray-100'>
@@ -83,18 +163,37 @@ const ProgressScreen = () => {
                         
                         <div className="flex justify-between items-end mb-4">
                             <div className="flex items-baseline gap-1">
-                                <span className="text-[28px] font-bold text-black leading-none">62.4</span>
+                                <span className="text-[28px] font-bold text-black leading-none">{latestWeight ? latestWeight.toLocaleString('id-ID') : '-'}</span>
                                 <span className="text-[14px] font-bold text-black">kg</span>
                             </div>
-                            <div className="flex items-center gap-1 text-[#14AE5C]">
-                                <Icon icon="mdi:menu-down" className="text-xl" />
-                                <span className="text-[12px] font-bold">0,6 kg dari minggu lalu</span>
+                            <div className={`flex items-center gap-1 ${selectedWeightSummary.delta > 0 ? 'text-[#F97316]' : 'text-[#14AE5C]'}`}>
+                                <Icon icon={selectedWeightSummary.delta > 0 ? 'mdi:menu-up' : 'mdi:menu-down'} className="text-xl" />
+                                <span className="text-[12px] font-bold">{weightDeltaText}</span>
                             </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 mb-5">
+                            <div className="flex-1 h-11 bg-gray-50 rounded-xl px-3 flex items-center border border-gray-100 focus-within:border-[#14AE5C]">
+                                <input
+                                    type="number"
+                                    value={dailyWeight}
+                                    onChange={(e) => setDailyWeight(e.target.value)}
+                                    placeholder="Catat berat hari ini"
+                                    className="w-full bg-transparent outline-none text-[12px] font-semibold"
+                                />
+                                <span className="text-[11px] font-bold text-gray-400">kg</span>
+                            </div>
+                            <button
+                                onClick={handleSaveWeight}
+                                className="w-11 h-11 rounded-xl bg-[#14AE5C] text-white flex items-center justify-center text-xl active:scale-95 transition-all"
+                            >
+                                <Icon icon="mdi:check" />
+                            </button>
                         </div>
 
                         <div className="w-full h-[160px] relative mt-6">
                             <div className="absolute inset-0 flex flex-col justify-between pb-6">
-                                {[64, 63, 62, 61].map((val) => (
+                                {[chartMax, Math.round((chartMax + chartMin) / 2), chartMin].map((val) => (
                                     <div key={val} className="flex items-center w-full">
                                         <span className="text-[10px] text-gray-400 w-5">{val}</span>
                                         <div className="flex-1 h-[1px] bg-gray-100 ml-2"></div>
@@ -110,17 +209,37 @@ const ProgressScreen = () => {
                                             <stop offset="100%" stopColor="#14AE5C" stopOpacity="0" />
                                         </linearGradient>
                                     </defs>
-                                    <path d="M 0 10 Q 50 20, 100 50 T 200 80 T 280 85 V 110 H 0 Z" fill="url(#progress-grad)" />
-                                    <path d="M 0 10 Q 50 20, 100 50 T 200 80 T 280 85" fill="none" stroke="#14AE5C" strokeWidth="2.5" />
-                                    <line x1="280" y1="85" x2="280" y2="110" stroke="#14AE5C" strokeWidth="1" strokeDasharray="3 3" />
+                                    {areaPath && <path d={areaPath} fill="url(#progress-grad)" />}
+                                    {linePath && <path d={linePath} fill="none" stroke="#14AE5C" strokeWidth="2.5" />}
+                                    {lastPoint && <line x1={lastPoint.x} y1={lastPoint.y} x2={lastPoint.x} y2="110" stroke="#14AE5C" strokeWidth="1" strokeDasharray="3 3" />}
                                 </svg>
-                                <div className="absolute top-[64%] right-[-10px] bg-[#14AE5C] text-white text-[11px] font-bold px-2 py-0.5 rounded shadow-sm">
-                                    62,4
-                                </div>
+                                {lastPoint && (
+                                    <div
+                                        className="absolute bg-[#14AE5C] text-white text-[11px] font-bold px-2 py-0.5 rounded shadow-sm"
+                                        style={{ left: `calc(${(lastPoint.x / 280) * 100}% + 14px)`, top: `${Math.max(0, Math.min(lastPoint.y - 12, 120))}px` }}
+                                    >
+                                        {Number(lastPoint.weight).toLocaleString('id-ID')}
+                                    </div>
+                                )}
                             </div>
 
                             <div className="absolute bottom-0 left-7 right-0 flex justify-between text-[9px] font-semibold text-gray-400">
-                                <span>21/5</span><span>22/5</span><span>23/5</span><span>24/5</span><span>25/5</span><span>26/5</span><span>27/5</span>
+                                {chartLabelLogs.map((log) => (
+                                    <span key={log.logDate}>{new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'numeric' }).format(new Date(log.logDate))}</span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3 mt-5">
+                            <div className="bg-[#F4FBF7] rounded-[16px] p-3 border border-[#E8F5EE]">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase">Mingguan</p>
+                                <p className="text-[15px] font-bold text-black mt-1">{weeklyWeightSummary.averageWeight || '-'} kg</p>
+                                <p className="text-[10px] font-medium text-gray-500">{weeklyWeightSummary.entries} catatan</p>
+                            </div>
+                            <div className="bg-[#F4FBF7] rounded-[16px] p-3 border border-[#E8F5EE]">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase">Bulanan</p>
+                                <p className="text-[15px] font-bold text-black mt-1">{monthlyWeightSummary.averageWeight || '-'} kg</p>
+                                <p className="text-[10px] font-medium text-gray-500">{monthlyWeightSummary.entries} catatan</p>
                             </div>
                         </div>
                     </div>
@@ -129,23 +248,23 @@ const ProgressScreen = () => {
                         <h3 className="text-[12px] font-bold text-black tracking-wider mb-3">KONSISTENSI</h3>
                         <div className="flex items-center gap-2 mb-4">
                             <Icon icon="twemoji:fire" className="text-2xl" />
-                            <span className="text-[20px] font-bold text-black">7</span>
-                            <span className="text-[12px] font-medium text-gray-500">hari berturut-turut</span>
+                            <span className="text-[20px] font-bold text-black">{activeDateKeys.size}</span>
+                            <span className="text-[12px] font-medium text-gray-500">hari aktif dalam 7 hari terakhir</span>
                         </div>
                         
                         <div className="flex justify-between items-center mt-2">
-                            {['M', 'S', 'S', 'R', 'K', 'J', 'S'].map((day, idx) => (
-                                <div key={idx} className="flex flex-col items-center gap-2">
-                                    <span className="text-[10px] font-bold text-gray-400">{day}</span>
-                                    <div className="w-[30px] h-[30px] rounded-full bg-[#E8F5EE] flex justify-center items-center text-[#14AE5C]">
-                                        <Icon icon="mdi:check-bold" className="text-[16px]" />
+                            {lastSevenDays.map((day) => (
+                                <div key={day.date.toISOString()} className="flex flex-col items-center gap-2">
+                                    <span className="text-[10px] font-bold text-gray-400">{day.label}</span>
+                                    <div className={`w-[30px] h-[30px] rounded-full flex justify-center items-center ${day.active ? 'bg-[#E8F5EE] text-[#14AE5C]' : 'bg-gray-100 text-gray-300'}`}>
+                                        <Icon icon={day.active ? 'mdi:check-bold' : 'mdi:minus'} className="text-[16px]" />
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    <h3 className="text-[13px] font-bold text-black tracking-wider mb-4 px-1">RINGKASAN MINGGU INI</h3>
+                    <h3 className="text-[13px] font-bold text-black tracking-wider mb-4 px-1">RINGKASAN {timeRange.toUpperCase()}</h3>
 
                     <div className="grid grid-cols-2 gap-3 pb-4">
                         <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
@@ -178,10 +297,10 @@ const ProgressScreen = () => {
                         <div className="bg-[#F4FBF7] rounded-[20px] p-4 border border-[#E8F5EE]">
                             <p className="text-[12px] font-medium text-black mb-1">Rata-rata Protein</p>
                             <div className="flex items-baseline gap-1 mb-1">
-                                <span className="text-[20px] font-bold text-black">0</span>
+                                <span className="text-[20px] font-bold text-black">{averageProtein}</span>
                                 <span className="text-[11px] font-semibold text-gray-600">g</span>
                             </div>
-                            <p className="text-[10px] font-medium text-gray-400">belum dicatat</p>
+                            <p className="text-[10px] font-medium text-gray-400">dari Diary</p>
                         </div>
                     </div>
                 </div>

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
+import { getProfileDraft, saveProfileDraft } from '../../utils/userProfileStorage';
 
 const ActivityScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedGoal = location.state?.goal || 'turunkan';
+    const profileDraft = location.state?.profile || getProfileDraft();
     const [selectedActivity, setSelectedActivity] = useState(null);
     const activities = [
         { id: 'rendah', title: 'Tidak Terlalu Aktif', desc: 'Duduk hampir sepanjang hari', icon: 'mdi:seat-recline-normal' },
@@ -43,7 +45,17 @@ const ActivityScreen = () => {
                     ))}
                 </div>
                 <div className="mt-auto flex justify-center w-full pt-4">
-                    <Button onClick={() => selectedActivity && navigate('/kebiasaan', { state: { goal: selectedGoal } })} className={!selectedActivity ? 'opacity-50 cursor-not-allowed' : ''}>Berikutnya</Button>
+                    <Button
+                        onClick={() => {
+                            if (!selectedActivity) return;
+                            const nextProfile = { ...profileDraft, goal: selectedGoal, activity: selectedActivity };
+                            saveProfileDraft(nextProfile);
+                            navigate('/kebiasaan', { state: { goal: selectedGoal, profile: nextProfile } });
+                        }}
+                        className={!selectedActivity ? 'opacity-50 cursor-not-allowed' : ''}
+                    >
+                        Berikutnya
+                    </Button>
                 </div>
             </div>
         </div>
