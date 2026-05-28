@@ -61,6 +61,12 @@ const serializeAuthUser = (user) => ({
     habits: user.habits
 });
 
+const startOfDay = (value = new Date()) => {
+    const date = new Date(value);
+    date.setHours(0, 0, 0, 0);
+    return date;
+};
+
 const sendMailIfConfigured = async (mailOptions) => {
     if (!transporter) return { sent: false, skipped: true };
 
@@ -120,30 +126,42 @@ export const register = async (req, res) => {
         if (existingUser) return res.status(400).json({ message: "Email sudah terdaftar!" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
-
         const newUser = await prisma.user.create({
             data: { 
                 name, 
                 email, 
                 password: hashedPassword,
-                otp: otpCode,
-                isVerified: false,
+                otp: null,
+                isVerified: true,
                 ...normalizeProfilePayload(profile)
             }
         });
 
-        const mailResult = await sendMailIfConfigured({
-            from: `"EatSistent AI" <${process.env.EMAIL_USER}>`,
-            to: email,
-            subject: "Kode Verifikasi EatSistent Anda",
-            html: `<h3>Halo ${name}!</h3><p>Kode verifikasi (OTP) Anda adalah: <b>${otpCode}</b></p>`
-        });
+        if (newUser.currentWeight) {
+            await prisma.weightLog.upsert({
+                where: {
+                    userId_logDate: {
+                        userId: newUser.id,
+                        logDate: startOfDay()
+                    }
+                },
+                update: { weight: Number(newUser.currentWeight) },
+                create: {
+                    userId: newUser.id,
+                    weight: Number(newUser.currentWeight),
+                    logDate: startOfDay()
+                }
+            });
+        }
 
-        res.status(201).json(withDevOtp({
-            message: "Registrasi berhasil! Silakan periksa kotak masuk Gmail Anda untuk kode OTP.",
-            email: newUser.email
-        }, otpCode, mailResult));
+        const jwtToken = jwt.sign({ id: newUser.id, email: newUser.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+
+        res.status(201).json({
+            message: "Registrasi berhasil! Akun langsung aktif tanpa verifikasi email.",
+            email: newUser.email,
+            token: jwtToken,
+            user: serializeAuthUser(newUser)
+        });
     } catch (err) {
         res.status(500).json({ message: "Kesalahan server internal", error: err.message });
     }

@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
-    "@google/generative-ai": "^0.24.1",
     "@tailwindcss/postcss": "^4.2.4",
     "@tailwindcss/vite": "^4.2.4",
     "@tensorflow/tfjs": "^4.22.0",

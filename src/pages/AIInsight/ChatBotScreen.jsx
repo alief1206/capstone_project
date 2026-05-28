@@ -48,7 +48,7 @@ const ChatBotScreen = () => {
         } catch (error) {
             setMessages(prev => [...prev, {
                 id: Date.now() + 1,
-                text: error.message || "Maaf, koneksi ke Gemini belum tersedia. Coba lagi setelah server dan API key aktif.",
+                text: error.message || "Maaf, basis data nutrisi belum bisa diakses. Pastikan backend berjalan lalu coba lagi.",
                 sender: 'bot'
             }]);
         } finally {

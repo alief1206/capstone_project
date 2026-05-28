@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import { getFoodLogsByDate, getNutritionSummary, getTotalCalories } from '../../utils/foodLogStorage';
-import { syncFoodLogs } from '../../services/meals';
+import { formatTwoDecimals, getFoodLogsByDate, getNutritionSummary, getTotalCalories, removeFoodLog } from '../../utils/foodLogStorage';
+import { deleteFoodLog, syncFoodLogs } from '../../services/meals';
 
 const DiaryScreen = () => {
     const navigate = useNavigate();
@@ -28,6 +28,30 @@ const DiaryScreen = () => {
             ...prev,
             [mealId]: !prev[mealId]
         }));
+    };
+
+    const refreshSelectedDateLogs = () => {
+        setFoodLogs(getFoodLogsByDate(userEmail, currentDate));
+    };
+
+    const handleDeleteFood = async (food) => {
+        const foodName = food.name || food.foodName || 'makanan ini';
+        const confirmed = window.confirm(`Hapus ${foodName} dari diary?`);
+        if (!confirmed) return;
+
+        removeFoodLog(userEmail, food.id);
+        refreshSelectedDateLogs();
+
+        const serverFoodId = food.serverId || food.id;
+        if (!localStorage.getItem('authToken') || !serverFoodId) return;
+
+        try {
+            await deleteFoodLog(serverFoodId);
+        } catch (error) {
+            if (error.status !== 404) {
+                alert('Makanan sudah dihapus dari tampilan, tapi gagal menghapus data di server. Pastikan backend berjalan.');
+            }
+        }
     };
 
     const formatDateDisplay = (date) => {
@@ -117,19 +141,19 @@ const DiaryScreen = () => {
                         <h3 className="text-[12px] font-bold text-black uppercase tracking-wider mb-3">RINGKASAN HARI INI</h3>
                         <div className="flex justify-between gap-2">
                             <div className="flex-1 bg-[#E8F5EE] rounded-xl py-3 flex flex-col items-center justify-center border border-[#DCFCE7] shadow-sm">
-                                <span className="text-[16px] font-bold text-black leading-tight">{totalCalories}</span>
+                                <span className="text-[16px] font-bold text-black leading-tight">{formatTwoDecimals(totalCalories)}</span>
                                 <span className="text-[10px] font-bold text-black mt-1">Total Kalori</span>
                             </div>
                             <div className="flex-1 bg-[#FFF5EB] rounded-xl py-3 flex flex-col items-center justify-center border border-[#FFE4C4] shadow-sm">
-                                <span className="text-[16px] font-bold text-[#F97316] leading-tight">{summary.protein}g</span>
+                                <span className="text-[16px] font-bold text-[#F97316] leading-tight">{formatTwoDecimals(summary.protein)}g</span>
                                 <span className="text-[10px] font-bold text-[#F97316] mt-1">Protein</span>
                             </div>
                             <div className="flex-1 bg-[#F0F5FF] rounded-xl py-3 flex flex-col items-center justify-center border border-[#Dbeafe] shadow-sm">
-                                <span className="text-[16px] font-bold text-[#3B82F6] leading-tight">{summary.carbs}g</span>
+                                <span className="text-[16px] font-bold text-[#3B82F6] leading-tight">{formatTwoDecimals(summary.carbs)}g</span>
                                 <span className="text-[10px] font-bold text-[#3B82F6] mt-1">Karbohidrat</span>
                             </div>
                             <div className="flex-1 bg-[#F5F3FF] rounded-xl py-3 flex flex-col items-center justify-center border border-[#ede9fe] shadow-sm">
-                                <span className="text-[16px] font-bold text-[#8B5CF6] leading-tight">{summary.fat}g</span>
+                                <span className="text-[16px] font-bold text-[#8B5CF6] leading-tight">{formatTwoDecimals(summary.fat)}g</span>
                                 <span className="text-[10px] font-bold text-[#8B5CF6] mt-1">Lemak</span>
                             </div>
                         </div>
@@ -156,8 +180,8 @@ const DiaryScreen = () => {
                                     <div className="mt-4">
                                         {meal.foods.length > 0 ? (
                                             <div className="flex flex-col gap-4 mb-4">
-                                                {meal.foods.map((food, idx) => (
-                                                    <div key={idx} className="flex items-center border-b border-gray-50 pb-4 last:border-0 last:pb-0">
+                                                {meal.foods.map((food) => (
+                                                    <div key={`${food.id}-${food.createdAt}`} className="flex items-center border-b border-gray-50 pb-4 last:border-0 last:pb-0">
                                                         <div className={`w-[40px] h-[40px] ${food.bg} rounded-full flex justify-center items-center mr-4`}>
                                                             <Icon icon={food.icon} className={`text-[22px] ${food.color}`} />
                                                         </div>
@@ -165,6 +189,14 @@ const DiaryScreen = () => {
                                                             <span className="text-[14px] font-bold text-black">{food.name}</span>
                                                             <span className="text-[12px] font-medium text-gray-500">{food.qty}, {food.calories} kkal</span>
                                                         </div>
+                                                        <button
+                                                            onClick={() => handleDeleteFood(food)}
+                                                            className="w-9 h-9 rounded-full bg-red-50 text-[#F43F5E] flex justify-center items-center hover:bg-red-100 active:scale-95 transition-all"
+                                                            aria-label={`Hapus ${food.name}`}
+                                                            title="Hapus makanan"
+                                                        >
+                                                            <Icon icon="mdi:trash-can-outline" className="text-[19px]" />
+                                                        </button>
                                                     </div>
                                                 ))}
                                             </div>
