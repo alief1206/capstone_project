@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
 import logoIcon from '../../assets/icons/logo-icon.png';
+import mascotImage from '../../assets/images/mascot.png';
 
 const ForgotPasswordScreen = () => {
     const navigate = useNavigate();
@@ -34,31 +35,69 @@ const ForgotPasswordScreen = () => {
     };
 
     return (
-        <div className='flex justify-center min-h-screen bg-gray-100'>
-            <div className='w-[390px] h-[100dvh] sm:h-[844px] bg-white shadow-xl flex flex-col pt-12 pb-10 px-6 overflow-hidden'>
-                <button onClick={() => navigate(-1)} className="w-fit text-2xl text-gray-800 font-bold mb-8"><Icon icon="mdi:arrow-left" /></button>
-                <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-1 mb-8">
-                        <img src={logoIcon} alt="Logo" className="w-[60px] h-[55px] object-contain" />
-                        <h1 className="text-[30px] font-bold text-[#14AE5C]">EatSistent</h1>
-                    </div>
-                    <div className="w-[100px] h-[100px] bg-[#E8F5EE] rounded-full flex justify-center items-center mb-6 relative">
-                        <Icon icon="mdi:email-outline" className="text-5xl text-[#14AE5C]" />
-                        <div className="absolute bottom-0 right-0 w-8 h-8 bg-[#14AE5C] rounded-full border-4 border-white flex justify-center items-center"><Icon icon="mdi:check" className="text-white text-md" /></div>
-                    </div>
-                    <h2 className="text-[24px] font-bold text-black mb-2 text-center">Lupa Kata Sandi?</h2>
-                    <p className="text-[14px] font-medium text-gray-500 text-center px-4 leading-relaxed mb-8">Masukkan email yang terdaftar untuk menerima kode verifikasi.</p>
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label className="text-[14px] font-semibold text-gray-700">Email</label>
-                    <div className="relative">
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl"><Icon icon="mdi:email-outline" /></div>
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-[54px] border-[1.5px] border-gray-200 rounded-[12px] pl-12 pr-4 font-semibold outline-none focus:border-[#14AE5C] transition-all text-[14px]" placeholder="nama@email.com" />
+        <div className='flex justify-center items-center min-h-screen bg-white md:bg-gray-50'>
+            <div className='w-full md:max-w-5xl h-[100dvh] md:h-auto md:min-h-[680px] bg-white md:rounded-[32px] md:shadow-xl relative flex flex-col md:flex-row items-center overflow-hidden'>
+                
+                <div className="hidden md:flex w-1/2 h-full min-h-[680px] bg-gradient-to-b from-[#F0FDF4] to-[#E8F5EE] flex-col justify-center items-center p-12 relative">
+                    <div className="absolute top-0 left-0 w-full h-full bg-[#14AE5C] opacity-5 mix-blend-multiply pointer-events-none"></div>
+                    <img src={mascotImage} alt="Mascot" className="w-full max-w-[320px] object-contain drop-shadow-xl z-10 relative hover:scale-105 transition-transform duration-500" />
+                    <div className="z-10 text-center mt-10">
+                        <h2 className="text-[28px] font-extrabold text-[#14AE5C] leading-tight">Jangan Khawatir!</h2>
+                        <p className="text-[14px] font-medium text-gray-600 mt-3 px-4">Kami akan membantumu memulihkan akses ke akun EatSistent agar kamu bisa melanjutkan perjalanan sehatmu.</p>
                     </div>
                 </div>
-                <div className="flex flex-col gap-6 mt-auto">
-                    <Button onClick={handleForgotPassword} className={`w-full h-[54px] ${!email ? 'opacity-50 cursor-not-allowed' : ''}`}>Kirim Kode</Button>
-                    <p className="text-center text-[14px] font-semibold text-[#14AE5C] cursor-pointer" onClick={() => navigate('/login')}>Kembali ke Masuk</p>
+
+                <div className="w-full md:w-1/2 h-full flex flex-col pt-10 md:pt-12 pb-8 px-6 md:px-14 max-h-[100dvh] md:max-h-[680px]">
+                    
+                    <div className="flex flex-col flex-shrink-0">
+                        <button onClick={() => navigate(-1)} className="w-fit text-2xl text-gray-800 font-bold hover:scale-110 transition-transform mb-6 md:mb-8">
+                            <Icon icon="mdi:arrow-left" />
+                        </button>
+                    </div>
+
+                    <div className="flex flex-col items-center md:items-start flex-shrink-0 mb-8 md:mb-10">
+                        <div className="w-[85px] h-[85px] bg-[#F0FDF4] rounded-full flex justify-center items-center mb-6 relative border border-[#DCFCE7] shadow-sm">
+                            <Icon icon="mdi:email-outline" className="text-[40px] text-[#14AE5C]" />
+                            <div className="absolute bottom-0 right-0 w-7 h-7 bg-[#14AE5C] rounded-full border-[3px] border-white flex justify-center items-center">
+                                <Icon icon="mdi:check" className="text-white text-sm" />
+                            </div>
+                        </div>
+                        <h2 className="text-[28px] md:text-[32px] font-extrabold text-gray-800 text-center md:text-left w-full">Lupa Kata Sandi?</h2>
+                        <p className="text-[14px] md:text-[15px] font-medium text-gray-500 text-center md:text-left mt-3 leading-relaxed md:pr-4">
+                            Masukkan email yang terdaftar untuk menerima kode verifikasi pengaturan ulang sandi.
+                        </p>
+                    </div>
+
+                    <div className="flex-1 flex flex-col gap-5 overflow-y-auto hide-scrollbar pb-4">
+                        <div className="flex flex-col gap-2.5">
+                            <label className="text-[14px] font-bold text-gray-700">Email</label>
+                            <div className="relative">
+                                <div className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 text-xl">
+                                    <Icon icon="mdi:email-outline" />
+                                </div>
+                                <input 
+                                    type="email" 
+                                    value={email} 
+                                    onChange={(e) => setEmail(e.target.value)} 
+                                    className="w-full h-[55px] border-[1.5px] border-gray-200 rounded-[16px] pl-[52px] pr-5 font-bold text-gray-800 outline-none focus:border-[#14AE5C] focus:bg-[#F0FDF4] transition-all text-[14px]" 
+                                    placeholder="nama@email.com" 
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-4 flex flex-col items-center w-full gap-4 flex-shrink-0 pt-4 border-t border-white">
+                        <Button 
+                            onClick={handleForgotPassword} 
+                            className={`w-full py-4 text-[15px] font-bold transition-all ${!email ? 'opacity-50 cursor-not-allowed bg-gray-300' : 'shadow-md hover:shadow-lg active:scale-95'}`}
+                        >
+                            Kirim Kode
+                        </Button>
+                        <p className="text-[14px] font-bold text-gray-500 mt-2">
+                            Ingat kata sandi? <span className="text-[#14AE5C] cursor-pointer hover:underline" onClick={() => navigate('/login')}>Kembali ke Masuk</span>
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
