@@ -51,7 +51,7 @@ model FoodLog {
   fat         Float?
   fiber       Float?
   aiAnalysis  String?  @db.Text
-  logDate     DateTime @default(now()) @db.Date
+  logDate     DateTime @db.Date
   createdAt   DateTime @default(now())
 
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)

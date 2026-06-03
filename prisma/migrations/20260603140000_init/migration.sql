@@ -32,7 +32,7 @@ CREATE TABLE `FoodLog` (
     `fat` DOUBLE NULL,
     `fiber` DOUBLE NULL,
     `aiAnalysis` TEXT NULL,
-    `logDate` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `logDate` DATE NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     INDEX `FoodLog_userId_logDate_idx`(`userId`, `logDate`),
