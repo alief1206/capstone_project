@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Goal {
+  LOSE_WEIGHT
+  GAIN_WEIGHT
+  MAINTAIN
+}
+
+enum SummaryType {
+  DAILY_INSIGHT
+  WEEKLY_PROGRESS
+  GOAL_TARGET_CONTEXT
+}
+
+model User {
+  id            Int        @id @default(autoincrement())
+  name          String
+  email         String     @unique
+  password      String
+  age           Int?
+  gender        String?
+  height        Float?     
+  currentWeight Float?     
+  targetWeight  Float?     
+  activity      String?
+  habits        Json?
+  goal          Goal?
+  otp           String?    // Menyimpan kode OTP sementara
+  isVerified    Boolean    @default(false) // Status apakah email sudah divalidasi
+  createdAt     DateTime   @default(now())
+  foodLogs      FoodLog[]
+  weightLogs    WeightLog[]
+  summaries     SummarySnapshot[]
+}
+
+model FoodLog {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  foodName    String
+  mealType    String?
+  calories    Float?
+  protein     Float?
+  carbs       Float?
+  fat         Float?
+  fiber       Float?
+  aiAnalysis  String?  @db.Text
+  logDate     DateTime @db.Date
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, logDate])
+}
+
+model WeightLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  weight    Float
+  logDate   DateTime @db.Date
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, logDate])
+  @@index([userId, logDate])
+}
+
+model SummarySnapshot {
+  id        Int         @id @default(autoincrement())
+  userId    Int
+  type      SummaryType
+  summaryDate DateTime @db.Date
+  data      Json
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, type, summaryDate])
+  @@index([userId, type, summaryDate])
+}
