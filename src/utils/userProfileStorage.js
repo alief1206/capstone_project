@@ -3,6 +3,7 @@ const PROFILE_DRAFT_KEY = 'userProfileDraft';
 export const goalMap = {
     turunkan: 'LOSE_WEIGHT',
     tambah: 'GAIN_WEIGHT',
+    naikkan: 'GAIN_WEIGHT',
     jaga: 'MAINTAIN',
     LOSE_WEIGHT: 'turunkan',
     GAIN_WEIGHT: 'tambah',
@@ -15,6 +16,10 @@ export const activityLabels = {
     aktif: 'Aktif',
     sangat: 'Sangat aktif'
 };
+
+export const activityValues = Object.fromEntries(
+    Object.entries(activityLabels).map(([value, label]) => [label.toLowerCase(), value])
+);
 
 const activityFactors = {
     rendah: 1.2,
@@ -50,7 +55,28 @@ export const getUserProfile = (email = '') => {
     return getProfileDraft();
 };
 
-export const normalizeGoal = (goal = 'turunkan') => goalMap[goal] || goal || 'turunkan';
+export const saveProfilePhoto = (email = '', photoDataUrl = '') => {
+    saveUserProfile(email, { profilePhoto: photoDataUrl });
+};
+
+export const getProfilePhoto = (email = '', profile = {}) => {
+    return profile?.profilePhoto || getUserProfile(email)?.profilePhoto || '';
+};
+
+export const normalizeGoal = (goal = 'turunkan') => {
+    if (goal === 'LOSE_WEIGHT') return 'turunkan';
+    if (goal === 'GAIN_WEIGHT') return 'tambah';
+    if (goal === 'MAINTAIN') return 'jaga';
+    if (goal === 'naikkan') return 'tambah';
+    if (['turunkan', 'tambah', 'jaga'].includes(goal)) return goal;
+    return 'turunkan';
+};
+
+export const normalizeActivity = (activity = 'sedang') => {
+    if (activityLabels[activity]) return activity;
+    const normalized = String(activity || '').toLowerCase();
+    return activityValues[normalized] || 'sedang';
+};
 
 export const getGoalLabel = (goal = 'turunkan') => {
     const normalized = normalizeGoal(goal);
@@ -72,22 +98,29 @@ export const calculateNutritionTargets = (profile = {}, goalFallback = 'turunkan
         return { goal, tdee: 0, calories: 0, protein: 0, carbs: 0, fat: 0 };
     }
 
-    const gender = profile.gender || 'pria';
+    const gender = String(profile.gender || 'pria').toLowerCase();
     const age = Number(profile.age || 25);
     const height = Number(profile.height || 165);
     const weight = Number(profile.currentWeight || profile.weight || 60);
-    const factor = activityFactors[profile.activity] || activityFactors.sedang;
+    const activity = normalizeActivity(profile.activity || profile.activityLevel);
+    const factor = activityFactors[activity] || activityFactors.sedang;
     const bmr = gender === 'wanita'
         ? (10 * weight) + (6.25 * height) - (5 * age) - 161
         : (10 * weight) + (6.25 * height) - (5 * age) + 5;
-    const tdee = Math.round(bmr * factor);
+    const localTdee = Math.round(bmr * factor);
     const aiCalories = Number(profile.aiTarget?.target_kalori || profile.aiTarget?.calories || 0);
+    const aiTdee = Number(profile.aiTarget?.tdee || profile.aiTarget?.target_tdee || 0);
     const calorieTarget = aiCalories > 0
         ? Math.round(aiCalories)
-        : Math.max(1200, Math.round(tdee + (goal === 'tambah' ? 300 : goal === 'turunkan' ? -500 : 0)));
-    const protein = Math.round(weight * (goal === 'tambah' ? 1.8 : 1.6));
-    const fat = Math.round((calorieTarget * 0.25) / 9);
-    const carbs = Math.max(0, Math.round((calorieTarget - (protein * 4) - (fat * 9)) / 4));
+        : Math.max(1200, Math.round(localTdee + (goal === 'tambah' ? 300 : goal === 'turunkan' ? -500 : 0)));
+    const tdee = aiTdee > 0
+        ? Math.round(aiTdee)
+        : aiCalories > 0
+            ? Math.max(0, Math.round(aiCalories + (goal === 'turunkan' ? 500 : goal === 'tambah' ? -300 : 0)))
+            : localTdee;
+    const protein = Math.round(Number(profile.aiTarget?.target_protein || 0) || (weight * (goal === 'tambah' ? 1.8 : 1.6)));
+    const fat = Math.round(Number(profile.aiTarget?.target_lemak || 0) || ((calorieTarget * 0.25) / 9));
+    const carbs = Math.max(0, Math.round(Number(profile.aiTarget?.target_karbo || 0) || ((calorieTarget - (protein * 4) - (fat * 9)) / 4)));
 
     return { goal, tdee, calories: calorieTarget, protein, carbs, fat };
 };

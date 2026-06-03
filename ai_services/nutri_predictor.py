@@ -2,7 +2,14 @@ import pickle
 from pathlib import Path
 
 import numpy as np
+
+from runtime_config import configure_ai_runtime, quiet_tensorflow
+
+configure_ai_runtime()
+
 import tensorflow as tf
+
+quiet_tensorflow(tf)
 
 
 class NutriPredictor:

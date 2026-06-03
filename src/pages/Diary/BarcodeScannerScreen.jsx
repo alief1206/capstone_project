@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import logoIcon from '../../assets/icons/logo-icon.png';
+import { toLocalDateKey } from '../../utils/dateUtils.js';
 
 const BarcodeScannerScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const currentGoal = location.state?.goal || 'turunkan';
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
-    const selectedLogDate = location.state?.logDate || new Date().toISOString();
+    const selectedLogDate = toLocalDateKey(location.state?.logDate || new Date());
 
     const [toast, setToast] = useState({ show: false, title: '', message: '', icon: '' });
 

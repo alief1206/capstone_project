@@ -1,3 +1,5 @@
+import { isSameLocalDay, parseLocalDate, toLocalDateKey } from './dateUtils.js';
+
 export const getFoodLogKey = (email = '') => `foodLogs:${email || 'guest'}`;
 
 const mealTypeToMealId = {
@@ -58,8 +60,8 @@ export const saveFoodLogs = (email = '', logs = []) => {
 
 export const addFoodLog = (email = '', food) => {
     const logs = getFoodLogs(email);
-    const selectedDate = food.logDate || food.createdAt || new Date().toISOString();
-    saveFoodLogs(email, [normalizeFoodLogForStorage({ ...food, id: food.id || Date.now(), logDate: selectedDate, createdAt: food.createdAt || selectedDate }), ...logs]);
+    const selectedDate = toLocalDateKey(food.logDate || new Date());
+    saveFoodLogs(email, [normalizeFoodLogForStorage({ ...food, id: food.id || Date.now(), logDate: selectedDate, createdAt: food.createdAt || new Date().toISOString() }), ...logs]);
 };
 
 export const removeFoodLog = (email = '', foodId) => {
@@ -129,6 +131,7 @@ export const normalizeFoodLogForStorage = (log = {}) => {
     const foodName = log.name || log.foodName || 'Makanan';
     const visual = getFoodVisual(foodName);
     const mealId = log.mealId || mealTypeToMealId[log.mealType] || 'makansiang';
+    const logDate = toLocalDateKey(log.logDate || log.createdAt || new Date());
 
     return {
         id: log.id || log.serverId || Date.now(),
@@ -147,8 +150,8 @@ export const normalizeFoodLogForStorage = (log = {}) => {
         color: log.color || visual.color,
         bg: log.bg || visual.bg,
         aiAnalysis: log.aiAnalysis || log.analysis || '',
-        logDate: log.logDate || log.createdAt || new Date().toISOString(),
-        createdAt: log.createdAt || log.logDate || new Date().toISOString()
+        logDate,
+        createdAt: log.createdAt || new Date().toISOString()
     };
 };
 
@@ -182,11 +185,7 @@ export const getNutritionSummary = (logs = []) => {
 };
 
 export const isSameCalendarDay = (dateA, dateB = new Date()) => {
-    const a = new Date(dateA);
-    const b = new Date(dateB);
-    return a.getFullYear() === b.getFullYear() &&
-        a.getMonth() === b.getMonth() &&
-        a.getDate() === b.getDate();
+    return isSameLocalDay(dateA, dateB);
 };
 
 export const getFoodLogsByDate = (email = '', date = new Date()) => {
@@ -197,12 +196,12 @@ export const getFoodLogsInLastDays = (email = '', days = 7) => {
     const start = new Date();
     start.setHours(0, 0, 0, 0);
     start.setDate(start.getDate() - (days - 1));
-    return getFoodLogs(email).filter((food) => new Date(food.logDate || food.createdAt) >= start);
+    return getFoodLogs(email).filter((food) => parseLocalDate(food.logDate || food.createdAt) >= start);
 };
 
 export const getDailyCalorieBuckets = (logs = []) => {
     const buckets = logs.reduce((acc, food) => {
-        const key = new Date(food.logDate || food.createdAt).toISOString().slice(0, 10);
+        const key = toLocalDateKey(food.logDate || food.createdAt);
         acc[key] = (acc[key] || 0) + Number(food.calories || 0);
         return acc;
     }, {});

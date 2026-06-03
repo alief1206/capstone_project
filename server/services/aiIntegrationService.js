@@ -159,16 +159,16 @@ export const searchNutritionCatalog = ({ query = '', goal = 'MAINTAIN', limit = 
             .map((item) => toCatalogItem(item.row));
     }
 
-    const normalizedGoal = mapGoalForModel(goal);
+    const normalizedGoal = mapGoalForCatalog(goal);
     const goalRows = rows
         .filter((row) => {
             if (normalizedGoal === 'Turun_BB') return row.calories <= 180 && (row.protein >= 3 || row.fiber >= 1 || row.label === 'Rendah_Kalori');
-            if (normalizedGoal === 'Naik_BB') return row.calories >= 150 && (row.protein >= 4 || row.carbs >= 25 || row.fat >= 5);
+            if (normalizedGoal === 'Tambah_BB') return row.calories >= 150 && (row.protein >= 4 || row.carbs >= 25 || row.fat >= 5);
             return row.calories >= 80 && row.calories <= 260 && (row.protein >= 3 || row.fiber >= 1);
         })
         .sort((a, b) => {
             if (normalizedGoal === 'Turun_BB') return ((b.protein + b.fiber) / Math.max(b.calories, 1)) - ((a.protein + a.fiber) / Math.max(a.calories, 1));
-            if (normalizedGoal === 'Naik_BB') return (b.calories + b.protein * 8) - (a.calories + a.protein * 8);
+            if (normalizedGoal === 'Tambah_BB') return (b.calories + b.protein * 8) - (a.calories + a.protein * 8);
             return (b.protein + b.fiber) - (a.protein + a.fiber);
         });
 
@@ -208,20 +208,29 @@ const mapGenderForModel = (gender) => {
 };
 
 const mapActivityForModel = (activity) => ({
-    rendah: 'tidak_aktif',
-    sedang: 'ringan',
-    aktif: 'aktif',
-    sangat: 'sangat_aktif'
-}[activity] || 'ringan');
+    rendah: 'Tidak terlalu aktif',
+    sedang: 'Agak aktif',
+    aktif: 'Aktif',
+    sangat: 'Sangat aktif'
+}[activity] || 'Agak aktif');
 
-const mapGoalForModel = (goal) => ({
+const mapGoalForCatalog = (goal) => ({
     LOSE_WEIGHT: 'Turun_BB',
-    GAIN_WEIGHT: 'Naik_BB',
+    GAIN_WEIGHT: 'Tambah_BB',
     MAINTAIN: 'Jaga_BB',
     turunkan: 'Turun_BB',
-    tambah: 'Naik_BB',
+    tambah: 'Tambah_BB',
     jaga: 'Jaga_BB'
 }[goal] || 'Jaga_BB');
+
+const mapGoalForModel = (goal) => ({
+    LOSE_WEIGHT: 'Turun BB',
+    GAIN_WEIGHT: 'Tambah BB',
+    MAINTAIN: 'Jaga BB',
+    turunkan: 'Turun BB',
+    tambah: 'Tambah BB',
+    jaga: 'Jaga BB'
+}[goal] || 'Jaga BB');
 
 const getGoalLabel = (goal) => ({
     LOSE_WEIGHT: 'menurunkan berat badan',
@@ -325,7 +334,7 @@ const detectChatIntent = (message = '') => {
     if (/\b(karbo|karbohidrat|energi)\b/.test(normalized)) return 'carbs';
     if (/\b(lemak|fat)\b/.test(normalized)) return 'fat';
     if (/\b(murah|hemat|terjangkau)\b/.test(normalized)) return 'budget';
-    if (/\b(rekomendasi|saran|menu|makan apa|cocok)\b/.test(normalized)) return 'recommendation';
+    if (/\b(rekomendasi|saran|menu|makan apa|cocok|berdasarkan|insight)\b/.test(normalized)) return 'recommendation';
     if (/\b(kalori|kkal|gizi|nutrisi|berapa)\b/.test(normalized)) return 'food_lookup';
     return 'general';
 };
@@ -444,14 +453,114 @@ export const askDataScienceNutritionAssistant = ({ message, user, recentLogs = [
     const hasDiary = recentLogs.length > 0;
     const insightSummary = summarizeInsightContext(context);
 
-    if (sourceAction === 'today_evaluation') {
-        return insightSummary
-            ? `${insightSummary} Balas dengan makanan yang kamu rencanakan berikutnya, nanti saya bantu cek nutrisi mana yang masih kurang.`
-            : 'Ceritakan makanan yang sudah kamu konsumsi hari ini, nanti saya bantu evaluasi nutrisi yang masih kurang.';
+    if (sourceAction === 'evaluasi_harian' || sourceAction === 'today_evaluation') {
+        const calorieTarget = context?.calorieTarget || 0;
+        let totalCalories = context?.totalCalories || 0;
+        let macros = context?.macroTotals || { protein: 0, carbs: 0, fat: 0 };
+
+        // Jika ada recentLogs dari database, gunakan itu
+        if (hasDiary && recentLogs.length > 0) {
+            totalCalories = toNumber(recentLogs.reduce((sum, log) => sum + toNumber(log.calories), 0));
+            macros = {
+                protein: toNumber(recentLogs.reduce((sum, log) => sum + toNumber(log.protein), 0)),
+                carbs: toNumber(recentLogs.reduce((sum, log) => sum + toNumber(log.carbs), 0)),
+                fat: toNumber(recentLogs.reduce((sum, log) => sum + toNumber(log.fat), 0))
+            };
+        }
+
+        let evaluation = '';
+        const goalLabel = getGoalLabel(user?.goal);
+        const userProfile = context?.userProfile || {};
+
+        if (totalCalories === 0) {
+            return `Halo! Saya lihat belum ada makanan yang dicatat hari ini di diary. Mulai tambahkan makanan ke diary agar saya bisa membantu evaluasi dan memberikan rekomendasi nutrisi yang lebih baik untuk target ${goalLabel}. 😊`;
+        }
+
+        // Jika calorieTarget tidak tersedia, gunakan totalCalories sebagai patokan
+        if (calorieTarget <= 0) {
+            evaluation = `Oke! Hari ini kamu sudah konsumsi ${Math.round(totalCalories)} kkal. `;
+
+            // Beri saran berdasarkan makro yang sudah dikonsumsi
+            if (macros.protein > 0) {
+                const proteinStatus = macros.protein > 50 ? 'cukup baik' : macros.protein > 30 ? 'sedang' : 'masih kurang';
+                evaluation += `Asupan protein ${macros.protein}g termasuk ${proteinStatus}. `;
+            }
+
+            // Saran berdasarkan tujuan
+            if (goalLabel.includes('menurunkan')) {
+                evaluation += `Untuk target ${goalLabel}, makanan yang kamu makan tadi relatif seimbang. Untuk sisa hari, lebih baik fokus makanan rendah kalori dan tinggi protein seperti sayuran, buah, atau protein tanpa lemak (ayam, ikan). `;
+            } else if (goalLabel.includes('menaikkan')) {
+                evaluation += `Untuk target ${goalLabel}, kamu bisa menambah asupan kalori dengan makanan bergizi tinggi seperti daging, telur, kacang-kacangan, atau minuman bernutrisi. `;
+            } else {
+                evaluation += `Untuk target ${goalLabel}, asupanmu sudah masuk kategori moderat. Pastikan nutrisi seimbang dengan menambah makanan bergizi untuk sisa hari. `;
+            }
+
+            evaluation += `Apa makanan yang kamu rencanakan selanjutnya? Saya siap bantu cek nutrisinya. 👍`;
+            return evaluation;
+        }
+
+        // Jika ada calorieTarget, gunakan perhitungan normal
+        const percentageTarget = calorieTarget ? Math.round((totalCalories / calorieTarget) * 100) : 0;
+        const remaining = calorieTarget - totalCalories;
+
+        if (percentageTarget > 100) {
+            evaluation = `Wow! Kalorimu sudah mencapai ${percentageTarget}% dari target ${Math.round(calorieTarget)} kkal. Untuk sisa hari ini, sebaiknya fokus pada makanan berkalori rendah seperti sayuran, buah-buahan, atau minuman tanpa gula. `;
+        } else if (percentageTarget > 70) {
+            evaluation = `Bagus! Kalorimu sudah ${percentageTarget}% dari target ${Math.round(calorieTarget)} kkal. Untuk makan berikutnya, kamu masih bisa konsumsi makanan berkalori sedang (kurang dari ${Math.round(remaining)} kkal), pilih yang tinggi protein agar kenyang lebih lama. `;
+        } else {
+            evaluation = `Oke! Kalorimu baru ${percentageTarget}% dari target ${Math.round(calorieTarget)} kkal. Masih bisa tambah hingga ${Math.round(remaining)} kkal. Untuk makan berikutnya, kamu bisa konsumsi makanan bergizi dengan kalori sedang. `;
+        }
+
+        let macroFeedback = '';
+        const proteinTarget = context?.targets?.protein || 0;
+        const carbTarget = context?.targets?.carbs || 0;
+
+        if (proteinTarget && macros.protein < proteinTarget) {
+            macroFeedback += `Proteinmu baru ${Math.round((macros.protein / proteinTarget) * 100)}% dari target. `;
+        }
+        if (carbTarget && macros.carbs < carbTarget) {
+            macroFeedback += `Karbomu juga masih perlu ditambah. `;
+        }
+
+        if (macroFeedback) {
+            evaluation += `Dari sisi makro: ${macroFeedback}`;
+        }
+
+        evaluation += `Apa makanan yang kamu rencanakan selanjutnya? Saya siap bantu cek nutrisinya. 👍`;
+
+        return evaluation;
     }
 
     if (sourceAction === 'insight_recommendation' && context?.recommendationTitle) {
-        return `${context.recommendationTitle}: ${context.recommendationDesc || 'pilih makanan yang sesuai kebutuhanmu.'} ${insightSummary}`;
+        const lackingNutrients = context?.lackingNutrients || {};
+        const totalCalories = context?.dailySummary?.totalCalories || 0;
+        const goalLabel = getGoalLabel(user?.goal);
+
+        let response = `${context.recommendationTitle}: ${context.recommendationDesc || 'pilih makanan yang sesuai kebutuhanmu.'}\n\n`;
+
+        // Jika ada protein yang kurang
+        if (lackingNutrients.protein > 0) {
+            response += `• Protein kurang ${lackingNutrients.protein.toFixed(1)}g\n  Pilih: ${formatFoodRows(recommendationPool('protein'), 'protein')}\n\n`;
+        }
+
+        // Jika ada serat yang kurang
+        if (lackingNutrients.fiber > 0) {
+            response += `• Serat kurang ${lackingNutrients.fiber.toFixed(1)}g\n  Pilih: ${formatFoodRows(recommendationPool('fiber'), 'fiber')}\n\n`;
+        }
+
+        // Jika masih ada ruang kalori dan target diet menurun
+        if (lackingNutrients.calories > 0 && user?.goal && String(user.goal).toLowerCase().includes('lose')) {
+            response += `• Masih ada ruang ${lackingNutrients.calories.toFixed(0)} kkal\n  Pilih rendah kalori: ${formatFoodRows(recommendationPool('low_calorie'), 'low_calorie')}\n\n`;
+        }
+
+        // Jika perlu tambah karbohidrat
+        if (lackingNutrients.carbs > 0) {
+            response += `• Karbohidrat kurang ${lackingNutrients.carbs.toFixed(1)}g\n  Pilih: ${formatFoodRows(recommendationPool('carbs'), 'carbs')}\n\n`;
+        }
+
+        response += `Tip: Pilih kombinasi makanan dari saran di atas sesuai preferensi dan ketersediaan. Apa makanan pilihan kamu?`;
+
+        return response;
     }
 
     if (intent === 'summary') {
@@ -465,6 +574,27 @@ export const askDataScienceNutritionAssistant = ({ message, user, recentLogs = [
     }
 
     if (['protein', 'fiber', 'low_calorie', 'carbs', 'fat', 'budget', 'recommendation'].includes(intent)) {
+        // Jika ada context dari insight, prioritaskan nutrisi yang kurang
+        if (context?.sourceAction === 'insight' && context?.lackingNutrients) {
+            const lacking = context.lackingNutrients;
+            let recommendations = [];
+
+            // Prioritas: nutrisi yang paling banyak kurang
+            if (lacking.protein > 0) recommendations.push({ type: 'protein', label: 'Tinggi Protein', amount: lacking.protein });
+            if (lacking.fiber > 0) recommendations.push({ type: 'fiber', label: 'Kaya Serat', amount: lacking.fiber });
+            if (lacking.carbs > 0) recommendations.push({ type: 'carbs', label: 'Karbohidrat', amount: lacking.carbs });
+
+            if (recommendations.length > 0) {
+                let response = `Berdasarkan ringkasan insight hari ini, berikut rekomendasi untuk melengkapi nutrisi yang masih kurang:\n\n`;
+                recommendations.forEach(rec => {
+                    const rows = recommendationPool(rec.type);
+                    response += `**${rec.label}** (kurang ${rec.amount.toFixed(1)}): ${formatFoodRows(rows, rec.type)}\n\n`;
+                });
+                response += `Pilih kombinasi dari saran di atas. Apa makanan pilihan kamu?`;
+                return response;
+            }
+        }
+
         const rows = recommendationPool(intent);
         const intro = {
             protein: 'Pilihan tinggi protein dari basis data TKPI:',

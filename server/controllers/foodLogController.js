@@ -2,20 +2,9 @@ import pkg from '@prisma/client';
 const { PrismaClient } = pkg;
 import { buildFoodNutrition } from '../services/aiIntegrationService.js';
 import { saveSummarySnapshot } from '../services/summarySnapshotService.js';
+import { endOfDay, getDateKey, isFutureCalendarDate, startOfDay } from '../utils/dateUtils.js';
 
 const prisma = new PrismaClient();
-
-const startOfDay = (value = new Date()) => {
-    const date = new Date(value);
-    date.setHours(0, 0, 0, 0);
-    return date;
-};
-
-const endOfDay = (value = new Date()) => {
-    const date = new Date(value);
-    date.setHours(23, 59, 59, 999);
-    return date;
-};
 
 const serializeFoodLog = (log) => ({
     id: log.id,
@@ -28,7 +17,7 @@ const serializeFoodLog = (log) => ({
     fat: log.fat,
     fiber: log.fiber,
     aiAnalysis: log.aiAnalysis,
-    logDate: log.logDate,
+    logDate: getDateKey(log.logDate),
     createdAt: log.createdAt
 });
 
@@ -40,8 +29,6 @@ const summarizeLogs = (logs = []) => logs.reduce((summary, log) => ({
     fiber: summary.fiber + Number(log.fiber || 0),
     totalLogs: summary.totalLogs + 1
 }), { totalCalories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, totalLogs: 0 });
-
-const getDateKey = (date) => new Date(date).toISOString().slice(0, 10);
 
 const groupByDay = (logs = []) => Object.values(logs.reduce((days, log) => {
     const key = getDateKey(log.logDate || log.createdAt);
@@ -58,6 +45,10 @@ export const createFoodLog = async (req, res) => {
         const { foodName, calories, mealType, logDate } = req.body; // mealType bisa dikirim dari frontend: 'SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM', atau 'CAMILAN'
 
         if (!foodName) return res.status(400).json({ message: "Nama makanan wajib diisi!" });
+        const selectedLogDate = logDate || new Date();
+        if (isFutureCalendarDate(selectedLogDate)) {
+            return res.status(400).json({ message: "Tidak bisa menambahkan makanan untuk tanggal besok atau tanggal setelah hari ini." });
+        }
 
         // Poin 6: Validasi Pemblokiran Kata Kunci Makanan Berat ke dalam Camilan
         const daftarMakananBerat = ['nasi', 'mie', 'gulai', 'sate', 'rawon', 'bakso', 'rendang', 'ayam goreng'];
@@ -83,7 +74,7 @@ export const createFoodLog = async (req, res) => {
                 fat: hasilNutrisi.fat,
                 fiber: hasilNutrisi.fiber,
                 aiAnalysis: hasilNutrisi.analysis,
-                logDate: startOfDay(logDate || new Date())
+                logDate: startOfDay(selectedLogDate)
             }
         });
 
@@ -98,7 +89,7 @@ export const getNutritionSummaryDashboard = async (req, res) => {
     try {
         const userId = req.user.id;
 
-        const selectedDate = req.query.date ? new Date(req.query.date) : new Date();
+        const selectedDate = req.query.date || new Date();
         const todayStart = startOfDay(selectedDate);
         const todayEnd = endOfDay(selectedDate);
 
@@ -152,14 +143,14 @@ export const getNutritionSummaryDashboard = async (req, res) => {
             chartData: weeklyDays
         };
         const dailyInsightSnapshotData = {
-            date: todayStart.toISOString().slice(0, 10),
+            date: getDateKey(todayStart),
             dailySummary,
             dailyLogs: dailyLogs.map(serializeFoodLog),
             aiInsightsPool: kumpulanInsightAI.slice(-5)
         };
         const weeklyProgressSnapshotData = {
-            dateFrom: tujuhHariLalu.toISOString().slice(0, 10),
-            dateTo: todayStart.toISOString().slice(0, 10),
+            dateFrom: getDateKey(tujuhHariLalu),
+            dateTo: getDateKey(todayStart),
             consistency: {
                 daysWithLogs: consistencyDays,
                 label: `${consistencyDays} hari aktif dalam 7 hari terakhir`
@@ -242,6 +233,9 @@ export const updateFoodLog = async (req, res) => {
 
         const existing = await prisma.foodLog.findFirst({ where: { id, userId: req.user.id } });
         if (!existing) return res.status(404).json({ message: "Log makanan tidak ditemukan!" });
+        if (logDate && isFutureCalendarDate(logDate)) {
+            return res.status(400).json({ message: "Tidak bisa memindahkan log makanan ke tanggal besok atau tanggal setelah hari ini." });
+        }
 
         const user = await prisma.user.findUnique({ where: { id: req.user.id } });
         const nutrition = await buildFoodNutrition({

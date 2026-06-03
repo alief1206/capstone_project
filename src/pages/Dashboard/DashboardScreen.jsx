@@ -5,7 +5,7 @@ import logoIcon from '../../assets/icons/logo-icon.png';
 import profileImg from '../../assets/images/profile.png';
 import robotImg from '../../assets/images/robot.png';
 import { getFoodLogsByDate, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
-import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
+import { calculateNutritionTargets, getProfilePhoto, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
 import { syncFoodLogs } from '../../services/meals';
 import { fetchCurrentUser } from '../../services/auth';
 
@@ -17,6 +17,7 @@ const DashboardScreen = () => {
     const currentGoal = normalizeGoal(location.state?.goal || userProfile.goal || 'turunkan');
     const userName = userEmail ? userEmail.split('@')[0] : 'Sobat Sehat';
     const currentPath = location.pathname;
+    const profilePhoto = getProfilePhoto(userEmail, userProfile) || profileImg;
     
     const [activePopover, setActivePopover] = useState(null);
     const [foodLogs, setFoodLogs] = useState(() => getFoodLogsByDate(userEmail));
@@ -54,13 +55,13 @@ const DashboardScreen = () => {
     const recentFoods = foodLogs.slice(0, 4);
     const getMacroPercent = (value, max) => `${Math.min(Math.round((value / Math.max(max, 1)) * 100), 100)}%`;
     
-    const insightText = foodLogs.length === 0
-        ? 'Belum ada makanan di diary hari ini. Tambahkan makanan agar AI bisa mulai menganalisis ringkasanmu.'
+    const chatBotText = foodLogs.length === 0
+        ? 'Diskusi dengan AI tentang menu, kalori, protein, dan pilihan makanan yang sesuai targetmu.'
         : totalCalories > calorieTarget
-            ? `Kalori dari diary sudah melewati batas ${calorieTarget.toLocaleString('id-ID')} kkal. Minta AI mengevaluasi sisa harimu.`
+            ? `Kalori hari ini sudah melewati target ${calorieTarget.toLocaleString('id-ID')} kkal. Tanyakan ide makanan ringan atau strategi makan berikutnya.`
             : calorieTarget
-                ? `Kalori dari diary masih tersisa ${(calorieTarget - totalCalories).toLocaleString('id-ID')} kkal dari target harianmu.`
-                : 'Lengkapi profilmu agar AI bisa menghitung target harian dan memberikan insight.';
+                ? `Masih ada ${(calorieTarget - totalCalories).toLocaleString('id-ID')} kkal dari target harianmu. Diskusikan menu yang cocok dengan AI.`
+                : 'Diskusi dengan AI tentang nutrisi dan pilihan makanan sambil kamu melengkapi profil.';
                 
     const radius = 26;
     const circumference = 2 * Math.PI * radius;
@@ -149,7 +150,7 @@ const DashboardScreen = () => {
                         </div>
 
                         <div onClick={() => navigate('/profile', { state: { goal: currentGoal, email: userEmail } })} className="w-[40px] h-[40px] lg:w-[44px] lg:h-[44px] rounded-full border-[2.5px] border-gray-100 cursor-pointer overflow-hidden shadow-sm">
-                            <img src={profileImg} alt="Profile" className="w-full h-full object-cover" />
+                            <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                         </div>
                     </div>
                 </div>
@@ -167,7 +168,7 @@ const DashboardScreen = () => {
                         <ContextPopover id="mobile-notif" title="Notifikasi" content="Belum ada notifikasi baru hari ini. Terus pantau progress harianmu!" position="top-full mt-3 right-0" origin="origin-top-right" />
                     </div>
                     <div onClick={() => navigate('/profile', { state: { goal: currentGoal, email: userEmail } })} className="w-[40px] h-[40px] rounded-full bg-gray-100 flex justify-center items-center overflow-hidden border-2 border-gray-100 cursor-pointer">
-                        <img src={profileImg} alt="Profile" className="w-full h-full object-cover" />
+                        <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                     </div>
                 </div>
             </div>
@@ -235,17 +236,22 @@ const DashboardScreen = () => {
                     </div>
 
                     <div className="w-full md:col-span-7 order-3 flex flex-col h-full">
-                        <div 
-                            onClick={() => navigate('/chat-bot', { state: { goal: currentGoal, email: userEmail } })}
+                        <div
+                            onClick={() => navigate('/chat-bot', {
+                                state: {
+                                    goal: currentGoal,
+                                    email: userEmail
+                                }
+                            })}
                             className="w-full bg-gradient-to-r from-[#E8F5EE] to-white rounded-[28px] p-6 md:p-8 flex items-center gap-5 border border-[#DCFCE7] shadow-sm hover:shadow-md hover:border-[#14AE5C] cursor-pointer transition-all active:scale-[0.99] group overflow-hidden h-full min-h-[120px]"
                         >
                             <div className="w-[60px] h-[60px] md:w-[75px] md:h-[75px] bg-white rounded-full flex justify-center items-center shadow-sm border border-gray-100 flex-shrink-0">
                                 <img src={robotImg} className="w-[45px] h-[45px] md:w-[55px] md:h-[55px] object-contain drop-shadow-sm" alt="AI Bot" />
                             </div>
                             <div className="flex flex-col flex-1">
-                                <h4 className="text-[15px] md:text-[17px] font-extrabold text-gray-800 mb-1 group-hover:text-[#14AE5C] transition-colors">AI Insight</h4>
+                                <h4 className="text-[15px] md:text-[17px] font-extrabold text-gray-800 mb-1 group-hover:text-[#14AE5C] transition-colors">Chat Bot</h4>
                                 <p className="text-[13px] md:text-[14px] font-medium text-gray-500 leading-relaxed line-clamp-2">
-                                    {insightText}
+                                    {chatBotText}
                                 </p>
                             </div>
                             <div className="hidden md:flex w-10 h-10 rounded-full bg-white items-center justify-center shadow-sm text-[#14AE5C] group-hover:bg-[#14AE5C] group-hover:text-white transition-colors flex-shrink-0">

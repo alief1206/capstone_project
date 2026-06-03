@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import { GoogleLogin } from '@react-oauth/google';
 import Button from '../../components/ui/Button';
 import confettiImg from '../../assets/images/confetti.png';
-import { getProfileDraft, goalMap, saveUserProfile } from '../../utils/userProfileStorage';
+import { getProfileDraft, goalMap, normalizeGoal, saveUserProfile } from '../../utils/userProfileStorage';
 import { upsertWeightLog } from '../../utils/weightLogStorage';
+import { loginWithGoogle } from '../../services/auth';
 
 const RegisterScreen = () => {
     const navigate = useNavigate();
@@ -19,6 +21,30 @@ const RegisterScreen = () => {
         turunkan: 'Kamu baru saja mengambil langkah besar untuk mencapai target berat badan idealmu.',
         tambah: 'Kamu baru saja mengambil langkah besar untuk mencapai target berat badan impianmu.',
         jaga: 'Kamu baru saja mengambil langkah besar untuk menjaga konsistensi berat badanmu.'
+    };
+
+    const saveAuthenticatedUser = (data, fallbackEmail = email) => {
+        const userProfile = { ...profileDraft, goal: selectedGoal };
+        const userEmail = data.user?.email || fallbackEmail;
+
+        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userEmail', userEmail);
+        saveUserProfile(userEmail, {
+            ...userProfile,
+            goal: normalizeGoal(data.user?.goal || selectedGoal),
+            age: data.user?.age ?? userProfile.age,
+            gender: data.user?.gender ?? userProfile.gender,
+            height: data.user?.height ?? userProfile.height,
+            currentWeight: data.user?.currentWeight ?? userProfile.currentWeight,
+            targetWeight: data.user?.targetWeight ?? userProfile.targetWeight,
+            activity: data.user?.activity ?? userProfile.activity,
+            habits: data.user?.habits || userProfile.habits || []
+        });
+        if (data.user?.currentWeight || userProfile.currentWeight) {
+            upsertWeightLog(userEmail, Number(data.user?.currentWeight || userProfile.currentWeight));
+        }
+
+        navigate('/dashboard', { state: { email: userEmail, goal: normalizeGoal(data.user?.goal || selectedGoal) } });
     };
 
     const handleRegister = async () => {
@@ -56,26 +82,26 @@ const RegisterScreen = () => {
                 }
 
                 alert(data.message);
-                const userProfile = { ...profileDraft, goal: selectedGoal };
-                localStorage.setItem('authToken', data.token);
-                localStorage.setItem('userEmail', data.user?.email || email);
-                saveUserProfile(data.user?.email || email, {
-                    ...userProfile,
-                    goal: selectedGoal,
-                    age: data.user?.age ?? userProfile.age,
-                    gender: data.user?.gender ?? userProfile.gender,
-                    height: data.user?.height ?? userProfile.height,
-                    currentWeight: data.user?.currentWeight ?? userProfile.currentWeight,
-                    targetWeight: data.user?.targetWeight ?? userProfile.targetWeight,
-                    activity: data.user?.activity ?? userProfile.activity,
-                    habits: data.user?.habits || userProfile.habits || []
-                });
-                if (userProfile.currentWeight) upsertWeightLog(data.user?.email || email, Number(userProfile.currentWeight));
-                navigate('/dashboard', { state: { email: data.user?.email || email, goal: selectedGoal } });
+                saveAuthenticatedUser(data);
             } catch (error) {
                 alert("Gagal terhubung ke server. Pastikan server backend berjalan di port 5000.");
                 console.error(error);
             }
+        }
+    };
+
+    const handleGoogleRegisterSuccess = async (credentialResponse) => {
+        try {
+            const data = await loginWithGoogle({
+                credential: credentialResponse.credential,
+                profile: { ...profileDraft, goal: goalMap[selectedGoal] || selectedGoal }
+            });
+
+            alert(data.message || 'Registrasi Google berhasil!');
+            saveAuthenticatedUser(data, data.user?.email);
+        } catch (error) {
+            alert(error.message || 'Registrasi dengan Google gagal. Pastikan backend berjalan dan GOOGLE_CLIENT_ID sudah benar.');
+            console.error(error);
         }
     };
 
@@ -113,6 +139,20 @@ const RegisterScreen = () => {
                         </div>
 
                         <div className="flex flex-col gap-4 mt-6 md:mt-8">
+                            <div className="flex flex-col gap-2 items-center">
+                                <p className="text-[12px] font-bold text-gray-500">Daftar cepat dengan</p>
+                                <GoogleLogin
+                                    onSuccess={handleGoogleRegisterSuccess}
+                                    onError={() => {
+                                        alert('Registrasi Google gagal');
+                                    }}
+                                />
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <div className="h-px bg-gray-100 flex-1"></div>
+                                <span className="text-[11px] font-bold text-gray-400">atau daftar manual</span>
+                                <div className="h-px bg-gray-100 flex-1"></div>
+                            </div>
                             <div className="flex flex-col gap-2.5">
                                 <label className="text-[14px] font-bold text-gray-700">Email</label>
                                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-[55px] border-[1.5px] border-gray-200 rounded-[16px] px-5 font-bold text-gray-800 outline-none focus:border-[#14AE5C] focus:bg-[#F0FDF4] transition-all text-[14px]" placeholder="nama@gmail.com" />

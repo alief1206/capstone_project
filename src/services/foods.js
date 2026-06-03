@@ -1,4 +1,4 @@
-import { apiRequest } from './api';
+import { apiRequest } from './api.js';
 
 export const fetchFoodCatalog = async ({ query = '', goal = 'jaga', limit = 20, recommendationLimit = 24 } = {}) => {
     const params = new URLSearchParams({

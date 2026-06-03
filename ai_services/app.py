@@ -1,6 +1,10 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
+from runtime_config import configure_ai_runtime
+
+configure_ai_runtime()
+
 from nutri_predictor import NutriPredictor
 from food_classifier import predict_food_class
 

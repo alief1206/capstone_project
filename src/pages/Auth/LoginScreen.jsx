@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import { GoogleLogin } from '@react-oauth/google';
 import Button from '../../components/ui/Button';
 import { normalizeGoal, saveUserProfile } from '../../utils/userProfileStorage';
 import { mergeWeightLogs, upsertWeightLog } from '../../utils/weightLogStorage';
-import { fetchWeightTrend } from '../../services/auth';
+import { fetchWeightTrend, loginWithEmail, loginWithGoogle } from '../../services/auth';
 import { syncFoodLogs } from '../../services/meals';
 import mascotImage from '../../assets/images/mascot.png';
 
@@ -17,22 +18,9 @@ const LoginScreen = () => {
     const [password, setPassword] = useState('');
     const isComplete = email && password;
 
-    const handleLogin = async () => {
-        if (!isComplete) return;
-
+    const handleGoogleSuccess = async (credentialResponse) => {
         try {
-            const response = await fetch('http://localhost:5000/api/v1/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                alert(data.message || "Login gagal.");
-                return;
-            }
+            const data = await loginWithGoogle(credentialResponse.credential);
 
             localStorage.setItem('authToken', data.token);
             localStorage.setItem('userEmail', data.user.email);
@@ -56,7 +44,40 @@ const LoginScreen = () => {
             }
             navigate('/dashboard', { state: { goal: normalizeGoal(data.user.goal || selectedGoal), email: data.user.email } });
         } catch (error) {
-            alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");
+            alert(error.message || "Google Login gagal. Pastikan backend berjalan dan GOOGLE_CLIENT_ID sudah benar.");
+            console.error(error);
+        }
+    };
+
+    const handleLogin = async () => {
+        if (!isComplete) return;
+
+        try {
+            const data = await loginWithEmail({ email, password });
+
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('userEmail', data.user.email);
+            saveUserProfile(data.user.email, {
+                goal: normalizeGoal(data.user.goal || selectedGoal),
+                age: data.user.age,
+                gender: data.user.gender,
+                height: data.user.height,
+                currentWeight: data.user.currentWeight,
+                targetWeight: data.user.targetWeight,
+                activity: data.user.activity,
+                habits: data.user.habits || []
+            });
+            if (data.user.currentWeight) upsertWeightLog(data.user.email, Number(data.user.currentWeight));
+            try {
+                await syncFoodLogs(data.user.email);
+                const weightTrend = await fetchWeightTrend('monthly');
+                mergeWeightLogs(data.user.email, weightTrend.data || []);
+            } catch (error) {
+                console.warn('Sinkronisasi data login gagal:', error.message);
+            }
+            navigate('/dashboard', { state: { goal: normalizeGoal(data.user.goal || selectedGoal), email: data.user.email } });
+        } catch (error) {
+            alert(error.message || "Login gagal. Pastikan backend berjalan di port 5000.");
             console.error(error);
         }
     };
@@ -118,6 +139,16 @@ const LoginScreen = () => {
                                     Lupa kata sandi?
                                 </p>
                             </div>
+                        </div>
+
+                        <div className="flex flex-col gap-2 mt-2 items-center">
+                            <p className="text-[12px] font-bold text-gray-500 mb-2">Atau masuk dengan</p>
+                            <GoogleLogin
+                                onSuccess={handleGoogleSuccess}
+                                onError={() => {
+                                    alert('Google Login Gagal');
+                                }}
+                            />
                         </div>
                     </div>
 

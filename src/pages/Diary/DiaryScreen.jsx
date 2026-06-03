@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { formatTwoDecimals, getFoodLogsByDate, getNutritionSummary, getTotalCalories, removeFoodLog } from '../../utils/foodLogStorage';
 import { deleteFoodLog, syncFoodLogs } from '../../services/meals';
+import { isFutureLocalDate, parseLocalDate, toLocalDateKey } from '../../utils/dateUtils.js';
+import { getProfilePhoto } from '../../utils/userProfileStorage';
 import logoIcon from '../../assets/icons/logo-icon.png';
 import profileImg from '../../assets/images/profile.png';
 
@@ -12,10 +14,11 @@ const DiaryScreen = () => {
     const currentGoal = location.state?.goal || 'turunkan';
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
     const currentPath = location.pathname;
+    const profilePhoto = getProfilePhoto(userEmail) || profileImg;
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
     
     const [activePopover, setActivePopover] = useState(null);
-    const [currentDate, setCurrentDate] = useState(() => location.state?.selectedDate ? new Date(location.state.selectedDate) : new Date());
+    const [currentDate, setCurrentDate] = useState(() => parseLocalDate(location.state?.selectedDate || new Date()));
     const [showCalendar, setShowCalendar] = useState(false);
     const [foodLogs, setFoodLogs] = useState(() => getFoodLogsByDate(userEmail, currentDate));
 
@@ -76,15 +79,25 @@ const DiaryScreen = () => {
     };
 
     const changeDate = (days) => {
-        const newDate = new Date(currentDate);
-        newDate.setDate(currentDate.getDate() + days);
+        const newDate = parseLocalDate(currentDate);
+        newDate.setDate(newDate.getDate() + days);
         setCurrentDate(newDate);
     };
 
     const handleMonthChange = (offset) => {
-        const newDate = new Date(currentDate);
-        newDate.setMonth(currentDate.getMonth() + offset);
+        const newDate = parseLocalDate(currentDate);
+        newDate.setMonth(newDate.getMonth() + offset);
         setCurrentDate(newDate);
+    };
+
+    const navigateToFoodEntry = (path) => {
+        const selectedLogDate = toLocalDateKey(currentDate);
+        if (isFutureLocalDate(selectedLogDate)) {
+            alert('Tidak bisa menambahkan makanan untuk tanggal besok atau tanggal setelah hari ini.');
+            return;
+        }
+
+        navigate(path, { state: { goal: currentGoal, email: userEmail, logDate: selectedLogDate } });
     };
 
     const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
@@ -182,11 +195,11 @@ const DiaryScreen = () => {
                             </button>
                             {activePopover === 'nav-catat' && (
                                 <div className="absolute right-0 top-full mt-3 w-[220px] lg:w-[240px] bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-gray-100 p-2 animate-scaleIn origin-top-right text-left" onClick={(e) => e.stopPropagation()}>
-                                    <div onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal, email: userEmail, logDate: currentDate.toISOString() } })} className="flex items-center gap-4 p-3 hover:bg-[#F0FDF4] rounded-xl cursor-pointer transition-colors group">
+                                    <div onClick={() => navigateToFoodEntry('/cari-makanan')} className="flex items-center gap-4 p-3 hover:bg-[#F0FDF4] rounded-xl cursor-pointer transition-colors group">
                                         <div className="w-10 h-10 bg-gray-50 group-hover:bg-white rounded-full flex items-center justify-center text-[#14AE5C] border border-gray-100"><Icon icon="mdi:magnify" className="text-xl" /></div>
                                         <span className="text-[13px] font-bold text-gray-700 group-hover:text-[#14AE5C] whitespace-nowrap">Cari Manual</span>
                                     </div>
-                                    <div onClick={() => navigate('/scan-barcode', { state: { goal: currentGoal, email: userEmail, logDate: currentDate.toISOString() } })} className="flex items-center gap-4 p-3 hover:bg-[#F0FDF4] rounded-xl cursor-pointer transition-colors group mt-1">
+                                    <div onClick={() => navigateToFoodEntry('/scan-barcode')} className="flex items-center gap-4 p-3 hover:bg-[#F0FDF4] rounded-xl cursor-pointer transition-colors group mt-1">
                                         <div className="w-10 h-10 bg-gray-50 group-hover:bg-white rounded-full flex items-center justify-center text-[#14AE5C] border border-gray-100"><Icon icon="mdi:barcode-scan" className="text-xl" /></div>
                                         <span className="text-[13px] font-bold text-gray-700 group-hover:text-[#14AE5C] whitespace-nowrap">Scan Barcode</span>
                                     </div>
@@ -208,7 +221,7 @@ const DiaryScreen = () => {
                             onClick={() => navigate('/profile', { state: { goal: currentGoal, email: userEmail } })}
                             className={`w-[40px] h-[40px] lg:w-[44px] lg:h-[44px] rounded-full border-[2.5px] cursor-pointer transition-all overflow-hidden shadow-sm flex-shrink-0 ${currentPath === '/profile' ? 'border-[#14AE5C]' : 'border-gray-100 hover:border-[#14AE5C]'}`}
                         >
-                            <img src={profileImg} alt="Profile" className="w-full h-full object-cover" />
+                            <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                         </div>
                     </div>
                 </div>
@@ -403,7 +416,7 @@ const DiaryScreen = () => {
                                         </div>
                                     )}
                                     <button 
-                                        onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal, email: userEmail, logDate: currentDate.toISOString() } })} 
+                                        onClick={() => navigateToFoodEntry('/cari-makanan')} 
                                         className="w-full h-[46px] rounded-xl border border-dashed border-[#14AE5C] flex justify-center items-center gap-2 text-[#14AE5C] font-bold text-[13px] lg:text-[14px] hover:bg-[#F0FDF4] hover:border-solid transition-all mt-auto"
                                     >
                                         <Icon icon="mdi:plus" className="text-lg" /> Tambah Makanan
@@ -472,13 +485,13 @@ const DiaryScreen = () => {
                             </button>
                         </div>
                         <div className="flex gap-4">
-                            <div onClick={() => navigate('/cari-makanan', { state: { goal: currentGoal, email: userEmail, logDate: currentDate.toISOString() } })} className="flex-1 bg-[#F8FAFC] rounded-[24px] p-5 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-[#F0FDF4] hover:border-[#14AE5C] border-2 border-transparent transition-all shadow-sm">
+                            <div onClick={() => navigateToFoodEntry('/cari-makanan')} className="flex-1 bg-[#F8FAFC] rounded-[24px] p-5 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-[#F0FDF4] hover:border-[#14AE5C] border-2 border-transparent transition-all shadow-sm">
                                 <div className="w-[50px] h-[50px] bg-white rounded-full flex items-center justify-center text-[#14AE5C] text-2xl shadow-sm border border-gray-100">
                                     <Icon icon="mdi:magnify" />
                                 </div>
                                 <span className="text-[13px] font-extrabold text-gray-700 text-center">Cari<br/>Manual</span>
                             </div>
-                            <div onClick={() => navigate('/scan-barcode', { state: { goal: currentGoal, email: userEmail, logDate: currentDate.toISOString() } })} className="flex-1 bg-[#F8FAFC] rounded-[24px] p-5 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-[#F0FDF4] hover:border-[#14AE5C] border-2 border-transparent transition-all shadow-sm">
+                            <div onClick={() => navigateToFoodEntry('/scan-barcode')} className="flex-1 bg-[#F8FAFC] rounded-[24px] p-5 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-[#F0FDF4] hover:border-[#14AE5C] border-2 border-transparent transition-all shadow-sm">
                                 <div className="w-[50px] h-[50px] bg-white rounded-full flex items-center justify-center text-[#14AE5C] text-2xl shadow-sm border border-gray-100">
                                     <Icon icon="mdi:barcode-scan" />
                                 </div>

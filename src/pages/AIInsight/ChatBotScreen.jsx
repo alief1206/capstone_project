@@ -13,9 +13,10 @@ const ChatBotScreen = () => {
     const initialPrompt = location.state?.initialPrompt || '';
     const initialContext = location.state?.initialContext || null;
     
-    const [messages, setMessages] = useState([
-        { id: 1, text: `Halo ${userName}! Saya EatSistent AI. Kamu butuh rekomendasi nutrisi spesifik apa hari ini?`, sender: 'bot' }
-    ]);
+    const [messages, setMessages] = useState(() => {
+        const greeting = `Halo ${userName}! 👋 Saya EatSistent AI, asisten nutrisi pribadi Anda. Saya di sini untuk membantu mencapai target kesehatan dengan memberikan rekomendasi makanan yang tepat dan tips nutrisi yang dipersonalisasi. Apa yang bisa saya bantu hari ini?`;
+        return [{ id: 1, text: greeting, sender: 'bot' }];
+    });
     const [inputText, setInputText] = useState("");
     const [isSending, setIsSending] = useState(false);
     const messagesEndRef = useRef(null);
@@ -30,10 +31,10 @@ const ChatBotScreen = () => {
     }, [messages]);
 
     const quickPrompts = [
-        { label: "Tinggi Protein", icon: "mdi:arm-flex", color: "text-orange-500", bg: "bg-orange-50" },
-        { label: "Kaya Serat", icon: "mdi:leaf", color: "text-green-500", bg: "bg-green-50" },
-        { label: "Rendah Kalori", icon: "mdi:fire-off", color: "text-blue-500", bg: "bg-blue-50" },
-        { label: "Menu Murah", icon: "mdi:wallet-outline", color: "text-purple-500", bg: "bg-purple-50" }
+        { label: "Tinggi Protein 💪", icon: "mdi:arm-flex", color: "text-orange-500", bg: "bg-orange-50" },
+        { label: "Kaya Serat 🥗", icon: "mdi:leaf", color: "text-green-500", bg: "bg-green-50" },
+        { label: "Rendah Kalori 🔥", icon: "mdi:fire-off", color: "text-blue-500", bg: "bg-blue-50" },
+        { label: "Menu Murah 💰", icon: "mdi:wallet-outline", color: "text-purple-500", bg: "bg-purple-50" }
     ];
 
     const handleSend = async (text, context = null) => {
@@ -62,7 +63,9 @@ const ChatBotScreen = () => {
     useEffect(() => {
         if (!initialPrompt || hasSentInitialPrompt.current) return;
         hasSentInitialPrompt.current = true;
-        handleSend(initialPrompt, initialContext);
+        setTimeout(() => {
+            handleSend(initialPrompt, initialContext);
+        }, 800);
     }, [initialPrompt, initialContext]);
 
     return (

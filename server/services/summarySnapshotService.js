@@ -1,19 +1,10 @@
 import pkg from '@prisma/client';
 const { PrismaClient } = pkg;
+import { endOfDay, getDateKey, startOfDay } from '../utils/dateUtils.js';
 
 const prisma = new PrismaClient();
 
-export const startOfDay = (value = new Date()) => {
-    const date = new Date(value);
-    date.setHours(0, 0, 0, 0);
-    return date;
-};
-
-export const endOfDay = (value = new Date()) => {
-    const date = new Date(value);
-    date.setHours(23, 59, 59, 999);
-    return date;
-};
+export { endOfDay, startOfDay };
 
 export const summarizeFoodLogs = (logs = []) => logs.reduce((summary, log) => ({
     totalCalories: summary.totalCalories + Number(log.calories || 0),
@@ -94,8 +85,8 @@ export const buildWeeklyProgressSnapshot = async ({ userId, selectedDate = new D
     const weightSummary = summarizeWeightLogs(weightLogs, 'weekly');
 
     return {
-        dateFrom: start.toISOString().slice(0, 10),
-        dateTo: startOfDay(selectedDate).toISOString().slice(0, 10),
+        dateFrom: getDateKey(start),
+        dateTo: getDateKey(selectedDate),
         nutritionSummary,
         weightSummary,
         foodLogCount: foodLogs.length,
@@ -112,7 +103,7 @@ export const buildDailyInsightSnapshot = async ({ userId, selectedDate = new Dat
     });
 
     return {
-        date: start.toISOString().slice(0, 10),
+        date: getDateKey(start),
         dailySummary: summarizeFoodLogs(logs),
         meals: logs.map((log) => ({
             id: log.id,

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { getFoodLogsInLastDays, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
-import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
+import { calculateNutritionTargets, getProfilePhoto, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
 import { getWeightLogs, getWeightLogsInRange, mergeWeightLogs, summarizeWeightLogs, upsertWeightLog } from '../../utils/weightLogStorage';
 import { createWeightLog, fetchCurrentUser, fetchWeightTrend } from '../../services/auth';
 import { fetchNutritionSummary, syncFoodLogs } from '../../services/meals';
@@ -16,6 +16,7 @@ const ProgressScreen = () => {
     const [userProfile, setUserProfile] = useState(() => getUserProfile(userEmail));
     const currentGoal = normalizeGoal(location.state?.goal || userProfile.goal || 'turunkan');
     const currentPath = location.pathname;
+    const profilePhoto = getProfilePhoto(userEmail, userProfile) || profileImg;
     
     const [activePopover, setActivePopover] = useState(null);
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -247,7 +248,7 @@ const ProgressScreen = () => {
                             onClick={() => navigate('/profile', { state: { goal: currentGoal, email: userEmail } })}
                             className={`w-[40px] h-[40px] lg:w-[44px] lg:h-[44px] rounded-full border-[2.5px] cursor-pointer transition-all overflow-hidden shadow-sm flex-shrink-0 ${currentPath === '/profile' ? 'border-[#14AE5C]' : 'border-gray-100 hover:border-[#14AE5C]'}`}
                         >
-                            <img src={profileImg} alt="Profile" className="w-full h-full object-cover" />
+                            <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                         </div>
                     </div>
                 </div>

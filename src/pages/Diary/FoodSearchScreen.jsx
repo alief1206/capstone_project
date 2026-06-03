@@ -7,7 +7,8 @@ import profileImg from '../../assets/images/profile.png';
 import { addFoodLog, parseCalories } from '../../utils/foodLogStorage';
 import { createFoodLog } from '../../services/meals';
 import { fetchFoodCatalog } from '../../services/foods';
-import { getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
+import { getProfilePhoto, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
+import { isFutureLocalDate, toLocalDateKey } from '../../utils/dateUtils.js';
 
 const visualPresets = [
     { keywords: ['nasi', 'beras', 'jagung'], icon: 'mdi:rice', color: 'text-[#14AE5C]', bg: 'bg-[#F0FDF4]', border: 'border-[#DCFCE7]' },
@@ -54,7 +55,8 @@ const FoodSearchScreen = () => {
     const location = useLocation();
     const selectedGoal = location.state?.goal || 'turunkan';
     const userEmail = location.state?.email || localStorage.getItem('userEmail') || '';
-    const selectedLogDate = location.state?.logDate || new Date().toISOString();
+    const selectedLogDate = toLocalDateKey(location.state?.logDate || new Date());
+    const profilePhoto = getProfilePhoto(userEmail) || profileImg;
     
     const [searchQuery, setSearchQuery] = useState('');
     const [refreshKey, setRefreshKey] = useState(0);
@@ -138,6 +140,11 @@ const FoodSearchScreen = () => {
     const getMealOptions = (item) => isHeavyFood(item.name) ? ['SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM'] : ['SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM', 'CAMILAN'];
 
     const handleAddFood = async (item, meal) => {
+        if (isFutureLocalDate(selectedLogDate)) {
+            alert('Tidak bisa menambahkan makanan untuk tanggal besok atau tanggal setelah hari ini.');
+            return;
+        }
+
         if (meal === 'CAMILAN' && isHeavyFood(item.name)) {
             alert(`Validasi Gagal: ${item.name} termasuk makanan berat, tidak boleh dimasukkan ke Camilan.`);
             return;
@@ -311,7 +318,7 @@ const FoodSearchScreen = () => {
                             onClick={() => navigate('/profile', { state: { goal: selectedGoal, email: userEmail } })}
                             className={`w-[40px] h-[40px] lg:w-[44px] lg:h-[44px] rounded-full border-[2.5px] cursor-pointer transition-all overflow-hidden shadow-sm flex-shrink-0 border-gray-100 hover:border-[#14AE5C]`}
                         >
-                            <img src={profileImg} alt="Profile" className="w-full h-full object-cover" />
+                            <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                         </div>
                     </div>
                 </div>

@@ -6,8 +6,11 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Joi from 'joi';
 import nodemailer from 'nodemailer';
+import { OAuth2Client } from 'google-auth-library';
+import { startOfDay } from '../utils/dateUtils.js';
 
 const prisma = new PrismaClient();
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const isEmailConfigured = Boolean(
     process.env.EMAIL_USER &&
@@ -60,12 +63,6 @@ const serializeAuthUser = (user) => ({
     activity: user.activity,
     habits: user.habits
 });
-
-const startOfDay = (value = new Date()) => {
-    const date = new Date(value);
-    date.setHours(0, 0, 0, 0);
-    return date;
-};
 
 const sendMailIfConfigured = async (mailOptions) => {
     if (!transporter) return { sent: false, skipped: true };
@@ -304,5 +301,73 @@ export const login = async (req, res) => {
         });
     } catch (err) {
         res.status(500).json({ message: "Gagal login", error: err.message });
+    }
+};
+
+export const googleLogin = async (req, res) => {
+    try {
+        const { credential, profile = {} } = req.body;
+        if (!credential) {
+            return res.status(400).json({ message: "Credential is required" });
+        }
+
+        const ticket = await googleClient.verifyIdToken({
+            idToken: credential,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+        
+        const payload = ticket.getPayload();
+        const email = payload.email.toLowerCase();
+        const name = payload.name;
+
+        let user = await prisma.user.findUnique({ where: { email } });
+        const profileData = normalizeProfilePayload(profile);
+
+        if (!user) {
+            // Create a random complex password for google-created user to satisfy DB constraints
+            const randomPassword = await bcrypt.hash(Math.random().toString(36).slice(-8) + 'A1!', 10);
+            user = await prisma.user.create({
+                data: {
+                    name,
+                    email,
+                    password: randomPassword,
+                    isVerified: true,
+                    ...profileData
+                }
+            });
+        } else if (Object.keys(profileData).length > 0) {
+            user = await prisma.user.update({
+                where: { id: user.id },
+                data: profileData
+            });
+        }
+
+        if (user.currentWeight) {
+            await prisma.weightLog.upsert({
+                where: {
+                    userId_logDate: {
+                        userId: user.id,
+                        logDate: startOfDay()
+                    }
+                },
+                update: { weight: Number(user.currentWeight) },
+                create: {
+                    userId: user.id,
+                    weight: Number(user.currentWeight),
+                    logDate: startOfDay()
+                }
+            });
+        }
+
+        const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+
+        res.status(200).json({
+            message: "Google Login berhasil!",
+            token,
+            user: serializeAuthUser(user)
+        });
+    } catch (err) {
+        console.error("Google Login Error:", err);
+        res.status(500).json({ message: "Gagal login dengan Google", error: err.message });
     }
 };

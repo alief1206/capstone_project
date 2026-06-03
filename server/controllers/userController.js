@@ -9,14 +9,9 @@ import {
     saveSummarySnapshot,
     summarizeWeightLogs
 } from '../services/summarySnapshotService.js';
+import { getDateKey, startOfDay } from '../utils/dateUtils.js';
 
 const prisma = new PrismaClient();
-
-const startOfDay = (value = new Date()) => {
-    const date = new Date(value);
-    date.setHours(0, 0, 0, 0);
-    return date;
-};
 
 const serializeUser = (user) => ({
     id: user.id,
@@ -210,8 +205,8 @@ export const getWeightTrend = async (req, res) => {
                 type: 'WEEKLY_PROGRESS',
                 summaryDate: new Date(),
                 data: {
-                    dateFrom: getRangeStart('weekly').toISOString().slice(0, 10),
-                    dateTo: startOfDay().toISOString().slice(0, 10),
+                    dateFrom: getDateKey(getRangeStart('weekly')),
+                    dateTo: getDateKey(),
                     weightSummary: weeklySummary,
                     weightLogs: logs.map((log) => ({
                         id: log.id,

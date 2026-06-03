@@ -1,9 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import logoIcon from '../../assets/icons/logo-icon.png';
 import profileImg from '../../assets/images/profile.png';
-import { getUserProfile, saveUserProfile, calculateNutritionTargets, normalizeGoal } from '../../utils/userProfileStorage';
+import { fetchCurrentUser, updatePhysicalProfile } from '../../services/auth';
+import { getProfilePhoto, getTargetDate, getUserProfile, saveProfilePhoto, saveUserProfile, calculateNutritionTargets, normalizeActivity, normalizeGoal, activityLabels } from '../../utils/userProfileStorage';
+
+const normalizeGender = (gender = 'pria') => String(gender).toLowerCase() === 'wanita' || String(gender).toLowerCase() === 'perempuan'
+    ? 'wanita'
+    : 'pria';
+
+const buildPhysicalPayload = (profile = {}) => ({
+    age: Number(profile.age),
+    gender: normalizeGender(profile.gender),
+    height: Number(profile.height),
+    currentWeight: Number(profile.currentWeight || profile.weight),
+    targetWeight: Number(profile.targetWeight || profile.currentWeight || profile.weight),
+    activity: normalizeActivity(profile.activity || profile.activityLevel),
+    habits: profile.habits || [],
+    goal: normalizeGoal(profile.goal)
+});
 
 const CustomDropdown = ({ value, options, onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -45,6 +61,8 @@ const ProfileScreen = () => {
     const [userProfile, setUserProfile] = useState(() => getUserProfile(userEmail));
     const currentGoal = normalizeGoal(userProfile.goal || 'turunkan');
     const currentPath = location.pathname;
+    const profilePhoto = getProfilePhoto(userEmail, userProfile) || profileImg;
+    const photoInputRef = useRef(null);
 
     const [activePopover, setActivePopover] = useState(null);
     const [toast, setToast] = useState({ show: false, title: '', message: '', icon: '' });
@@ -56,12 +74,39 @@ const ProfileScreen = () => {
         targetWeight: userProfile.targetWeight || ''
     });
     const [editDataForm, setEditDataForm] = useState({
-        gender: userProfile.gender || 'Pria',
+        gender: normalizeGender(userProfile.gender),
         age: userProfile.age || '',
         height: userProfile.height || '',
         currentWeight: userProfile.currentWeight || '',
-        activityLevel: userProfile.activityLevel || 'Sedang'
+        activity: normalizeActivity(userProfile.activity || userProfile.activityLevel)
     });
+
+    useEffect(() => {
+        const token = localStorage.getItem('authToken');
+        if (!token) return;
+
+        let isActive = true;
+        fetchCurrentUser()
+            .then((profile) => {
+                if (!isActive) return;
+                const mergedProfile = {
+                    ...userProfile,
+                    ...profile,
+                    goal: normalizeGoal(profile.goal || userProfile.goal),
+                    activity: normalizeActivity(profile.activity || userProfile.activity),
+                    profilePhoto: userProfile.profilePhoto || profile.profilePhoto || ''
+                };
+                saveUserProfile(userEmail, mergedProfile);
+                setUserProfile(mergedProfile);
+            })
+            .catch((error) => {
+                console.warn('Gagal mengambil profil terbaru:', error.message);
+            });
+
+        return () => {
+            isActive = false;
+        };
+    }, [userEmail]);
 
     const showToast = (title, message, icon = 'mdi:information-variant') => {
         setToast({ show: true, title, message, icon });
@@ -71,7 +116,13 @@ const ProfileScreen = () => {
     const togglePopover = (id) => {
         setActivePopover(prev => prev === id ? null : id);
         if (id === 'edit-goal') setEditGoalForm({ goal: currentGoal, targetWeight: userProfile.targetWeight || '' });
-        if (id === 'edit-data') setEditDataForm({ gender: userProfile.gender || 'Pria', age: userProfile.age || '', height: userProfile.height || '', currentWeight: userProfile.currentWeight || '', activityLevel: userProfile.activityLevel || 'Sedang' });
+        if (id === 'edit-data') setEditDataForm({
+            gender: normalizeGender(userProfile.gender),
+            age: userProfile.age || '',
+            height: userProfile.height || '',
+            currentWeight: userProfile.currentWeight || '',
+            activity: normalizeActivity(userProfile.activity || userProfile.activityLevel)
+        });
     };
 
     const handleNotifToggle = () => {
@@ -80,20 +131,83 @@ const ProfileScreen = () => {
         showToast('Notifikasi', `Pengaturan notifikasi berhasil di${newState ? 'aktifkan' : 'matikan'}.`, newState ? 'mdi:bell-ring-outline' : 'mdi:bell-off-outline');
     };
 
-    const handleSaveGoal = () => {
-        const updatedProfile = { ...userProfile, goal: editGoalForm.goal, targetWeight: editGoalForm.targetWeight };
+    const saveProfileWithAiTarget = async (nextProfile, successMessage) => {
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            saveUserProfile(userEmail, nextProfile);
+            setUserProfile(nextProfile);
+            setActivePopover(null);
+            showToast('Tersimpan Lokal', successMessage, 'mdi:check-circle');
+            return;
+        }
+
+        const responseProfile = await updatePhysicalProfile(buildPhysicalPayload(nextProfile));
+        const updatedProfile = {
+            ...nextProfile,
+            ...responseProfile,
+            goal: normalizeGoal(responseProfile.goal || nextProfile.goal),
+            activity: normalizeActivity(responseProfile.activity || nextProfile.activity),
+            aiTarget: responseProfile.aiTarget || nextProfile.aiTarget || null,
+            profilePhoto: nextProfile.profilePhoto || userProfile.profilePhoto || ''
+        };
         saveUserProfile(userEmail, updatedProfile);
         setUserProfile(updatedProfile);
         setActivePopover(null);
-        showToast('Berhasil', 'Goal & Target berhasil diperbarui!', 'mdi:check-circle');
+        showToast('Berhasil', successMessage, 'mdi:check-circle');
     };
 
-    const handleSaveData = () => {
+    const handleSaveGoal = async () => {
+        const updatedProfile = { ...userProfile, goal: editGoalForm.goal, targetWeight: editGoalForm.targetWeight };
+        try {
+            await saveProfileWithAiTarget(updatedProfile, 'Goal, target, dan target harian AI berhasil diperbarui!');
+        } catch (error) {
+            showToast('Gagal Menyimpan', error.message || 'Pastikan backend dan AI service berjalan.', 'mdi:alert-circle-outline');
+        }
+    };
+
+    const handleSaveData = async () => {
         const updatedProfile = { ...userProfile, ...editDataForm };
-        saveUserProfile(userEmail, updatedProfile);
+        try {
+            await saveProfileWithAiTarget(updatedProfile, 'Data tubuh dan target harian AI berhasil diperbarui!');
+        } catch (error) {
+            showToast('Gagal Menyimpan', error.message || 'Pastikan backend dan AI service berjalan.', 'mdi:alert-circle-outline');
+        }
+    };
+
+    const handleProfilePhotoUpload = (event) => {
+        const file = event.target.files?.[0];
+        event.target.value = '';
+        if (!file) return;
+
+        if (!['image/jpeg', 'image/png'].includes(file.type)) {
+            showToast('Format Tidak Didukung', 'Pilih file gambar JPG atau PNG saja.', 'mdi:alert-circle-outline');
+            return;
+        }
+
+        if (file.size > 2 * 1024 * 1024) {
+            showToast('File Terlalu Besar', 'Ukuran foto profil maksimal 2 MB.', 'mdi:alert-circle-outline');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            const profilePhoto = String(reader.result || '');
+            const updatedProfile = { ...userProfile, profilePhoto };
+            saveProfilePhoto(userEmail, profilePhoto);
+            setUserProfile(updatedProfile);
+            showToast('Foto Profil Tersimpan', 'Foto profil berhasil diperbarui.', 'mdi:check-circle');
+        };
+        reader.onerror = () => {
+            showToast('Gagal Membaca File', 'Coba pilih foto lain.', 'mdi:alert-circle-outline');
+        };
+        reader.readAsDataURL(file);
+    };
+
+    const handleRemoveProfilePhoto = () => {
+        const updatedProfile = { ...userProfile, profilePhoto: '' };
+        saveProfilePhoto(userEmail, '');
         setUserProfile(updatedProfile);
-        setActivePopover(null);
-        showToast('Berhasil', 'Data Tubuh berhasil diperbarui!', 'mdi:check-circle');
+        showToast('Foto Profil Dihapus', 'Foto profil kembali ke gambar bawaan.', 'mdi:check-circle');
     };
 
     const handleLogout = () => {
@@ -104,9 +218,6 @@ const ProfileScreen = () => {
 
     const targets = calculateNutritionTargets(userProfile, currentGoal);
     const userName = userEmail ? userEmail.split('@')[0] : 'Pengguna';
-    const isGoalTargetReaced = userProfile.currentWeight && userProfile.targetWeight && 
-        ((currentGoal === 'turunkan' && Number(userProfile.currentWeight) <= Number(userProfile.targetWeight)) || 
-         (currentGoal === 'naikkan' && Number(userProfile.currentWeight) >= Number(userProfile.targetWeight)));
 
     const ContextPopover = ({ id, title, content, position = "bottom-full mb-3 left-0", origin = "origin-bottom-left" }) => {
         if (activePopover !== id) return null;
@@ -200,7 +311,7 @@ const ProfileScreen = () => {
                             onClick={() => navigate('/profile', { state: { goal: currentGoal, email: userEmail } })}
                             className={`w-[40px] h-[40px] lg:w-[44px] lg:h-[44px] rounded-full border-[2.5px] cursor-pointer transition-all overflow-hidden shadow-sm flex-shrink-0 ${currentPath === '/profile' ? 'border-[#14AE5C]' : 'border-gray-100 hover:border-[#14AE5C]'}`}
                         >
-                            <img src={profileImg} alt="Profile" className="w-full h-full object-cover" />
+                            <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                         </div>
                     </div>
                 </div>
@@ -225,12 +336,19 @@ const ProfileScreen = () => {
             <main className="flex-1 w-full max-w-[1400px] mx-auto px-6 lg:px-8 pt-[100px] md:pt-[130px] pb-[120px] md:pb-16 flex flex-col items-center">
                 
                 <div className="bg-white md:bg-transparent rounded-[24px] md:rounded-none p-5 md:p-0 shadow-sm md:shadow-none border border-gray-100 md:border-none mb-6 md:mb-10 w-full flex flex-row md:flex-col items-center md:justify-center gap-4 md:gap-0 relative">
+                    <input
+                        ref={photoInputRef}
+                        type="file"
+                        accept="image/jpeg,image/png"
+                        className="hidden"
+                        onChange={handleProfilePhotoUpload}
+                    />
                     <div 
                         className="relative flex-shrink-0 cursor-pointer group"
-                        onClick={(e) => { e.stopPropagation(); showToast('Ubah Foto Profil', 'Fitur ubah foto sedang dalam tahap pengembangan.', 'mdi:camera-outline'); }}
+                        onClick={(e) => { e.stopPropagation(); photoInputRef.current?.click(); }}
                     >
                         <div className="w-[64px] h-[64px] md:w-[100px] md:h-[100px] rounded-full overflow-hidden border-2 md:border-4 border-gray-50 md:border-white shadow-sm md:shadow-md md:mb-4 relative">
-                            <img src={profileImg} alt="Profile" className="w-full h-full object-cover" />
+                            <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                             <div className="hidden md:flex absolute inset-0 bg-black/40 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                                 <Icon icon="mdi:camera-outline" className="text-white text-2xl" />
                             </div>
@@ -243,6 +361,26 @@ const ProfileScreen = () => {
                     <div className="flex flex-col md:items-center">
                         <h2 className="text-[18px] md:text-[28px] font-extrabold text-gray-800 leading-tight">{userName}</h2>
                         <p className="text-[12px] md:text-[14px] text-gray-500 font-medium md:mt-1">{userEmail || 'email belum tersedia'}</p>
+                        <div className="flex items-center gap-2 mt-3">
+                            <button
+                                type="button"
+                                onClick={(e) => { e.stopPropagation(); photoInputRef.current?.click(); }}
+                                className="h-9 px-4 rounded-full bg-[#14AE5C] text-white text-[12px] font-extrabold flex items-center gap-2 hover:bg-[#108e4b] active:scale-95 transition-all"
+                            >
+                                <Icon icon="mdi:camera-plus-outline" className="text-base" />
+                                Ubah Foto
+                            </button>
+                            {userProfile.profilePhoto && (
+                                <button
+                                    type="button"
+                                    onClick={(e) => { e.stopPropagation(); handleRemoveProfilePhoto(); }}
+                                    className="h-9 px-4 rounded-full bg-red-50 text-red-500 text-[12px] font-extrabold flex items-center gap-2 hover:bg-red-100 active:scale-95 transition-all"
+                                >
+                                    <Icon icon="mdi:trash-can-outline" className="text-base" />
+                                    Hapus
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
 
@@ -274,7 +412,7 @@ const ProfileScreen = () => {
                                                         options={[
                                                             { value: 'turunkan', label: 'Turunkan Berat Badan' },
                                                             { value: 'jaga', label: 'Jaga Berat Badan' },
-                                                            { value: 'naikkan', label: 'Naikkan Berat Badan' }
+                                                            { value: 'tambah', label: 'Naikkan Berat Badan' }
                                                         ]}
                                                     />
                                                 </div>
@@ -302,9 +440,11 @@ const ProfileScreen = () => {
                                     <Icon icon="mdi:target" className="text-[32px] text-[#14AE5C]" />
                                 </div>
                                 <h4 className="text-[18px] md:text-[22px] font-extrabold text-gray-800 mb-1">
-                                    {currentGoal === 'turunkan' ? 'Turunkan Berat Badan' : currentGoal === 'naikkan' ? 'Naikkan Berat Badan' : 'Jaga Berat Badan'}
+                                    {currentGoal === 'turunkan' ? 'Turunkan Berat Badan' : currentGoal === 'tambah' ? 'Naikkan Berat Badan' : 'Jaga Berat Badan'}
                                 </h4>
-                                <p className="text-[13px] text-gray-500 font-medium">Defisit 500 kkal/hari</p>
+                                <p className="text-[13px] text-gray-500 font-medium">
+                                    {currentGoal === 'turunkan' ? 'Defisit berbasis model AI' : currentGoal === 'tambah' ? 'Surplus berbasis model AI' : 'Target seimbang berbasis model AI'}
+                                </p>
                             </div>
 
                             <div className="grid grid-cols-2 gap-y-6 md:gap-y-8 border-t border-gray-100 pt-6">
@@ -316,11 +456,11 @@ const ProfileScreen = () => {
                                 </div>
                                 <div className="flex flex-col gap-1 text-left pl-4 md:pl-6">
                                     <span className="text-[11px] font-bold text-gray-500">Target Tanggal</span>
-                                    <span className="text-[16px] md:text-[18px] font-extrabold text-gray-800">30 Agustus 2026</span>
+                                    <span className="text-[16px] md:text-[18px] font-extrabold text-gray-800">{getTargetDate(userProfile)}</span>
                                 </div>
                                 <div className="flex flex-col gap-1 text-left border-r border-gray-100">
                                     <span className="text-[11px] font-bold text-gray-500">TDEE (Perkiraan)</span>
-                                    <span className="text-[16px] md:text-[18px] font-extrabold text-gray-800">{targets.calories ? `${(targets.calories + (currentGoal==='turunkan'?500:currentGoal==='naikkan'?-500:0)).toLocaleString('id-ID')} kkal` : '- kkal'}</span>
+                                    <span className="text-[16px] md:text-[18px] font-extrabold text-gray-800">{targets.tdee ? `${targets.tdee.toLocaleString('id-ID')} kkal` : '- kkal'}</span>
                                 </div>
                                 <div className="flex flex-col gap-1 text-left pl-4 md:pl-6">
                                     <span className="text-[11px] font-bold text-gray-500">Target Harian</span>
@@ -398,12 +538,12 @@ const ProfileScreen = () => {
                                                     </div>
                                                     <div className="flex flex-col gap-1.5">
                                                         <label className="text-[11px] font-bold text-gray-500">Gender</label>
-                                                        <CustomDropdown 
-                                                            value={editDataForm.gender} 
-                                                            onChange={(val) => setEditDataForm({...editDataForm, gender: val})} 
+                                                        <CustomDropdown
+                                                            value={editDataForm.gender}
+                                                            onChange={(val) => setEditDataForm({...editDataForm, gender: val})}
                                                             options={[
-                                                                { value: 'Pria', label: 'Pria' },
-                                                                { value: 'Wanita', label: 'Wanita' }
+                                                                { value: 'pria', label: 'Pria' },
+                                                                { value: 'wanita', label: 'Wanita' }
                                                             ]}
                                                         />
                                                     </div>
@@ -411,13 +551,13 @@ const ProfileScreen = () => {
                                                 <div className="flex flex-col gap-1.5">
                                                     <label className="text-[11px] font-bold text-gray-500">Tingkat Aktivitas</label>
                                                     <CustomDropdown 
-                                                        value={editDataForm.activityLevel} 
-                                                        onChange={(val) => setEditDataForm({...editDataForm, activityLevel: val})} 
+                                                        value={editDataForm.activity}
+                                                        onChange={(val) => setEditDataForm({...editDataForm, activity: val})}
                                                         options={[
-                                                            { value: 'Tidak Terlalu Aktif', label: 'Tidak Terlalu Aktif' },
-                                                            { value: 'Agak Aktif', label: 'Agak Aktif' },
-                                                            { value: 'Aktif', label: 'Aktif' },
-                                                            { value: 'Sangat Aktif', label: 'Sangat Aktif' }
+                                                            { value: 'rendah', label: 'Tidak Terlalu Aktif' },
+                                                            { value: 'sedang', label: 'Agak Aktif' },
+                                                            { value: 'aktif', label: 'Aktif' },
+                                                            { value: 'sangat', label: 'Sangat Aktif' }
                                                         ]}
                                                     />
                                                 </div>
@@ -435,7 +575,7 @@ const ProfileScreen = () => {
                                     { label: 'Tanggal Lahir', value: userProfile.age ? `${new Date().getFullYear() - userProfile.age}` : '-' },
                                     { label: 'Tinggi Badan', value: userProfile.height ? `${userProfile.height} cm` : '-' },
                                     { label: 'Berat Badan Saat Ini', value: userProfile.currentWeight ? `${userProfile.currentWeight} kg` : '-' },
-                                    { label: 'Aktivitas', value: userProfile.activityLevel || '-' }
+                                    { label: 'Aktivitas', value: activityLabels[normalizeActivity(userProfile.activity || userProfile.activityLevel)] || '-' }
                                 ].map((item, idx) => (
                                     <div key={idx} className={`flex justify-between items-center py-4 ${idx !== 3 ? 'border-b border-gray-50' : ''}`}>
                                         <span className="text-[14px] font-bold text-gray-600">{item.label}</span>

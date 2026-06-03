@@ -6,9 +6,10 @@ import profileImg from '../../assets/images/profile.png';
 import robotImg from '../../assets/images/robot.png';
 import foodImg from '../../assets/images/makanan.png';
 import { getFoodLogsByDate, getMacroTotals, getTotalCalories } from '../../utils/foodLogStorage';
-import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
+import { calculateNutritionTargets, getProfilePhoto, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
 import { fetchNutritionSummary, syncFoodLogs } from '../../services/meals';
 import { fetchCurrentUser } from '../../services/auth';
+import { toLocalDateKey } from '../../utils/dateUtils.js';
 
 const InsightScreen = () => {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ const InsightScreen = () => {
     const [userProfile, setUserProfile] = useState(() => getUserProfile(userEmail) || {});
     const currentGoal = normalizeGoal(location.state?.goal || userProfile?.goal || 'turunkan');
     const currentPath = location.pathname;
+    const profilePhoto = getProfilePhoto(userEmail, userProfile) || profileImg;
     
     const [activePopover, setActivePopover] = useState(null);
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -84,32 +86,28 @@ const InsightScreen = () => {
     const dynamicNutrients = [
         {
             id: 'kalori', label: 'Total Kalori', icon: 'mdi:card-multiple-outline', iconColor: 'text-[#14AE5C]',
-            value: String(totalCalories), target: `${calorieTarget ? calorieTarget.toLocaleString('id-ID') : '-'} kkal`,
+            value: String(Math.round(totalCalories * 100) / 100), target: `${calorieTarget ? calorieTarget.toLocaleString('id-ID') : '-'} kkal`,
             valueColor: 'text-gray-800', status: totalCalories <= calorieTarget ? 'check' : 'down'
         },
         {
             id: 'protein', label: 'Protein', icon: 'mdi:arm-flex-outline', iconColor: 'text-[#F97316]',
-            value: String(macroTotals.protein), target: `${targets.protein} g`, valueColor: 'text-gray-800',
+            value: (macroTotals.protein).toFixed(2), target: `${targets.protein} g`, valueColor: 'text-gray-800',
             status: macroTotals.protein >= targets.protein ? 'check' : 'down'
         },
         {
             id: 'karbo', label: 'Karbohidrat', icon: 'mdi:food-croissant', iconColor: 'text-[#3B82F6]',
-            value: String(macroTotals.carbs), target: `${targets.carbs} g`, valueColor: 'text-gray-800',
+            value: (macroTotals.carbs).toFixed(2), target: `${targets.carbs} g`, valueColor: 'text-gray-800',
             status: macroTotals.carbs <= targets.carbs ? 'check' : 'down'
         },
         {
             id: 'lemak', label: 'Lemak', icon: 'mdi:egg-outline', iconColor: 'text-[#8B5CF6]',
-            value: String(macroTotals.fat), target: `${targets.fat} g`, valueColor: 'text-gray-800',
+            value: (macroTotals.fat).toFixed(2), target: `${targets.fat} g`, valueColor: 'text-gray-800',
             status: macroTotals.fat <= targets.fat ? 'check' : 'down'
         },
         {
             id: 'serat', label: 'Serat', icon: 'mdi:carrot', iconColor: 'text-[#14AE5C]',
-            value: String(macroTotals.fiber || 0), target: '25 g', valueColor: 'text-gray-800',
+            value: (macroTotals.fiber || 0).toFixed(2), target: '25 g', valueColor: 'text-gray-800',
             status: (macroTotals.fiber || 0) >= 25 ? 'check' : 'down'
-        },
-        {
-            id: 'air', label: 'Air Mineral', icon: 'mdi:water-outline', iconColor: 'text-[#0EA5E9]',
-            value: '1.2', target: '2 L', valueColor: 'text-gray-800', status: 'down'
         }
     ];
 
@@ -119,10 +117,17 @@ const InsightScreen = () => {
 
     const insightContext = {
         sourceAction: 'insight',
-        date: currentDate.toISOString().slice(0, 10),
+        date: toLocalDateKey(currentDate),
         dailySummary: serverSummary?.dailySummary || { totalCalories, ...macroTotals },
         weeklySummary: serverSummary?.weeklySummary,
-        nutrients: dynamicNutrients
+        nutrients: dynamicNutrients,
+        lackingNutrients: {
+            protein: Math.max(0, targets.protein - macroTotals.protein),
+            carbs: Math.max(0, targets.carbs - macroTotals.carbs),
+            fat: Math.max(0, targets.fat - macroTotals.fat),
+            fiber: Math.max(0, 25 - (macroTotals.fiber || 0)),
+            calories: Math.max(0, calorieTarget - totalCalories)
+        }
     };
 
     const dynamicRecommendations = [
@@ -178,7 +183,7 @@ const InsightScreen = () => {
                 initialPrompt: payload.prompt,
                 initialContext: {
                     ...insightContext,
-                    sourceAction: payload.sourceAction,
+                    sourceAction: 'insight_recommendation',
                     recommendationTitle: payload.title,
                     recommendationDesc: payload.desc
                 }
@@ -260,7 +265,7 @@ const InsightScreen = () => {
                         </div>
 
                         <div onClick={() => navigate('/profile', { state: { goal: currentGoal, email: userEmail } })} className="w-[40px] h-[40px] lg:w-[44px] lg:h-[44px] rounded-full border-[2.5px] border-gray-100 cursor-pointer overflow-hidden shadow-sm">
-                            <img src={profileImg} alt="Profile" className="w-full h-full object-cover" />
+                            <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                         </div>
                     </div>
                 </div>
@@ -278,7 +283,7 @@ const InsightScreen = () => {
                         <ContextPopover id="mobile-notif" title="Notifikasi" content="Belum ada notifikasi baru hari ini. Terus pantau progress harianmu!" position="top-full mt-3 right-0" origin="origin-top-right" />
                     </div>
                     <div onClick={() => navigate('/profile', { state: { goal: currentGoal, email: userEmail } })} className="w-[40px] h-[40px] rounded-full bg-gray-100 flex justify-center items-center overflow-hidden border-2 border-gray-100 cursor-pointer">
-                        <img src={profileImg} alt="Profile" className="w-full h-full object-cover" />
+                        <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                     </div>
                 </div>
             </div>

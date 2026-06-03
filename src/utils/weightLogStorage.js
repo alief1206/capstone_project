@@ -1,3 +1,5 @@
+import { parseLocalDate, toLocalDateKey } from './dateUtils.js';
+
 export const getWeightLogKey = (email = '') => `weightLogs:${email || 'guest'}`;
 
 const safeParse = (value, fallback = []) => {
@@ -8,13 +10,13 @@ const safeParse = (value, fallback = []) => {
     }
 };
 
-const dateKey = (date = new Date()) => new Date(date).toISOString().slice(0, 10);
+const dateKey = (date = new Date()) => toLocalDateKey(date);
 
 export const getWeightLogs = (email = '') => safeParse(localStorage.getItem(getWeightLogKey(email)), []);
 
 export const saveWeightLogs = (email = '', logs = []) => {
     localStorage.setItem(getWeightLogKey(email), JSON.stringify(
-        logs.sort((a, b) => new Date(a.logDate) - new Date(b.logDate))
+        logs.sort((a, b) => parseLocalDate(a.logDate) - parseLocalDate(b.logDate))
     ));
 };
 
@@ -53,7 +55,7 @@ export const getWeightLogsInRange = (email = '', days = 7) => {
     const start = new Date();
     start.setHours(0, 0, 0, 0);
     start.setDate(start.getDate() - (days - 1));
-    return getWeightLogs(email).filter((log) => new Date(log.logDate) >= start);
+    return getWeightLogs(email).filter((log) => parseLocalDate(log.logDate) >= start);
 };
 
 export const summarizeWeightLogs = (logs = []) => {
@@ -61,7 +63,7 @@ export const summarizeWeightLogs = (logs = []) => {
         return { latestWeight: 0, delta: 0, averageWeight: 0, minWeight: 0, maxWeight: 0, entries: 0 };
     }
 
-    const ordered = [...logs].sort((a, b) => new Date(a.logDate) - new Date(b.logDate));
+    const ordered = [...logs].sort((a, b) => parseLocalDate(a.logDate) - parseLocalDate(b.logDate));
     const weights = ordered.map((log) => Number(log.weight || 0));
     const latest = ordered[ordered.length - 1];
     const previous = ordered.length > 1 ? ordered[ordered.length - 2] : latest;

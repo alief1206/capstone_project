@@ -1,5 +1,6 @@
-import { apiRequest } from './api';
-import { mergeFoodLogs, normalizeFoodLogForStorage, saveFoodLogs } from '../utils/foodLogStorage';
+import { apiRequest } from './api.js';
+import { mergeFoodLogs, normalizeFoodLogForStorage, saveFoodLogs } from '../utils/foodLogStorage.js';
+import { toLocalDateKey } from '../utils/dateUtils.js';
 
 export const fetchFoodLogs = async (email = '') => {
     const response = await apiRequest('/food-logs/log-food');
@@ -21,7 +22,7 @@ export const createFoodLog = async (foodPayload) => {
 };
 
 export const fetchNutritionSummary = async (date = new Date()) => {
-    const dateKey = new Date(date).toISOString().slice(0, 10);
+    const dateKey = toLocalDateKey(date);
     return apiRequest(`/food-logs/summary-analytics?date=${encodeURIComponent(dateKey)}`);
 };
 

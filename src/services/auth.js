@@ -1,4 +1,24 @@
-import { apiRequest } from './api';
+import { apiRequest } from './api.js';
+
+export const loginWithEmail = async ({ email, password }) => {
+    return apiRequest('/auth/login', {
+        method: 'POST',
+        body: { email, password },
+        auth: false
+    });
+};
+
+export const loginWithGoogle = async (credentialOrPayload) => {
+    const body = typeof credentialOrPayload === 'string'
+        ? { credential: credentialOrPayload }
+        : credentialOrPayload;
+
+    return apiRequest('/auth/google-login', {
+        method: 'POST',
+        body,
+        auth: false
+    });
+};
 
 export const fetchCurrentUser = async () => {
     const response = await apiRequest('/users/me');
