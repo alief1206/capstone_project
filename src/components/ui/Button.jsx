@@ -8,7 +8,7 @@ const Button = ({ children, onClick, variant = 'primary', className = '' }) => {
   return (
     <button
       onClick={onClick}
-      className={`w-[358px] h-[59px] font-medium text-[16px] rounded-[20px] flex items-center justify-center transition-all active:scale-95 ${variantStyles} ${className}`}
+      className={`w-full max-w-[358px] h-[59px] font-medium text-[16px] rounded-[20px] flex items-center justify-center transition-all active:scale-95 ${variantStyles} ${className}`}
     >
       {children}
     </button>
