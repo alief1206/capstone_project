@@ -5,6 +5,7 @@ import Button from '../../components/ui/Button';
 import confettiImg from '../../assets/images/confetti.png';
 import { getProfileDraft, goalMap, saveUserProfile } from '../../utils/userProfileStorage';
 import { upsertWeightLog } from '../../utils/weightLogStorage';
+import { API_BASE_URL } from '../../services/api';
 
 const RegisterScreen = () => {
     const navigate = useNavigate();
@@ -36,7 +37,7 @@ const RegisterScreen = () => {
 
         if (isComplete) {
             try {
-                const response = await fetch('http://localhost:5000/api/v1/auth/register', {
+                const response = await fetch(`${API_BASE_URL}/auth/register`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -74,7 +75,7 @@ const RegisterScreen = () => {
                 if (userProfile.currentWeight) upsertWeightLog(data.user?.email || email, Number(userProfile.currentWeight));
                 navigate('/dashboard', { state: { email: data.user?.email || email, goal: selectedGoal } });
             } catch (error) {
-                alert("Gagal terhubung ke server. Pastikan server backend berjalan di port 5000.");
+                alert("Gagal terhubung ke server. Pastikan koneksi backend tersedia.");
                 console.error(error);
             }
         }

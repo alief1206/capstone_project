@@ -169,7 +169,7 @@ const FoodSearchScreen = () => {
                     alert(error.message || "Gagal menyimpan makanan ke database.");
                     return;
                 }
-                alert(error.message || "Makanan tetap dicatat lokal, tapi gagal tersimpan ke database. Pastikan backend berjalan di port 5000.");
+                alert(error.message || "Makanan tetap dicatat lokal, tapi gagal tersimpan ke database. Pastikan koneksi backend tersedia.");
                 console.error(error);
             }
         }

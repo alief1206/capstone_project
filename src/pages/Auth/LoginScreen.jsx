@@ -77,7 +77,7 @@ const LoginScreen = () => {
             }
             navigate('/dashboard', { state: { goal: normalizeGoal(data.user.goal || selectedGoal), email: data.user.email } });
         } catch (error) {
-            alert(error.message || "Login gagal. Pastikan backend berjalan di port 5000.");
+            alert(error.message || "Login gagal. Pastikan koneksi backend tersedia.");
             console.error(error);
         }
     };

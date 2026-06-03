@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
 import logoIcon from '../../assets/icons/logo-icon.png';
+import { API_BASE_URL } from '../../services/api';
 
 const ForgotPasswordScreen = () => {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ const ForgotPasswordScreen = () => {
         if (!email) return;
 
         try {
-            const response = await fetch('http://localhost:5000/api/v1/auth/forgot-password', {
+            const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })
@@ -28,7 +29,7 @@ const ForgotPasswordScreen = () => {
             alert(`${data.message}${data.devOtp ? `\nKode reset lokal: ${data.devOtp}` : ''}`);
             navigate('/otp', { state: { email, mode: 'reset' } });
         } catch (error) {
-            alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");
+            alert("Gagal terhubung ke server. Pastikan koneksi backend tersedia.");
             console.error(error);
         }
     };

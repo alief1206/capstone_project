@@ -5,6 +5,7 @@ import Button from '../../components/ui/Button';
 import { getProfileDraft, goalMap, saveUserProfile } from '../../utils/userProfileStorage';
 import { upsertWeightLog } from '../../utils/weightLogStorage';
 import mascotImage from '../../assets/images/mascot.png';
+import { API_BASE_URL } from '../../services/api';
 
 const OtpScreen = () => {
     const navigate = useNavigate();
@@ -45,7 +46,7 @@ const OtpScreen = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/api/v1/auth/verify-otp', {
+            const response = await fetch(`${API_BASE_URL}/auth/verify-otp`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, token: otp.join('') })
@@ -65,7 +66,7 @@ const OtpScreen = () => {
             
             if (userProfile.age && userProfile.height && userProfile.currentWeight && userProfile.targetWeight) {
                 try {
-                    await fetch('http://localhost:5000/api/v1/users/physical-update', {
+                    await fetch(`${API_BASE_URL}/users/physical-update`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -89,7 +90,7 @@ const OtpScreen = () => {
             if (userProfile.currentWeight) upsertWeightLog(email, Number(userProfile.currentWeight));
             navigate('/dashboard', { state: { email, goal: selectedGoal } });
         } catch (error) {
-            alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");
+            alert("Gagal terhubung ke server. Pastikan koneksi backend tersedia.");
             console.error(error);
         }
     };

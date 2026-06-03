@@ -6,6 +6,7 @@ import { normalizeGoal, saveUserProfile } from '../../utils/userProfileStorage';
 import { mergeWeightLogs, upsertWeightLog } from '../../utils/weightLogStorage';
 import { fetchWeightTrend } from '../../services/auth';
 import { syncFoodLogs } from '../../services/meals';
+import { API_BASE_URL } from '../../services/api';
 
 const LoginScreen = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const LoginScreen = () => {
         if (!isComplete) return;
 
         try {
-            const response = await fetch('http://localhost:5000/api/v1/auth/login', {
+            const response = await fetch(`${API_BASE_URL}/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
@@ -55,7 +56,7 @@ const LoginScreen = () => {
             }
             navigate('/dashboard', { state: { goal: normalizeGoal(data.user.goal || selectedGoal), email: data.user.email } });
         } catch (error) {
-            alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");
+            alert("Gagal terhubung ke server. Pastikan koneksi backend tersedia.");
             console.error(error);
         }
     };

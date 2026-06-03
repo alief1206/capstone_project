@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button';
+import { API_BASE_URL } from '../../services/api';
 
 const ResetPasswordScreen = () => {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ const ResetPasswordScreen = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/api/v1/auth/reset-password', {
+            const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, token, newPassword: pass1 })
@@ -40,7 +41,7 @@ const ResetPasswordScreen = () => {
             alert(data.message);
             navigate('/login');
         } catch (error) {
-            alert("Gagal terhubung ke server. Pastikan backend berjalan di port 5000.");
+            alert("Gagal terhubung ke server. Pastikan koneksi backend tersedia.");
             console.error(error);
         }
     };

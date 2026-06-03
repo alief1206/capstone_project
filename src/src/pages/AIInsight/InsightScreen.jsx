@@ -55,8 +55,7 @@ const InsightScreen = () => {
                 { id: 'protein', label: 'Protein', icon: 'mdi:arm-flex-outline', iconColor: 'text-[#F97316]', value: '80', target: '100 g', valueColor: 'text-[#F97316]', status: 'down', sources: [{ name: 'Dada Ayam', qty: '40g' }, { name: 'Susu', qty: '40g' }] },
                 { id: 'karbo', label: 'Karbohidrat', icon: 'mdi:food-croissant', iconColor: 'text-[#3B82F6]', value: '160', target: '220 g', valueColor: 'text-[#3B82F6]', status: 'check', sources: [{ name: 'Nasi Putih', qty: '150g' }, { name: 'Roti', qty: '30g' }] },
                 { id: 'lemak', label: 'Lemak', icon: 'mdi:egg-outline', iconColor: 'text-[#8B5CF6]', value: '45', target: '60 g', valueColor: 'text-[#8B5CF6]', status: 'check', sources: [{ name: 'Alpukat', qty: '45g' }] },
-                { id: 'serat', label: 'Serat', icon: 'mdi:leaf', iconColor: 'text-[#14AE5C]', value: '12', target: '25 g', valueColor: 'text-[#14AE5C]', status: 'down', sources: [{ name: 'Sayur Bayam', qty: '12g' }] },
-                { id: 'air', label: 'Air', icon: 'mdi:water', iconColor: 'text-[#0EA5E9]', value: '1,2', target: '2 L', valueColor: 'text-[#0EA5E9]', status: 'down', sources: [] }
+                { id: 'serat', label: 'Serat', icon: 'mdi:leaf', iconColor: 'text-[#14AE5C]', value: '12', target: '25 g', valueColor: 'text-[#14AE5C]', status: 'down', sources: [{ name: 'Sayur Bayam', qty: '12g' }] }
             ]
         }
     };
