@@ -1,8 +1,5 @@
-import pkg from '@prisma/client';
-const { PrismaClient } = pkg;
+import prisma from '../lib/prisma.js';
 import { askDataScienceNutritionAssistant } from '../services/aiIntegrationService.js';
-
-const prisma = new PrismaClient();
 
 export const chatWithNutritionAssistant = async (req, res) => {
     try {

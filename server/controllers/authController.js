@@ -1,15 +1,13 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import pkg from '@prisma/client';
-const { PrismaClient } = pkg;
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Joi from 'joi';
 import nodemailer from 'nodemailer';
 import { OAuth2Client } from 'google-auth-library';
+import prisma from '../lib/prisma.js';
 import { startOfDay } from '../utils/dateUtils.js';
 
-const prisma = new PrismaClient();
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const isEmailConfigured = Boolean(

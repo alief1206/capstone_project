@@ -1,8 +1,5 @@
-import pkg from '@prisma/client';
-const { PrismaClient } = pkg;
+import prisma from '../lib/prisma.js';
 import { endOfDay, getDateKey, startOfDay } from '../utils/dateUtils.js';
-
-const prisma = new PrismaClient();
 
 export { endOfDay, startOfDay };
 

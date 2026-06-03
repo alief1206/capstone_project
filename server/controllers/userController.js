@@ -1,7 +1,5 @@
-import pkg from '@prisma/client';
-const { PrismaClient } = pkg;
-
 import Joi from 'joi';
+import prisma from '../lib/prisma.js';
 import { predictNutritionTarget } from '../services/aiIntegrationService.js';
 import {
     buildDailyInsightSnapshot,
@@ -10,8 +8,6 @@ import {
     summarizeWeightLogs
 } from '../services/summarySnapshotService.js';
 import { getDateKey, startOfDay } from '../utils/dateUtils.js';
-
-const prisma = new PrismaClient();
 
 const serializeUser = (user) => ({
     id: user.id,

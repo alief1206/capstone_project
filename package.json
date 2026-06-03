@@ -21,7 +21,11 @@
     "test": "node --test",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "nodemon server/index.js"
+    "start": "node server/index.js",
+    "server": "nodemon server/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "render:build": "prisma generate && prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",

@@ -1,8 +1,5 @@
-import pkg from '@prisma/client';
-const { PrismaClient } = pkg;
+import prisma from '../lib/prisma.js';
 import { findNutritionFromDataset, getNutritionCatalogRecommendations, searchNutritionCatalog } from '../services/aiIntegrationService.js';
-
-const prisma = new PrismaClient();
 
 const goalMapToUi = {
     LOSE_WEIGHT: 'turunkan',

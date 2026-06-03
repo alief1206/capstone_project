@@ -1,10 +1,7 @@
-import pkg from '@prisma/client';
-const { PrismaClient } = pkg;
+import prisma from '../lib/prisma.js';
 import { buildFoodNutrition } from '../services/aiIntegrationService.js';
 import { saveSummarySnapshot } from '../services/summarySnapshotService.js';
 import { endOfDay, getDateKey, isFutureCalendarDate, startOfDay } from '../utils/dateUtils.js';
-
-const prisma = new PrismaClient();
 
 const serializeFoodLog = (log) => ({
     id: log.id,
