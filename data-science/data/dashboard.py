@@ -6,7 +6,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 USER_DATA_PATH = BASE_DIR / "user_dataset" / "user_profile_labeled.csv"
 TKPI_DATA_PATH = BASE_DIR / "nutrition_dataset" / "tkpi_clean_labeled.csv"
-LOGO_PATH = BASE_DIR.parents[1] / "src" / "assets" / "icons" / "logo-icon.png"
+LOGO_PATH = BASE_DIR / "Logo.png"
 px.defaults.template = "plotly_dark"
 
 st.set_page_config(page_title="EatSistent Dashboard", layout="wide", page_icon="🥗")
@@ -214,7 +214,7 @@ df_user, df_tkpi = load_data()
 # ── Sidebar 
 with st.sidebar:
     if LOGO_PATH.exists():
-        st.image(str(LOGO_PATH), width=96)
+        st.image(str(LOGO_PATH), width=150)
     st.markdown("---")
 
     section = st.radio(
@@ -289,7 +289,7 @@ df_t = df_tkpi[df_tkpi["kategori"].isin(kat_selected)].copy()
 _, col_center, _ = st.columns([1, 2, 1])
 with col_center:
     if LOGO_PATH.exists():
-        st.image(str(LOGO_PATH), width=140)
+        st.image(str(LOGO_PATH), width=300)
 
 st.markdown("<h1 style='text-align:center'>Dashboard Analisis Nutrisi — EatSistent</h1>", unsafe_allow_html=True)
 st.markdown(
