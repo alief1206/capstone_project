@@ -5,6 +5,7 @@ import robotImg from '../../assets/images/robot.png';
 import { addFoodLog, parseCalories } from '../../utils/foodLogStorage';
 import { createFoodLog } from '../../services/meals';
 import { fetchFoodCatalog } from '../../services/foods';
+import { isWithinLastSevenDaysLocal } from '../../../utils/dateUtils.js';
 
 const visualPresets = [
     { keywords: ['nasi', 'beras', 'jagung'], icon: 'mdi:rice', color: 'text-[#14AE5C]', bg: 'bg-[#F0FDF4]', border: 'border-[#DCFCE7]' },
@@ -131,6 +132,11 @@ const FoodSearchScreen = () => {
     const getMealOptions = (item) => isHeavyFood(item.name) ? ['SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM'] : ['SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM', 'CAMILAN'];
 
     const handleAddFood = async (item, meal) => {
+        if (!isWithinLastSevenDaysLocal(selectedLogDate)) {
+            alert('Pencatatan makanan hanya bisa dilakukan untuk hari ini sampai 7 hari ke belakang.');
+            return;
+        }
+
         if (meal === 'CAMILAN' && isHeavyFood(item.name)) {
             alert(`Validasi Gagal: ${item.name} termasuk makanan berat, tidak boleh dimasukkan ke Camilan.`);
             return;

@@ -16,6 +16,12 @@ const PersonalDataScreen = () => {
     const [targetWeight, setTargetWeight] = useState('');
     const needsTarget = selectedGoal === 'turunkan' || selectedGoal === 'tambah';
     const isComplete = gender && age && height && weight && (!needsTarget || targetWeight);
+    const toIntegerInput = (value) => value.replace(/\D/g, '');
+    const toDecimalInput = (value) => {
+        const normalized = value.replace(',', '.').replace(/[^\d.]/g, '');
+        const [whole, ...fractionParts] = normalized.split('.');
+        return fractionParts.length ? `${whole}.${fractionParts.join('')}` : whole;
+    };
 
     const handleSavePhysicalData = async (e) => {
         e.preventDefault();
@@ -95,7 +101,7 @@ const PersonalDataScreen = () => {
                         <div className="flex flex-col gap-2.5">
                             <label className="text-[14px] font-bold text-gray-700">Usia</label>
                             <div className="relative">
-                                <input type="number" value={age} onChange={(e) => setAge(e.target.value)} className="w-full h-[55px] border-[1.5px] border-gray-200 rounded-[16px] px-5 font-bold text-gray-800 outline-none focus:border-[#14AE5C] focus:bg-[#F0FDF4] transition-all" placeholder="0" />
+                                <input type="text" inputMode="numeric" value={age} onChange={(e) => setAge(toIntegerInput(e.target.value))} className="w-full h-[55px] border-[1.5px] border-gray-200 rounded-[16px] px-5 font-bold text-gray-800 outline-none focus:border-[#14AE5C] focus:bg-[#F0FDF4] transition-all" placeholder="0" />
                                 <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold">Tahun</span>
                             </div>
                         </div>
@@ -103,7 +109,7 @@ const PersonalDataScreen = () => {
                         <div className="flex flex-col gap-2.5">
                             <label className="text-[14px] font-bold text-gray-700">Tinggi Badan</label>
                             <div className="relative">
-                                <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} className="w-full h-[55px] border-[1.5px] border-gray-200 rounded-[16px] px-5 font-bold text-gray-800 outline-none focus:border-[#14AE5C] focus:bg-[#F0FDF4] transition-all" placeholder="0" />
+                                <input type="text" inputMode="numeric" value={height} onChange={(e) => setHeight(toIntegerInput(e.target.value))} className="w-full h-[55px] border-[1.5px] border-gray-200 rounded-[16px] px-5 font-bold text-gray-800 outline-none focus:border-[#14AE5C] focus:bg-[#F0FDF4] transition-all" placeholder="0" />
                                 <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold">Cm</span>
                             </div>
                         </div>
@@ -111,7 +117,7 @@ const PersonalDataScreen = () => {
                         <div className="flex flex-col gap-2.5">
                             <label className="text-[14px] font-bold text-gray-700">Berat Badan Sekarang</label>
                             <div className="relative">
-                                <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} className="w-full h-[55px] border-[1.5px] border-gray-200 rounded-[16px] px-5 font-bold text-gray-800 outline-none focus:border-[#14AE5C] focus:bg-[#F0FDF4] transition-all" placeholder="0" />
+                                <input type="text" inputMode="decimal" value={weight} onChange={(e) => setWeight(toDecimalInput(e.target.value))} className="w-full h-[55px] border-[1.5px] border-gray-200 rounded-[16px] px-5 font-bold text-gray-800 outline-none focus:border-[#14AE5C] focus:bg-[#F0FDF4] transition-all" placeholder="0" />
                                 <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold">Kg</span>
                             </div>
                         </div>
@@ -120,7 +126,7 @@ const PersonalDataScreen = () => {
                             <div className="flex flex-col gap-2.5">
                                 <label className="text-[14px] font-bold text-gray-700">Target Berat Badan</label>
                                 <div className="relative">
-                                    <input type="number" value={targetWeight} onChange={(e) => setTargetWeight(e.target.value)} className="w-full h-[55px] border-[1.5px] border-gray-200 rounded-[16px] px-5 font-bold text-gray-800 outline-none focus:border-[#14AE5C] focus:bg-[#F0FDF4] transition-all" placeholder="0" />
+                                    <input type="text" inputMode="decimal" value={targetWeight} onChange={(e) => setTargetWeight(toDecimalInput(e.target.value))} className="w-full h-[55px] border-[1.5px] border-gray-200 rounded-[16px] px-5 font-bold text-gray-800 outline-none focus:border-[#14AE5C] focus:bg-[#F0FDF4] transition-all" placeholder="0" />
                                     <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold">Kg</span>
                                 </div>
                             </div>

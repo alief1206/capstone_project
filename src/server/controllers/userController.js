@@ -18,6 +18,15 @@ const startOfDay = (value = new Date()) => {
     return date;
 };
 
+const isWithinLastSevenDaysCalendar = (value) => {
+    const selectedDate = startOfDay(value);
+    const today = startOfDay(new Date());
+    const earliestAllowedDate = startOfDay(new Date());
+    earliestAllowedDate.setDate(today.getDate() - 7);
+
+    return selectedDate >= earliestAllowedDate && selectedDate <= today;
+};
+
 const serializeUser = (user) => ({
     id: user.id,
     name: user.name,
@@ -168,6 +177,10 @@ export const createWeightLog = async (req, res) => {
         const userId = req.user.id;
         const logDate = startOfDay(req.body.logDate || new Date());
         const weight = Number(req.body.weight);
+
+        if (!isWithinLastSevenDaysCalendar(logDate)) {
+            return res.status(400).json({ message: "Pencatatan berat badan hanya bisa dilakukan untuk hari ini sampai 7 hari ke belakang." });
+        }
 
         const [log] = await prisma.$transaction([
             prisma.weightLog.upsert({

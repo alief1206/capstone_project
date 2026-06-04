@@ -7,7 +7,7 @@ import {
     saveSummarySnapshot,
     summarizeWeightLogs
 } from '../services/summarySnapshotService.js';
-import { getDateKey, startOfDay } from '../utils/dateUtils.js';
+import { getDateKey, isWithinLastSevenDaysCalendar, startOfDay } from '../utils/dateUtils.js';
 
 const serializeUser = (user) => ({
     id: user.id,
@@ -159,6 +159,10 @@ export const createWeightLog = async (req, res) => {
         const userId = req.user.id;
         const logDate = startOfDay(req.body.logDate || new Date());
         const weight = Number(req.body.weight);
+
+        if (!isWithinLastSevenDaysCalendar(logDate)) {
+            return res.status(400).json({ message: "Pencatatan berat badan hanya bisa dilakukan untuk hari ini sampai 7 hari ke belakang." });
+        }
 
         const [log] = await prisma.$transaction([
             prisma.weightLog.upsert({

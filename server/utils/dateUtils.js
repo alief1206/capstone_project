@@ -58,3 +58,14 @@ export const getDateKey = (value = new Date()) => {
 };
 
 export const isFutureCalendarDate = (value) => getDateKey(value) > getDateKey(new Date());
+
+export const isTodayCalendarDate = (value) => getDateKey(value) === getDateKey(new Date());
+
+export const isWithinLastSevenDaysCalendar = (value) => {
+    const selectedDate = startOfDay(value);
+    const today = startOfDay(new Date());
+    const earliestAllowedDate = startOfDay(new Date());
+    earliestAllowedDate.setUTCDate(today.getUTCDate() - 7);
+
+    return selectedDate >= earliestAllowedDate && selectedDate <= today;
+};

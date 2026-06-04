@@ -42,6 +42,14 @@ const summarizeLogs = (logs = []) => logs.reduce((summary, log) => ({
 }), { totalCalories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, totalLogs: 0 });
 
 const getDateKey = (date) => new Date(date).toISOString().slice(0, 10);
+const isWithinLastSevenDaysCalendar = (value) => {
+    const selectedDate = startOfDay(value);
+    const today = startOfDay(new Date());
+    const earliestAllowedDate = startOfDay(new Date());
+    earliestAllowedDate.setDate(today.getDate() - 7);
+
+    return selectedDate >= earliestAllowedDate && selectedDate <= today;
+};
 
 const groupByDay = (logs = []) => Object.values(logs.reduce((days, log) => {
     const key = getDateKey(log.logDate || log.createdAt);
@@ -58,6 +66,11 @@ export const createFoodLog = async (req, res) => {
         const { foodName, calories, mealType, logDate } = req.body; // mealType bisa dikirim dari frontend: 'SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM', atau 'CAMILAN'
 
         if (!foodName) return res.status(400).json({ message: "Nama makanan wajib diisi!" });
+
+        const selectedLogDate = logDate || new Date();
+        if (!isWithinLastSevenDaysCalendar(selectedLogDate)) {
+            return res.status(400).json({ message: "Pencatatan makanan hanya bisa dilakukan untuk hari ini sampai 7 hari ke belakang." });
+        }
 
         // Poin 6: Validasi Pemblokiran Kata Kunci Makanan Berat ke dalam Camilan
         const daftarMakananBerat = ['nasi', 'mie', 'gulai', 'sate', 'rawon', 'bakso', 'rendang', 'ayam goreng'];
@@ -83,7 +96,7 @@ export const createFoodLog = async (req, res) => {
                 fat: hasilNutrisi.fat,
                 fiber: hasilNutrisi.fiber,
                 aiAnalysis: hasilNutrisi.analysis,
-                logDate: startOfDay(logDate || new Date())
+                logDate: startOfDay(selectedLogDate)
             }
         });
 
@@ -242,6 +255,10 @@ export const updateFoodLog = async (req, res) => {
 
         const existing = await prisma.foodLog.findFirst({ where: { id, userId: req.user.id } });
         if (!existing) return res.status(404).json({ message: "Log makanan tidak ditemukan!" });
+
+        if (logDate && !isWithinLastSevenDaysCalendar(logDate)) {
+            return res.status(400).json({ message: "Log makanan hanya bisa disimpan untuk hari ini sampai 7 hari ke belakang." });
+        }
 
         const user = await prisma.user.findUnique({ where: { id: req.user.id } });
         const nutrition = await buildFoodNutrition({

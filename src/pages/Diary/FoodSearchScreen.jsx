@@ -8,7 +8,7 @@ import { addFoodLog, parseCalories } from '../../utils/foodLogStorage';
 import { createFoodLog } from '../../services/meals';
 import { fetchFoodCatalog } from '../../services/foods';
 import { getProfilePhoto, getUserProfile, normalizeGoal } from '../../utils/userProfileStorage';
-import { isFutureLocalDate, toLocalDateKey } from '../../utils/dateUtils.js';
+import { isWithinLastSevenDaysLocal, toLocalDateKey } from '../../utils/dateUtils.js';
 
 const visualPresets = [
     { keywords: ['nasi', 'beras', 'jagung'], icon: 'mdi:rice', color: 'text-[#14AE5C]', bg: 'bg-[#F0FDF4]', border: 'border-[#DCFCE7]' },
@@ -140,8 +140,8 @@ const FoodSearchScreen = () => {
     const getMealOptions = (item) => isHeavyFood(item.name) ? ['SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM'] : ['SARAPAN', 'MAKAN SIANG', 'MAKAN MALAM', 'CAMILAN'];
 
     const handleAddFood = async (item, meal) => {
-        if (isFutureLocalDate(selectedLogDate)) {
-            alert('Tidak bisa menambahkan makanan untuk tanggal besok atau tanggal setelah hari ini.');
+        if (!isWithinLastSevenDaysLocal(selectedLogDate)) {
+            alert('Pencatatan makanan hanya bisa dilakukan untuk hari ini sampai 7 hari ke belakang.');
             return;
         }
 

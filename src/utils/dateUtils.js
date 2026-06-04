@@ -29,3 +29,14 @@ export const toLocalDateKey = (value = new Date()) => {
 export const isSameLocalDay = (dateA, dateB = new Date()) => toLocalDateKey(dateA) === toLocalDateKey(dateB);
 
 export const isFutureLocalDate = (value) => toLocalDateKey(value) > toLocalDateKey(new Date());
+
+export const isTodayLocalDate = (value) => toLocalDateKey(value) === toLocalDateKey(new Date());
+
+export const isWithinLastSevenDaysLocal = (value) => {
+    const selectedDate = parseLocalDate(value);
+    const today = parseLocalDate(new Date());
+    const earliestAllowedDate = new Date(today);
+    earliestAllowedDate.setDate(today.getDate() - 7);
+
+    return selectedDate >= earliestAllowedDate && selectedDate <= today;
+};

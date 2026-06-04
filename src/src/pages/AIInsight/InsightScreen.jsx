@@ -174,18 +174,8 @@ const InsightScreen = () => {
     ].filter(Boolean);
 
     useEffect(() => {
-        let i = 0;
-        setDisplayedEval("");
-        const typingInterval = setInterval(() => {
-            if (i < dynamicEvalDesc.length) {
-                setDisplayedEval((prev) => prev + dynamicEvalDesc.charAt(i));
-                i++;
-            } else {
-                clearInterval(typingInterval);
-            }
-        }, 30);
-        return () => clearInterval(typingInterval);
-    }, [currentGoal, currentDate, dynamicEvalDesc]);
+        setDisplayedEval(dynamicEvalDesc);
+    }, [dynamicEvalDesc]);
 
     const handleRefreshFood = () => {
         setFoodOptionIndex((prev) => (prev + 1) % dynamicRecommendations.length);

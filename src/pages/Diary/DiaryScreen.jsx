@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { formatTwoDecimals, getFoodLogsByDate, getNutritionSummary, getTotalCalories, removeFoodLog } from '../../utils/foodLogStorage';
 import { deleteFoodLog, syncFoodLogs } from '../../services/meals';
-import { isFutureLocalDate, parseLocalDate, toLocalDateKey } from '../../utils/dateUtils.js';
+import { isWithinLastSevenDaysLocal, parseLocalDate, toLocalDateKey } from '../../utils/dateUtils.js';
 import { getProfilePhoto } from '../../utils/userProfileStorage';
 import logoIcon from '../../assets/icons/logo-icon.png';
 import profileImg from '../../assets/images/profile.png';
@@ -92,8 +92,8 @@ const DiaryScreen = () => {
 
     const navigateToFoodEntry = (path) => {
         const selectedLogDate = toLocalDateKey(currentDate);
-        if (isFutureLocalDate(selectedLogDate)) {
-            alert('Tidak bisa menambahkan makanan untuk tanggal besok atau tanggal setelah hari ini.');
+        if (!isWithinLastSevenDaysLocal(selectedLogDate)) {
+            alert('Pencatatan makanan hanya bisa dilakukan untuk hari ini sampai 7 hari ke belakang.');
             return;
         }
 

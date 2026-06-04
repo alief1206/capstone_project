@@ -6,6 +6,7 @@ import { calculateNutritionTargets, getUserProfile, normalizeGoal } from '../../
 import { getWeightLogs, getWeightLogsInRange, mergeWeightLogs, summarizeWeightLogs, upsertWeightLog } from '../../utils/weightLogStorage';
 import { createWeightLog, fetchCurrentUser, fetchWeightTrend } from '../../services/auth';
 import { fetchNutritionSummary, syncFoodLogs } from '../../services/meals';
+import { isWithinLastSevenDaysLocal } from '../../../utils/dateUtils.js';
 
 const ProgressScreen = () => {
     const navigate = useNavigate();
@@ -116,6 +117,11 @@ const ProgressScreen = () => {
 
     const handleSaveWeight = async () => {
         if (!dailyWeight || Number(dailyWeight) <= 0) return;
+        if (!isWithinLastSevenDaysLocal(currentDate)) {
+            alert('Pencatatan berat badan hanya bisa dilakukan untuk hari ini sampai 7 hari ke belakang.');
+            return;
+        }
+
         const saved = upsertWeightLog(userEmail, Number(dailyWeight), currentDate);
         setWeightLogs(getWeightLogs(userEmail));
         setDailyWeight('');

@@ -1,7 +1,7 @@
 import prisma from '../lib/prisma.js';
 import { buildFoodNutrition } from '../services/aiIntegrationService.js';
 import { saveSummarySnapshot } from '../services/summarySnapshotService.js';
-import { endOfDay, getDateKey, isFutureCalendarDate, startOfDay } from '../utils/dateUtils.js';
+import { endOfDay, getDateKey, isWithinLastSevenDaysCalendar, startOfDay } from '../utils/dateUtils.js';
 
 const serializeFoodLog = (log) => ({
     id: log.id,
@@ -43,8 +43,8 @@ export const createFoodLog = async (req, res) => {
 
         if (!foodName) return res.status(400).json({ message: "Nama makanan wajib diisi!" });
         const selectedLogDate = logDate || new Date();
-        if (isFutureCalendarDate(selectedLogDate)) {
-            return res.status(400).json({ message: "Tidak bisa menambahkan makanan untuk tanggal besok atau tanggal setelah hari ini." });
+        if (!isWithinLastSevenDaysCalendar(selectedLogDate)) {
+            return res.status(400).json({ message: "Pencatatan makanan hanya bisa dilakukan untuk hari ini sampai 7 hari ke belakang." });
         }
 
         // Poin 6: Validasi Pemblokiran Kata Kunci Makanan Berat ke dalam Camilan
@@ -230,8 +230,8 @@ export const updateFoodLog = async (req, res) => {
 
         const existing = await prisma.foodLog.findFirst({ where: { id, userId: req.user.id } });
         if (!existing) return res.status(404).json({ message: "Log makanan tidak ditemukan!" });
-        if (logDate && isFutureCalendarDate(logDate)) {
-            return res.status(400).json({ message: "Tidak bisa memindahkan log makanan ke tanggal besok atau tanggal setelah hari ini." });
+        if (logDate && !isWithinLastSevenDaysCalendar(logDate)) {
+            return res.status(400).json({ message: "Log makanan hanya bisa disimpan untuk hari ini sampai 7 hari ke belakang." });
         }
 
         const user = await prisma.user.findUnique({ where: { id: req.user.id } });
