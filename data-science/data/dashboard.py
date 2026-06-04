@@ -1,6 +1,12 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+USER_DATA_PATH = BASE_DIR / "user_dataset" / "user_profile_labeled.csv"
+TKPI_DATA_PATH = BASE_DIR / "nutrition_dataset" / "tkpi_clean_labeled.csv"
+LOGO_PATH = BASE_DIR.parents[1] / "src" / "assets" / "icons" / "logo-icon.png"
 
 st.set_page_config(page_title="EatSistent Dashboard", layout="wide", page_icon="🥗")
 
@@ -32,8 +38,8 @@ DESKRIPSI_KELAS = {
 
 @st.cache_data
 def load_data():
-    user = pd.read_csv("user_profile_labeled.csv")
-    tkpi = pd.read_csv("tkpi_clean_labeled.csv")
+    user = pd.read_csv(USER_DATA_PATH)
+    tkpi = pd.read_csv(TKPI_DATA_PATH)
 
     bins   = [0, 15, 18, 29, 49, 64, 200]
     labels = ["≤15", "16-18", "19-29", "30-49", "50-64", "≥65"]
@@ -59,7 +65,8 @@ df_user, df_tkpi = load_data()
 
 # ── Sidebar 
 with st.sidebar:
-    st.image("Logo.png", width=160)
+    if LOGO_PATH.exists():
+        st.image(str(LOGO_PATH), width=160)
     st.markdown("---")
 
     section = st.radio(
@@ -133,7 +140,8 @@ df_t = df_tkpi[df_tkpi["kategori"].isin(kat_selected)].copy()
 # HEADER (tampil di semua section)
 _, col_center, _ = st.columns([1, 2, 1])
 with col_center:
-    st.image("Logo.png", use_container_width=True)
+    if LOGO_PATH.exists():
+        st.image(str(LOGO_PATH), use_container_width=True)
 
 st.markdown("<h1 style='text-align:center'>Dashboard Analisis Nutrisi — EatSistent</h1>", unsafe_allow_html=True)
 st.markdown(
