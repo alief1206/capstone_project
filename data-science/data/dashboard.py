@@ -82,15 +82,24 @@ DARK_DASHBOARD_CSS = """
     [data-testid="stSidebar"] [role="radiogroup"] label {
         min-height: 1.65rem;
         color: var(--eat-text);
+        background: transparent !important;
     }
 
     [data-testid="stSidebar"] [role="radiogroup"] label div:first-child {
         border-color: rgba(255, 255, 255, 0.28);
+        background: transparent;
     }
 
     [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) div:first-child {
-        background: var(--eat-red);
+        background: radial-gradient(circle, #ffffff 0 30%, var(--eat-red) 34% 100%) !important;
         border-color: var(--eat-red);
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked),
+    [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) div,
+    [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) p,
+    [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) span {
+        background: transparent !important;
     }
 
     [data-testid="stSidebar"] [data-baseweb="select"] > div {
@@ -286,7 +295,7 @@ df_t = df_tkpi[df_tkpi["kategori"].isin(kat_selected)].copy()
 
 
 # HEADER (tampil di semua section)
-_, col_center, _ = st.columns([1, 2, 1])
+_, col_center, _ = st.columns([1, 0.8, 1])
 with col_center:
     if LOGO_PATH.exists():
         st.image(str(LOGO_PATH), width=300)
