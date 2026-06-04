@@ -66,7 +66,7 @@ df_user, df_tkpi = load_data()
 # ── Sidebar 
 with st.sidebar:
     if LOGO_PATH.exists():
-        st.image(str(LOGO_PATH), width=160)
+        st.image(str(LOGO_PATH), width=96)
     st.markdown("---")
 
     section = st.radio(
@@ -141,7 +141,7 @@ df_t = df_tkpi[df_tkpi["kategori"].isin(kat_selected)].copy()
 _, col_center, _ = st.columns([1, 2, 1])
 with col_center:
     if LOGO_PATH.exists():
-        st.image(str(LOGO_PATH), use_container_width=True)
+        st.image(str(LOGO_PATH), width=140)
 
 st.markdown("<h1 style='text-align:center'>Dashboard Analisis Nutrisi — EatSistent</h1>", unsafe_allow_html=True)
 st.markdown(
