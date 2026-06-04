@@ -7,6 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent
 USER_DATA_PATH = BASE_DIR / "user_dataset" / "user_profile_labeled.csv"
 TKPI_DATA_PATH = BASE_DIR / "nutrition_dataset" / "tkpi_clean_labeled.csv"
 LOGO_PATH = BASE_DIR.parents[1] / "src" / "assets" / "icons" / "logo-icon.png"
+px.defaults.template = "plotly_dark"
 
 st.set_page_config(page_title="EatSistent Dashboard", layout="wide", page_icon="🥗")
 
@@ -34,6 +35,153 @@ DESKRIPSI_KELAS = {
     "Tinggi_Protein_Rendah_Lemak": "Protein > 15g/100g & lemak rendah — ideal untuk massa otot",
     "Lemak_Tinggi":                "Lemak > 20g/100g — konsumsi dalam porsi kecil",
 }
+
+
+DARK_DASHBOARD_CSS = """
+<style>
+    :root {
+        --eat-bg: #0b0f16;
+        --eat-panel: #252631;
+        --eat-border: rgba(255, 255, 255, 0.12);
+        --eat-text: #f7f7f8;
+        --eat-muted: #b8bac4;
+        --eat-red: #ff4b4b;
+    }
+
+    .stApp {
+        background: var(--eat-bg);
+        color: var(--eat-text);
+    }
+
+    [data-testid="stSidebar"] {
+        background: var(--eat-panel);
+        border-right: 1px solid var(--eat-border);
+    }
+
+    [data-testid="stSidebar"] > div {
+        padding-top: 4.2rem;
+    }
+
+    [data-testid="stSidebar"] img {
+        display: block;
+        margin: 0.25rem auto 1.5rem auto;
+    }
+
+    [data-testid="stSidebar"] hr,
+    .stMarkdown hr {
+        border-color: var(--eat-border);
+    }
+
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] .stMarkdown {
+        color: var(--eat-text);
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label {
+        min-height: 1.65rem;
+        color: var(--eat-text);
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label div:first-child {
+        border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) div:first-child {
+        background: var(--eat-red);
+        border-color: var(--eat-red);
+    }
+
+    [data-testid="stSidebar"] [data-baseweb="select"] > div {
+        background: #090d14;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+    }
+
+    [data-baseweb="tag"] {
+        background: var(--eat-red) !important;
+        color: white !important;
+        border-radius: 6px !important;
+    }
+
+    .block-container {
+        max-width: 1120px;
+        padding-top: 4.6rem;
+        padding-bottom: 4rem;
+    }
+
+    [data-testid="stImage"] img {
+        object-fit: contain;
+    }
+
+    h1 {
+        font-size: 2.35rem !important;
+        line-height: 1.15 !important;
+        margin-top: 0.8rem !important;
+        color: var(--eat-text) !important;
+    }
+
+    h2, h3 {
+        color: var(--eat-text) !important;
+    }
+
+    p, li, .stCaption, [data-testid="stCaptionContainer"] {
+        color: var(--eat-muted) !important;
+    }
+
+    [data-testid="stMetric"] {
+        background: transparent;
+        border: 0;
+        padding: 0.25rem 0;
+    }
+
+    [data-testid="stMetricLabel"] p {
+        color: var(--eat-muted) !important;
+        font-weight: 700;
+    }
+
+    [data-testid="stMetricValue"] {
+        color: var(--eat-text);
+        font-size: 2rem;
+    }
+
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--eat-border);
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        color: var(--eat-muted);
+        padding-left: 0;
+        padding-right: 0;
+        background: transparent;
+    }
+
+    .stTabs [aria-selected="true"] {
+        color: var(--eat-red) !important;
+        border-bottom: 2px solid var(--eat-red);
+    }
+
+    [data-testid="stDataFrame"],
+    [data-testid="stTable"] {
+        border: 1px solid var(--eat-border);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    [data-testid="stAlert"] {
+        border-radius: 8px;
+        border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    [data-testid="stHeader"] {
+        background: rgba(11, 15, 22, 0.92);
+    }
+</style>
+"""
+
+st.markdown(DARK_DASHBOARD_CSS, unsafe_allow_html=True)
 
 
 @st.cache_data
