@@ -133,7 +133,7 @@ df_t = df_tkpi[df_tkpi["kategori"].isin(kat_selected)].copy()
 # HEADER (tampil di semua section)
 _, col_center, _ = st.columns([1, 2, 1])
 with col_center:
-    st.image("data-science/data/Logo.png", use_container_width=True)
+    st.image("data-science/data/Logo.png", width=400)
 
 st.markdown("<h1 style='text-align:center'>Dashboard Analisis Nutrisi — EatSistent</h1>", unsafe_allow_html=True)
 st.markdown(
