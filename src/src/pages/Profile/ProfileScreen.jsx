@@ -5,6 +5,14 @@ import profileImg from '../../assets/images/profile.png';
 import { activityLabels, calculateNutritionTargets, getGoalDescription, getGoalLabel, getTargetDate, getUserProfile, normalizeGoal, saveUserProfile } from '../../utils/userProfileStorage';
 import { fetchCurrentUser, updatePhysicalProfile } from '../../services/auth';
 
+const toIntegerInput = (value) => value.replace(/\D/g, '');
+
+const toDecimalInput = (value) => {
+    const normalized = value.replace(',', '.').replace(/[^\d.]/g, '');
+    const [whole, ...fractionParts] = normalized.split('.');
+    return fractionParts.length ? `${whole}.${fractionParts.join('')}` : whole;
+};
+
 const ProfileScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -276,19 +284,19 @@ const ProfileScreen = () => {
                                 </label>
                                 <label className="text-[11px] font-bold text-gray-500">
                                     Berat Saat Ini
-                                    <input type="number" value={editForm.currentWeight} onChange={(e) => setEditForm((prev) => ({ ...prev, currentWeight: e.target.value }))} className="mt-1 w-full h-11 rounded-xl border border-gray-200 px-3 text-[12px] font-semibold outline-none focus:border-[#14AE5C]" />
+                                    <input type="text" inputMode="decimal" value={editForm.currentWeight} onChange={(e) => setEditForm((prev) => ({ ...prev, currentWeight: toDecimalInput(e.target.value) }))} className="mt-1 w-full h-11 rounded-xl border border-gray-200 px-3 text-[12px] font-semibold outline-none focus:border-[#14AE5C]" />
                                 </label>
                                 <label className="text-[11px] font-bold text-gray-500">
                                     Target Berat
-                                    <input type="number" value={editForm.targetWeight} onChange={(e) => setEditForm((prev) => ({ ...prev, targetWeight: e.target.value }))} className="mt-1 w-full h-11 rounded-xl border border-gray-200 px-3 text-[12px] font-semibold outline-none focus:border-[#14AE5C]" />
+                                    <input type="text" inputMode="decimal" value={editForm.targetWeight} onChange={(e) => setEditForm((prev) => ({ ...prev, targetWeight: toDecimalInput(e.target.value) }))} className="mt-1 w-full h-11 rounded-xl border border-gray-200 px-3 text-[12px] font-semibold outline-none focus:border-[#14AE5C]" />
                                 </label>
                                 <label className="text-[11px] font-bold text-gray-500">
                                     Usia
-                                    <input type="number" value={editForm.age} onChange={(e) => setEditForm((prev) => ({ ...prev, age: e.target.value }))} className="mt-1 w-full h-11 rounded-xl border border-gray-200 px-3 text-[12px] font-semibold outline-none focus:border-[#14AE5C]" />
+                                    <input type="text" inputMode="numeric" value={editForm.age} onChange={(e) => setEditForm((prev) => ({ ...prev, age: toIntegerInput(e.target.value) }))} className="mt-1 w-full h-11 rounded-xl border border-gray-200 px-3 text-[12px] font-semibold outline-none focus:border-[#14AE5C]" />
                                 </label>
                                 <label className="text-[11px] font-bold text-gray-500">
                                     Tinggi
-                                    <input type="number" value={editForm.height} onChange={(e) => setEditForm((prev) => ({ ...prev, height: e.target.value }))} className="mt-1 w-full h-11 rounded-xl border border-gray-200 px-3 text-[12px] font-semibold outline-none focus:border-[#14AE5C]" />
+                                    <input type="text" inputMode="numeric" value={editForm.height} onChange={(e) => setEditForm((prev) => ({ ...prev, height: toIntegerInput(e.target.value) }))} className="mt-1 w-full h-11 rounded-xl border border-gray-200 px-3 text-[12px] font-semibold outline-none focus:border-[#14AE5C]" />
                                 </label>
                                 <label className="text-[11px] font-bold text-gray-500">
                                     Gender

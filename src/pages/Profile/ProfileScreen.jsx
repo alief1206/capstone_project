@@ -21,6 +21,14 @@ const buildPhysicalPayload = (profile = {}) => ({
     goal: normalizeGoal(profile.goal)
 });
 
+const toIntegerInput = (value) => value.replace(/\D/g, '');
+
+const toDecimalInput = (value) => {
+    const normalized = value.replace(',', '.').replace(/[^\d.]/g, '');
+    const [whole, ...fractionParts] = normalized.split('.');
+    return fractionParts.length ? `${whole}.${fractionParts.join('')}` : whole;
+};
+
 const CustomDropdown = ({ value, options, onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
     const selectedLabel = options.find(o => o.value === value)?.label || value;
@@ -419,9 +427,10 @@ const ProfileScreen = () => {
                                                 <div className="flex flex-col gap-1.5">
                                                     <label className="text-[11px] font-bold text-gray-500">Target Berat (kg)</label>
                                                     <input 
-                                                        type="number" 
+                                                        type="text"
+                                                        inputMode="decimal"
                                                         value={editGoalForm.targetWeight} 
-                                                        onChange={(e) => setEditGoalForm({...editGoalForm, targetWeight: e.target.value})} 
+                                                        onChange={(e) => setEditGoalForm({...editGoalForm, targetWeight: toDecimalInput(e.target.value)})} 
                                                         placeholder="Misal: 55" 
                                                         className="w-full h-10 bg-gray-50 rounded-xl px-3 text-[13px] font-bold text-gray-800 border border-gray-100 focus:border-[#14AE5C] focus:ring-1 focus:ring-[#14AE5C] outline-none transition-colors"
                                                     />
@@ -524,17 +533,17 @@ const ProfileScreen = () => {
                                                 <div className="grid grid-cols-2 gap-3">
                                                     <div className="flex flex-col gap-1.5">
                                                         <label className="text-[11px] font-bold text-gray-500">Usia (Tahun)</label>
-                                                        <input type="number" value={editDataForm.age} onChange={(e) => setEditDataForm({...editDataForm, age: e.target.value})} className="w-full h-10 bg-gray-50 rounded-xl px-3 text-[13px] font-bold text-gray-800 border border-gray-100 focus:border-[#14AE5C] focus:ring-1 focus:ring-[#14AE5C] outline-none transition-colors" />
+                                                        <input type="text" inputMode="numeric" value={editDataForm.age} onChange={(e) => setEditDataForm({...editDataForm, age: toIntegerInput(e.target.value)})} className="w-full h-10 bg-gray-50 rounded-xl px-3 text-[13px] font-bold text-gray-800 border border-gray-100 focus:border-[#14AE5C] focus:ring-1 focus:ring-[#14AE5C] outline-none transition-colors" />
                                                     </div>
                                                     <div className="flex flex-col gap-1.5">
                                                         <label className="text-[11px] font-bold text-gray-500">Tinggi (cm)</label>
-                                                        <input type="number" value={editDataForm.height} onChange={(e) => setEditDataForm({...editDataForm, height: e.target.value})} className="w-full h-10 bg-gray-50 rounded-xl px-3 text-[13px] font-bold text-gray-800 border border-gray-100 focus:border-[#14AE5C] focus:ring-1 focus:ring-[#14AE5C] outline-none transition-colors" />
+                                                        <input type="text" inputMode="numeric" value={editDataForm.height} onChange={(e) => setEditDataForm({...editDataForm, height: toIntegerInput(e.target.value)})} className="w-full h-10 bg-gray-50 rounded-xl px-3 text-[13px] font-bold text-gray-800 border border-gray-100 focus:border-[#14AE5C] focus:ring-1 focus:ring-[#14AE5C] outline-none transition-colors" />
                                                     </div>
                                                 </div>
                                                 <div className="grid grid-cols-2 gap-3">
                                                     <div className="flex flex-col gap-1.5">
                                                         <label className="text-[11px] font-bold text-gray-500">Berat (kg)</label>
-                                                        <input type="number" value={editDataForm.currentWeight} onChange={(e) => setEditDataForm({...editDataForm, currentWeight: e.target.value})} className="w-full h-10 bg-gray-50 rounded-xl px-3 text-[13px] font-bold text-gray-800 border border-gray-100 focus:border-[#14AE5C] focus:ring-1 focus:ring-[#14AE5C] outline-none transition-colors" />
+                                                        <input type="text" inputMode="decimal" value={editDataForm.currentWeight} onChange={(e) => setEditDataForm({...editDataForm, currentWeight: toDecimalInput(e.target.value)})} className="w-full h-10 bg-gray-50 rounded-xl px-3 text-[13px] font-bold text-gray-800 border border-gray-100 focus:border-[#14AE5C] focus:ring-1 focus:ring-[#14AE5C] outline-none transition-colors" />
                                                     </div>
                                                     <div className="flex flex-col gap-1.5">
                                                         <label className="text-[11px] font-bold text-gray-500">Gender</label>
