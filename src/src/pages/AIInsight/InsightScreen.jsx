@@ -51,10 +51,10 @@ const InsightScreen = () => {
                 { title: 'Protein Tanpa Lemak', desc: 'Coba ikan panggang untuk makan malam yang ringan tapi bergizi.', img: foodImg }
             ],
             nutrients: [
-                { id: 'kalori', label: 'Total Kalori', icon: 'mdi:card-multiple', iconColor: 'text-[#14AE5C]', value: '750', target: '1.500 kkal', valueColor: 'text-gray-500', status: 'check', sources: [] },
+                { id: 'kalori', label: 'Total Kalori', icon: 'mdi:card-multiple', iconColor: 'text-[#14AE5C]', value: '750', target: '1.500 kkal', valueColor: 'text-gray-500', status: 'down', sources: [] },
                 { id: 'protein', label: 'Protein', icon: 'mdi:arm-flex-outline', iconColor: 'text-[#F97316]', value: '80', target: '100 g', valueColor: 'text-[#F97316]', status: 'down', sources: [{ name: 'Dada Ayam', qty: '40g' }, { name: 'Susu', qty: '40g' }] },
-                { id: 'karbo', label: 'Karbohidrat', icon: 'mdi:food-croissant', iconColor: 'text-[#3B82F6]', value: '160', target: '220 g', valueColor: 'text-[#3B82F6]', status: 'check', sources: [{ name: 'Nasi Putih', qty: '150g' }, { name: 'Roti', qty: '30g' }] },
-                { id: 'lemak', label: 'Lemak', icon: 'mdi:egg-outline', iconColor: 'text-[#8B5CF6]', value: '45', target: '60 g', valueColor: 'text-[#8B5CF6]', status: 'check', sources: [{ name: 'Alpukat', qty: '45g' }] },
+                { id: 'karbo', label: 'Karbohidrat', icon: 'mdi:food-croissant', iconColor: 'text-[#3B82F6]', value: '160', target: '220 g', valueColor: 'text-[#3B82F6]', status: 'down', sources: [{ name: 'Nasi Putih', qty: '150g' }, { name: 'Roti', qty: '30g' }] },
+                { id: 'lemak', label: 'Lemak', icon: 'mdi:egg-outline', iconColor: 'text-[#8B5CF6]', value: '45', target: '60 g', valueColor: 'text-[#8B5CF6]', status: 'down', sources: [{ name: 'Alpukat', qty: '45g' }] },
                 { id: 'serat', label: 'Serat', icon: 'mdi:leaf', iconColor: 'text-[#14AE5C]', value: '12', target: '25 g', valueColor: 'text-[#14AE5C]', status: 'down', sources: [{ name: 'Sayur Bayam', qty: '12g' }] }
             ]
         }
@@ -97,7 +97,7 @@ const InsightScreen = () => {
             value: String(totalCalories),
             target: `${calorieTarget.toLocaleString('id-ID')} kkal`,
             valueColor: 'text-gray-500',
-            status: totalCalories <= calorieTarget ? 'check' : 'down',
+            status: totalCalories >= calorieTarget ? 'check' : 'down',
             sources: foodLogs.map((food) => ({ name: food.name, qty: `${food.calories} kkal` }))
         },
         {
@@ -119,7 +119,7 @@ const InsightScreen = () => {
             value: String(macroTotals.carbs),
             target: `${targets.carbs} g`,
             valueColor: 'text-[#3B82F6]',
-            status: macroTotals.carbs <= targets.carbs ? 'check' : 'down',
+            status: macroTotals.carbs >= targets.carbs ? 'check' : 'down',
             sources: getMacroSources(foodLogs, 'carbs')
         },
         {
@@ -130,7 +130,7 @@ const InsightScreen = () => {
             value: String(macroTotals.fat),
             target: `${targets.fat} g`,
             valueColor: 'text-[#8B5CF6]',
-            status: macroTotals.fat <= targets.fat ? 'check' : 'down',
+            status: macroTotals.fat >= targets.fat ? 'check' : 'down',
             sources: getMacroSources(foodLogs, 'fat')
         }
     ];

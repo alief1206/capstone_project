@@ -87,7 +87,7 @@ const InsightScreen = () => {
         {
             id: 'kalori', label: 'Total Kalori', icon: 'mdi:card-multiple-outline', iconColor: 'text-[#14AE5C]',
             value: String(Math.round(totalCalories * 100) / 100), target: `${calorieTarget ? calorieTarget.toLocaleString('id-ID') : '-'} kkal`,
-            valueColor: 'text-gray-800', status: totalCalories <= calorieTarget ? 'check' : 'down'
+            valueColor: 'text-gray-800', status: totalCalories >= calorieTarget ? 'check' : 'down'
         },
         {
             id: 'protein', label: 'Protein', icon: 'mdi:arm-flex-outline', iconColor: 'text-[#F97316]',
@@ -97,12 +97,12 @@ const InsightScreen = () => {
         {
             id: 'karbo', label: 'Karbohidrat', icon: 'mdi:food-croissant', iconColor: 'text-[#3B82F6]',
             value: (macroTotals.carbs).toFixed(2), target: `${targets.carbs} g`, valueColor: 'text-gray-800',
-            status: macroTotals.carbs <= targets.carbs ? 'check' : 'down'
+            status: macroTotals.carbs >= targets.carbs ? 'check' : 'down'
         },
         {
             id: 'lemak', label: 'Lemak', icon: 'mdi:egg-outline', iconColor: 'text-[#8B5CF6]',
             value: (macroTotals.fat).toFixed(2), target: `${targets.fat} g`, valueColor: 'text-gray-800',
-            status: macroTotals.fat <= targets.fat ? 'check' : 'down'
+            status: macroTotals.fat >= targets.fat ? 'check' : 'down'
         },
         {
             id: 'serat', label: 'Serat', icon: 'mdi:carrot', iconColor: 'text-[#14AE5C]',
